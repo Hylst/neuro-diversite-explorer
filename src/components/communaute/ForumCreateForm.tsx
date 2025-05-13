@@ -44,8 +44,21 @@ const ForumCreateForm: React.FC<ForumCreateFormProps> = ({ categories }) => {
       return;
     }
     
-    toast.success("Cette fonctionnalité sera bientôt disponible");
-    console.log("Données du formulaire:", formData);
+    // Simuler l'envoi des données au serveur
+    setTimeout(() => {
+      toast.success("Votre discussion a été créée avec succès");
+      // Réinitialiser le formulaire
+      setFormData({
+        title: '',
+        category: '',
+        content: '',
+        isAnonymous: false,
+        notifyOnReplies: true,
+        tags: ''
+      });
+      // Rediriger vers la nouvelle discussion (simulation)
+      console.log("Données du formulaire:", formData);
+    }, 1000);
   };
 
   const addFormatting = (format: string) => {

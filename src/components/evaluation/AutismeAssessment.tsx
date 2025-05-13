@@ -43,7 +43,7 @@ const AutismeAssessment = () => {
       
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(prev => prev + 1);
-        setSelectedOption(undefined);
+        setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
       } else {
         setShowResults(true);
       }
@@ -174,7 +174,7 @@ const AutismeAssessment = () => {
             
             <h3 className="text-lg font-medium mb-4">{questions[currentQuestion].text}</h3>
             
-            <RadioGroup value={selectedOption} onValueChange={handleOptionSelect} className="space-y-3">
+            <RadioGroup key={questions[currentQuestion].id} value={selectedOption} onValueChange={handleOptionSelect} className="space-y-3">
               {['strongly_disagree', 'disagree', 'slightly_disagree', 'slightly_agree', 'agree', 'strongly_agree'].map((option) => (
                 <div key={option} className="flex items-center space-x-2">
                   <RadioGroupItem value={option} id={option} />

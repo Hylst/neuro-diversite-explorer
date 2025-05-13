@@ -3,9 +3,15 @@
 
 ## À propos du projet
 
+![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
+![Licence](https://img.shields.io/badge/licence-MIT-green.svg)
+![Statut](https://img.shields.io/badge/statut-en%20développement-orange.svg)
+
 **NeuroDiversité Explorer** est une plateforme web complète dédiée à la compréhension et à la sensibilisation autour de la neurodiversité. Le site propose des ressources éducatives, un glossaire détaillé, des témoignages, et une communauté d'entraide pour les personnes neurodivergentes, leurs familles, et les professionnels.
 
 Ce projet vise à créer un espace inclusif où la neurodiversité est célébrée comme une richesse plutôt que perçue comme un déficit. Notre mission est de fournir des informations fiables, des outils pratiques et un espace communautaire bienveillant.
+
+> **Note:** Ce projet est actuellement en phase de développement actif. Certaines fonctionnalités peuvent être incomplètes ou en cours d'implémentation.
 
 ## Fonctionnalités principales
 
@@ -160,14 +166,26 @@ Le système supporte les éléments Markdown suivants :
 
 ## Feuille de route
 
+### Réalisé
 - [x] Documentation complète des troubles neurodéveloppementaux
-- [x] Glossaire avec système de recherche
-- [x] Témoignages et blog
-- [x] Cartographie des ressources
-- [ ] Finalisation du forum de discussion
-- [ ] Tests automatisés
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
 - [ ] Support multilingue complet
-- [ ] Application mobile
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
 
 ## Contribution
 
@@ -191,10 +209,31 @@ Consultez notre guide de contribution pour plus de détails.
 - Vérifiez que vos variables d'environnement Supabase sont correctement configurées
 - Assurez-vous que les règles de sécurité Supabase sont correctement définies
 
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
 ## Licence
 
-Ce projet est sous licence [insérer type de licence].
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ## Contact
 
-Pour toute question ou suggestion, n'hésitez pas à nous contacter à [adresse e-mail].
+Pour toute question ou suggestion, n'hésitez pas à nous contacter à contact@neurodiversite-explorer.fr ou ouvrir une issue sur GitHub.

@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Clock, FlameKindling, Tag } from 'lucide-react';
-import ForumTopicItem, { ForumTopicProps } from './ForumTopicItem';
+import { CheckCircle, Clock, FlameKindling } from 'lucide-react';
+import { ForumTopicProps } from './ForumTopicItem';
+import ForumTopicList from './ForumTopicList';
 
 interface ForumRecentTabProps {
   topics: ForumTopicProps[];
@@ -82,21 +82,10 @@ const ForumRecentTab: React.FC<ForumRecentTabProps> = ({ topics }) => {
         <div className="w-32 text-right">Dernière activité</div>
       </div>
       
-      <ScrollArea className="h-[400px]">
-        {sortedTopics.length > 0 ? (
-          sortedTopics.map((topic) => (
-            <ForumTopicItem
-              key={topic.id}
-              {...topic}
-            />
-          ))
-        ) : (
-          <div className="flex flex-col items-center justify-center h-32 text-center text-muted-foreground">
-            <Tag className="h-8 w-8 mb-2 opacity-50" />
-            <p>Aucune discussion ne correspond aux critères</p>
-          </div>
-        )}
-      </ScrollArea>
+      <ForumTopicList 
+        topics={sortedTopics} 
+        emptyMessage="Aucune discussion ne correspond aux critères" 
+      />
       
       <div className="text-xs text-muted-foreground mt-2">
         Affichage de {sortedTopics.length} discussion(s) sur {topics.length}

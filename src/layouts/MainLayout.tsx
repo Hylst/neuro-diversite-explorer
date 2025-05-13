@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import MainNavbar from '@/components/layout/MainNavbar';
 import Footer from '@/components/layout/Footer';
+import { Analytics } from "@vercel/analytics/react";
 
 /**
  * Layout principal de l'application
@@ -16,6 +17,7 @@ const MainLayout: React.FC = () => {
           <Outlet />
         </main>
         <Footer />
+        <Analytics />
       </div>
     </React.Fragment>
   );

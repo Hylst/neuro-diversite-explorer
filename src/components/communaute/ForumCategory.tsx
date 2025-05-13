@@ -11,6 +11,7 @@ export interface ForumCategoryProps {
   icon: React.ReactNode;
   exampleTopics?: string[];
   badge?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const ForumCategory: React.FC<ForumCategoryProps> = ({ 
@@ -20,7 +21,8 @@ const ForumCategory: React.FC<ForumCategoryProps> = ({
   topics, 
   icon, 
   exampleTopics = [],
-  badge
+  badge,
+  onClick
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -28,7 +30,7 @@ const ForumCategory: React.FC<ForumCategoryProps> = ({
     <div className="bg-card rounded-lg shadow-sm border border-border hover:border-primary/30 transition-colors w-full">
       <button
         className="text-left p-4 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        onClick={() => toast.info(`Catégorie ${name} - Disponible prochainement`)}
+        onClick={onClick || (() => toast.info(`Catégorie ${name} - Cliquez à nouveau pour voir les discussions`))}
       >
         <div className="flex items-start gap-3">
           <div className="p-2 bg-primary/10 rounded-full flex-shrink-0">

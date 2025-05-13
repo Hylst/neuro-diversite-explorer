@@ -3,9 +3,20 @@
 
 Toutes les modifications notables de ce projet seront documentées dans ce fichier.
 
+Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
+et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## Légende
+- ✨ **Ajouté** : Nouvelles fonctionnalités
+- 🔄 **Modifié** : Changements dans les fonctionnalités existantes
+- 🐛 **Corrigé** : Corrections de bugs
+- ⚠️ **Déprécié** : Fonctionnalités bientôt supprimées
+- 🗑️ **Supprimé** : Fonctionnalités supprimées
+- 🔒 **Sécurité** : Vulnérabilités
+
 ## [1.2.0] - Prochaine version
 
-### Ajouté
+### ✨ Ajouté
 - Nouveaux témoignages neurodivergents dans la section Blog (synesthésie, douance/TDAH, trisomie 21, bipolarité, trouble dissociatif, hypersensibilité sensorielle, autisme à diagnostic tardif)
 - Support pour davantage d'icônes dans les cartes de blog (puzzle, music, book-open, sparkles, stars, cloud)
 - Amélioration de l'affichage des avatars locaux pour les nouveaux témoignages
@@ -34,7 +45,7 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 - Mise à jour des liens fictifs dans la cartographie par des liens réels et valides
 - Désactivation temporaire des boutons de réseaux sociaux dans le footer
 
-### Corrections
+### 🐛 Corrections
 - Correction d'une erreur de chaîne non terminée dans BlogData.ts
 - Correction de l'affichage des icônes dans les cartes d'articles de blog
 - Correction du chevauchement du footer avec les cartes de blog
@@ -53,14 +64,14 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 - Correction de l'erreur d'importation de l'icône QuestionMark, remplacée par HelpCircle
 - Remplacement des liens fictifs de la cartographie par des liens réels vers des organisations existantes
 
-### À améliorer
+### 🔄 À améliorer
 - Optimisation des performances sur les pages complexes
 - Refactorisation des composants volumineux
 - Finalisation du forum de discussion
 - Enrichissement des ressources locales
 - Implémentation de tests automatisés
 
-### TODO: Liens à vérifier et corriger
+### ⚠️ TODO: Liens à vérifier et corriger
 - Compléter les liens de la section des événements communautaires
 - Vérifier les liens vers les documents PDF dans la section ressources :
   - Modèles de lettres pour demande de PAP
@@ -69,7 +80,7 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
   - Checklist des aménagements professionnels
 - Compléter les liens pour les applications recommandées dans la section ressources/applications
 
-### TODO: Contenu à compléter
+### ⚠️ TODO: Contenu à compléter
 - Terminer le contenu des pages de troubles spécifiques encore incomplètes
 - Compléter les témoignages avec des histoires plus diversifiées mais cohérentes 
 - Finaliser le contenu du glossaire pour les termes encore sans définition détaillée
@@ -79,7 +90,7 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 
 ## [1.1.0] - 2025-04-17
 
-### Ajouté
+### ✨ Ajouté
 - Enrichissement significatif du glossaire avec plus de 30 nouvelles définitions
 - Nouvelles catégories de termes dans le glossaire
 - Amélioration des définitions existantes
@@ -87,19 +98,19 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 - Mise à jour des événements communautaires avec contenu réel pour avril 2025
 - Contenu enrichi pour la section cartographie des ressources
 
-### Modifié
+### 🔄 Modifié
 - Refactorisation de la page Glossaire pour une meilleure maintenabilité
 - Amélioration des définitions du glossaire
 - Optimisation des performances de recherche
 - Amélioration de l'expérience utilisateur sur la page Communauté
 
-### Corrigé
+### 🐛 Corrigé
 - Corrections de bugs d'interface utilisateur
 - Amélioration de la réactivité sur mobile
 - Correction des liens non fonctionnels dans la section Communauté
 - Amélioration de la cohérence visuelle entre les sections
 
-### Problèmes identifiés
+### ⚠️ Problèmes identifiés
 - Temps de chargement élevé sur certaines pages complexes
 - Composants trop volumineux nécessitant une refactorisation
 - Manque de tests automatisés
@@ -107,7 +118,7 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 
 ## [1.0.0] - 2025-04-17
 
-### Ajouté
+### ✨ Ajouté
 - Page d'accueil avec présentation de la neurodiversité
 - Glossaire complet avec système de recherche et filtrage
 - Navigation principale et menus déroulants
@@ -115,11 +126,11 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 - Fonctionnalités d'accessibilité
 - Documentation complète des troubles neurodéveloppementaux
 
-### Modifié
+### 🔄 Modifié
 - Refactorisation de la page Glossaire pour une meilleure maintenabilité
 - Amélioration des définitions du glossaire
 - Optimisation des performances de recherche
 
-### Corrigé
+### 🐛 Corrigé
 - Corrections de bugs d'interface utilisateur
 - Amélioration de la réactivité sur mobile

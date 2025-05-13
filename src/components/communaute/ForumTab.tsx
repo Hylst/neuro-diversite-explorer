@@ -16,6 +16,9 @@ import ForumCategoriesTab from './ForumCategoriesTab';
 import ForumRecentTab from './ForumRecentTab';
 import ForumCreateForm from './ForumCreateForm';
 import ForumRules from './ForumRules';
+import ForumTopicDetail from './ForumTopicDetail';
+import ForumCategoryTopics from './ForumCategoryTopics';
+import ForumStats from './ForumStats';
 import { ForumCategoryProps } from './ForumCategory';
 import { ForumTopicProps } from './ForumTopicItem';
 import { getIconForCategory } from './ForumCategory';
@@ -23,6 +26,9 @@ import { getIconForCategory } from './ForumCategory';
 const ForumTab = () => {
   const [activeTab, setActiveTab] = useState('categories');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState<ForumTopicProps | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<ForumCategoryProps | null>(null);
   
   // Référence pour le contenu du forum
   const forumContentRef = useRef<HTMLDivElement>(null);
@@ -32,6 +38,28 @@ const ForumTab = () => {
     if (forumContentRef.current) {
       forumContentRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+  
+  // Fonction pour ouvrir le détail d'une discussion
+  const handleOpenTopic = (topic: ForumTopicProps) => {
+    setSelectedTopic(topic);
+    setSelectedCategory(null);
+  };
+  
+  // Fonction pour revenir à la liste des discussions
+  const handleBackToList = () => {
+    setSelectedTopic(null);
+  };
+  
+  // Fonction pour ouvrir une catégorie
+  const handleOpenCategory = (category: ForumCategoryProps) => {
+    setSelectedCategory(category);
+    setSelectedTopic(null);
+  };
+  
+  // Fonction pour revenir à la liste des catégories
+  const handleBackToCategories = () => {
+    setSelectedCategory(null);
   };
   
   const categories: ForumCategoryProps[] = [
@@ -162,60 +190,91 @@ const ForumTab = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Forum de discussion</CardTitle>
-          <CardDescription>
-            Échangez avec d'autres personnes concernées par la neurodiversité
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {/* Skip to content link for keyboard navigation */}
-          <button onClick={scrollToContent} className="skip-to-content">
-            Aller au contenu du forum
-          </button>
-          
-          <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
-            <ForumSearchBar 
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              onSearch={handleSearch}
-            />
-            
-            <ForumActions onNewTopic={handleNewTopic} />
+    <div className="space-y-6">
+      {selectedTopic ? (
+        <ForumTopicDetail topic={selectedTopic} onBack={handleBackToList} />
+      ) : selectedCategory ? (
+        <ForumCategoryTopics 
+          category={selectedCategory} 
+          topics={recentTopics} 
+          onBack={handleBackToCategories} 
+          onTopicClick={handleOpenTopic} 
+        />
+      ) : showCreateForm ? (
+        <div className="space-y-4">
+          <Button variant="ghost" onClick={() => setShowCreateForm(false)} className="mb-2">
+            Retour aux discussions
+          </Button>
+          <ForumCreateForm categories={categories} />
+        </div>
+      ) : (
+        <>
+          <div className="flex flex-col md:flex-row justify-between gap-4">
+            <div className="flex-1">
+              <ForumSearchBar value={searchQuery} onChange={setSearchQuery} onSearch={handleSearch} />
+            </div>
+            <ForumActions onNewTopic={() => setShowCreateForm(true)} />
           </div>
           
-          <Tabs defaultValue="categories" value={activeTab} onValueChange={setActiveTab} className="mt-6" ref={forumContentRef}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="categories">Catégories</TabsTrigger>
-              <TabsTrigger value="recent">Discussions récentes</TabsTrigger>
-            </TabsList>
+          <ForumStats 
+            totalTopics={93}
+            totalReplies={427}
+            activeUsers={156}
+            lastActive="aujourd'hui"
+          />
+          
+          <Card className="mt-4">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <MessageSquare className="h-5 w-5 text-primary" />
+                Forum de discussion
+              </CardTitle>
+              <CardDescription>
+                Échangez avec la communauté sur tous les sujets liés à la neurodiversité
+              </CardDescription>
+            </CardHeader>
             
-            <TabsContent value="categories">
-              <ForumCategoriesTab categories={categories} />
-            </TabsContent>
+            <CardContent>
+              <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab}>
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="categories" onClick={scrollToContent}>
+                    <Users className="h-4 w-4 mr-2" />
+                    Catégories
+                  </TabsTrigger>
+                  <TabsTrigger value="recent" onClick={scrollToContent}>
+                    <MessageCircle className="h-4 w-4 mr-2" />
+                    Discussions récentes
+                  </TabsTrigger>
+                </TabsList>
+                
+                <div ref={forumContentRef}>
+                  <TabsContent value="categories" className="mt-6">
+                    <ForumCategoriesTab 
+                      categories={categories.map(category => ({
+                        ...category,
+                        onClick: () => handleOpenCategory(category)
+                      }))} 
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="recent" className="mt-6">
+                    <ForumRecentTab topics={recentTopics.map(topic => ({
+                      ...topic,
+                      onClick: () => handleOpenTopic(topic)
+                    }))} />
+                  </TabsContent>
+                </div>
+              </Tabs>
+            </CardContent>
             
-            <TabsContent value="recent">
-              <ForumRecentTab topics={recentTopics} />
-            </TabsContent>
-          </Tabs>
-
-          <ForumRules />
-        </CardContent>
-        <CardFooter>
-          <Button variant="outline" className="w-full" onClick={() => toast.info("Forum complet disponible prochainement")}>
-            Explorer toutes les discussions
-          </Button>
-        </CardFooter>
-      </Card>
-      
-      {/* Formulaire de création de discussion */}
-      <ForumCreateForm categories={categories} />
-      
-      <div className="mt-8">
-        <NewsletterSignup />
-      </div>
+            <CardFooter className="flex flex-col bg-muted/50 rounded-b-lg">
+              <ForumRules />
+            </CardFooter>
+          </Card>
+          
+          <NewsletterSignup />
+        </>
+      )}
     </div>
   );
 };

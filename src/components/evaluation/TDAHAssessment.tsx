@@ -8,6 +8,9 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon, HelpCircle } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import QuestionnaireNavigation from './common/QuestionnaireNavigation';
+import ResultsDisplay from './common/ResultsDisplay';
+import QuestionTooltip from './common/QuestionTooltip';
 
 interface Question {
   id: number;
@@ -126,12 +129,41 @@ const TDAHAssessment = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
+  const [currentAnswer, setCurrentAnswer] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
+  
+  const handleOptionSelect = (value: string) => {
+    setSelectedOption(value);
+  };
+  
+  const handleNextQuestion = () => {
+    if (selectedOption) {
+      setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
+      
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(prev => prev + 1);
+        setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
+      } else {
+        setShowResults(true);
+      }
+    }
+  };
+  
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(prev => prev - 1);
+      setSelectedOption(answers[questions[currentQuestion - 1].id]);
+    }
+  };
   
   const handleAnswer = (value: string) => {
     setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: value }));
     
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(prev => prev + 1);
+      setTimeout(() => {
+        setCurrentQuestion(prev => prev + 1);
+        setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
+      }, 300);
     } else {
       setShowResults(true);
     }
@@ -207,172 +239,90 @@ const TDAHAssessment = () => {
     setCurrentQuestion(0);
     setAnswers({});
     setShowResults(false);
+    setSelectedOption(undefined);
   };
   
   const scores = calculateScores();
   const interpretation = getInterpretation(scores);
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
   
-  const answerLabels = {
-    'jamais': 'Jamais',
-    'rarement': 'Rarement',
-    'parfois': 'Parfois',
-    'souvent': 'Souvent',
-    'tres_souvent': 'Très souvent'
-  };
+  // Ressources pour le TDAH
+  const tdahResources = [
+    { name: "HAS - Recommandations sur le TDAH", url: "https://www.has-sante.fr/jcms/c_2012647/fr/trouble-deficit-de-l-attention-avec-ou-sans-hyperactivite-tdah-reperer-la-souffrance-accompagner-l-enfant-et-la-famille" },
+    { name: "TDAH France", url: "https://www.tdah-france.fr/" },
+    { name: "Centre de référence des troubles des apprentissages", url: "http://www.centrereference-mnd.fr/fr/le-reseau-national-des-centres.html" },
+    { name: "Guide pratique du TDAH chez l'adulte", url: "https://www.has-sante.fr/upload/docs/application/pdf/2023-03/guidance_2023_tdah_de_ladulte_mel.pdf" },
+    { name: "Webinaires et conférences sur le TDAH", url: "https://www.tdah-france.fr/-CONFERENCES-.html" }
+  ];
   
   return (
-    <TooltipProvider>
-      <Card className="w-full max-w-3xl mx-auto">
-        <CardHeader>
-          <CardTitle>Auto-évaluation du TDAH</CardTitle>
-          <CardDescription>
-            Cet outil d'auto-évaluation peut aider à identifier des traits associés au Trouble du Déficit de l'Attention avec ou sans Hyperactivité (TDAH). 
-            Il ne remplace pas un diagnostic professionnel.
-          </CardDescription>
-          {!showResults && (
-            <div className="mt-4">
-              <div className="flex justify-between text-sm mb-1">
-                <span>Question {currentQuestion + 1} sur {questions.length}</span>
-                <span>{Math.round(progress)}%</span>
-              </div>
-              <Progress value={progress} className="h-2" />
-            </div>
-          )}
-        </CardHeader>
-        
-        <CardContent>
-          {!showResults ? (
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <h3 className="text-lg font-medium">{questions[currentQuestion].text}</h3>
+    <Card className="w-full max-w-3xl mx-auto">
+      {!showResults ? (
+        <>
+          <CardHeader>
+            <CardTitle>Auto-évaluation du TDAH</CardTitle>
+            <CardDescription>
+              Ce questionnaire est basé sur les critères diagnostiques du TDAH chez l'adulte. 
+              Il ne remplace pas un diagnostic professionnel.
+            </CardDescription>
+          </CardHeader>
+          
+          <CardContent>
+            <div className="space-y-6">
+              <div className="flex items-center gap-2">
+                <div className="text-lg font-medium">{questions[currentQuestion].text}</div>
+                
                 {questions[currentQuestion].tooltip && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="w-80">{questions[currentQuestion].tooltip}</p>
-                    </TooltipContent>
-                  </Tooltip>
+                  <QuestionTooltip content={questions[currentQuestion].tooltip} />
                 )}
               </div>
               
-              <RadioGroup onValueChange={handleAnswer} className="space-y-3">
-                {Object.entries(answerLabels).map(([value, label]) => (
-                  <div key={value} className="flex items-center space-x-2">
-                    <RadioGroupItem value={value} id={value} />
-                    <Label htmlFor={value}>{label}</Label>
+            <RadioGroup key={questions[currentQuestion].id} value={selectedOption} onValueChange={handleOptionSelect} className="space-y-3">
+                <div className="flex flex-col space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="jamais" id="jamais" />
+                    <Label htmlFor="jamais">Jamais</Label>
                   </div>
-                ))}
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="rarement" id="rarement" />
+                    <Label htmlFor="rarement">Rarement</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="parfois" id="parfois" />
+                    <Label htmlFor="parfois">Parfois</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="souvent" id="souvent" />
+                    <Label htmlFor="souvent">Souvent</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="tres_souvent" id="tres_souvent" />
+                    <Label htmlFor="tres_souvent">Très souvent</Label>
+                  </div>
+                </div>
               </RadioGroup>
+              
+              <QuestionnaireNavigation
+                currentQuestion={currentQuestion}
+                totalQuestions={questions.length}
+                onPrevious={handlePreviousQuestion}
+                onNext={handleNextQuestion}
+                canGoNext={!!selectedOption}
+                isFirstQuestion={currentQuestion === 0}
+              />
             </div>
-          ) : (
-            <div className="space-y-6">
-              <Alert>
-                <InfoIcon className="h-4 w-4" />
-                <AlertTitle>Résultats de l'auto-évaluation</AlertTitle>
-                <AlertDescription>
-                  Niveau d'indicateurs de TDAH: <span className="font-medium">{interpretation.level}</span>
-                </AlertDescription>
-              </Alert>
-              
-              <div>
-                <h3 className="font-medium mb-1">Interprétation:</h3>
-                <p className="text-muted-foreground">{interpretation.description}</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-medium mb-1">Score global:</h3>
-                  <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
-                    <div 
-                      className={`${interpretation.color} h-full transition-all duration-500 ease-out`}
-                      style={{ width: `${(scores.total / (questions.length * 2)) * 100}%` }}
-                    ></div>
-                  </div>
-                  <div className="flex justify-between text-sm mt-1">
-                    <span>Minimal</span>
-                    <span>Modéré</span>
-                    <span>Significatif</span>
-                  </div>
-                </div>
-                
-                <div>
-                  <h3 className="font-medium mb-3">Répartition des symptômes:</h3>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span>Inattention</span>
-                        <span>{Math.round((scores.inattention / (questions.filter(q => q.category === 'inattention').length * 2)) * 100)}%</span>
-                      </div>
-                      <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                        <div 
-                          className="bg-blue-500 h-full transition-all duration-500 ease-out"
-                          style={{ width: `${(scores.inattention / (questions.filter(q => q.category === 'inattention').length * 2)) * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span>Hyperactivité</span>
-                        <span>{Math.round((scores.hyperactivite / (questions.filter(q => q.category === 'hyperactivite').length * 2)) * 100)}%</span>
-                      </div>
-                      <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                        <div 
-                          className="bg-purple-500 h-full transition-all duration-500 ease-out"
-                          style={{ width: `${(scores.hyperactivite / (questions.filter(q => q.category === 'hyperactivite').length * 2)) * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span>Impulsivité</span>
-                        <span>{Math.round((scores.impulsivite / (questions.filter(q => q.category === 'impulsivite').length * 2)) * 100)}%</span>
-                      </div>
-                      <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                        <div 
-                          className="bg-pink-500 h-full transition-all duration-500 ease-out"
-                          style={{ width: `${(scores.impulsivite / (questions.filter(q => q.category === 'impulsivite').length * 2)) * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="pt-4">
-                <h3 className="font-medium mb-2">Prochaines étapes:</h3>
-                <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                  <li>Ces résultats sont indicatifs et ne constituent pas un diagnostic.</li>
-                  <li>Si vous avez obtenu un score élevé, envisagez de consulter un psychiatre ou un neuropsychologue spécialisé.</li>
-                  <li>Un diagnostic formel peut ouvrir droit à des traitements et des aménagements adaptés.</li>
-                  <li>Explorez les ressources disponibles dans la section "Vivre avec" de notre site.</li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </CardContent>
-        
-        <CardFooter className={`flex ${showResults ? 'justify-between' : 'justify-end'}`}>
-          {showResults && (
-            <Button variant="outline" onClick={resetAssessment}>
-              Recommencer
-            </Button>
-          )}
-          {!showResults && currentQuestion > 0 && (
-            <Button 
-              variant="outline" 
-              onClick={() => setCurrentQuestion(prev => prev - 1)}
-            >
-              Question précédente
-            </Button>
-          )}
-        </CardFooter>
-      </Card>
-    </TooltipProvider>
+          </CardContent>
+        </>
+      ) : (
+        <ResultsDisplay
+          title="Résultats - Auto-évaluation du TDAH"
+          score={scores.total}
+          maxScore={questions.length * 2}
+          result={interpretation}
+          onReset={resetAssessment}
+          resources={tdahResources}
+        />
+      )}
+    </Card>
   );
 };
 

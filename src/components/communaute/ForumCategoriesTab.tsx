@@ -94,6 +94,7 @@ const ForumCategoriesTab: React.FC<ForumCategoriesTabProps> = ({ categories }) =
                 icon={category.icon}
                 exampleTopics={getExampleTopics(category.id)}
                 badge={getCategoryBadges(category.id)}
+                onClick={category.onClick}
               />
             ))}
         </div>
@@ -115,6 +116,7 @@ const ForumCategoriesTab: React.FC<ForumCategoriesTabProps> = ({ categories }) =
                 icon={category.icon}
                 exampleTopics={getExampleTopics(category.id)}
                 badge={getCategoryBadges(category.id)}
+                onClick={category.onClick}
               />
             ))}
         </div>

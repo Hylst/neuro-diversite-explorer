@@ -60,10 +60,12 @@ export interface EventProps {
 }
 
 export interface AssessmentResult {
-  score: number;
+  score?: number;
   level: string;
   description: string;
   color: string;
-  suggestions: string[];
+  suggestions?: string[];
 }
+
+// Ajouter d'autres types personnalisés au besoin
 

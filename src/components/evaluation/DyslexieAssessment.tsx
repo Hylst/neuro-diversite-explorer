@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon } from 'lucide-react';
+import QuestionnaireNavigation from './common/QuestionnaireNavigation';
+import ResultsDisplay from './common/ResultsDisplay';
 
 interface Question {
   id: number;
@@ -30,12 +32,42 @@ const DyslexieAssessment = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
+  
+  const handleOptionSelect = (value: string) => {
+    setSelectedOption(value);
+  };
+  
+  const handleNextQuestion = () => {
+    if (selectedOption) {
+      setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
+      
+      if (currentQuestion < questions.length - 1) {
+        // Utiliser setState avec callback pour garantir l'ordre des opérations
+        setCurrentQuestion(prev => {
+          // Réinitialiser la sélection immédiatement après avoir changé la question
+          setTimeout(() => setSelectedOption(undefined), 50);
+          return prev + 1;
+        });
+      } else {
+        setShowResults(true);
+      }
+    }
+  };
+  
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(prev => prev - 1);
+      setSelectedOption(answers[questions[currentQuestion - 1].id]);
+    }
+  };
   
   const handleAnswer = (value: string) => {
     setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: value }));
     
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
+      setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
     } else {
       setShowResults(true);
     }
@@ -86,99 +118,82 @@ const DyslexieAssessment = () => {
   
   const score = calculateScore();
   const interpretation = getInterpretation(score);
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  
+  // Ressources pour la dyslexie
+  const dyslexieResources = [
+    { name: "Fédération Française des DYS", url: "https://www.ffdys.com/" },
+    { name: "APEDA-France", url: "https://www.apeda-france.com/" },
+    { name: "INSERM - Dossier sur la dyslexie", url: "https://www.inserm.fr/dossier/dyslexie/" },
+    { name: "ANAPEDYS - Association nationale d'associations d'adultes et de parents d'enfants dys", url: "https://www.anapedys.org/" },
+    { name: "Plateforme de rééducation en ligne DYS", url: "https://www.cognibulle.com/" }
+  ];
   
   return (
     <Card className="w-full max-w-3xl mx-auto">
-      <CardHeader>
-        <CardTitle>Auto-évaluation de la dyslexie</CardTitle>
-        <CardDescription>
-          Cet outil d'auto-évaluation peut aider à identifier des traits associés à la dyslexie. 
-          Il ne remplace pas un diagnostic professionnel.
-        </CardDescription>
-        {!showResults && (
-          <div className="mt-4">
-            <div className="flex justify-between text-sm mb-1">
-              <span>Question {currentQuestion + 1} sur {questions.length}</span>
-              <span>{Math.round(progress)}%</span>
-            </div>
-            <Progress value={progress} className="h-2" />
-          </div>
-        )}
-      </CardHeader>
-      
-      <CardContent>
-        {!showResults ? (
-          <div>
-            <h3 className="text-lg font-medium mb-4">{questions[currentQuestion].text}</h3>
-            
-            <RadioGroup onValueChange={handleAnswer} className="space-y-3">
-              {['jamais', 'rarement', 'parfois', 'souvent', 'toujours'].map((option) => (
-                <div key={option} className="flex items-center space-x-2">
-                  <RadioGroupItem value={option} id={option} />
-                  <Label htmlFor={option} className="capitalize">{option}</Label>
+      {!showResults ? (
+        <>
+          <CardHeader>
+            <CardTitle>Auto-évaluation de la dyslexie</CardTitle>
+            <CardDescription>
+              Cet outil d'auto-évaluation peut aider à identifier des traits associés à la dyslexie. 
+              Il ne remplace pas un diagnostic professionnel.
+            </CardDescription>
+          </CardHeader>
+          
+          <CardContent>
+            <div className="space-y-6">
+              <div className="text-lg font-medium">{questions[currentQuestion].text}</div>
+              
+              <RadioGroup 
+                key={questions[currentQuestion].id} // Ajout de la clé unique
+                value={selectedOption} 
+                onValueChange={handleOptionSelect}
+              >
+                <div className="flex flex-col space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="jamais" id="jamais" />
+                    <Label htmlFor="jamais">Jamais</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="rarement" id="rarement" />
+                    <Label htmlFor="rarement">Rarement</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="parfois" id="parfois" />
+                    <Label htmlFor="parfois">Parfois</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="souvent" id="souvent" />
+                    <Label htmlFor="souvent">Souvent</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="toujours" id="toujours" />
+                    <Label htmlFor="toujours">Toujours</Label>
+                  </div>
                 </div>
-              ))}
-            </RadioGroup>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            <Alert>
-              <InfoIcon className="h-4 w-4" />
-              <AlertTitle>Résultats de l'auto-évaluation</AlertTitle>
-              <AlertDescription>
-                Niveau d'indicateurs de dyslexie: <span className="font-medium">{interpretation.level}</span>
-              </AlertDescription>
-            </Alert>
-            
-            <div>
-              <h3 className="font-medium mb-1">Interprétation:</h3>
-              <p className="text-muted-foreground">{interpretation.description}</p>
+              </RadioGroup>
+              
+              <QuestionnaireNavigation
+                currentQuestion={currentQuestion}
+                totalQuestions={questions.length}
+                onPrevious={handlePreviousQuestion}
+                onNext={handleNextQuestion}
+                canGoNext={!!selectedOption}
+                isFirstQuestion={currentQuestion === 0}
+              />
             </div>
-            
-            <div>
-              <h3 className="font-medium mb-1">Score:</h3>
-              <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
-                <div 
-                  className={`${interpretation.color} h-full transition-all duration-500 ease-out`}
-                  style={{ width: `${(score / questions.length) * 100}%` }}
-                ></div>
-              </div>
-              <div className="flex justify-between text-sm mt-1">
-                <span>Minimal</span>
-                <span>Modéré</span>
-                <span>Significatif</span>
-              </div>
-            </div>
-            
-            <div className="pt-4">
-              <h3 className="font-medium mb-2">Prochaines étapes:</h3>
-              <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                <li>Ces résultats sont indicatifs et ne constituent pas un diagnostic.</li>
-                <li>Si vous avez obtenu un score élevé, envisagez de consulter un neuropsychologue ou un orthophoniste spécialisé.</li>
-                <li>Un diagnostic formel peut ouvrir droit à des aménagements scolaires ou professionnels.</li>
-                <li>Explorez les ressources disponibles dans la section "Vivre avec" de notre site.</li>
-              </ul>
-            </div>
-          </div>
-        )}
-      </CardContent>
-      
-      <CardFooter className={`flex ${showResults ? 'justify-between' : 'justify-end'}`}>
-        {showResults && (
-          <Button variant="outline" onClick={resetAssessment}>
-            Recommencer
-          </Button>
-        )}
-        {!showResults && currentQuestion > 0 && (
-          <Button 
-            variant="outline" 
-            onClick={() => setCurrentQuestion(prev => prev - 1)}
-          >
-            Question précédente
-          </Button>
-        )}
-      </CardFooter>
+          </CardContent>
+        </>
+      ) : (
+        <ResultsDisplay
+          title="Résultats - Auto-évaluation de la dyslexie"
+          score={score}
+          maxScore={questions.length}
+          result={interpretation}
+          onReset={resetAssessment}
+          resources={dyslexieResources}
+        />
+      )}
     </Card>
   );
 };

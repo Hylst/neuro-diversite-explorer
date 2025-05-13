@@ -30,12 +30,47 @@ const DyscalculieAssessment = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
   
+  // Fonction pour gérer la sélection d'une option
+  const handleOptionSelect = (value: string) => {
+    setSelectedOption(value);
+  };
+  
+  // Fonction pour passer à la question suivante
+  const handleNextQuestion = () => {
+    if (selectedOption) {
+      setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
+      
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(prev => prev + 1);
+        // Réinitialisation explicite de la sélection
+        setSelectedOption(undefined);
+      } else {
+        setShowResults(true);
+      }
+    }
+  };
+  
+  // Fonction pour revenir à la question précédente
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(prev => prev - 1);
+      // Restaurer la réponse précédente si elle existe
+      setSelectedOption(answers[questions[currentQuestion - 1].id]);
+    }
+  };
+  
+  // Maintien de la fonction handleAnswer pour compatibilité
   const handleAnswer = (value: string) => {
     setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: value }));
     
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(prev => prev + 1);
+      // Utiliser un délai plus long pour s'assurer que la réinitialisation fonctionne
+      setTimeout(() => {
+        setCurrentQuestion(prev => prev + 1);
+        setSelectedOption(undefined);
+      }, 500);
     } else {
       setShowResults(true);
     }
@@ -119,7 +154,12 @@ const DyscalculieAssessment = () => {
             
             <h3 className="text-lg font-medium mb-4">{questions[currentQuestion].text}</h3>
             
-            <RadioGroup onValueChange={handleAnswer} className="space-y-3">
+            <RadioGroup 
+              key={questions[currentQuestion].id} // Ajout de la clé unique
+              value={selectedOption} 
+              onValueChange={handleOptionSelect}
+              className="space-y-3"
+            >
               {['jamais', 'rarement', 'parfois', 'souvent', 'toujours'].map((option) => (
                 <div key={option} className="flex items-center space-x-2">
                   <RadioGroupItem value={option} id={option} />
@@ -127,6 +167,25 @@ const DyscalculieAssessment = () => {
                 </div>
               ))}
             </RadioGroup>
+            
+            <div className="flex justify-between mt-6">
+              {currentQuestion > 0 && (
+                <Button 
+                  variant="outline" 
+                  onClick={handlePreviousQuestion}
+                  className="flex items-center gap-2"
+                >
+                  Question précédente
+                </Button>
+              )}
+              <Button 
+                onClick={handleNextQuestion}
+                disabled={!selectedOption}
+                className="ml-auto flex items-center gap-2"
+              >
+                {currentQuestion < questions.length - 1 ? 'Question suivante' : 'Voir les résultats'}
+              </Button>
+            </div>
           </div>
         ) : (
           <div className="space-y-6">
@@ -171,18 +230,10 @@ const DyscalculieAssessment = () => {
         )}
       </CardContent>
       
-      <CardFooter className={`flex ${showResults ? 'justify-between' : 'justify-end'}`}>
+      <CardFooter className="flex justify-center">
         {showResults && (
           <Button variant="outline" onClick={resetAssessment}>
             Recommencer
-          </Button>
-        )}
-        {!showResults && currentQuestion > 0 && (
-          <Button 
-            variant="outline" 
-            onClick={() => setCurrentQuestion(prev => prev - 1)}
-          >
-            Question précédente
           </Button>
         )}
       </CardFooter>

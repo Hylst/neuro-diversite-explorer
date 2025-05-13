@@ -20,6 +20,7 @@ export interface ForumTopicProps {
   isResolved?: boolean;
   isPopular?: boolean;
   avatar?: string;
+  onClick?: () => void;
 }
 
 // Fonction pour générer les initiales d'un nom
@@ -60,12 +61,13 @@ const ForumTopicItem: React.FC<ForumTopicProps> = ({
   isSticky = false,
   isResolved = false,
   isPopular = false,
-  avatar
+  avatar,
+  onClick
 }) => {
   return (
     <button
       className="w-full text-left border-b border-border last:border-0 py-4 px-2 hover:bg-muted/30 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-      onClick={() => toast.info(`Discussion ${title} - Disponible prochainement`)}
+      onClick={onClick || (() => toast.info(`Discussion ${title} - Cliquez à nouveau pour voir le détail`))}
     >
       <div className="flex flex-col md:flex-row md:items-center gap-2">
         <div className="flex-1">
