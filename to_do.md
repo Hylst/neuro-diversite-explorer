@@ -145,41 +145,248 @@ Ce document liste toutes les erreurs, incohérences et problèmes identifiés da
 
 ### 4.1. Manque de support pour les technologies d'assistance
 
-**Problème** : Support incomplet pour les lecteurs d'écran et la navigation au clavier.
+**Problème** : Support incomplet pour les lecteurs d'écran et la navigation au clavier. Les composants interactifs manquent d'attributs ARIA essentiels, et la navigation au clavier est limitée ou inexistante dans plusieurs sections de l'application.
+
+**Détails du problème** :
+- Les boutons et contrôles interactifs n'ont pas d'attributs `aria-label` ou `aria-labelledby`
+- Les composants personnalisés comme `QuestionnaireNavigation` ne communiquent pas correctement leur état aux technologies d'assistance
+- L'ordre de tabulation (tab order) n'est pas logique dans les questionnaires
+- Absence de raccourcis clavier pour les actions principales
+- Les messages d'erreur et notifications ne sont pas annoncés aux lecteurs d'écran
+- Les tooltips et informations contextuelles ne sont pas accessibles via clavier
 
 **Solution** :
-1. Ajouter des attributs ARIA appropriés aux composants interactifs
-2. Améliorer la navigation au clavier avec des gestionnaires de focus
-3. Tester avec différentes technologies d'assistance
+1. Ajouter des attributs ARIA appropriés aux composants interactifs :
+   - `aria-label` ou `aria-labelledby` pour tous les contrôles sans texte visible
+   - `aria-expanded`, `aria-haspopup` pour les menus déroulants
+   - `aria-current` pour indiquer la question active dans les questionnaires
+   - `aria-live` pour les zones de contenu dynamique (résultats, notifications)
+   - `aria-required` et `aria-invalid` pour les champs de formulaire
+
+2. Améliorer la navigation au clavier :
+   - Implémenter une gestion cohérente du focus avec `useRef` et `focus()`
+   - Assurer que tous les éléments interactifs sont accessibles par tabulation
+   - Créer un ordre de tabulation logique avec l'attribut `tabIndex`
+   - Ajouter des gestionnaires d'événements clavier (`onKeyDown`, `onKeyPress`)
+   - Implémenter des raccourcis clavier pour les actions principales (navigation, validation)
+   - Assurer que le focus visuel est clairement visible (outline CSS)
+
+3. Tester avec différentes technologies d'assistance :
+   - NVDA et JAWS sous Windows
+   - VoiceOver sous macOS et iOS
+   - TalkBack sous Android
+   - Utiliser des outils automatisés comme Axe, Lighthouse ou Wave
+   - Effectuer des tests manuels avec des utilisateurs réels
 
 ### 4.2. Contraste et lisibilité insuffisants
 
-**Problème** : Certains éléments peuvent avoir un contraste insuffisant.
+**Problème** : Certains éléments peuvent avoir un contraste insuffisant, rendant l'application difficile à utiliser pour les personnes ayant des déficiences visuelles ou des troubles cognitifs.
+
+**Détails du problème** :
+- Texte sur fond coloré avec un ratio de contraste insuffisant
+- Taille de police trop petite dans certaines sections (notamment les tooltips)
+- Absence d'options pour ajuster la taille du texte ou le contraste
+- Utilisation de couleurs comme seul moyen de transmettre une information
+- Espacement insuffisant entre les éléments interactifs
+- Manque de cohérence dans la hiérarchie visuelle
 
 **Solution** :
-1. Vérifier et corriger les ratios de contraste selon les normes WCAG
-2. Augmenter la taille de base du texte pour une meilleure lisibilité
-3. Ajouter des options de personnalisation pour les utilisateurs
+1. Vérifier et corriger les ratios de contraste selon les normes WCAG :
+   - Assurer un ratio minimum de 4.5:1 pour le texte normal (niveau AA)
+   - Assurer un ratio minimum de 3:1 pour le texte large ou les éléments d'interface
+   - Utiliser des outils comme Contrast Checker ou Colour Contrast Analyser
+   - Revoir la palette de couleurs pour garantir l'accessibilité
+
+2. Améliorer la lisibilité du texte :
+   - Augmenter la taille de base du texte à au moins 16px
+   - Utiliser des unités relatives (rem, em) plutôt que des pixels
+   - Assurer un espacement suffisant entre les lignes (line-height)
+   - Limiter la largeur des blocs de texte pour faciliter la lecture
+   - Choisir des polices optimisées pour la lecture à l'écran
+
+3. Ajouter des options de personnalisation pour les utilisateurs :
+   - Mode sombre / mode clair
+   - Réglage de la taille du texte
+   - Options de contraste élevé
+   - Possibilité de désactiver les animations
+   - Préférences de réduction des mouvements (prefers-reduced-motion)
+   - Sauvegarde des préférences utilisateur
+
+### 4.3. Alternatives textuelles et sémantique HTML
+
+**Problème** : Utilisation insuffisante des alternatives textuelles et de la sémantique HTML appropriée.
+
+**Détails du problème** :
+- Images sans attributs `alt` descriptifs
+- Utilisation excessive de balises `<div>` et `<span>` au lieu d'éléments sémantiques
+- Structure de titres (`<h1>` à `<h6>`) incohérente ou incorrecte
+- Absence de landmarks ARIA pour définir les régions de la page
+- Formulaires sans étiquettes correctement associées
+- Tableaux sans en-têtes appropriés ou sans résumé
+
+**Solution** :
+1. Améliorer les alternatives textuelles :
+   - Ajouter des attributs `alt` descriptifs à toutes les images
+   - Fournir des transcriptions pour les contenus audio ou vidéo
+   - Utiliser `aria-describedby` pour les descriptions plus longues
+   - S'assurer que les icônes ont des alternatives textuelles
+
+2. Renforcer la sémantique HTML :
+   - Utiliser des éléments HTML5 sémantiques (`<nav>`, `<main>`, `<section>`, etc.)
+   - Structurer correctement les titres de manière hiérarchique
+   - Utiliser `<button>` pour les éléments cliquables au lieu de `<div>` avec des gestionnaires d'événements
+   - Associer correctement les étiquettes aux champs de formulaire
+
+3. Ajouter des landmarks ARIA :
+   - Définir les régions principales avec `role="banner"`, `role="main"`, `role="navigation"`, etc.
+   - Utiliser `aria-labelledby` pour associer les titres aux sections
+   - Implémenter des skiplinks pour permettre aux utilisateurs de sauter les sections répétitives
+
+### 4.4. Tests et validation d'accessibilité
+
+**Problème** : Absence de processus systématique pour tester et valider l'accessibilité de l'application.
+
+**Détails du problème** :
+- Aucune procédure de test d'accessibilité en place
+- Manque de connaissances sur les outils de validation d'accessibilité
+- Absence de documentation sur les fonctionnalités d'accessibilité
+- Pas de retour d'utilisateurs ayant des besoins spécifiques
+
+**Solution** :
+1. Mettre en place un processus de test d'accessibilité :
+   - Intégrer des tests automatisés avec des outils comme Axe, Lighthouse ou WAVE
+   - Créer une checklist d'accessibilité basée sur les critères WCAG 2.1 niveau AA
+   - Effectuer des audits réguliers d'accessibilité
+   - Documenter les problèmes identifiés et les solutions appliquées
+
+2. Réaliser des tests manuels :
+   - Tester la navigation au clavier sur tous les parcours utilisateur
+   - Vérifier la compatibilité avec les lecteurs d'écran (NVDA, JAWS, VoiceOver)
+   - Tester avec différents paramètres d'affichage (zoom, contraste élevé)
+   - Vérifier l'accessibilité sur différents appareils et tailles d'écran
+
+3. Impliquer des utilisateurs ayant des besoins spécifiques :
+   - Organiser des sessions de test avec des utilisateurs en situation de handicap
+   - Recueillir et intégrer les retours d'expérience
+   - Créer un canal pour signaler les problèmes d'accessibilité
+   - Documenter les fonctionnalités d'accessibilité pour les utilisateurs
 
 ## 5. Problèmes de routage
 
 ### 5.1. Structure de routage non optimisée
 
-**Problème** : Routes définies de manière plate dans `App.tsx` sans utilisation de routes imbriquées.
+**Problème** : Routes définies de manière plate dans `App.tsx` sans utilisation de routes imbriquées. L'application utilise actuellement une structure de routage non hiérarchique où toutes les routes sont définies au même niveau, ce qui rend difficile la maintenance et l'organisation du code.
 
-**Solution** :
-1. Restructurer le routage avec des routes imbriquées
-2. Utiliser `<Outlet />` pour les layouts partagés
-3. Regrouper les routes par catégorie (troubles, ressources, etc.)
+**Analyse détaillée** :
+- L'application utilise actuellement `HashRouter` au lieu de `BrowserRouter` (visible dans `App.tsx`)
+- Toutes les routes sont définies au même niveau dans `App.tsx`, sans regroupement logique
+- Il existe un fichier `App.tsx.new` qui semble être une tentative de refactorisation avec `BrowserRouter`
+- Les routes sont définies dans un fichier centralisé `routes.ts`, mais leur implémentation dans `App.tsx` ne reflète pas la structure hiérarchique définie dans `ROUTE_GROUPS`
 
-### 5.2. Duplication de fichiers de routage
+**Solution détaillée** :
+1. **Migrer de HashRouter vers BrowserRouter** :
+   - Remplacer `HashRouter` par `BrowserRouter` dans `App.tsx`
+   - Configurer correctement le serveur pour gérer les routes côté client (rediriger vers index.html)
+   - Mettre à jour les liens dans l'application si nécessaire
 
-**Problème** : Présence de fichiers `fix-duplicate-navbars.js` et `fix-duplicate-navbars.mjs` qui semblent être des tentatives de correction.
+2. **Restructurer le routage avec des routes imbriquées** :
+   - Créer des composants de layout pour chaque section principale (MainLayout, TroublesLayout, RessourcesLayout)
+   - Utiliser `<Outlet />` dans ces layouts pour rendre le contenu des routes enfants
+   - Regrouper les routes par catégorie selon la structure définie dans `ROUTE_GROUPS`
 
-**Solution** :
-1. Identifier le problème de duplication des barres de navigation
-2. Appliquer la correction appropriée
-3. Supprimer les fichiers redondants
+3. **Implémenter une structure de routes hiérarchique** :
+   ```jsx
+   <BrowserRouter>
+     <Routes>
+       {/* Route d'accueil */}
+       <Route path={ROUTES.HOME} element={<Index />} />
+       
+       {/* Routes avec le layout principal */}
+       <Route element={<MainLayout />}>
+         <Route path={ROUTES.COMPRENDRE} element={<Comprendre />} />
+         <Route path={ROUTES.CERVEAU} element={<Cerveau />} />
+         
+         {/* Section Troubles avec son propre layout */}
+         <Route path={ROUTES.TROUBLES.INDEX} element={<TroublesLayout />}>
+           <Route index element={<Troubles />} />
+           <Route path="dys" element={<TroublesDys />} />
+           <Route path="dyslexie" element={<Dyslexie />} />
+           {/* Autres routes de troubles */}
+         </Route>
+         
+         {/* Section Ressources avec son propre layout */}
+         <Route path={ROUTES.RESSOURCES.INDEX} element={<RessourcesLayout />}>
+           <Route index element={<Ressources />} />
+           <Route path="guide-administratif" element={<GuideAdministratif />} />
+           {/* Autres routes de ressources */}
+         </Route>
+         
+         {/* Autres routes principales */}
+       </Route>
+       
+       {/* Route 404 */}
+       <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
+     </Routes>
+   </BrowserRouter>
+   ```
+
+4. **Créer les composants de layout nécessaires** :
+   - Créer `src/layouts/TroublesLayout.tsx` et `src/layouts/RessourcesLayout.tsx`
+   - Implémenter la navigation spécifique à chaque section dans ces layouts
+   - Utiliser `<Outlet />` pour rendre le contenu des routes enfants
+
+### 5.2. Duplication des barres de navigation
+
+**Problème** : Présence de fichiers `fix-duplicate-navbars.js` et `fix-duplicate-navbars.mjs` qui sont des scripts de correction pour un problème de duplication des barres de navigation dans les pages.
+
+**Analyse détaillée** :
+- Les scripts `fix-duplicate-navbars.js` et `fix-duplicate-navbars.mjs` sont conçus pour supprimer les imports et les composants `MainNavbar` et `Footer` des fichiers de pages
+- Ce problème est survenu car les composants de navigation étaient inclus à la fois dans les pages individuelles et dans le layout principal
+- La présence de deux versions du script (CommonJS et ESM) indique une tentative de résoudre le problème avec différentes configurations
+- Le problème fondamental est lié à l'absence d'une structure de routage correcte avec des layouts partagés
+
+**Solution détaillée** :
+1. **Vérifier l'état actuel des pages** :
+   - Examiner un échantillon de fichiers de pages pour vérifier si les composants `MainNavbar` et `Footer` sont encore présents
+   - Confirmer que le layout principal (`MainLayout.tsx`) inclut déjà ces composants
+
+2. **Exécuter le script de correction si nécessaire** :
+   - Utiliser la version ESM du script (`fix-duplicate-navbars.mjs`) pour corriger les pages restantes
+   - Vérifier les résultats pour s'assurer que toutes les pages ont été correctement mises à jour
+
+3. **Mettre en place une structure de layout robuste** :
+   - S'assurer que tous les composants de page utilisent le layout approprié via le système de routage
+   - Vérifier que `MainLayout.tsx` inclut correctement `<Outlet />` pour rendre le contenu des routes enfants
+
+4. **Supprimer les scripts de correction** :
+   - Une fois que toutes les pages ont été corrigées et que la structure de routage a été mise à jour, supprimer les fichiers `fix-duplicate-navbars.js` et `fix-duplicate-navbars.mjs`
+
+### 5.3. Plan d'implémentation chronologique
+
+1. **Phase préparatoire** (1-2 jours) :
+   - Analyser la structure actuelle du routage et des layouts
+   - Identifier toutes les pages qui nécessitent une correction de la duplication des barres de navigation
+   - Créer une branche de développement pour les modifications
+
+2. **Phase de correction des duplications** (1 jour) :
+   - Exécuter le script `fix-duplicate-navbars.mjs` pour corriger les pages avec des barres de navigation dupliquées
+   - Vérifier manuellement un échantillon de pages pour confirmer que les corrections ont été appliquées correctement
+   - Supprimer les imports et composants redondants qui n'auraient pas été détectés par le script
+
+3. **Phase de restructuration du routage** (2-3 jours) :
+   - Créer les composants de layout nécessaires (`TroublesLayout.tsx`, `RessourcesLayout.tsx`, etc.)
+   - Mettre à jour `App.tsx` pour utiliser `BrowserRouter` et implémenter la structure de routes hiérarchique
+   - Adapter les liens de navigation dans l'application si nécessaire
+
+4. **Phase de test et validation** (1-2 jours) :
+   - Tester toutes les routes pour s'assurer qu'elles fonctionnent correctement
+   - Vérifier que la navigation fonctionne comme prévu dans toutes les sections
+   - S'assurer que les layouts sont correctement appliqués à toutes les pages
+
+5. **Phase de nettoyage** (0.5 jour) :
+   - Supprimer les fichiers `fix-duplicate-navbars.js` et `fix-duplicate-navbars.mjs`
+   - Supprimer le fichier `App.tsx.new` s'il n'est plus nécessaire
+   - Mettre à jour la documentation du projet
 
 ## 6. Problèmes de cohérence visuelle
 
@@ -230,9 +437,30 @@ Ce document liste toutes les erreurs, incohérences et problèmes identifiés da
 3. Mettre en place la mise en cache des données
 
 ### Étape 4: Amélioration de l'accessibilité
-1. Ajouter des attributs ARIA
-2. Améliorer la navigation au clavier
-3. Corriger les problèmes de contraste
+1. Ajouter des attributs ARIA et améliorer la sémantique HTML :
+   - Auditer tous les composants interactifs et ajouter les attributs ARIA appropriés
+   - Remplacer les éléments non sémantiques par des éléments HTML5 appropriés
+   - Implémenter les landmarks ARIA pour définir les régions de la page
+   - Ajouter des alternatives textuelles à tous les éléments visuels
+
+2. Améliorer la navigation au clavier :
+   - Implémenter une gestion cohérente du focus dans tous les composants
+   - Créer un ordre de tabulation logique dans l'application
+   - Ajouter des raccourcis clavier pour les actions principales
+   - Assurer que tous les composants sont utilisables sans souris
+
+3. Corriger les problèmes de contraste et de lisibilité :
+   - Vérifier tous les ratios de contraste avec des outils spécialisés
+   - Revoir la palette de couleurs pour garantir l'accessibilité
+   - Augmenter la taille de base du texte et utiliser des unités relatives
+   - Implémenter des options de personnalisation (mode sombre, taille de texte, etc.)
+
+4. Mettre en place des tests d'accessibilité :
+   - Intégrer des tests automatisés (Axe, Lighthouse, WAVE)
+   - Établir une checklist basée sur WCAG 2.1 niveau AA
+   - Réaliser des tests manuels avec différentes technologies d'assistance
+   - Organiser des sessions de test avec des utilisateurs ayant des besoins spécifiques
+   - Documenter les fonctionnalités d'accessibilité pour les utilisateurs
 
 ### Étape 5: Restructuration du routage
 1. Implémenter des routes imbriquées
