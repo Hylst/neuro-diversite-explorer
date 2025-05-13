@@ -37,7 +37,7 @@ const APropos = () => {
                   </p>
                   
                   <p>
-                    Mon parcours personnel a été marqué par mes propres défis neurodéveloppementaux - principalement des troubles dys et des difficultés de mémoire - qui m'ont amené à développer une compréhension intime de ce que signifie naviguer dans un monde qui n'est pas toujours adapté à notre façon de fonctionner.
+                    Mon parcours personnel a été marqué par mes propres défis neurodéveloppementaux - principalement des troubles dys et de mémoire - qui m'ont amené à développer une compréhension intime de ce que signifie naviguer dans un monde qui n'est pas toujours adapté à notre façon de fonctionner.
                   </p>
                   
                   <p>

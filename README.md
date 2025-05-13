@@ -236,4 +236,4 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## Contact
 
-Pour toute question ou suggestion, n'hésitez pas à nous contacter à contact@neurodiversite-explorer.fr ou ouvrir une issue sur GitHub.
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
