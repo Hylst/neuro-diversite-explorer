@@ -84,43 +84,56 @@ const questions: Question[] = [
     text: "Vous levez-vous souvent dans des situations où vous devriez rester assis(e)?",
     category: 'hyperactivite'
   },
-  { 
+  {
     id: 12, 
     text: "Vous sentez-vous souvent agité(e) ou comme 'propulsé(e) par un moteur'?",
     tooltip: "Sensation interne de ne pas pouvoir rester en place ou se détendre.",
     category: 'hyperactivite'
   },
-  { 
-    id: 13, 
+  {
+    id: 13, // Nouvelle question
+    text: "Ressentez-vous une agitation interne, même lorsque vous êtes assis(e) tranquillement?",
+    tooltip: "Difficulté à se détendre mentalement, pensées qui s'emballent, besoin constant de stimulation.",
+    category: 'hyperactivite'
+  },
+  {
+    id: 14, // Ancienne Q13
     text: "Avez-vous du mal à vous engager dans des activités calmes?",
+    tooltip: "Par exemple, lire un livre, regarder un film tranquillement, ou participer à des loisirs relaxants.",
     category: 'hyperactivite'
   },
   { 
-    id: 14, 
+    id: 15, // Ancienne Q14
     text: "Parlez-vous souvent de manière excessive?",
     category: 'hyperactivite'
   },
   { 
-    id: 15, 
+    id: 16, // Ancienne Q15
     text: "Répondez-vous souvent aux questions avant qu'elles soient terminées?",
     category: 'impulsivite'
   },
   { 
-    id: 16, 
+    id: 17, // Ancienne Q16
     text: "Avez-vous du mal à attendre votre tour?",
     tooltip: "Dans les files d'attente, les conversations, les jeux, etc.",
     category: 'impulsivite'
   },
   { 
-    id: 17, 
+    id: 18, // Ancienne Q17
     text: "Interrompez-vous souvent les autres ou faites-vous intrusion?",
     tooltip: "Couper la parole, interrompre des conversations ou des activités.",
     category: 'impulsivite'
   },
   { 
-    id: 18, 
+    id: 19, // Ancienne Q18
     text: "Prenez-vous souvent des décisions impulsives?",
     tooltip: "Achats impulsifs, changements de plans soudains, décisions sans réfléchir aux conséquences.",
+    category: 'impulsivite'
+  },
+  {
+    id: 20, // Ancienne Q19
+    text: "Avez-vous du mal à gérer vos frustrations ou vos émotions fortes?",
+    tooltip: "Par exemple, réactions émotionnelles intenses ou rapides face à des contrariétés mineures.",
     category: 'impulsivite'
   }
 ];
@@ -138,12 +151,16 @@ const TDAHAssessment = () => {
   
   const handleNextQuestion = () => {
     if (selectedOption) {
+      // Enregistrer la réponse actuelle
       setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
       
       if (currentQuestion < questions.length - 1) {
+        // Passer à la question suivante et réinitialiser la sélection
         setCurrentQuestion(prev => prev + 1);
-        setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
+        // Utiliser setTimeout pour s'assurer que la réinitialisation se produit après le changement de question
+        setTimeout(() => setSelectedOption(undefined), 50);
       } else {
+        // Si c'est la dernière question, afficher les résultats
         setShowResults(true);
       }
     }
@@ -157,14 +174,16 @@ const TDAHAssessment = () => {
   };
   
   const handleAnswer = (value: string) => {
+    // Enregistrer la réponse actuelle
     setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: value }));
     
     if (currentQuestion < questions.length - 1) {
-      setTimeout(() => {
-        setCurrentQuestion(prev => prev + 1);
-        setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
-      }, 300);
+      // D'abord changer la question
+      setCurrentQuestion(prev => prev + 1);
+      // Puis réinitialiser la sélection avec un délai pour s'assurer que le changement de question est effectué
+      setTimeout(() => setSelectedOption(undefined), 50);
     } else {
+      // Si c'est la dernière question, afficher les résultats
       setShowResults(true);
     }
   };

@@ -7,25 +7,29 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon } from 'lucide-react';
+import QuestionTooltip from './common/QuestionTooltip';
 import QuestionnaireNavigation from './common/QuestionnaireNavigation';
 import ResultsDisplay from './common/ResultsDisplay';
 
 interface Question {
   id: number;
   text: string;
+  tooltip?: string;
 }
 
 const questions: Question[] = [
-  { id: 1, text: "Avez-vous des difficultés à lire à voix haute?" },
+  { id: 1, text: "Avez-vous des difficultés à lire à voix haute?", tooltip: "Par exemple, hésitations fréquentes, lecture saccadée, erreurs de prononciation." },
   { id: 2, text: "Inversez-vous souvent l'ordre des lettres dans les mots (exemple: 'por' au lieu de 'pro')?" },
-  { id: 3, text: "Vous sentez-vous fatigué(e) après avoir lu pendant une période courte?" },
+  { id: 3, text: "Vous sentez-vous fatigué(e) après avoir lu pendant une période courte?", tooltip: "Une lecture même brève peut demander un effort considérable et entraîner une fatigue visuelle ou mentale." },
   { id: 4, text: "Avez-vous du mal à vous souvenir de ce que vous venez de lire?" },
-  { id: 5, text: "Trouvez-vous difficile de suivre les instructions écrites?" },
+  { id: 5, text: "Trouvez-vous difficile de suivre les instructions écrites?", tooltip: "Par exemple, comprendre et exécuter des consignes dans un manuel, une recette, ou un formulaire." },
   { id: 6, text: "Avez-vous du mal à prendre des notes pendant qu'une personne parle?" },
   { id: 7, text: "Préférez-vous l'information présentée sous forme d'images ou d'explications orales plutôt que de texte écrit?" },
   { id: 8, text: "Avez-vous des difficultés avec l'orthographe, même pour des mots courants?" },
-  { id: 9, text: "Avez-vous besoin de relire plusieurs fois un texte pour le comprendre?" },
-  { id: 10, text: "Confondez-vous souvent des mots qui se ressemblent visuellement (comme 'chien' et 'chine')?" }
+  { id: 9, text: "Votre lecture est-elle lente et laborieuse, vous obligeant à relire des passages pour en saisir le sens ?", tooltip: "Cela peut se manifester par une vitesse de lecture significativement plus lente que la moyenne, ou le besoin de décoder laborieusement chaque mot." },
+  { id: 10, text: "Confondez-vous souvent des mots qui se ressemblent visuellement (comme 'chien' et 'chine')?" },
+  { id: 11, text: "Avez-vous des difficultés à identifier ou manipuler les sons dans les mots (par exemple, rimes, segmentation en syllabes) ?", tooltip: "Difficulté à entendre les sons individuels dans les mots, à trouver des mots qui riment, ou à décomposer les mots en syllabes." },
+  { id: 12, text: "Avez-vous des difficultés à organiser vos idées pour l'écriture ou à gérer votre temps pour les tâches de lecture/écriture ?", tooltip: "Par exemple, structurer un texte, planifier les étapes d'une rédaction, ou estimer le temps nécessaire pour lire un document." }
 ];
 
 const DyslexieAssessment = () => {
@@ -67,7 +71,8 @@ const DyslexieAssessment = () => {
     
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
-      setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
+      // Utiliser setTimeout pour s'assurer que la réinitialisation se produit après le changement de question
+      setTimeout(() => setSelectedOption(undefined), 50);
     } else {
       setShowResults(true);
     }
@@ -142,7 +147,13 @@ const DyslexieAssessment = () => {
           
           <CardContent>
             <div className="space-y-6">
-              <div className="text-lg font-medium">{questions[currentQuestion].text}</div>
+              <h3 className="text-lg font-medium">
+                {questions[currentQuestion].tooltip ? (
+                  <QuestionTooltip text={questions[currentQuestion].text} tooltip={questions[currentQuestion].tooltip!} />
+                ) : (
+                  questions[currentQuestion].text
+                )}
+              </h3>
               
               <RadioGroup 
                 key={questions[currentQuestion].id} // Ajout de la clé unique

@@ -7,21 +7,23 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon, ArrowLeft, ArrowRight, RotateCcw } from 'lucide-react';
+import QuestionTooltip from './common/QuestionTooltip';
 import { AssessmentResult } from '@/types/custom-types';
 
 interface Question {
   id: number;
   text: string;
+  tooltip?: string;
 }
 
 const questions: Question[] = [
   { id: 1, text: "Je remarque souvent des détails que d'autres personnes ne remarquent pas." },
   { id: 2, text: "Je préfère faire les choses de la même façon encore et encore." },
-  { id: 3, text: "Je trouve qu'il est facile de «lire entre les lignes» lorsque quelqu'un me parle." },
+  { id: 3, text: "Je trouve qu'il est facile de «lire entre les lignes» lorsque quelqu'un me parle.", tooltip: "C'est-à-dire comprendre les sous-entendus, les intentions cachées ou les émotions non exprimées verbalement." },
   { id: 4, text: "Je trouve souvent difficile d'imaginer ce que ce serait d'être quelqu'un d'autre." },
   { id: 5, text: "Je suis souvent le dernier à comprendre une blague." },
   { id: 6, text: "Je trouve les situations sociales faciles." },
-  { id: 7, text: "J'ai tendance à remarquer les détails que d'autres ne voient pas." },
+  // { id: 7, text: "J'ai tendance à remarquer les détails que d'autres ne voient pas." }, // Question supprimée car redondante avec Q1
   { id: 8, text: "Je préfère passer du temps avec des personnes plutôt que seul(e)." },
   { id: 9, text: "Je trouve facile de faire plus d'une chose à la fois." },
   { id: 10, text: "Lorsque je parle au téléphone, je ne suis pas sûr(e) de quand c'est mon tour de parler." }
@@ -39,12 +41,16 @@ const AutismeAssessment = () => {
   
   const handleNextQuestion = () => {
     if (selectedOption) {
+      // Enregistrer la réponse actuelle
       setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
       
       if (currentQuestion < questions.length - 1) {
+        // Passer à la question suivante et réinitialiser la sélection
         setCurrentQuestion(prev => prev + 1);
-        setSelectedOption(undefined); // Réinitialise la sélection pour la question suivante
+        // Utiliser setTimeout pour s'assurer que la réinitialisation se produit après le changement de question
+        setTimeout(() => setSelectedOption(undefined), 50);
       } else {
+        // Si c'est la dernière question, afficher les résultats
         setShowResults(true);
       }
     }
@@ -172,7 +178,13 @@ const AutismeAssessment = () => {
               </AlertDescription>
             </Alert>
             
-            <h3 className="text-lg font-medium mb-4">{questions[currentQuestion].text}</h3>
+            <h3 className="text-lg font-medium mb-4">
+              {questions[currentQuestion].tooltip ? (
+                <QuestionTooltip text={questions[currentQuestion].text} tooltip={questions[currentQuestion].tooltip} />
+              ) : (
+                questions[currentQuestion].text
+              )}
+            </h3>
             
             <RadioGroup key={questions[currentQuestion].id} value={selectedOption} onValueChange={handleOptionSelect} className="space-y-3">
               {['strongly_disagree', 'disagree', 'slightly_disagree', 'slightly_agree', 'agree', 'strongly_agree'].map((option) => (

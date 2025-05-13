@@ -7,18 +7,20 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon } from 'lucide-react';
+import QuestionTooltip from './common/QuestionTooltip';
 
 interface Question {
   id: number;
   text: string;
+  tooltip?: string;
 }
 
 const questions: Question[] = [
   { id: 1, text: "J'ai des difficultés à écrire de façon lisible ou à maintenir une écriture constante." },
   { id: 2, text: "Je renverse souvent des objets ou je me cogne contre les meubles." },
-  { id: 3, text: "J'ai du mal à effectuer des activités qui demandent de la coordination comme attacher des boutons ou utiliser des ustensiles." },
+  { id: 3, text: "J'ai du mal à effectuer des activités qui demandent de la coordination comme attacher des boutons ou utiliser des ustensiles.", tooltip: "Par exemple, lacer ses chaussures, utiliser une fermeture éclair, couper sa nourriture, écrire lisiblement." },
   { id: 4, text: "J'ai des difficultés à organiser mon espace de travail ou mes affaires personnelles." },
-  { id: 5, text: "Je trouve difficile d'évaluer les distances (par exemple en conduisant ou en attrapant un objet)." },
+  { id: 5, text: "Je trouve difficile d'évaluer les distances (par exemple en conduisant ou en attrapant un objet).", tooltip: "Cela peut inclure des difficultés à juger la profondeur, la vitesse des objets en mouvement, ou à se garer." },
   { id: 6, text: "J'ai du mal à apprendre de nouveaux mouvements ou séquences motrices (comme en danse ou en sport)." },
   { id: 7, text: "Je suis souvent en retard car j'ai du mal à estimer combien de temps les activités vont prendre." },
   { id: 8, text: "Je trouve difficile de lire une carte ou de m'orienter dans un nouvel environnement." },
@@ -40,16 +42,16 @@ const DyspraxieAssessment = () => {
   // Fonction pour passer à la question suivante
   const handleNextQuestion = () => {
     if (selectedOption) {
+      // Enregistrer la réponse actuelle
       setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
       
       if (currentQuestion < questions.length - 1) {
-        // Utiliser setState avec callback pour garantir l'ordre des opérations
-        setCurrentQuestion(prev => {
-          // Réinitialiser la sélection immédiatement après avoir changé la question
-          setTimeout(() => setSelectedOption(undefined), 50);
-          return prev + 1;
-        });
+        // Passer à la question suivante et réinitialiser la sélection
+        setCurrentQuestion(prev => prev + 1);
+        // Utiliser setTimeout pour s'assurer que la réinitialisation se produit après le changement de question
+        setTimeout(() => setSelectedOption(undefined), 50);
       } else {
+        // Si c'est la dernière question, afficher les résultats
         setShowResults(true);
       }
     }
@@ -154,7 +156,13 @@ const DyspraxieAssessment = () => {
               </AlertDescription>
             </Alert>
             
-            <h3 className="text-lg font-medium mb-4">{questions[currentQuestion].text}</h3>
+            <h3 className="text-lg font-medium mb-4">
+              {questions[currentQuestion].tooltip ? (
+                <QuestionTooltip text={questions[currentQuestion].text} tooltip={questions[currentQuestion].tooltip!} />
+              ) : (
+                questions[currentQuestion].text
+              )}
+            </h3>
             
             <RadioGroup 
               key={questions[currentQuestion].id} // Ajout de la clé unique

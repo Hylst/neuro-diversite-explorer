@@ -7,21 +7,23 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon } from 'lucide-react';
+import QuestionTooltip from './common/QuestionTooltip';
 
 interface Question {
   id: number;
   text: string;
+  tooltip?: string;
 }
 
 const questions: Question[] = [
   { id: 1, text: "J'ai des difficultés à effectuer des calculs mentaux simples dans la vie quotidienne." },
   { id: 2, text: "Je compte encore sur mes doigts pour les opérations de base." },
   { id: 3, text: "Je confonds souvent les symboles mathématiques (+, -, ×, ÷)." },
-  { id: 4, text: "J'ai du mal à comprendre les concepts de temps (lire l'heure, estimer des durées)." },
+  { id: 4, text: "J'ai du mal à comprendre les concepts de temps (lire l'heure, estimer des durées).", tooltip: "Par exemple, lire une horloge analogique, estimer le temps nécessaire pour une tâche, comprendre un emploi du temps." },
   { id: 5, text: "Je trouve difficile de gérer l'argent ou de faire un budget." },
   { id: 6, text: "J'évite les situations qui impliquent des mathématiques ou des calculs." },
   { id: 7, text: "J'ai des difficultés à estimer des quantités (par exemple lors de la cuisine)." },
-  { id: 8, text: "Je me perds facilement et j'ai du mal à utiliser une carte ou à m'orienter." },
+  { id: 8, text: "Je me perds facilement et j'ai du mal à utiliser une carte ou à m'orienter.", tooltip: "Par exemple, suivre un itinéraire donné, se repérer dans un lieu nouveau, ou comprendre les directions sur une carte." },
   { id: 9, text: "Je trouve difficile de mémoriser des séquences de chiffres comme des numéros de téléphone." },
   { id: 10, text: "Je me sens anxieux(se) quand je dois faire des mathématiques ou manipuler des nombres." }
 ];
@@ -40,13 +42,16 @@ const DyscalculieAssessment = () => {
   // Fonction pour passer à la question suivante
   const handleNextQuestion = () => {
     if (selectedOption) {
+      // Enregistrer la réponse actuelle
       setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: selectedOption }));
       
       if (currentQuestion < questions.length - 1) {
+        // Passer à la question suivante et réinitialiser la sélection
         setCurrentQuestion(prev => prev + 1);
-        // Réinitialisation explicite de la sélection
-        setSelectedOption(undefined);
+        // Utiliser setTimeout pour s'assurer que la réinitialisation se produit après le changement de question
+        setTimeout(() => setSelectedOption(undefined), 50);
       } else {
+        // Si c'est la dernière question, afficher les résultats
         setShowResults(true);
       }
     }
@@ -152,7 +157,13 @@ const DyscalculieAssessment = () => {
               </AlertDescription>
             </Alert>
             
-            <h3 className="text-lg font-medium mb-4">{questions[currentQuestion].text}</h3>
+            <h3 className="text-lg font-medium mb-4">
+              {questions[currentQuestion].tooltip ? (
+                <QuestionTooltip text={questions[currentQuestion].text} tooltip={questions[currentQuestion].tooltip!} />
+              ) : (
+                questions[currentQuestion].text
+              )}
+            </h3>
             
             <RadioGroup 
               key={questions[currentQuestion].id} // Ajout de la clé unique
