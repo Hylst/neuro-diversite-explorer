@@ -428,6 +428,28 @@ const Ressources = () => {
     tools: [
       {
         id: 1,
+        title: "FlashStudy - Version de base",
+        platform: "Web",
+        type: "Application",
+        audience: "Tous profils, Troubles d'apprentissage",
+        description: "Créateur de flashcards pour l'apprentissage avec interface intuitive, modes d'édition et de révision",
+        link: "/apps/flash_study_base.html",
+        price: "Gratuit",
+        thumbnail: "/apps/flash_study_base.png"
+      },
+      {
+        id: 2,
+        title: "FlashStudy - Version avancée",
+        platform: "Web",
+        type: "Application",
+        audience: "Tous profils, Troubles d'apprentissage",
+        description: "Version améliorée avec spaced repetition, suivi des performances et import/export Anki",
+        link: "/apps/flash_study_v2wip.html",
+        price: "Gratuit",
+        thumbnail: "/apps/flash_study_v2wip.png"
+      },
+      {
+        id: 3,
         title: "NeuroTimer Pro",
         platform: "iOS/Android",
         type: "Application",
@@ -437,7 +459,7 @@ const Ressources = () => {
         price: "Gratuit / Version premium 4,99€/mois"
       },
       {
-        id: 2,
+        id: 4,
         title: "Lexibar 2025",
         platform: "Windows/Mac/iOS/Android",
         type: "Logiciel",
@@ -447,7 +469,7 @@ const Ressources = () => {
         price: "Essai gratuit / Licence 129€ / Remboursement MDPH possible"
       },
       {
-        id: 3,
+        id: 5,
         title: "Kit d'organisation visuelle NumériDYS",
         platform: "Matériel physique + application",
         type: "Outil hybride",
@@ -457,7 +479,7 @@ const Ressources = () => {
         price: "69,90€"
       },
       {
-        id: 4,
+        id: 6,
         title: "C-Pen Reader 3",
         platform: "Appareil autonome",
         type: "Outil physique",
@@ -467,7 +489,7 @@ const Ressources = () => {
         price: "249€ (remboursement partiel possible)"
       },
       {
-        id: 5,
+        id: 7,
         title: "FocusMind",
         platform: "Web/iOS/Android",
         type: "Application",
@@ -477,17 +499,18 @@ const Ressources = () => {
         price: "Freemium / 7,99€ par mois"
       },
       {
-        id: 6,
+        id: 8,
         title: "Math DYScovery",
         platform: "iOS/Android/Web",
         type: "Application",
         audience: "Dyscalculie",
         description: "Application d'apprentissage des mathématiques adaptée aux troubles logico-mathématiques",
         link: "https://mathdyscovery.fr",
-        price: "Gratuit (financé par l'Education Nationale)"
+        price: "Gratuit (financé par l'Education Nationale)",
+        thumbnail: "/apps/mathdyscovery.png"
       },
       {
-        id: 7,
+        id: 9,
         title: "Clavier TalkTyper",
         platform: "iOS/Android",
         type: "Application",
@@ -497,14 +520,15 @@ const Ressources = () => {
         price: "2,99€"
       },
       {
-        id: 8,
+        id: 10,
         title: "NeuroCalm",
         platform: "iOS/Android + casque bluetooth",
         type: "Outil hybride",
         audience: "TSA, Hypersensibilité",
         description: "Application + casque de réduction de bruit adaptative avec filtrage sélectif des fréquences sensibles",
         link: "https://neurocalm.tech",
-        price: "Application gratuite / Casque 189€"
+        price: "Application gratuite / Casque 189€",
+        thumbnail: "/apps/neurocalm.png"
       },
       {
         id: 9,
@@ -803,7 +827,7 @@ const Ressources = () => {
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="neuro-gradient-text">Ressources</span> à télécharger
+                <span className="neuro-gradient-text">Ressources</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-6">
                 Documents, articles scientifiques, outils, médias et liens vers des ressources en ligne pour mieux comprendre et accompagner la neurodiversité
@@ -977,6 +1001,15 @@ const Ressources = () => {
                           </div>
                         </div>
                       </CardHeader>
+                      {tool.thumbnail && (
+                        <div className="px-6 pb-2">
+                          <img 
+                            src={tool.thumbnail} 
+                            alt={`Aperçu de ${tool.title}`} 
+                            className="w-full h-auto rounded-md object-cover border border-muted"
+                          />
+                        </div>
+                      )}
                       <CardContent className="flex-1 flex flex-col">
                         <p className="text-sm text-muted-foreground mb-1">{tool.description}</p>
                         <p className="text-sm mb-1">

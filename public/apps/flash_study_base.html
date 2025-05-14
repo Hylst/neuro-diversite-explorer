@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashStudy | Créateur de flashcards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+        }
+        
+        .card-flip {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .card-flip.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .speech-bubble {
+            position: relative;
+            background: #e2f3fd;
+            border-radius: 0.4em;
+        }
+        
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-top-color: #e2f3fd;
+            border-bottom: 0;
+            margin-left: -10px;
+            margin-bottom: -10px;
+        }
+        
+        /* Animation for new card notification */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-layer-group text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">FlashStudy</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-700">Mes Decks</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Créer</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Réviser</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Statistiques</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Partage</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="p-1 rounded-full text-indigo-200 hover:text-white focus:outline-none">
+                            <i class="fas fa-bell"></i>
+                            <span class="absolute top-2 right-28 h-2 w-2 rounded-full bg-red-500 pulse"></span>
+                        </button>
+                        <div class="ml-3 relative">
+                            <div>
+                                <button class="max-w-xs flex items-center text-sm rounded-full focus:outline-none">
+                                    <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=G+Streit&background=random" alt="Profile">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button class="inline-flex items-center justify-center p-2 rounded-md text-indigo-200 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Deck Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Français - Vocabulaire Avancé</h1>
+                <p class="text-gray-600 mt-2">Créé par Geoffroy Streit • 124 cartes</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex space-x-3">
+                <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 flex items-center">
+                    <i class="fas fa-share-alt mr-2"></i> Partager
+                </button>
+                <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-download mr-2"></i> Exporter
+                </button>
+                <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-cog mr-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Flashcard Modes Tabs -->
+        <div class="border-b border-gray-200 mb-8">
+            <nav class="-mb-px flex space-x-8">
+                <a href="#" class="border-indigo-500 text-indigo-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Édition</a>
+                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Révision</a>
+                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Spaced Repetition</a>
+                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Test</a>
+            </nav>
+        </div>
+
+        <!-- Flashcard Editor -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Card List -->
+            <div class="lg:col-span-1 bg-white rounded-lg shadow overflow-hidden">
+                <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Liste des cartes</h3>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 flex items-center justify-between border-b border-gray-200">
+                    <div class="flex-1 flex justify-between">
+                        <button class="relative inline-flex items-center px-2 py-1 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <i class="fas fa-plus mr-1"></i> Nouvelle carte
+                        </button>
+                        <div class="relative">
+                            <input type="text" placeholder="Rechercher..." class="pl-8 pr-4 py-1 border border-gray-300 rounded-md text-sm">
+                            <i class="fas fa-search absolute left-2.5 top-2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                <ul class="divide-y divide-gray-200 max-h-96 overflow-y-auto">
+                    <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between bg-indigo-50">
+                        <div class="flex items-center">
+                            <span class="text-indigo-600 mr-3">1</span>
+                            <span class="truncate">"Éphémère" - Qui ne dure qu'un jour ou très peu de temps</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="text-gray-400 hover:text-indigo-600">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-600">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-3">2</span>
+                            <span class="truncate">"Ubiquité" - Présence simultanée en plusieurs lieux</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="text-gray-400 hover:text-indigo-600">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-600">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-3">3</span>
+                            <span class="truncate">"Ostentatoire" - Qui cherche à attirer l'attention</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="text-gray-400 hover:text-indigo-600">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-600">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-3">4</span>
+                            <span class="truncate">"Péremptoire" - Qui n'admet pas la réplique</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="text-gray-400 hover:text-indigo-600">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-600">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-3">5</span>
+                            <span class="truncate">"Prosaïque" - Qui manque de poésie, banal</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="text-gray-400 hover:text-indigo-600">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-600">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="px-4 py-3 bg-gray-50 text-right">
+                    <button class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                        <i class="fas fa-file-import mr-1"></i> Importer Anki
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flashcard Editor -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Flashcard Preview -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Éditeur de carte</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="relative h-64 w-full max-w-2xl mx-auto">
+                            <!-- Flashcard -->
+                            <div class="card-flip h-full w-full cursor-pointer" id="flashcard">
+                                <div class="card-front h-full w-full bg-indigo-50 rounded-xl shadow-md p-6 flex flex-col justify-center items-center">
+                                    <div class="w-full h-full flex flex-col">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <span class="text-xs font-medium text-indigo-600">RECTO</span>
+                                            <button class="text-gray-400 hover:text-indigo-600" onclick="speakText('Éphémère')">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                        </div>
+                                        <div class="flex-grow flex items-center justify-center">
+                                            <h2 class="text-3xl font-bold text-center text-gray-800">Éphémère</h2>
+                                        </div>
+                                        <div class="mt-auto text-center">
+                                            <button class="text-xs text-indigo-600 hover:text-indigo-800" onclick="flipCard()">
+                                                <i class="fas fa-redo mr-1"></i> Retourner la carte
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back h-full w-full bg-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center border-2 border-indigo-100">
+                                    <div class="w-full h-full flex flex-col">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <span class="text-xs font-medium text-indigo-600">VERSO</span>
+                                            <button class="text-gray-400 hover:text-indigo-600" onclick="speakText('Qui ne dure qu\\'un jour ou très peu de temps')">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                        </div>
+                                        <div class="flex-grow flex items-center justify-center">
+                                            <p class="text-lg text-center text-gray-700">Qui ne dure qu'un jour ou très peu de temps</p>
+                                        </div>
+                                        <div class="mt-auto text-center">
+                                            <button class="text-xs text-indigo-600 hover:text-indigo-800" onclick="flipCard()">
+                                                <i class="fas fa-redo mr-1"></i> Retourner la carte
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flashcard Form -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Contenu de la carte</h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="front" class="block text-sm font-medium text-gray-700 mb-1">Recto</label>
+                                <textarea id="front" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-3 border">Éphémère</textarea>
+                                <div class="mt-2 flex space-x-2">
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-underline"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-image"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="back" class="block text-sm font-medium text-gray-700 mb-1">Verso</label>
+                                <textarea id="back" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-3 border">Qui ne dure qu'un jour ou très peu de temps</textarea>
+                                <div class="mt-2 flex space-x-2">
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-underline"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                                        <i class="fas fa-image"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tags</label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <input type="text" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300 p-2 border" placeholder="vocabulaire, français">
+                                    <button class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm hover:bg-gray-100">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2 flex flex-wrap gap-2">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                        vocabulaire
+                                        <button type="button" class="ml-1.5 inline-flex text-indigo-400 hover:text-indigo-900">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </span>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                        français
+                                        <button type="button" class="ml-1.5 inline-flex text-indigo-400 hover:text-indigo-900">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Difficulté</label>
+                                <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border">
+                                    <option>Facile</option>
+                                    <option selected>Moyenne</option>
+                                    <option>Difficile</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                                <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border">
+                                    <option selected>Texte</option>
+                                    <option>Image</option>
+                                    <option>Audio</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex justify-between">
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                                    <i class="fas fa-arrow-left mr-2"></i> Précédent
+                                </button>
+                                <div class="flex space-x-3">
+                                    <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                                        <i class="fas fa-trash mr-2"></i> Supprimer
+                                    </button>
+                                    <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                                        <i class="fas fa-save mr-2"></i> Enregistrer
+                                    </button>
+                                </div>
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                                    Suivant <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Statistics Modal (hidden by default) -->
+    <div id="statsModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Statistiques du deck</h3>
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="text-sm font-medium text-gray-500 mb-2">Progression globale</h4>
+                                    <div class="flex items-center justify-center">
+                                        <svg class="w-32 h-32">
+                                            <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="52" cx="64" cy="64" />
+                                            <circle class="text-indigo-600" stroke-width="8" stroke-dasharray="326.72" stroke-dashoffset="65.344" stroke-linecap="round" stroke="currentColor" fill="transparent" r="52" cx="64" cy="64" />
+                                        </svg>
+                                        <span class="absolute text-2xl font-bold text-gray-800">80%</span>
+                                    </div>
+                                    <div class="mt-4 text-center text-sm text-gray-600">
+                                        98/124 cartes maîtrisées
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="text-sm font-medium text-gray-500 mb-2">Répartition des difficultés</h4>
+                                    <div class="h-48 flex items-end space-x-2">
+                                        <div class="flex-1 flex flex-col items-center">
+                                            <div class="w-full bg-green-500 rounded-t" style="height: 30%;"></div>
+                                            <span class="text-xs mt-1">Facile</span>
+                                            <span class="text-xs font-medium">42%</span>
+                                        </div>
+                                        <div class="flex-1 flex flex-col items-center">
+                                            <div class="w-full bg-yellow-500 rounded-t" style="height: 50%;"></div>
+                                            <span class="text-xs mt-1">Moyen</span>
+                                            <span class="text-xs font-medium">38%</span>
+                                        </div>
+                                        <div class="flex-1 flex flex-col items-center">
+                                            <div class="w-full bg-red-500 rounded-t" style="height: 20%;"></div>
+                                            <span class="text-xs mt-1">Difficile</span>
+                                            <span class="text-xs font-medium">20%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h4 class="text-sm font-medium text-gray-500 mb-2">Historique des révisions</h4>
+                                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                        <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                                            <span>Lundi</span>
+                                            <span>15 cartes</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 60%"></div>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs text-gray-500 mt-3 mb-1">
+                                            <span>Mardi</span>
+                                            <span>24 cartes</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 80%"></div>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs text-gray-500 mt-3 mb-1">
+                                            <span>Aujourd'hui</span>
+                                            <span>8 cartes</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="toggleModal()">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Flip card function
+        function flipCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.toggle('flipped');
+        }
+        
+        // Text-to-speech function
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'fr-FR';
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("La synthèse vocale n'est pas supportée par votre navigateur");
+            }
+        }
+        
+        // Modal toggle function
+        function toggleModal() {
+            const modal = document.getElementById('statsModal');
+            modal.classList.toggle('hidden');
+        }
+        
+        // Demo: Mark current card as mastered
+        function markAsMastered() {
+            const card = document.querySelector('.card-list li.bg-indigo-50');
+            if (card) {
+                card.classList.remove('bg-indigo-50');
+                card.querySelector('span:first-child').classList.remove('text-indigo-600');
+                card.querySelector('span:first-child').classList.add('text-gray-500');
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg flex items-center';
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>Carte marquée comme maîtrisée</span>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+        }
+        
+        // Initialize some demo functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add click event to card list items
+            const cardItems = document.querySelectorAll('.card-list li');
+            cardItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    cardItems.forEach(i => i.classList.remove('bg-indigo-50'));
+                    item.classList.add('bg-indigo-50');
+                });
+            });
+            
+            // Demo: Simulate card flip on click
+            const flashcard = document.getElementById('flashcard');
+            if (flashcard) {
+                flashcard.addEventListener('click', flipCard);
+            }
+        });
+    </script>
+</body>
+</html>
