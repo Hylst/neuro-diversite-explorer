@@ -235,14 +235,16 @@ const FamilyRelationships = () => {
                 <DialogTrigger asChild>
                   <Button variant="outline" size="sm" className="w-full">Trouver un groupe</Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Groupes de soutien</DialogTitle>
                     <DialogDescription>
                       Trouvez des communautés et associations pour vous accompagner
                     </DialogDescription>
                   </DialogHeader>
-                  <SupportGroups />
+                  <div className="overflow-y-auto">
+                    <SupportGroups />
+                  </div>
                 </DialogContent>
               </Dialog>
             </div>
@@ -254,7 +256,7 @@ const FamilyRelationships = () => {
                 <DialogTrigger asChild>
                   <Button variant="outline" size="sm" className="w-full">Programmes disponibles</Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Programmes disponibles</DialogTitle>
                     <DialogDescription>
@@ -273,14 +275,16 @@ const FamilyRelationships = () => {
                 <DialogTrigger asChild>
                   <Button variant="outline" size="sm" className="w-full">Bibliographie</Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Bibliographie</DialogTitle>
                     <DialogDescription>
                       Sélection de livres, articles et ressources en ligne
                     </DialogDescription>
                   </DialogHeader>
-                  <Bibliography />
+                  <div className="overflow-y-auto">
+                    <Bibliography />
+                  </div>
                 </DialogContent>
               </Dialog>
             </div>

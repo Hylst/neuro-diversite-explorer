@@ -29,7 +29,7 @@ const Communaute = () => {
   };
 
   return (
-    <CommunauteLayout title="Communauté" subtitle="et ressources">
+    <CommunauteLayout title="Communauté" subtitle="et échange">
       <CommunauteTabs activeTab={activeTab} onTabChange={handleTabChange}>
         <TabsContent value="carte">
           <CartographieTab />

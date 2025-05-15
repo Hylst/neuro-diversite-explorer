@@ -63,11 +63,13 @@ const ProfessionalLife = () => {
                 <DialogTrigger asChild>
                   <Button variant="outline" className="mt-4">Ressources légales</Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Ressources légales</DialogTitle>
                   </DialogHeader>
-                  <LegalResources />
+                  <div className="overflow-y-auto">
+                    <LegalResources />
+                  </div>
                 </DialogContent>
               </Dialog>
             </div>
@@ -104,11 +106,13 @@ const ProfessionalLife = () => {
                 <DialogTrigger asChild>
                   <Button variant="outline" className="mt-4">Trouver un groupe</Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Groupes de soutien</DialogTitle>
                   </DialogHeader>
-                  <SupportGroups />
+                  <div className="overflow-y-auto">
+                    <SupportGroups />
+                  </div>
                 </DialogContent>
               </Dialog>
             </div>
@@ -282,11 +286,13 @@ const ProfessionalLife = () => {
                   <DialogTrigger asChild>
                     <Button variant="outline" className="w-full">Programmes disponibles</Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
+                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle>Programmes disponibles</DialogTitle>
                     </DialogHeader>
-                    <AvailablePrograms />
+                    <div className="overflow-y-auto">
+                      <AvailablePrograms />
+                    </div>
                   </DialogContent>
                 </Dialog>
 
@@ -294,11 +300,13 @@ const ProfessionalLife = () => {
                   <DialogTrigger asChild>
                     <Button variant="outline" className="w-full">Bibliographie</Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
+                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle>Bibliographie</DialogTitle>
                     </DialogHeader>
-                    <Bibliography />
+                    <div className="overflow-y-auto">
+                      <Bibliography />
+                    </div>
                   </DialogContent>
                 </Dialog>
               </div>

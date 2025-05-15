@@ -8,6 +8,7 @@ import {
   FileVideo, Globe as GlobeIcon
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Comprendre = () => {
   // Références pour les sections
@@ -297,14 +298,26 @@ const Comprendre = () => {
                       </div>
                       
                       <div className="flex flex-col md:flex-row justify-center items-center gap-6 pt-4">
-                        <div className="bg-secondary px-6 py-4 rounded-lg text-center flex-1 max-w-xs">
-                          <Brain className="h-12 w-12 text-neuro-purple mx-auto mb-2" />
-                          <p className="text-sm font-medium">Carte interactive du cerveau en développement</p>
-                        </div>
-                        <div className="bg-secondary px-6 py-4 rounded-lg text-center flex-1 max-w-xs">
-                          <Lightbulb className="h-12 w-12 text-neuro-orange mx-auto mb-2" />
-                          <p className="text-sm font-medium">Explorer les neurotransmetteurs et leur rôle</p>
-                        </div>
+                        <Button 
+                          variant="secondary" 
+                          className="px-6 py-8 h-auto flex-1 max-w-xs flex flex-col items-center gap-2"
+                          asChild
+                        >
+                          <Link to="/cerveau">
+                            <Brain className="h-12 w-12 text-neuro-purple mb-2" />
+                            <p className="text-sm font-medium">Carte interactive du cerveau en développement</p>
+                          </Link>
+                        </Button>
+                        <Button 
+                          variant="secondary" 
+                          className="px-6 py-8 h-auto flex-1 max-w-xs flex flex-col items-center gap-2"
+                          asChild
+                        >
+                          <Link to="/cerveau#neurotransmittersRef">
+                            <Lightbulb className="h-12 w-12 text-neuro-orange mb-2" />
+                            <p className="text-sm font-medium">Explorer les neurotransmetteurs et leur rôle</p>
+                          </Link>
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
@@ -741,7 +754,7 @@ const Comprendre = () => {
             
             <div className="text-center mt-8">
               <Button asChild>
-                <a href="/ressources">Toutes nos ressources</a>
+                <Link to="/ressources">Toutes nos ressources</Link>
               </Button>
             </div>
           </div>
