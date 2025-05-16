@@ -122,7 +122,8 @@ const FeaturedTopics = () => {
                 aria-label={`En savoir plus sur ${topic.title}`}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    window.location.href = topic.link;
+                    // Utilisation de la navigation programmatique via Link
+                    document.querySelector(`a[href="${topic.link}"]`)?.click();
                   }
                 }}
               >

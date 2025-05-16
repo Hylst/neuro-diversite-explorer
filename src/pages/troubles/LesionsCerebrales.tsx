@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Activity, Brain, Heart, HeartPulse, Lightbulb, Stethoscope, Users, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const LesionsCerebrales = () => {
   // Function to scroll to top when clicking links
@@ -690,12 +691,12 @@ const LesionsCerebrales = () => {
                     variant="outline" 
                     size="sm"
                     className="w-full"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/ressources';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    Voir toutes les ressources
+                    <Link to="/ressources">
+                      Voir toutes les ressources
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -706,22 +707,22 @@ const LesionsCerebrales = () => {
                   <Button 
                     variant="outline" 
                     className="w-full justify-start"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/troubles/neurodegeneratifs';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    Maladies neurodégénératives
+                    <Link to="/troubles/neurodegeneratifs">
+                      Maladies neurodégénératives
+                    </Link>
                   </Button>
                   <Button 
                     variant="outline" 
                     className="w-full justify-start"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/cerveau';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    Le cerveau et son fonctionnement
+                    <Link to="/cerveau">
+                      Le cerveau et son fonctionnement
+                    </Link>
                   </Button>
                 </div>
               </div>

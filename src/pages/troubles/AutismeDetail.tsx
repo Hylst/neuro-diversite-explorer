@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Puzzle, BookOpen, Brain, HeartPulse, Users, GraduationCap, ScanSearch, Eye, MessageSquare, Lightbulb } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const AutismeDetail = () => {
   // Function to scroll to top when clicking links
@@ -693,12 +694,12 @@ const AutismeDetail = () => {
                     variant="outline" 
                     size="sm"
                     className="w-full"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/ressources';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    Explorer toutes les ressources
+                    <Link to="/ressources">
+                      Explorer toutes les ressources
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -709,32 +710,32 @@ const AutismeDetail = () => {
                   <Button 
                     variant="outline" 
                     className="w-full justify-start"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/troubles/tdah';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    TDAH
+                    <Link to="/troubles/tdah">
+                      TDAH
+                    </Link>
                   </Button>
                   <Button 
                     variant="outline" 
                     className="w-full justify-start"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/troubles/dys';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    Troubles DYS
+                    <Link to="/troubles/dys">
+                      Troubles DYS
+                    </Link>
                   </Button>
                   <Button 
                     variant="outline" 
                     className="w-full justify-start"
-                    onClick={() => {
-                      scrollToTop();
-                      window.location.href = '/auto-evaluation';
-                    }}
+                    asChild
+                    onClick={scrollToTop}
                   >
-                    Test d'auto-évaluation
+                    <Link to="/auto-evaluation">
+                      Test d'auto-évaluation
+                    </Link>
                   </Button>
                 </div>
               </div>

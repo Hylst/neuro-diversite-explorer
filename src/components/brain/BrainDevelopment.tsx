@@ -1,10 +1,20 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const BrainDevelopment = () => {
+  const [activeTab, setActiveTab] = useState('prenatal');
+  const location = useLocation();
+  
+  // Vérifier si un sous-onglet spécifique a été demandé via la navigation
+  useEffect(() => {
+    if (location.state && location.state.activeSubTab) {
+      setActiveTab(location.state.activeSubTab);
+    }
+  }, [location.state]);
   return (
     <div className="max-w-4xl mx-auto">
       <motion.div
@@ -17,7 +27,7 @@ const BrainDevelopment = () => {
             <CardTitle className="text-2xl">Développement et Plasticité du Cerveau</CardTitle>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="prenatal">
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
                 <TabsTrigger value="prenatal">Développement prénatal</TabsTrigger>
                 <TabsTrigger value="childhood">Enfance et adolescence</TabsTrigger>
