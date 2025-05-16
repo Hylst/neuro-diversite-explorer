@@ -5,23 +5,23 @@ import { useAuth } from '@/components/auth/AuthProvider';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { motion } from 'framer-motion';
-import { supabase } from '@/integrations/supabase/client';
-import { AlertCircle, User, Settings, FileText, BarChart, Save, LogOut, Camera, Star, PenLine } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/components/ui/use-toast';
-import { Separator } from '@/components/ui/separator';
-import { Progress } from '@/components/ui/progress';
+import { supabase } from '@/integrations/supabase/client';
 import { UserProfile } from '@/types/custom-types';
-import { Profile } from '@/types/custom-types';
+
+// Composants modulaires
+import ProfileHeader from '@/components/profile/ProfileHeader';
+import ProfileForm from '@/components/profile/ProfileForm';
+import SettingsForm from '@/components/profile/SettingsForm';
+import ResultsDisplay from '@/components/profile/ResultsDisplay';
+import NotesSection from '@/components/profile/NotesSection';
 
 const defaultProfile: UserProfile = {
   username: '',
   avatar_url: null,
+  avatar_base64: null,
   bio: '',
   interests: [],
   preferred_themes: 'system',
@@ -44,7 +44,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (!user && !session) {
-      navigate('/login');
+      navigate('/');
     } else if (user) {
       loadUserProfile();
     }
@@ -70,6 +70,7 @@ const ProfilePage = () => {
         const profileData = data as unknown as {
           username: string | null;
           avatar_url: string | null;
+          avatar_base64: string | null;
           bio: string | null;
           interests: string[] | null;
           preferred_themes: string | null;
@@ -83,6 +84,7 @@ const ProfilePage = () => {
         setProfile({
           username: profileData.username || user.email?.split('@')[0] || 'Utilisateur',
           avatar_url: profileData.avatar_url,
+          avatar_base64: profileData.avatar_base64 || null,
           bio: profileData.bio || '',
           interests: profileData.interests || [],
           preferred_themes: (profileData.preferred_themes as 'light' | 'dark' | 'system') || 'system',
@@ -94,6 +96,7 @@ const ProfilePage = () => {
         });
       }
       
+      // Exemple de résultats d'évaluation
       setAssessmentResults([
         { 
           type: 'TDAH', 
@@ -141,6 +144,7 @@ const ProfilePage = () => {
           id: user.id,
           username: profile.username,
           avatar_url: profile.avatar_url,
+          avatar_base64: profile.avatar_base64,
           bio: profile.bio,
           interests: profile.interests,
           preferred_themes: profile.preferred_themes,
@@ -177,21 +181,42 @@ const ProfilePage = () => {
     const filePath = `${user?.id}/avatar.${fileExt}`;
     
     try {
+      // Importer l'utilitaire de redimensionnement d'image
+      const { resizeAndConvertToBase64 } = await import('@/utils/imageUtils');
+      
+      // Redimensionner l'image en 92x92 et la convertir en base64
+      const base64Image = await resizeAndConvertToBase64(file, 92, 92, 'jpeg', 0.8);
+      
+      // Télécharger l'image originale dans le stockage Supabase
       const { error: uploadError } = await supabase.storage
         .from('avatars')
         .upload(filePath, file, { upsert: true });
       
       if (uploadError) throw uploadError;
       
+      // Obtenir l'URL publique de l'image originale
       const { data } = supabase.storage
         .from('avatars')
         .getPublicUrl(filePath);
       
-      setProfile(prev => ({ ...prev, avatar_url: data.publicUrl }));
+      // Mettre à jour le profil avec l'URL et la version base64
+      setProfile(prev => ({ 
+        ...prev, 
+        avatar_url: data.publicUrl,
+        avatar_base64: base64Image
+      }));
+      
+      // Mettre à jour la base de données avec la nouvelle image base64
+      await supabase
+        .from('profiles')
+        .upsert({ 
+          id: user.id,
+          avatar_base64: base64Image
+        }, { onConflict: 'id' });
       
       toast({
         title: "Avatar téléchargé",
-        description: "Votre nouvel avatar a été téléchargé.",
+        description: "Votre nouvel avatar a été redimensionné et téléchargé.",
       });
       
     } catch (error) {
@@ -223,7 +248,8 @@ const ProfilePage = () => {
       <div className="min-h-screen flex flex-col">
         <main className="flex-1 flex items-center justify-center">
           <p>Chargement de votre profil...</p>
-        </main>      </div>
+        </main>
+      </div>
     );
   }
 
@@ -239,12 +265,13 @@ const ProfilePage = () => {
               </CardDescription>
             </CardHeader>
             <CardFooter>
-              <Button onClick={() => navigate('/login')} className="w-full">
+              <Button onClick={() => navigate('/')} className="w-full">
                 Se connecter
               </Button>
             </CardFooter>
           </Card>
-        </main>      </div>
+        </main>
+      </div>
     );
   }
 
@@ -253,78 +280,19 @@ const ProfilePage = () => {
       <main className="flex-1 py-12">
         <div className="container">
           <div className="flex flex-col md:flex-row gap-8">
+            {/* Sidebar avec informations de profil et navigation */}
             <aside className="w-full md:w-64">
-              <Card>
-                <CardHeader className="text-center">
-                  <div className="relative mx-auto mb-4 w-24 h-24">
-                    <Avatar className="w-24 h-24 border-2 border-primary">
-                      <AvatarImage src={profile.avatar_url || ''} alt={profile.username} />
-                      <AvatarFallback className="text-2xl">
-                        {profile.username.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <label 
-                      htmlFor="avatar-upload" 
-                      className="absolute bottom-0 right-0 p-1 bg-primary text-primary-foreground rounded-full cursor-pointer"
-                    >
-                      <Camera className="w-4 h-4" />
-                      <input 
-                        id="avatar-upload" 
-                        type="file" 
-                        accept="image/*" 
-                        className="hidden" 
-                        onChange={handleAvatarChange}
-                      />
-                    </label>
-                  </div>
-                  <CardTitle>{profile.username}</CardTitle>
-                  <CardDescription>{user?.email}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <nav className="space-y-2">
-                    <Button 
-                      variant={activeTab === 'profile' ? 'default' : 'ghost'} 
-                      className="w-full justify-start" 
-                      onClick={() => setActiveTab('profile')}
-                    >
-                      <User className="mr-2 h-4 w-4" />
-                      Profil
-                    </Button>
-                    <Button 
-                      variant={activeTab === 'settings' ? 'default' : 'ghost'} 
-                      className="w-full justify-start" 
-                      onClick={() => setActiveTab('settings')}
-                    >
-                      <Settings className="mr-2 h-4 w-4" />
-                      Paramètres
-                    </Button>
-                    <Button 
-                      variant={activeTab === 'results' ? 'default' : 'ghost'} 
-                      className="w-full justify-start" 
-                      onClick={() => setActiveTab('results')}
-                    >
-                      <BarChart className="mr-2 h-4 w-4" />
-                      Résultats
-                    </Button>
-                    <Button 
-                      variant={activeTab === 'notes' ? 'default' : 'ghost'} 
-                      className="w-full justify-start" 
-                      onClick={() => setActiveTab('notes')}
-                    >
-                      <FileText className="mr-2 h-4 w-4" />
-                      Notes
-                    </Button>
-                  </nav>
-                </CardContent>
-                <CardFooter>
-                  <Button variant="outline" className="w-full" onClick={handleLogout}>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Déconnexion
-                  </Button>
-                </CardFooter>
-              </Card>
+              <ProfileHeader 
+                profile={profile}
+                userEmail={user.email}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                onAvatarChange={handleAvatarChange}
+                onLogout={handleLogout}
+              />
             </aside>
             
+            {/* Contenu principal */}
             <div className="flex-1">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="hidden">
@@ -334,304 +302,39 @@ const ProfilePage = () => {
                   <TabsTrigger value="notes">Notes</TabsTrigger>
                 </TabsList>
                 
+                {/* Onglet Profil */}
                 <TabsContent value="profile">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <User className="h-5 w-5" />
-                          Informations de profil
-                        </CardTitle>
-                        <CardDescription>
-                          Modifiez vos informations personnelles
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-6">
-                        <div className="space-y-2">
-                          <Label htmlFor="username">Nom d'utilisateur</Label>
-                          <Input 
-                            id="username" 
-                            value={profile.username} 
-                            onChange={(e) => setProfile({...profile, username: e.target.value})}
-                          />
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <Label htmlFor="bio">Biographie</Label>
-                          <Textarea 
-                            id="bio" 
-                            value={profile.bio || ''} 
-                            onChange={(e) => setProfile({...profile, bio: e.target.value})}
-                            placeholder="Parlez-nous un peu de vous..."
-                            rows={4}
-                          />
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <Label>Centres d'intérêt</Label>
-                          <div className="flex flex-wrap gap-2">
-                            {['TDAH', 'Autisme', 'Dyslexie', 'Dyspraxie', 'Dyscalculie', 'Neuropsychologie', 'Sciences cognitives'].map(interest => (
-                              <Button
-                                key={interest}
-                                variant={profile.interests?.includes(interest) ? 'default' : 'outline'}
-                                size="sm"
-                                onClick={() => {
-                                  const newInterests = profile.interests?.includes(interest)
-                                    ? profile.interests.filter(i => i !== interest)
-                                    : [...(profile.interests || []), interest];
-                                  setProfile({...profile, interests: newInterests});
-                                }}
-                              >
-                                {interest}
-                                {profile.interests?.includes(interest) && (
-                                  <Star className="ml-1 h-3 w-3" />
-                                )}
-                              </Button>
-                            ))}
-                          </div>
-                        </div>
-                      </CardContent>
-                      <CardFooter>
-                        <Button onClick={handleProfileUpdate} disabled={saving}>
-                          {saving ? 'Enregistrement...' : 'Enregistrer les modifications'}
-                          <Save className="ml-2 h-4 w-4" />
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
+                  <ProfileForm 
+                    profile={profile}
+                    setProfile={setProfile}
+                    onSave={handleProfileUpdate}
+                    saving={saving}
+                  />
                 </TabsContent>
                 
+                {/* Onglet Paramètres */}
                 <TabsContent value="settings">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <Settings className="h-5 w-5" />
-                          Paramètres du compte
-                        </CardTitle>
-                        <CardDescription>
-                          Personnalisez votre expérience sur la plateforme
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-6">
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-medium">Thème</h3>
-                          <div className="grid grid-cols-3 gap-4">
-                            {['light', 'dark', 'system'].map((theme) => (
-                              <Button
-                                key={theme}
-                                variant={profile.preferred_themes === theme ? 'default' : 'outline'}
-                                className="w-full justify-center"
-                                onClick={() => setProfile({
-                                  ...profile, 
-                                  preferred_themes: theme as 'light' | 'dark' | 'system'
-                                })}
-                              >
-                                {theme === 'light' && 'Clair'}
-                                {theme === 'dark' && 'Sombre'}
-                                {theme === 'system' && 'Système'}
-                              </Button>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        <Separator />
-                        
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-medium">Accessibilité</h3>
-                          
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <div>
-                                <p className="font-medium">Contraste élevé</p>
-                                <p className="text-sm text-muted-foreground">Augmente le contraste des couleurs</p>
-                              </div>
-                              <Button
-                                variant={profile.accessibility_settings.highContrast ? 'default' : 'outline'}
-                                onClick={() => setProfile({
-                                  ...profile,
-                                  accessibility_settings: {
-                                    ...profile.accessibility_settings,
-                                    highContrast: !profile.accessibility_settings.highContrast
-                                  }
-                                })}
-                              >
-                                {profile.accessibility_settings.highContrast ? 'Activé' : 'Désactivé'}
-                              </Button>
-                            </div>
-                            
-                            <div className="flex items-center justify-between">
-                              <div>
-                                <p className="font-medium">Texte agrandi</p>
-                                <p className="text-sm text-muted-foreground">Augmente la taille du texte pour une meilleure lisibilité</p>
-                              </div>
-                              <Button
-                                variant={profile.accessibility_settings.largeText ? 'default' : 'outline'}
-                                onClick={() => setProfile({
-                                  ...profile,
-                                  accessibility_settings: {
-                                    ...profile.accessibility_settings,
-                                    largeText: !profile.accessibility_settings.largeText
-                                  }
-                                })}
-                              >
-                                {profile.accessibility_settings.largeText ? 'Activé' : 'Désactivé'}
-                              </Button>
-                            </div>
-                            
-                            <div className="flex items-center justify-between">
-                              <div>
-                                <p className="font-medium">Réduire les animations</p>
-                                <p className="text-sm text-muted-foreground">Limite les effets de mouvement</p>
-                              </div>
-                              <Button
-                                variant={profile.accessibility_settings.reduceMotion ? 'default' : 'outline'}
-                                onClick={() => setProfile({
-                                  ...profile,
-                                  accessibility_settings: {
-                                    ...profile.accessibility_settings,
-                                    reduceMotion: !profile.accessibility_settings.reduceMotion
-                                  }
-                                })}
-                              >
-                                {profile.accessibility_settings.reduceMotion ? 'Activé' : 'Désactivé'}
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                      <CardFooter>
-                        <Button onClick={handleProfileUpdate} disabled={saving}>
-                          {saving ? 'Enregistrement...' : 'Enregistrer les paramètres'}
-                          <Save className="ml-2 h-4 w-4" />
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
+                  <SettingsForm 
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
                 </TabsContent>
                 
+                {/* Onglet Résultats */}
                 <TabsContent value="results">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <BarChart className="h-5 w-5" />
-                          Résultats des auto-évaluations
-                        </CardTitle>
-                        <CardDescription>
-                          Historique de vos évaluations
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        {assessmentResults.length > 0 ? (
-                          <div className="space-y-6">
-                            {assessmentResults.map((result, index) => (
-                              <div key={index} className="space-y-2">
-                                <div className="flex justify-between items-center">
-                                  <h3 className="font-medium">{result.type}</h3>
-                                  <span className="text-sm text-muted-foreground">
-                                    {new Date(result.date).toLocaleDateString('fr-FR')}
-                                  </span>
-                                </div>
-                                <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
-                                  <div 
-                                    className={`${result.color} h-full transition-all duration-500 ease-out`}
-                                    style={{ width: `${result.score}%` }}
-                                  ></div>
-                                </div>
-                                <div className="flex justify-between text-sm">
-                                  <span>Score: {result.score}%</span>
-                                  <span>Interprétation: {result.interpretation}</span>
-                                </div>
-                                <Button variant="outline" size="sm" className="mt-1">
-                                  Voir les détails
-                                </Button>
-                                <Separator className="mt-4" />
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="text-center py-8">
-                            <p className="text-muted-foreground mb-4">
-                              Vous n'avez pas encore effectué d'auto-évaluations.
-                            </p>
-                            <Button onClick={() => navigate('/auto-evaluation')}>
-                              Faire une évaluation
-                            </Button>
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                  <ResultsDisplay results={assessmentResults} />
                 </TabsContent>
                 
+                {/* Onglet Notes */}
                 <TabsContent value="notes">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <FileText className="h-5 w-5" />
-                          Mes notes personnelles
-                        </CardTitle>
-                        <CardDescription>
-                          Prenez des notes sur votre parcours neurodivergent
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <Alert className="mb-6">
-                          <AlertCircle className="h-4 w-4" />
-                          <AlertTitle>Fonctionnalité en développement</AlertTitle>
-                          <AlertDescription>
-                            Le système de notes personnelles sera bientôt disponible.
-                          </AlertDescription>
-                        </Alert>
-                        
-                        <div className="space-y-4">
-                          <Textarea 
-                            placeholder="Commencez à écrire une note..."
-                            rows={8}
-                            disabled
-                          />
-                          
-                          <div className="flex justify-between">
-                            <Button variant="outline" disabled>
-                              <PenLine className="mr-2 h-4 w-4" />
-                              Nouvelle note
-                            </Button>
-                            <Button disabled>
-                              Enregistrer
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                  <NotesSection />
                 </TabsContent>
               </Tabs>
             </div>
           </div>
         </div>
-      </main>    </div>
+      </main>
+    </div>
   );
 };
 

@@ -1,10 +1,15 @@
+// Types personnalisés mis à jour pour l'application
+// À utiliser après avoir généré les types Supabase avec le script generate-types.js
 
-// Types personnalisés pour l'application
 import { Database } from '@/integrations/supabase/types';
 
 export type Profile = Database['public']['Tables']['profiles']['Row'];
 export type Favorite = Database['public']['Tables']['favorites']['Row'];
 export type Comment = Database['public']['Tables']['comments']['Row'];
+
+// Nouveaux types pour les tables ajoutées
+export type AssessmentResult = Database['public']['Tables']['assessment_results']['Row'];
+export type UserNote = Database['public']['Tables']['user_notes']['Row'];
 
 export interface UserSession {
   user: {
@@ -17,7 +22,7 @@ export interface UserSession {
 export interface UserProfile {
   username: string;
   avatar_url: string | null;
-  avatar_base64: string | null;
+  avatar_base64: string | null; // Nouveau champ ajouté
   bio: string | null;
   interests: string[] | null;
   preferred_themes: 'light' | 'dark' | 'system';
@@ -60,13 +65,24 @@ export interface EventProps {
   description: string;
 }
 
-export interface AssessmentResult {
+// Interface mise à jour pour correspondre à la nouvelle table assessment_results
+export interface AssessmentResultDisplay {
+  type: string;
   score?: number;
   level: string;
   description: string;
   color: string;
   suggestions?: string[];
+  date?: string;
+  interpretation?: string; // Pour la rétrocompatibilité
 }
 
-// Ajouter d'autres types personnalisés au besoin
-
+// Interface pour les notes utilisateur
+export interface UserNoteDisplay {
+  id: string;
+  title: string;
+  content: string;
+  tags: string[];
+  created_at: string;
+  updated_at: string;
+}

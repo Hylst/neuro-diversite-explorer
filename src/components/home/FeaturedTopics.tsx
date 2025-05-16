@@ -123,7 +123,7 @@ const FeaturedTopics = () => {
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     // Utilisation de la navigation programmatique via Link
-                    document.querySelector(`a[href="${topic.link}"]`)?.click();
+                    (document.querySelector(`a[href="${topic.link}"]`) as HTMLElement)?.click();
                   }
                 }}
               >
