@@ -143,6 +143,8 @@ const ProfilePage = () => {
         .upsert({ 
           id: user.id,
           username: profile.username,
+          // Nous gardons avatar_url dans la structure pour compatibilité,
+          // mais nous n'utilisons que avatar_base64 pour le stockage des avatars
           avatar_url: profile.avatar_url,
           avatar_base64: profile.avatar_base64,
           bio: profile.bio,
@@ -177,8 +179,6 @@ const ProfilePage = () => {
     if (!files || files.length === 0) return;
     
     const file = files[0];
-    const fileExt = file.name.split('.').pop();
-    const filePath = `${user?.id}/avatar.${fileExt}`;
     
     try {
       // Importer l'utilitaire de redimensionnement d'image
@@ -187,43 +187,39 @@ const ProfilePage = () => {
       // Redimensionner l'image en 92x92 et la convertir en base64
       const base64Image = await resizeAndConvertToBase64(file, 92, 92, 'jpeg', 0.8);
       
-      // Télécharger l'image originale dans le stockage Supabase
-      const { error: uploadError } = await supabase.storage
-        .from('avatars')
-        .upload(filePath, file, { upsert: true });
-      
-      if (uploadError) throw uploadError;
-      
-      // Obtenir l'URL publique de l'image originale
-      const { data } = supabase.storage
-        .from('avatars')
-        .getPublicUrl(filePath);
-      
-      // Mettre à jour le profil avec l'URL et la version base64
+      // Mettre à jour le profil avec la version base64
       setProfile(prev => ({ 
         ...prev, 
-        avatar_url: data.publicUrl,
-        avatar_base64: base64Image
+        avatar_base64: base64Image,
+        // Supprimer l'ancienne URL d'avatar pour ne plus utiliser le stockage
+        avatar_url: null
       }));
       
       // Mettre à jour la base de données avec la nouvelle image base64
-      await supabase
+      const { error: upsertError } = await supabase
         .from('profiles')
         .upsert({ 
           id: user.id,
-          avatar_base64: base64Image
+          avatar_base64: base64Image,
+          // Supprimer l'ancienne URL d'avatar pour ne plus utiliser le stockage
+          avatar_url: null
         }, { onConflict: 'id' });
       
+      if (upsertError) {
+        throw new Error(`Erreur lors de la mise à jour du profil: ${upsertError.message}`);
+      }
+      
       toast({
-        title: "Avatar téléchargé",
-        description: "Votre nouvel avatar a été redimensionné et téléchargé.",
+        title: "Avatar mis à jour",
+        description: "Votre nouvel avatar a été enregistré avec succès.",
       });
       
     } catch (error) {
       console.error('Error uploading avatar:', error);
+      
       toast({
         title: "Erreur",
-        description: "Impossible de télécharger l'avatar. Veuillez réessayer.",
+        description: "Impossible de mettre à jour l'avatar: " + (error instanceof Error ? error.message : 'Erreur inconnue'),
         variant: "destructive"
       });
     }

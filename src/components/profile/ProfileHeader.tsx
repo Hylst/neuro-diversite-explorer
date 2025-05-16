@@ -31,10 +31,21 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               <AvatarImage 
                 src={`data:image/jpeg;base64,${profile.avatar_base64}`} 
                 alt={profile.username} 
+                onError={(e) => {
+                  console.warn('Erreur de chargement de l\'avatar en base64');
+                  e.currentTarget.style.display = 'none';
+                }}
               />
-            ) : (
-              <AvatarImage src={profile.avatar_url || ''} alt={profile.username} />
-            )}
+            ) : profile.avatar_url ? (
+              <AvatarImage 
+                src={profile.avatar_url} 
+                alt={profile.username} 
+                onError={(e) => {
+                  console.warn('Erreur de chargement de l\'avatar URL');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            ) : null}
             <AvatarFallback className="text-2xl">
               {profile.username.charAt(0).toUpperCase()}
             </AvatarFallback>
