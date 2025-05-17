@@ -16,7 +16,7 @@ const Index = lazy(() => import("./pages/Index"));
 const Comprendre = lazy(() => import("./pages/Comprendre"));
 const Cerveau = lazy(() => import("./pages/Cerveau"));
 const Troubles = lazy(() => import("./pages/Troubles"));
-const TroublesDys = lazy(() => import("./pages/troubles/ToublesDys"));
+const TroublesDys = lazy(() => import("./pages/troubles/TroublesDys"));
 const Dyslexie = lazy(() => import("./pages/troubles/Dyslexie"));
 const Dysphasie = lazy(() => import("./pages/troubles/Dysphasie"));
 const Dysorthographie = lazy(() => import("./pages/troubles/Dysorthographie"));
