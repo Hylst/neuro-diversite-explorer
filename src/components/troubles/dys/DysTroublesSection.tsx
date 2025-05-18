@@ -2,12 +2,26 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import TroubleCard from '../common/TroubleCard';
+import { TroubleTypesGrid, TroubleType } from './TroubleTypesGrid';
 
 interface DysTroublesSectionProps {
   onNavigate?: () => void;
+  title?: string;
+  introduction?: string;
+  types?: TroubleType[];
+  conclusion?: string;
+  borderColor?: string;
 }
 
-const DysTroublesSection: React.FC<DysTroublesSectionProps> = ({ onNavigate }) => {
+// Composant pour afficher les types de troubles avec une grille
+export const DysTroublesSection: React.FC<DysTroublesSectionProps> = ({
+  title,
+  introduction,
+  types,
+  conclusion,
+  borderColor,
+  onNavigate
+}) => {
   const navigate = useNavigate();
   
   const scrollToTop = () => {
@@ -20,6 +34,29 @@ const DysTroublesSection: React.FC<DysTroublesSectionProps> = ({ onNavigate }) =
     if (onNavigate) onNavigate();
   };
 
+  // Si les types sont fournis, afficher la section avec la grille de types
+  if (types && types.length > 0) {
+    return (
+      <div>
+        {title && <h2 className="text-2xl font-bold mb-4">{title}</h2>}
+        {introduction && (
+          <p className="text-muted-foreground mb-4">
+            {introduction}
+          </p>
+        )}
+        
+        <TroubleTypesGrid types={types} borderColor={borderColor} />
+        
+        {conclusion && (
+          <p className="text-muted-foreground">
+            {conclusion}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  // Sinon, afficher la liste des troubles Dys
   const troublesData = [
     {
       id: 'dyslexie',

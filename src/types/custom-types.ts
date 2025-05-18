@@ -65,7 +65,7 @@ export interface EventProps {
   description: string;
 }
 
-export interface AssessmentResult {
+export interface AssessmentResultDetails {
   score?: number;
   level: string;
   description: string;
