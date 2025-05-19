@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Pencil, BookOpen, Brain, HeartPulse, GraduationCap, Hand, ArrowLeft } from 'lucide-react';
+import { Pencil, BookOpen, Brain, HeartPulse, GraduationCap, Hand, ArrowLeft, CheckCircle, AlertCircle, BookCheck, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Dysgraphie = () => {
@@ -484,119 +484,118 @@ const Dysgraphie = () => {
               </div>
             </div>
             
+            {/* Sidebar content */}
             <div className="space-y-6">
-              <div className="bg-secondary p-6 rounded-lg">
-                <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="h-6 w-6 text-neuro-blue" />
-                  <h3 className="text-xl font-bold">À retenir</h3>
+              {/* Section À retenir */}
+              <Card className="p-4 border-neuro-blue">
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-neuro-blue" />
+                  <h3 className="font-semibold text-lg">À retenir</h3>
                 </div>
                 <ul className="space-y-2">
-                  <li className="flex gap-2">
-                    <span className="text-neuro-blue font-bold">•</span>
-                    <span className="text-muted-foreground text-sm">La dysgraphie est un trouble persistant du geste graphique</span>
+                  <li className="flex items-start gap-2">
+                    <div className="min-w-4 mt-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-neuro-blue mt-1"></div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">La dysgraphie est un trouble persistant du geste graphique</p>
                   </li>
-                  <li className="flex gap-2">
-                    <span className="text-neuro-blue font-bold">•</span>
-                    <span className="text-muted-foreground text-sm">Elle peut être motrice, spatiale ou perceptive</span>
+                  <li className="flex items-start gap-2">
+                    <div className="min-w-4 mt-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-neuro-blue mt-1"></div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Elle peut être motrice, spatiale ou perceptive</p>
                   </li>
-                  <li className="flex gap-2">
-                    <span className="text-neuro-blue font-bold">•</span>
-                    <span className="text-muted-foreground text-sm">Elle n'est pas liée à l'intelligence ou au manque d'effort</span>
+                  <li className="flex items-start gap-2">
+                    <div className="min-w-4 mt-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-neuro-blue mt-1"></div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Elle n'est pas liée à l'intelligence ou au manque d'effort</p>
                   </li>
-                  <li className="flex gap-2">
-                    <span className="text-neuro-blue font-bold">•</span>
-                    <span className="text-muted-foreground text-sm">L'ergothérapie est au cœur de la prise en charge</span>
+                  <li className="flex items-start gap-2">
+                    <div className="min-w-4 mt-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-neuro-blue mt-1"></div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">L'ergothérapie est au cœur de la prise en charge</p>
                   </li>
-                  <li className="flex gap-2">
-                    <span className="text-neuro-blue font-bold">•</span>
-                    <span className="text-muted-foreground text-sm">Les outils numériques offrent d'excellentes alternatives</span>
+                  <li className="flex items-start gap-2">
+                    <div className="min-w-4 mt-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-neuro-blue mt-1"></div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Les outils numériques offrent d'excellentes alternatives</p>
                   </li>
-                  <li className="flex gap-2">
-                    <span className="text-neuro-blue font-bold">•</span>
-                    <span className="text-muted-foreground text-sm">Des adaptations scolaires sont indispensables</span>
+                  <li className="flex items-start gap-2">
+                    <div className="min-w-4 mt-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-neuro-blue mt-1"></div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Des adaptations scolaires sont indispensables</p>
                   </li>
                 </ul>
-              </div>
+              </Card>
               
-              <div className="bg-secondary p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">Comorbidités fréquentes</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  La dysgraphie est souvent associée à d'autres troubles:
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex gap-2">
-                    <HeartPulse className="h-5 w-5 text-neuro-blue shrink-0 mt-0.5" />
+              {/* Section Comorbidités fréquentes */}
+              <Card className="p-4 border-neuro-blue">
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertCircle className="h-5 w-5 text-neuro-blue" />
+                  <h3 className="font-semibold text-lg">Comorbidités fréquentes</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">La dysgraphie est souvent associée à d'autres troubles:</p>
+                
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/50">
+                    <AlertCircle className="h-4 w-4 text-neuro-blue mt-0.5" />
                     <div>
-                      <span className="font-medium">Dyspraxie</span>
-                      <p className="text-xs text-muted-foreground">Trouble de la coordination plus général</p>
+                      <h4 className="text-sm font-medium">Dyspraxie</h4>
+                      <p className="text-xs text-muted-foreground">Trouble de coordination plus général</p>
                     </div>
-                  </li>
-                  <li className="flex gap-2">
-                    <HeartPulse className="h-5 w-5 text-neuro-blue shrink-0 mt-0.5" />
+                  </div>
+                  
+                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/50">
+                    <AlertCircle className="h-4 w-4 text-neuro-blue mt-0.5" />
                     <div>
-                      <span className="font-medium">TDAH</span>
+                      <h4 className="text-sm font-medium">TDAH</h4>
                       <p className="text-xs text-muted-foreground">Difficultés attentionnelles impactant le contrôle du geste</p>
                     </div>
-                  </li>
-                  <li className="flex gap-2">
-                    <HeartPulse className="h-5 w-5 text-neuro-blue shrink-0 mt-0.5" />
+                  </div>
+                  
+                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/50">
+                    <AlertCircle className="h-4 w-4 text-neuro-blue mt-0.5" />
                     <div>
-                      <span className="font-medium">Dyslexie/dysorthographie</span>
+                      <h4 className="text-sm font-medium">Dyslexie/dysorthographie</h4>
                       <p className="text-xs text-muted-foreground">Troubles souvent associés dans le cadre du langage écrit</p>
                     </div>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                </div>
+              </Card>
               
-              <div className="bg-secondary p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">Testez vos connaissances</h3>
-                <Button 
-                  variant="outline" 
-                  className="w-full"
-                  asChild
-                  onClick={scrollToTop}
-                >
-                  <Link to="/auto-evaluation">
-                    Faire le test sur les troubles DYS
-                  </Link>
+              {/* Section Testez vos connaissances */}
+              <Card className="p-4 border-neuro-blue">
+                <div className="flex items-center gap-2 mb-3">
+                  <BookCheck className="h-5 w-5 text-neuro-blue" />
+                  <h3 className="font-semibold text-lg">Testez vos connaissances</h3>
+                </div>
+                <Button className="w-full" variant="outline">
+                  Faire le test sur les troubles DYS
                 </Button>
-              </div>
+              </Card>
               
-              <div className="bg-secondary p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">Explorer d'autres troubles</h3>
+              {/* Section Explorer d'autres troubles */}
+              <Card className="p-4 border-neuro-blue">
+                <div className="flex items-center gap-2 mb-3">
+                  <ExternalLink className="h-5 w-5 text-neuro-blue" />
+                  <h3 className="font-semibold text-lg">Explorer d'autres troubles</h3>
+                </div>
                 <div className="space-y-2">
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start"
-                    asChild
-                    onClick={scrollToTop}
-                  >
-                    <Link to="/troubles/dyspraxie">
-                      Dyspraxie
-                    </Link>
+                  <Button asChild variant="outline" className="w-full justify-start" size="sm">
+                    <Link to="/troubles/dyspraxie" onClick={scrollToTop}>Dyspraxie</Link>
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start"
-                    asChild
-                    onClick={scrollToTop}
-                  >
-                    <Link to="/troubles/dysorthographie">
-                      Dysorthographie
-                    </Link>
+                  <Button asChild variant="outline" className="w-full justify-start" size="sm">
+                    <Link to="/troubles/dysorthographie" onClick={scrollToTop}>Dysorthographie</Link>
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start"
-                    asChild
-                    onClick={scrollToTop}
-                  >
-                    <Link to="/troubles/dyslexie">
-                      Dyslexie
-                    </Link>
+                  <Button asChild variant="outline" className="w-full justify-start" size="sm">
+                    <Link to="/troubles/dyslexie" onClick={scrollToTop}>Dyslexie</Link>
                   </Button>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>

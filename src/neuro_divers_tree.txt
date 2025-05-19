@@ -1,0 +1,353 @@
+Structure du dossier src du projet neuro diver explorer
+D:.
+¦   App.tsx
+¦   arboneurodivers
+¦   index.css
+¦   main.tsx
+¦   routes.ts
+¦   vite-env.d.ts
+¦   
++---components
+¦   +---auth
+¦   ¦       AuthButtons.tsx
+¦   ¦       AuthProvider.tsx
+¦   ¦       LoginForm.tsx
+¦   ¦       SignupForm.tsx
+¦   ¦       
+¦   +---blog
+¦   ¦       AvatarSelector.tsx
+¦   ¦       IconSelector.tsx
+¦   ¦       
+¦   +---brain
+¦   ¦   ¦   Brain3DModel.tsx
+¦   ¦   ¦   BrainDevelopment.tsx
+¦   ¦   ¦   BrainExplorer.tsx
+¦   ¦   ¦   BrainFunctions.tsx
+¦   ¦   ¦   BrainStructures.tsx
+¦   ¦   ¦   InteractiveNeuron.tsx
+¦   ¦   ¦   
+¦   ¦   +---3d-model
+¦   ¦   ¦       BrainBase.tsx
+¦   ¦   ¦       BrainConnectionsMap.tsx
+¦   ¦   ¦       BrainRegionMesh.tsx
+¦   ¦   ¦       NeuralPathway.tsx
+¦   ¦   ¦       RealisticBrainModel.tsx
+¦   ¦   ¦       
+¦   ¦   +---data
+¦   ¦   ¦       brain-regions-data.ts
+¦   ¦   ¦       
+¦   ¦   +---explorer
+¦   ¦   ¦       Brain2DVisualization.tsx
+¦   ¦   ¦       BrainInfoPanel.tsx
+¦   ¦   ¦       BrainViewControls.tsx
+¦   ¦   ¦       
+¦   ¦   +---types
+¦   ¦           brain-types.ts
+¦   ¦           
+¦   +---cerveau
+¦   ¦       BrainExplorerSection.tsx
+¦   ¦       BrainTabsSection.tsx
+¦   ¦       HeroSection.tsx
+¦   ¦       index.ts
+¦   ¦       NeuronalStructureSection.tsx
+¦   ¦       NeuroplasticitySection.tsx
+¦   ¦       NeurotransmittersSection.tsx
+¦   ¦       
+¦   +---communaute
+¦   ¦       AutismTestimonial.tsx
+¦   ¦       BlogCard.tsx
+¦   ¦       BlogData.ts
+¦   ¦       BlogFilter.tsx
+¦   ¦       BlogPostDetail.tsx
+¦   ¦       BlogPosts.tsx
+¦   ¦       BlogTab.tsx
+¦   ¦       BlogTypes.ts
+¦   ¦       CartographieTab.tsx
+¦   ¦       CommunauteLayout.tsx
+¦   ¦       CommunauteTabs.tsx
+¦   ¦       EventList.tsx
+¦   ¦       EventsTab.tsx
+¦   ¦       EventSubmissionForm.tsx
+¦   ¦       EventTypeFilter.tsx
+¦   ¦       FAQ.tsx
+¦   ¦       FAQTab.tsx
+¦   ¦       ForumActions.tsx
+¦   ¦       ForumCategoriesTab.tsx
+¦   ¦       ForumCategory.tsx
+¦   ¦       ForumCategoryTopics.tsx
+¦   ¦       ForumCreateForm.tsx
+¦   ¦       ForumRecentTab.tsx
+¦   ¦       ForumRules.tsx
+¦   ¦       ForumSearchBar.tsx
+¦   ¦       ForumStats.tsx
+¦   ¦       ForumTab.tsx
+¦   ¦       ForumTopicDetail.tsx
+¦   ¦       ForumTopicItem.tsx
+¦   ¦       ForumTopicList.tsx
+¦   ¦       NewsletterSignup.tsx
+¦   ¦       ResourceFilterButtons.tsx
+¦   ¦       ResourceList.tsx
+¦   ¦       ResourceSearch.tsx
+¦   ¦       ResourceSubmissionForm.tsx
+¦   ¦       
+¦   +---comprendre
+¦   ¦   ¦   index.ts
+¦   ¦   ¦   README.md
+¦   ¦   ¦   
+¦   ¦   +---approches
+¦   ¦   ¦       index.tsx
+¦   ¦   ¦       
+¦   ¦   +---cerveau
+¦   ¦   ¦       index.tsx
+¦   ¦   ¦       
+¦   ¦   +---definitions
+¦   ¦   ¦       GlossaireTermes.tsx
+¦   ¦   ¦       index.tsx
+¦   ¦   ¦       ModelesMedicalSocial.tsx
+¦   ¦   ¦       NeurotypiqueVsNeurodivergent.tsx
+¦   ¦   ¦       ParadigmesFondamentaux.tsx
+¦   ¦   ¦       
+¦   ¦   +---historique
+¦   ¦   ¦       FiguresEmblematiques.tsx
+¦   ¦   ¦       HistoriqueNeurodiversite.tsx
+¦   ¦   ¦       index.tsx
+¦   ¦   ¦       
+¦   ¦   +---layout
+¦   ¦   ¦       HeroSection.tsx
+¦   ¦   ¦       TabsContainer.tsx
+¦   ¦   ¦       
+¦   ¦   +---ressources
+¦   ¦   ¦       index.tsx
+¦   ¦   ¦       RessourcesApprentissage.tsx
+¦   ¦   ¦       
+¦   ¦   +---statistiques
+¦   ¦           index.tsx
+¦   ¦           
+¦   +---evaluation
+¦   ¦   ¦   AutismeAssessment.tsx
+¦   ¦   ¦   DyscalculieAssessment.tsx
+¦   ¦   ¦   DyslexieAssessment.tsx
+¦   ¦   ¦   DyspraxieAssessment.tsx
+¦   ¦   ¦   TDAHAssessment.tsx
+¦   ¦   ¦   
+¦   ¦   +---common
+¦   ¦           QuestionnaireNavigation.tsx
+¦   ¦           QuestionTooltip.tsx
+¦   ¦           ResultsDisplay.tsx
+¦   ¦           
+¦   +---glossary
+¦   ¦       GlossaryTerm.tsx
+¦   ¦       SearchBar.tsx
+¦   ¦       
+¦   +---home
+¦   ¦       BrainInteractive.tsx
+¦   ¦       ComparativeTable.tsx
+¦   ¦       ExplicationNeurodiversite.tsx
+¦   ¦       FeaturedTopics.tsx
+¦   ¦       HeroBanner.tsx
+¦   ¦       Presentation.tsx
+¦   ¦       ResourceSection.tsx
+¦   ¦       TestimonialSection.tsx
+¦   ¦       
+¦   +---layout
+¦   ¦       AccessibilityMenu.tsx
+¦   ¦       DesktopNavbar.tsx
+¦   ¦       Footer.tsx
+¦   ¦       MainNavbar.tsx
+¦   ¦       MobileNavbar.tsx
+¦   ¦       NavbarLink.tsx
+¦   ¦       SubmenuLink.tsx
+¦   ¦       ThemeToggle.tsx
+¦   ¦       
+¦   +---profile
+¦   ¦       NotesSection.tsx
+¦   ¦       ProfileForm.tsx
+¦   ¦       ProfileHeader.tsx
+¦   ¦       ResultsDisplay.tsx
+¦   ¦       SettingsForm.tsx
+¦   ¦       
+¦   +---ressources
+¦   ¦   ¦   ArticlesSection.tsx
+¦   ¦   ¦   DocumentsSection.tsx
+¦   ¦   ¦   index.tsx
+¦   ¦   ¦   MediaSection.tsx
+¦   ¦   ¦   OnlineSection.tsx
+¦   ¦   ¦   ResourcesMain.tsx
+¦   ¦   ¦   ToolsSection.tsx
+¦   ¦   ¦   types.ts
+¦   ¦   ¦   
+¦   ¦   +---data
+¦   ¦           articles.ts
+¦   ¦           documents.ts
+¦   ¦           index.ts
+¦   ¦           media.ts
+¦   ¦           online.ts
+¦   ¦           tools.ts
+¦   ¦           
+¦   +---troubles
+¦   ¦   +---common
+¦   ¦   ¦       index.ts
+¦   ¦   ¦       TroubleCard.tsx
+¦   ¦   ¦       TroubleDefinition.tsx
+¦   ¦   ¦       TroubleHeader.tsx
+¦   ¦   ¦       TroubleHeroSection.tsx
+¦   ¦   ¦       TroubleIcon.tsx
+¦   ¦   ¦       TroubleInfoCard.tsx
+¦   ¦   ¦       TroubleSymptomCard.tsx
+¦   ¦   ¦       TroubleTabsSection.tsx
+¦   ¦   ¦       
+¦   ¦   +---dys
+¦   ¦   ¦       DysTroublesSection.tsx
+¦   ¦   ¦       index.ts
+¦   ¦   ¦       TroubleTypesGrid.tsx
+¦   ¦   ¦       
+¦   ¦   +---neuro
+¦   ¦   ¦       NeuroSection.tsx
+¦   ¦   ¦       
+¦   ¦   +---tdah
+¦   ¦   ¦       TDAHSection.tsx
+¦   ¦   ¦       
+¦   ¦   +---tsa
+¦   ¦           TSASection.tsx
+¦   ¦           
+¦   +---ui
+¦   ¦       accordion.tsx
+¦   ¦       alert-dialog.tsx
+¦   ¦       alert.tsx
+¦   ¦       aspect-ratio.tsx
+¦   ¦       avatar.tsx
+¦   ¦       badge.tsx
+¦   ¦       breadcrumb.tsx
+¦   ¦       button.tsx
+¦   ¦       calendar.tsx
+¦   ¦       card.tsx
+¦   ¦       carousel.tsx
+¦   ¦       chart.tsx
+¦   ¦       checkbox.tsx
+¦   ¦       collapse.tsx
+¦   ¦       collapsible.tsx
+¦   ¦       command.tsx
+¦   ¦       context-menu.tsx
+¦   ¦       dialog.tsx
+¦   ¦       drawer.tsx
+¦   ¦       dropdown-menu.tsx
+¦   ¦       form.tsx
+¦   ¦       GlossaryLink.tsx
+¦   ¦       hover-card.tsx
+¦   ¦       index.ts
+¦   ¦       input-otp.tsx
+¦   ¦       input.tsx
+¦   ¦       label.tsx
+¦   ¦       loading-spinner.tsx
+¦   ¦       menubar.tsx
+¦   ¦       navigation-menu.tsx
+¦   ¦       pagination.tsx
+¦   ¦       popover.tsx
+¦   ¦       progress.tsx
+¦   ¦       radio-group.tsx
+¦   ¦       resizable.tsx
+¦   ¦       scroll-area.tsx
+¦   ¦       select.tsx
+¦   ¦       separator.tsx
+¦   ¦       sheet.tsx
+¦   ¦       sidebar.tsx
+¦   ¦       skeleton.tsx
+¦   ¦       slider.tsx
+¦   ¦       sonner.tsx
+¦   ¦       switch.tsx
+¦   ¦       table.tsx
+¦   ¦       tabs.tsx
+¦   ¦       textarea.tsx
+¦   ¦       toast.tsx
+¦   ¦       toaster.tsx
+¦   ¦       toggle-group.tsx
+¦   ¦       toggle.tsx
+¦   ¦       tooltip.tsx
+¦   ¦       use-toast.ts
+¦   ¦       
+¦   +---vivreavec
+¦           AvailablePrograms.tsx
+¦           Bibliography.tsx
+¦           DailyLifeTips.tsx
+¦           EducationSupport.tsx
+¦           FamilyRelationships.tsx
+¦           LegalResources.tsx
+¦           ProfessionalLife.tsx
+¦           ProgramsList.tsx
+¦           ResourceForm.tsx
+¦           SupportGroups.tsx
+¦           Testimonials.tsx
+¦           
++---data
+¦   ¦   glossaryTerms.ts
+¦   ¦   
+¦   +---troubles
+¦           dysphasie.tsx
+¦           
++---hooks
+¦       use-mobile.tsx
+¦       use-toast.ts
+¦       
++---integrations
+¦   +---supabase
+¦           client.ts
+¦           database.types.ts
+¦           types.ts
+¦           
++---layouts
+¦       MainLayout.tsx
+¦       RessourcesLayout.tsx
+¦       
++---lib
+¦       animations.ts
+¦       utils.ts
+¦       
++---pages
+¦   ¦   APropos.tsx
+¦   ¦   AutoEvaluation.tsx
+¦   ¦   BlogArticleImport.tsx
+¦   ¦   BlogDetail.tsx
+¦   ¦   Cerveau.tsx
+¦   ¦   Communaute.tsx
+¦   ¦   Comprendre.tsx
+¦   ¦   Glossaire.tsx
+¦   ¦   Index.tsx
+¦   ¦   MentionsLegales.tsx
+¦   ¦   NotFound.tsx
+¦   ¦   PolitiqueConfidentialite.tsx
+¦   ¦   ProfilePage.tsx
+¦   ¦   Recherche.tsx
+¦   ¦   Ressources.tsx
+¦   ¦   Troubles.tsx
+¦   ¦   VivreAvec.tsx
+¦   ¦   
+¦   +---ressources
+¦   ¦       Applications.tsx
+¦   ¦       Communication.tsx
+¦   ¦       GuideAdministratif.tsx
+¦   ¦       Kits.tsx
+¦   ¦       Plannings.tsx
+¦   ¦       StrategiesApprentissage.tsx
+¦   ¦       
+¦   +---troubles
+¦           Autisme.tsx
+¦           AutismeDetail.tsx
+¦           Dyscalculie.tsx
+¦           Dysgraphie.tsx
+¦           Dyslexie.tsx
+¦           Dysorthographie.tsx
+¦           Dysphasie.tsx
+¦           Dyspraxie.tsx
+¦           LesionsCerebrales.tsx
+¦           Neurodegeneratifs.tsx
+¦           PostTraumatiques.tsx
+¦           TDAH.tsx
+¦           TroublesDys.tsx
+¦           TSA.tsx
+¦           
++---types
+¦       custom-types.ts
+¦       
++---utils
+        imageUtils.ts
+        
