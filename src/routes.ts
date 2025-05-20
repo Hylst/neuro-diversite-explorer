@@ -12,6 +12,7 @@ export const ROUTES = {
   CERVEAU: '/cerveau',
   COMMUNAUTE: '/communaute',
   VIVRE_AVEC: '/vivre-avec',
+  APPRENTISSAGE: '/apprentissage',
   RECHERCHE: '/recherche',
   AUTO_EVALUATION: '/auto-evaluation',
   PROFILE: '/profile',

@@ -48,6 +48,7 @@ const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentia
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
 const APropos = lazy(() => import("./pages/APropos"));
 const Glossaire = lazy(() => import("./pages/Glossaire"));
+const Apprentissage = lazy(() => import("./pages/Apprentissage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Composant de chargement
@@ -106,6 +107,7 @@ const App = () => (
                 <Route path={ROUTES.RESSOURCES.KITS} element={<Kits />} />
                 
                 {/* Autres pages */}
+                <Route path={ROUTES.APPRENTISSAGE} element={<Apprentissage />} />
                 <Route path={ROUTES.VIVRE_AVEC} element={<VivreAvec />} />
                 <Route path={ROUTES.AUTO_EVALUATION} element={<AutoEvaluation />} />
                 <Route path={ROUTES.RECHERCHE} element={<Recherche />} />

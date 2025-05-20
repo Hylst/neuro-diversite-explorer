@@ -1,23 +1,18 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ArrowLeft, CheckCircle, AlertCircle, ExternalLink, Calculator, Brain, BookCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, Calculator, Brain, CheckCircle, AlertCircle, BookCheck, ExternalLink, Info } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-// Import des composants modulaires
-import {
-  PresentationSection,
-  SymptomsSection,
-  DiagnosticSection,
-  InterventionsSection,
-  ResourcesSection
-} from '@/components/troubles/dyscalculie';
+// Import des composants de section
+import SymptomsSection from '@/components/troubles/dyscalculie/SymptomsSection';
+import DiagnosticSection from '@/components/troubles/dyscalculie/DiagnosticSection';
+import InterventionsSection from '@/components/troubles/dyscalculie/InterventionsSection';
+import ResourcesSection from '@/components/troubles/dyscalculie/ResourcesSection';
 
 const Dyscalculie = () => {
   // Function to scroll to top when clicking links
@@ -146,18 +141,38 @@ const Dyscalculie = () => {
                 </TabsList>
                 
                 <TabsContent value="symptoms" className="space-y-4">
+                  <h3 className="text-xl font-semibold">Signes et manifestations</h3>
+                  <p className="text-muted-foreground mb-4">
+                    La dyscalculie se manifeste par diverses difficultés dans l'apprentissage et l'utilisation des mathématiques.
+                    Ces signes peuvent varier en intensité et en combinaison selon les individus.
+                  </p>
                   <SymptomsSection />
                 </TabsContent>
                 
                 <TabsContent value="diagnosis" className="space-y-4">
+                  <h3 className="text-xl font-semibold">Parcours diagnostic</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Le diagnostic de la dyscalculie est pluridisciplinaire et repose sur l'évaluation 
+                    de différents aspects du geste graphique et des compétences associées.
+                  </p>
                   <DiagnosticSection />
                 </TabsContent>
                 
                 <TabsContent value="treatment" className="space-y-4">
+                  <h3 className="text-xl font-semibold">Interventions et accompagnement</h3>
+                  <p className="text-muted-foreground mb-4">
+                    La prise en charge de la dyscalculie repose sur une approche pluridisciplinaire et personnalisée,
+                    adaptée aux besoins spécifiques de chaque personne.
+                  </p>
                   <InterventionsSection />
                 </TabsContent>
                 
                 <TabsContent value="daily" className="space-y-4">
+                  <h3 className="text-xl font-semibold">Vivre avec la dyscalculie</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Découvrez des ressources, des stratégies et des témoignages pour mieux vivre avec la dyscalculie
+                    au quotidien, à l'école, au travail et dans la vie sociale.
+                  </p>
                   <ResourcesSection />
                 </TabsContent>
               </Tabs>

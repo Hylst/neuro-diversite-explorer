@@ -79,6 +79,14 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
           </NavbarLink>
           
           <NavbarLink
+            to={ROUTES.APPRENTISSAGE}
+            isActive={isCurrentPage(ROUTES.APPRENTISSAGE)}
+            onClick={closeMenu}
+          >
+            Apprentissage
+          </NavbarLink>
+          
+          <NavbarLink
             to={ROUTES.COMMUNAUTE}
             isActive={isCurrentPage(ROUTES.COMMUNAUTE)}
             onClick={closeMenu}

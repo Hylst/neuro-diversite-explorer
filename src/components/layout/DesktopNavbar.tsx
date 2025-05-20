@@ -55,6 +55,10 @@ export const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
         Vivre avec
       </NavbarLink>
       
+      <NavbarLink to={ROUTES.APPRENTISSAGE} isActive={isCurrentPage(ROUTES.APPRENTISSAGE)}>
+        Apprentissage
+      </NavbarLink>
+      
       <NavbarLink to={ROUTES.COMMUNAUTE} isActive={isCurrentPage(ROUTES.COMMUNAUTE)}>
         Communauté
       </NavbarLink>
