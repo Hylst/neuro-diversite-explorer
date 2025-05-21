@@ -237,3 +237,1209 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 ## Contact
 
 Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre guide de contribution pour plus de détails.
+
+## Résolution de problèmes courants
+
+### Problèmes d'installation
+- **Erreur de dépendances** : Essayez `npm clean-install`
+- **Problèmes avec Vite** : Vérifiez que vous utilisez Node.js v14.18+ ou v16+
+
+### Problèmes d'authentification
+- Vérifiez que vos variables d'environnement Supabase sont correctement configurées
+- Assurez-vous que les règles de sécurité Supabase sont correctement définies
+
+## Performance et Accessibilité
+
+Le projet met un accent particulier sur la performance et l'accessibilité :
+
+- **Performance** : Optimisation des images, code splitting, lazy loading des composants
+- **Accessibilité** : Conformité WCAG AA visée, navigation au clavier, support des lecteurs d'écran, liens d'évitement
+- **Responsive** : Interface adaptative pour tous les appareils (mobile, tablette, desktop)
+- **Thèmes** : Support des modes clair/sombre et préférences de contraste
+
+## Contribuer au projet
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus de détails.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Contact
+
+Pour toute question ou suggestion, n'hésitez pas à me contacter à geoffroy.streit@gmail.com ou ouvrir une issue sur GitHub.
+
+## Fonctionnalités d'accessibilité et d'apprentissage
+
+### Système de détails contextuels
+Le site intègre un système de détails contextuels qui permet aux utilisateurs de découvrir des informations supplémentaires sur des concepts clés, du vocabulaire spécifique ou des méthodes évoquées dans le contenu. Ce système est accessible via :
+
+- Un soulignement pointillé indiquant qu'un terme possède des détails supplémentaires
+- Une infobulle apparaissant au survol de la souris
+- Une boîte de dialogue complète s'ouvrant au clic sur le terme
+
+Cette fonctionnalité améliore l'expérience d'apprentissage en permettant d'approfondir certains concepts sans quitter la page principale.
+
+### Syntaxe Markdown supportée
+
+Le système supporte les éléments Markdown suivants :
+- Titres (`#`, `##`, `###`)
+- Formatage de texte (`**gras**`, `*italique*`)
+- Listes (`-`, `1.`)
+- Liens (`[texte](url)`)
+- Images (`![alt](url)`)
+- Citations (`> citation`)
+- Blocs de code (\```code\```)
+
+## Feuille de route
+
+### Réalisé
+- [x] Documentation complète des troubles neurodéveloppementaux
+- [x] Glossaire avec système de recherche (plus de 60 termes)
+- [x] Témoignages et blog avec système d'import d'articles
+- [x] Cartographie des ressources géolocalisées
+- [x] Modèle interactif 3D du cerveau
+- [x] Système d'authentification utilisateur
+- [x] Fonctionnalités d'accessibilité de base
+
+### En cours
+- [x] Finalisation du forum de discussion
+- [ ] Complétion des questionnaires d'auto-évaluation
+- [ ] Amélioration de l'expérience mobile
+
+### Planifié
+- [ ] Tests automatisés (unitaires et d'intégration)
+- [ ] Support multilingue complet
+- [ ] Application mobile native
+- [ ] Système de favoris pour les ressources
+- [ ] Optimisation des performances
+
+## Contribution
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Poussez vers la branche (`

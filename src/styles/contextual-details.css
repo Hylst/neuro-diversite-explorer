@@ -1,0 +1,16 @@
+/* src/styles/contextual-details.css */
+.contextual-detail-term {
+  cursor: help;
+  border-bottom: 1px dotted #3b82f6;
+  transition: all 0.2s ease;
+}
+
+.contextual-detail-term:hover {
+  color: #2563eb;
+  border-bottom-style: solid;
+}
+
+.contextual-detail-content {
+  line-height: 1.6;
+  padding: 1rem 0;
+}
