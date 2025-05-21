@@ -1,0 +1,33 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base du thérémine -->
+  <rect x="120" y="200" width="160" height="40" rx="5" fill="#8d6e63" />
+  
+  <!-- Corps principal -->
+  <rect x="140" y="100" width="120" height="100" rx="5" fill="#a1887f" />
+  
+  <!-- Antenne verticale (hauteur) -->
+  <line x1="220" y1="100" x2="220" y2="30" stroke="#616161" stroke-width="3" />
+  <circle cx="220" cy="30" r="5" fill="#616161" />
+  
+  <!-- Antenne horizontale (volume) -->
+  <line x1="260" y1="150" x2="320" y2="150" stroke="#616161" stroke-width="3" />
+  <circle cx="320" cy="150" r="5" fill="#616161" />
+  
+  <!-- Ondes sonores -->
+  <path d="M 230 80 Q 250 60, 270 80 Q 290 100, 310 80" stroke="#9c27b0" stroke-width="2" fill="none" opacity="0.6" />
+  <path d="M 230 90 Q 260 60, 290 90 Q 320 120, 350 90" stroke="#9c27b0" stroke-width="2" fill="none" opacity="0.4" />
+  
+  <!-- Mains -->
+  <ellipse cx="250" cy="60" rx="15" ry="10" fill="#ffcc80" opacity="0.8" transform="rotate(-20, 250, 60)" />
+  <ellipse cx="290" cy="150" rx="15" ry="10" fill="#ffcc80" opacity="0.8" />
+  
+  <!-- Détails -->
+  <circle cx="170" cy="130" r="8" fill="#424242" />
+  <circle cx="170" cy="170" r="8" fill="#424242" />
+  <circle cx="230" cy="130" r="8" fill="#424242" />
+  <circle cx="230" cy="170" r="8" fill="#424242" />
+  
+  <!-- Texte -->
+  <text x="200" y="270" font-family="Arial" font-size="16" fill="#424242" text-anchor="middle">Thérémine</text>
+  <text x="200" y="290" font-family="Arial" font-size="12" fill="#757575" text-anchor="middle">Instrument sans contact</text>
+</svg>

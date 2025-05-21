@@ -39,8 +39,7 @@ const GlossaryTerm: React.FC<GlossaryTermProps> = ({
             <p className="text-sm text-muted-foreground mb-2">
               <span className="font-semibold">Terme:</span> {term}
             </p>
-            <div className="prose prose-sm dark:prose-invert">
-              {definition}
+            <div className="prose prose-sm dark:prose-invert" dangerouslySetInnerHTML={{ __html: definition }}>
             </div>
           </div>
         </DialogContent>

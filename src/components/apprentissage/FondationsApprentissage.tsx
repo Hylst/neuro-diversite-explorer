@@ -83,7 +83,7 @@ const FondationsApprentissage = () => {
                 
                 <p className="mb-4">
                   Si les cerveaux étaient des instruments de musique, certains seraient des pianos, d'autres des batteries, 
-                  et d'autres encore des théremins ! Chacun produit une belle mélodie, mais de façon très différente.
+                  et d'autres encore des <GlossaryTerm {...glossaryTerms.theremin}>théremins</GlossaryTerm> ! Chacun produit une belle mélodie, mais de façon très différente.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
@@ -93,7 +93,7 @@ const FondationsApprentissage = () => {
                     </h4>
                     <p>"Montre-moi et je comprendrai"</p>
                     <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
-                      <li>Cartes mentales et schémas</li>
+                      <li><GlossaryTerm {...glossaryTerms.cartesMentales}>Cartes mentales</GlossaryTerm> et schémas</li>
                       <li>Codes couleurs et surligneurs</li>
                       <li>Vidéos et démonstrations</li>
                     </ul>

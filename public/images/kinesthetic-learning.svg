@@ -1,0 +1,36 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Personnage principal -->
+  <circle cx="200" cy="120" r="30" fill="#ffb74d" />
+  <line x1="200" y1="150" x2="200" y2="220" stroke="#424242" stroke-width="4" />
+  <line x1="200" y1="170" x2="160" y2="200" stroke="#424242" stroke-width="4" />
+  <line x1="200" y1="170" x2="240" y2="200" stroke="#424242" stroke-width="4" />
+  <line x1="200" y1="220" x2="180" y2="260" stroke="#424242" stroke-width="4" />
+  <line x1="200" y1="220" x2="220" y2="260" stroke="#424242" stroke-width="4" />
+  
+  <!-- Mouvement -->
+  <path d="M 160 80 Q 180 60, 200 80 Q 220 100, 240 80" stroke="#f44336" stroke-width="2" fill="none" opacity="0.6" />
+  <path d="M 150 90 Q 180 60, 210 90 Q 240 120, 270 90" stroke="#f44336" stroke-width="2" fill="none" opacity="0.4" />
+  
+  <!-- Objets manipulables -->
+  <rect x="120" y="180" width="30" height="30" fill="#4caf50" opacity="0.8" transform="rotate(15, 120, 180)" />
+  <circle cx="270" cy="190" r="20" fill="#2196f3" opacity="0.8" />
+  <polygon points="320,170 340,200 300,200" fill="#9c27b0" opacity="0.8" />
+  
+  <!-- Flèches de mouvement -->
+  <path d="M 100 120 L 120 120 L 110 100 Z" fill="#ff9800" />
+  <path d="M 300 120 L 280 120 L 290 100 Z" fill="#ff9800" />
+  
+  <!-- Texte -->
+  <text x="200" y="40" font-family="Arial" font-size="16" fill="#424242" text-anchor="middle">Apprentissage Kinesthésique</text>
+  <text x="200" y="60" font-family="Arial" font-size="12" fill="#757575" text-anchor="middle">Apprendre par le mouvement et la manipulation</text>
+  
+  <!-- Légende -->
+  <circle cx="100" cy="270" r="8" fill="#f44336" />
+  <text x="115" y="274" font-family="Arial" font-size="10" fill="#424242">Mouvement</text>
+  
+  <rect x="170" y="265" width="15" height="15" fill="#4caf50" />
+  <text x="195" y="274" font-family="Arial" font-size="10" fill="#424242">Manipulation</text>
+  
+  <circle cx="260" cy="270" r="8" fill="#2196f3" />
+  <text x="275" y="274" font-family="Arial" font-size="10" fill="#424242">Expérimentation</text>
+</svg>

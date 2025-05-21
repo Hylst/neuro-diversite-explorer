@@ -1,0 +1,44 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concept central -->
+  <ellipse cx="200" cy="150" rx="70" ry="40" fill="#9c27b0" opacity="0.8"/>
+  <text x="200" y="155" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Carte Mentale</text>
+  
+  <!-- Branches principales -->
+  <line x1="200" y1="110" x2="100" y2="60" stroke="#4caf50" stroke-width="2"/>
+  <line x1="200" y1="110" x2="300" y2="60" stroke="#2196f3" stroke-width="2"/>
+  <line x1="200" y1="190" x2="100" y2="240" stroke="#f44336" stroke-width="2"/>
+  <line x1="200" y1="190" x2="300" y2="240" stroke="#ff9800" stroke-width="2"/>
+  
+  <!-- Sous-concepts -->
+  <ellipse cx="100" cy="60" rx="50" ry="25" fill="#4caf50" opacity="0.8"/>
+  <text x="100" y="65" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Structure</text>
+  
+  <ellipse cx="300" cy="60" rx="50" ry="25" fill="#2196f3" opacity="0.8"/>
+  <text x="300" y="65" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Visualisation</text>
+  
+  <ellipse cx="100" cy="240" rx="50" ry="25" fill="#f44336" opacity="0.8"/>
+  <text x="100" y="245" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Créativité</text>
+  
+  <ellipse cx="300" cy="240" rx="50" ry="25" fill="#ff9800" opacity="0.8"/>
+  <text x="300" y="245" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Mémorisation</text>
+  
+  <!-- Sous-branches -->
+  <line x1="100" y1="85" x2="70" y2="120" stroke="#4caf50" stroke-width="1"/>
+  <line x1="100" y1="85" x2="130" y2="120" stroke="#4caf50" stroke-width="1"/>
+  
+  <line x1="300" y1="85" x2="270" y2="120" stroke="#2196f3" stroke-width="1"/>
+  <line x1="300" y1="85" x2="330" y2="120" stroke="#2196f3" stroke-width="1"/>
+  
+  <!-- Petits concepts -->
+  <ellipse cx="70" cy="120" rx="30" ry="15" fill="#4caf50" opacity="0.6"/>
+  <text x="70" y="124" font-family="Arial" font-size="8" fill="white" text-anchor="middle">Hiérarchie</text>
+  
+  <ellipse cx="130" cy="120" rx="30" ry="15" fill="#4caf50" opacity="0.6"/>
+  <text x="130" y="124" font-family="Arial" font-size="8" fill="white" text-anchor="middle">Organisation</text>
+  
+  <ellipse cx="270" cy="120" rx="30" ry="15" fill="#2196f3" opacity="0.6"/>
+  <text x="270" y="124" font-family="Arial" font-size="8" fill="white" text-anchor="middle">Couleurs</text>
+  
+  <ellipse cx="330" cy="120" rx="30" ry="15" fill="#2196f3" opacity="0.6"/>
+  <text x="330" y="124" font-family="Arial" font-size="8" fill="white" text-anchor="middle">Images</text>
+</svg>

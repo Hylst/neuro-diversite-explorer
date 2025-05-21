@@ -59,7 +59,48 @@ const glossaryTerms: Record<string, GlossaryTermData> = {
     term: 'Apprentissage kinesthésique',
     definition: `<p>L'apprentissage kinesthésique est un style d'apprentissage où l'information est mieux comprise et mémorisée à travers le mouvement, le toucher et l'expérimentation pratique.</p>
       <p>Les apprenants kinesthésiques ont besoin de "faire" pour comprendre, et bénéficient particulièrement des manipulations d'objets, des jeux de rôle, des simulations et des expériences concrètes.</p>
-      <p>Ce style d'apprentissage est très répandu chez les personnes neurodivergentes, qui peuvent avoir un besoin naturel de mouvement et d'engagement physique pour maintenir leur attention et faciliter leur compréhension.</p>`
+      <p>Ce style d'apprentissage est très répandu chez les personnes neurodivergentes, qui peuvent avoir un besoin naturel de mouvement et d'engagement physique pour maintenir leur attention et faciliter leur compréhension.</p>
+      <h4>Exemples pratiques :</h4>
+      <ul>
+        <li>Utilisation de pâte à modeler pour comprendre des concepts abstraits</li>
+        <li>Apprentissage de la géométrie avec des blocs manipulables</li>
+        <li>Mémorisation en marchant ou en bougeant</li>
+      </ul>
+      <p><a href="https://www.verywellmind.com/kinesthetic-learning-style-2795369" target="_blank" rel="noopener noreferrer">En savoir plus sur l'apprentissage kinesthésique</a></p>
+      <img src="/images/kinesthetic-learning.svg" alt="Illustration d'apprentissage kinesthésique" style="max-width: 100%; height: auto;" />`
+  },
+  cartesMentales: {
+    id: 'cartesMentales',
+    term: 'Cartes mentales',
+    title: 'Cartes mentales (Mind Mapping)',
+    definition: `<p>Les cartes mentales sont des diagrammes visuels qui organisent l'information de façon hiérarchique et radiale autour d'un concept central.</p>
+      <p>Cette technique d'organisation visuelle est particulièrement efficace pour les personnes neurodivergentes car elle permet de :</p>
+      <ul>
+        <li>Visualiser les connexions entre différentes idées</li>
+        <li>Structurer l'information de manière non-linéaire</li>
+        <li>Combiner texte, images et couleurs pour faciliter la mémorisation</li>
+        <li>Représenter visuellement des concepts abstraits</li>
+      </ul>
+      <h4>Applications pratiques :</h4>
+      <p>Les cartes mentales peuvent être utilisées pour la prise de notes, la planification de projets, la révision d'examens, le brainstorming créatif ou la résolution de problèmes complexes.</p>
+      <p><a href="https://www.mindmeister.com/fr/blog/cartes-mentales-education/" target="_blank" rel="noopener noreferrer">Découvrir des exemples de cartes mentales éducatives</a></p>
+      <img src="/images/mind-map-example.svg" alt="Exemple de carte mentale" style="max-width: 100%; height: auto;" />`
+  },
+  theremin: {
+    id: 'theremin',
+    term: 'Thérémine',
+    title: 'Le Thérémine : Un instrument unique',
+    definition: `<p>Le thérémine est un instrument de musique électronique unique qui se joue sans contact physique. Le musicien contrôle la hauteur et le volume en déplaçant ses mains dans l'air autour de deux antennes.</p>
+      <p>Dans le contexte de la neurodiversité, le thérémine est souvent utilisé comme métaphore pour illustrer comment certains cerveaux fonctionnent différemment mais produisent des résultats tout aussi valables :</p>
+      <ul>
+        <li>Approche non conventionnelle mais efficace</li>
+        <li>Sensibilité aux subtilités invisibles</li>
+        <li>Capacité à créer quelque chose de beau à partir d'une interaction unique avec l'environnement</li>
+      </ul>
+      <h4>Connexion avec la neurodiversité :</h4>
+      <p>Tout comme le thérémine produit de la musique d'une façon qui peut sembler étrange mais qui est parfaitement valide, les personnes neurodivergentes peuvent résoudre des problèmes ou créer des œuvres d'une manière qui diffère des approches conventionnelles mais qui est tout aussi légitime et souvent innovante.</p>
+      <p><a href="https://www.youtube.com/watch?v=K6KbEnGnymk" target="_blank" rel="noopener noreferrer">Voir une démonstration de thérémine</a></p>
+      <img src="/images/theremin.svg" alt="Illustration d'un thérémine" style="max-width: 100%; height: auto;" />`
   },
   autorégulation: {
     id: 'autorégulation',
