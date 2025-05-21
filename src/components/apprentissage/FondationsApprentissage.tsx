@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 import { Brain, BookOpen, Users, Lightbulb, Heart } from 'lucide-react';
+import GlossaryTerm from '@/components/ui/glossary-term';
+import glossaryTerms from '@/data/glossary-terms';
 
 const FondationsApprentissage = () => {
   return (
@@ -19,7 +21,7 @@ const FondationsApprentissage = () => {
         </h2>
         
         <p className="text-lg text-center mb-8 max-w-3xl mx-auto">
-          Comprendre comment fonctionne l'apprentissage chez les personnes neurodivergentes
+          Comprendre comment fonctionne l'apprentissage chez les personnes <GlossaryTerm {...glossaryTerms.neurodivergent}>neurodivergentes</GlossaryTerm>
         </p>
 
         <Tabs defaultValue="cerveau" className="w-full">
@@ -45,7 +47,7 @@ const FondationsApprentissage = () => {
                 
                 <p className="mb-4">
                   Imaginez votre cerveau comme un réseau social ultra-sophistiqué où des milliards de neurones font la fête et échangent des informations. 
-                  Chez les personnes neurodivergentes, certains chemins de communication sont des autoroutes tandis que d'autres ressemblent plus à des 
+                  Chez les personnes <GlossaryTerm {...glossaryTerms.neurodivergent}>neurodivergentes</GlossaryTerm>, certains chemins de communication sont des autoroutes tandis que d'autres ressemblent plus à des 
                   sentiers forestiers pleins de surprises !
                 </p>
                 
@@ -54,8 +56,8 @@ const FondationsApprentissage = () => {
                     <h4 className="font-semibold mb-2 text-neuro-purple">Particularités d'apprentissage</h4>
                     <ul className="list-disc pl-5 space-y-2">
                       <li>Traitement de l'information parfois plus lent mais souvent plus profond</li>
-                      <li>Hyperfocalisation sur des sujets d'intérêt (un vrai super-pouvoir !)</li>
-                      <li>Pensée associative et non-linéaire (parfait pour les connexions créatives)</li>
+                      <li><GlossaryTerm {...glossaryTerms.hyperfocalisation}>Hyperfocalisation</GlossaryTerm> sur des sujets d'intérêt (un vrai super-pouvoir !)</li>
+                      <li><GlossaryTerm {...glossaryTerms.penseeAssociative}>Pensée associative et non-linéaire</GlossaryTerm> (parfait pour les connexions créatives)</li>
                       <li>Sensibilité accrue aux stimuli environnementaux</li>
                     </ul>
                   </div>
@@ -63,7 +65,7 @@ const FondationsApprentissage = () => {
                   <div className="bg-muted p-4 rounded-lg">
                     <h4 className="font-semibold mb-2 text-neuro-purple">Forces cognitives fréquentes</h4>
                     <ul className="list-disc pl-5 space-y-2">
-                      <li>Pensée visuelle et spatiale exceptionnelle</li>
+                      <li><GlossaryTerm {...glossaryTerms.penseeVisuelle}>Pensée visuelle et spatiale</GlossaryTerm> exceptionnelle</li>
                       <li>Mémoire détaillée dans les domaines d'intérêt</li>
                       <li>Capacité à repérer des patterns invisibles pour les autres</li>
                       <li>Créativité et résolution de problèmes hors des sentiers battus</li>
@@ -87,7 +89,7 @@ const FondationsApprentissage = () => {
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
                   <div className="border p-4 rounded-lg">
                     <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="text-green-500">●</span> Apprentissage visuel
+                      <span className="text-green-500">●</span> <GlossaryTerm {...glossaryTerms.apprentissageVisuel}>Apprentissage visuel</GlossaryTerm>
                     </h4>
                     <p>"Montre-moi et je comprendrai"</p>
                     <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
@@ -99,7 +101,7 @@ const FondationsApprentissage = () => {
                   
                   <div className="border p-4 rounded-lg">
                     <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="text-blue-500">●</span> Apprentissage auditif
+                      <span className="text-blue-500">●</span> <GlossaryTerm {...glossaryTerms.apprentissageAuditif}>Apprentissage auditif</GlossaryTerm>
                     </h4>
                     <p>"Explique-moi et je saisirai"</p>
                     <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
@@ -111,7 +113,7 @@ const FondationsApprentissage = () => {
                   
                   <div className="border p-4 rounded-lg">
                     <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="text-red-500">●</span> Apprentissage kinesthésique
+                      <span className="text-red-500">●</span> <GlossaryTerm {...glossaryTerms.apprentissageKinesthesique}>Apprentissage kinesthésique</GlossaryTerm>
                     </h4>
                     <p>"Laisse-moi essayer et je maîtriserai"</p>
                     <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
@@ -182,7 +184,7 @@ const FondationsApprentissage = () => {
                     <h4 className="font-semibold mb-2 text-neuro-purple">Climat émotionnel</h4>
                     <ul className="list-disc pl-5 space-y-1">
                       <li>Valorisation des différences cognitives</li>
-                      <li>Tolérance aux comportements d'autorégulation</li>
+                      <li>Tolérance aux comportements d'<GlossaryTerm {...glossaryTerms.autorégulation}>autorégulation</GlossaryTerm></li>
                       <li>Communication claire et directe</li>
                       <li>Célébration des progrès, même minimes</li>
                     </ul>
