@@ -1,17 +1,19 @@
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 import { School, BookOpen, Calculator, GraduationCap, Lightbulb, Pencil } from 'lucide-react';
 
 const StrategiesMatiere = () => {
   return (
-    <div className="max-w-4xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+    <div className="max-w-7xl mx-auto md:flex md:gap-8 px-4">
+      {/* Main content column */}
+      <div className="md:w-4/5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
         <h2 className="text-3xl font-bold mb-6 text-center">
           <span className="neuro-gradient-text">Module 3:</span> À chaque matière son secret
         </h2>
@@ -285,7 +287,50 @@ const StrategiesMatiere = () => {
             </Card>
           </TabsContent>
         </Tabs>
-      </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Sidebar column */}
+      <aside className="md:w-1/5 mt-8 md:mt-0">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card className="sticky top-24">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold text-neuro-purple">Matières & Classes</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {/* Encart Mathématiques */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Mathématiques</h3>
+                  <p className="text-sm text-muted-foreground">Stratégies visuelles et concrètes pour rendre les concepts mathématiques accessibles.</p>
+                </div>
+                
+                {/* Encart Langues */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Langues</h3>
+                  <p className="text-sm text-muted-foreground">Approches multisensorielles pour faciliter l'apprentissage de la lecture, l'écriture et les langues étrangères.</p>
+                </div>
+                
+                {/* Encart Sciences */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Sciences</h3>
+                  <p className="text-sm text-muted-foreground">Expériences pratiques et projets concrets pour explorer les concepts scientifiques.</p>
+                </div>
+                
+                {/* Encart Arts */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Arts & Créativité</h3>
+                  <p className="text-sm text-muted-foreground">Exploiter les talents créatifs souvent présents chez les personnes neurodivergentes.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </aside>
     </div>
   );
 };

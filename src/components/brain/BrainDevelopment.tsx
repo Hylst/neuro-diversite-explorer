@@ -16,17 +16,19 @@ const BrainDevelopment = () => {
     }
   }, [location.state]);
   return (
-    <div className="max-w-4xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Développement et Plasticité du Cerveau</CardTitle>
-          </CardHeader>
-          <CardContent>
+    <div className="max-w-7xl mx-auto md:flex md:gap-8 px-4">
+      {/* Main content column */}
+      <div className="md:w-4/5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl">Développement et Plasticité du Cerveau</CardTitle>
+            </CardHeader>
+            <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
                 <TabsTrigger value="prenatal">Développement prénatal</TabsTrigger>
@@ -518,9 +520,52 @@ const BrainDevelopment = () => {
                 </div>
               </TabsContent>
             </Tabs>
-          </CardContent>
-        </Card>
-      </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+      
+      {/* Sidebar column */}
+      <aside className="md:w-1/5 mt-8 md:mt-0">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card className="sticky top-24">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold text-neuro-purple">Développement cérébral</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {/* Encart Développement prénatal */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Développement prénatal</h3>
+                  <p className="text-sm text-muted-foreground">Formation du tube neural et des structures cérébrales fondamentales durant les premiers mois de grossesse.</p>
+                </div>
+                
+                {/* Encart Enfance et adolescence */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Enfance et adolescence</h3>
+                  <p className="text-sm text-muted-foreground">Périodes de croissance rapide et d'élagage synaptique, avec maturation progressive des lobes frontaux.</p>
+                </div>
+                
+                {/* Encart Cerveau adulte */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Cerveau adulte</h3>
+                  <p className="text-sm text-muted-foreground">Stabilisation des circuits neuronaux avec maintien de la plasticité et adaptation continue aux expériences.</p>
+                </div>
+                
+                {/* Encart Neuroplasticité */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Neuroplasticité</h3>
+                  <p className="text-sm text-muted-foreground">Capacité du cerveau à se réorganiser tout au long de la vie en formant de nouvelles connexions neuronales.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </aside>
     </div>
   );
 };

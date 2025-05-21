@@ -6,17 +6,19 @@ import { motion } from 'framer-motion';
 
 const BrainStructures = () => {
   return (
-    <div className="max-w-4xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Structures du Cerveau</CardTitle>
-          </CardHeader>
-          <CardContent>
+    <div className="max-w-7xl mx-auto md:flex md:gap-8 px-4">
+      {/* Main content column */}
+      <div className="md:w-4/5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl">Structures du Cerveau</CardTitle>
+            </CardHeader>
+            <CardContent>
             <Tabs defaultValue="cortex">
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
                 <TabsTrigger value="cortex">Cortex</TabsTrigger>
@@ -342,9 +344,52 @@ const BrainStructures = () => {
                 </div>
               </TabsContent>
             </Tabs>
-          </CardContent>
-        </Card>
-      </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+      
+      {/* Sidebar column */}
+      <aside className="md:w-1/5 mt-8 md:mt-0">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card className="sticky top-24">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold text-neuro-purple">Structures cérébrales</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {/* Encart Cortex */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Cortex cérébral</h3>
+                  <p className="text-sm text-muted-foreground">Couche externe du cerveau divisée en quatre lobes, chacun avec des fonctions spécialisées.</p>
+                </div>
+                
+                {/* Encart Structures sous-corticales */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Structures sous-corticales</h3>
+                  <p className="text-sm text-muted-foreground">Incluent les ganglions de la base, le thalamus et le système limbique, essentiels pour les mouvements et les émotions.</p>
+                </div>
+                
+                {/* Encart Cervelet */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Cervelet</h3>
+                  <p className="text-sm text-muted-foreground">Structure à l'arrière du cerveau cruciale pour la coordination motrice et l'apprentissage procédural.</p>
+                </div>
+                
+                {/* Encart Tronc cérébral */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Tronc cérébral</h3>
+                  <p className="text-sm text-muted-foreground">Relie le cerveau à la moelle épinière et contrôle les fonctions vitales comme la respiration et le rythme cardiaque.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </aside>
     </div>
   );
 };

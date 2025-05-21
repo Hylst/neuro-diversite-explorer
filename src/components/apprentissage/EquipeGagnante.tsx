@@ -1,17 +1,19 @@
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 import { Users, User, School, Heart, MessageSquare, Lightbulb } from 'lucide-react';
 
 const EquipeGagnante = () => {
   return (
-    <div className="max-w-4xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+    <div className="max-w-7xl mx-auto md:flex md:gap-8 px-4">
+      {/* Main content column */}
+      <div className="md:w-4/5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
         <h2 className="text-3xl font-bold mb-6 text-center">
           <span className="neuro-gradient-text">Module 4:</span> L'Équipe Gagnante
         </h2>
@@ -247,7 +249,53 @@ const EquipeGagnante = () => {
             </Card>
           </TabsContent>
         </Tabs>
-      </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Sidebar column */}
+      <aside className="md:w-1/5 mt-8 md:mt-0">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card className="sticky top-24">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold text-neuro-purple">Équipe Gagnante</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {/* Encart Parents */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    Parents
+                  </h3>
+                  <p className="text-sm text-muted-foreground">Stratégies pour soutenir votre enfant tout en préservant l'équilibre familial.</p>
+                </div>
+                
+                {/* Encart Enfants/Ados */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    Enfants/Ados
+                  </h3>
+                  <p className="text-sm text-muted-foreground">Outils d'auto-régulation et de confiance en soi pour les jeunes neurodivergents.</p>
+                </div>
+                
+                {/* Encart École */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple flex items-center gap-2">
+                    <School className="h-4 w-4" />
+                    Relation avec l'École
+                  </h3>
+                  <p className="text-sm text-muted-foreground">Conseils pour établir une collaboration efficace avec les enseignants et l'administration.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </aside>
     </div>
   );
 };

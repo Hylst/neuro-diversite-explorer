@@ -1,17 +1,19 @@
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 import { Focus, Brain, Clock, Sparkles, Lightbulb, BookOpen, Layers } from 'lucide-react';
 
 const BoiteOutils = () => {
   return (
-    <div className="max-w-4xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+    <div className="max-w-7xl mx-auto md:flex md:gap-8 px-4">
+      {/* Main content column */}
+      <div className="md:w-4/5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
         <h2 className="text-3xl font-bold mb-6 text-center">
           <span className="neuro-gradient-text">Module 2:</span> Boîte à outils d'apprentissage
         </h2>
@@ -290,7 +292,44 @@ const BoiteOutils = () => {
             </Card>
           </TabsContent>
         </Tabs>
-      </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Sidebar column */}
+      <aside className="md:w-1/5 mt-8 md:mt-0">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card className="sticky top-24">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold text-neuro-purple">Boîte à outils</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {/* Encart Outils numériques */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Outils numériques</h3>
+                  <p className="text-sm text-muted-foreground">Applications et logiciels adaptés pour faciliter l'apprentissage des personnes neurodivergentes.</p>
+                </div>
+                
+                {/* Encart Aménagements */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Aménagements</h3>
+                  <p className="text-sm text-muted-foreground">Adaptations pratiques pour créer un environnement d'apprentissage optimal et inclusif.</p>
+                </div>
+                
+                {/* Encart Ressources */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
+                  <h3 className="font-semibold text-neuro-purple">Ressources</h3>
+                  <p className="text-sm text-muted-foreground">Livres, sites web et communautés pour approfondir vos connaissances sur la neurodiversité.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </aside>
     </div>
   );
 };

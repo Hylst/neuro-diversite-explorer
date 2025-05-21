@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
-import { BookOpen, Lightbulb, School, Users, Brain } from 'lucide-react';
+import { BookOpen, Lightbulb, School, Users, Brain, Heart } from 'lucide-react';
 
 // Importation des composants modulaires
 import ApprentissageIntro from '@/components/apprentissage/ApprentissageIntro';
@@ -10,6 +10,7 @@ import BoiteOutils from '@/components/apprentissage/BoiteOutils';
 import StrategiesMatiere from '@/components/apprentissage/StrategiesMatiere';
 import EquipeGagnante from '@/components/apprentissage/EquipeGagnante';
 import ZoomSpecialNeurodiversite from '@/components/apprentissage/ZoomSpecialNeurodiversite';
+import HygieneVie from '@/components/apprentissage/HygieneVie';
 
 const Apprentissage = () => {
   const scrollToTop = () => {
@@ -39,26 +40,30 @@ const Apprentissage = () => {
           <div className="mt-16">
             <Tabs defaultValue="fondations" className="w-full">
               <div className="flex justify-center mb-8">
-                <TabsList className="grid w-full max-w-3xl grid-cols-5">
+                <TabsList className="grid w-full max-w-3xl grid-cols-6">
                   <TabsTrigger value="fondations" onClick={scrollToTop} className="flex items-center gap-2">
                     <BookOpen className="h-4 w-4" />
-                    Module 1
+                    Fondations
                   </TabsTrigger>
                   <TabsTrigger value="outils" onClick={scrollToTop} className="flex items-center gap-2">
                     <Lightbulb className="h-4 w-4" />
-                    Module 2
+                    Outils
                   </TabsTrigger>
                   <TabsTrigger value="strategies" onClick={scrollToTop} className="flex items-center gap-2">
                     <School className="h-4 w-4" />
-                    Module 3
+                    Matières & Classes
                   </TabsTrigger>
                   <TabsTrigger value="equipe" onClick={scrollToTop} className="flex items-center gap-2">
                     <Users className="h-4 w-4" />
-                    Module 4
+                    Équipe Gagnante
                   </TabsTrigger>
                   <TabsTrigger value="zoom" onClick={scrollToTop} className="flex items-center gap-2">
                     <Brain className="h-4 w-4" />
-                    Module 5
+                    Neurodiversité
+                  </TabsTrigger>
+                  <TabsTrigger value="hygiene" onClick={scrollToTop} className="flex items-center gap-2">
+                    <Heart className="h-4 w-4" />
+                    Hygiène de vie
                   </TabsTrigger>
                 </TabsList>
               </div>
@@ -81,6 +86,10 @@ const Apprentissage = () => {
 
               <TabsContent value="zoom">
                 <ZoomSpecialNeurodiversite />
+              </TabsContent>
+              
+              <TabsContent value="hygiene">
+                <HygieneVie />
               </TabsContent>
             </Tabs>
           </div>
