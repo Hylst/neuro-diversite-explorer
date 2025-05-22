@@ -4,6 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 import { Focus, Brain, Clock, Sparkles, Lightbulb, BookOpen, Layers } from 'lucide-react';
 
+// Import du composant modulaire Memorisation
+import Memorisation from './Memorisation';
+
 const BoiteOutils = () => {
   return (
     <div className="max-w-7xl mx-auto md:flex md:gap-8 px-4">
@@ -111,97 +114,8 @@ const BoiteOutils = () => {
           </TabsContent>
           
           <TabsContent value="memorisation">
-            <Card>
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">Stratégies de mémorisation efficaces</h3>
-                
-                <p className="mb-4">
-                  La mémoire neurodivergente fonctionne souvent comme une bibliothèque avec un système de classement 
-                  unique : certaines informations sont archivées avec une précision extraordinaire, tandis que d'autres 
-                  semblent s'évaporer mystérieusement. Voici comment optimiser votre système de mémorisation.
-                </p>
-                
-                <div className="grid md:grid-cols-2 gap-6 mt-6">
-                  <div className="border p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="text-green-500">●</span> Techniques visuelles
-                    </h4>
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li>
-                        <span className="font-medium">Cartes mentales</span> : Organisez visuellement les informations 
-                        en créant des connexions entre les concepts
-                      </li>
-                      <li>
-                        <span className="font-medium">Palais de mémoire</span> : Associez des informations à des lieux 
-                        familiers dans votre esprit
-                      </li>
-                      <li>
-                        <span className="font-medium">Sketchnoting</span> : Prenez des notes visuelles combinant texte, 
-                        images et structure
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div className="border p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="text-blue-500">●</span> Techniques multimodales
-                    </h4>
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li>
-                        <span className="font-medium">Méthode des associations absurdes</span> : Plus l'association est 
-                        bizarre ou drôle, plus elle sera mémorable
-                      </li>
-                      <li>
-                        <span className="font-medium">Technique d'enseignement</span> : Expliquez le concept à quelqu'un 
-                        d'autre (ou à un objet inanimé !)
-                      </li>
-                      <li>
-                        <span className="font-medium">Apprentissage par le mouvement</span> : Marchez ou faites des gestes 
-                        spécifiques en révisant
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className="bg-muted p-4 rounded-lg mt-6">
-                  <h4 className="font-semibold mb-2 text-neuro-purple">Applications et outils numériques</h4>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div>
-                      <p className="font-medium">Répétition espacée</p>
-                      <ul className="list-disc pl-5 text-sm">
-                        <li>Anki</li>
-                        <li>Quizlet</li>
-                        <li>RemNote</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="font-medium">Organisation visuelle</p>
-                      <ul className="list-disc pl-5 text-sm">
-                        <li>MindMeister</li>
-                        <li>Miro</li>
-                        <li>Notion</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="font-medium">Aide-mémoire</p>
-                      <ul className="list-disc pl-5 text-sm">
-                        <li>Evernote</li>
-                        <li>Google Keep</li>
-                        <li>Microsoft OneNote</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="border-l-4 border-neuro-purple pl-4 mt-6">
-                  <p className="italic">
-                    "La mémoire neurodivergente n'est pas déficiente, elle est différente. Trouvez les techniques 
-                    qui correspondent à votre façon unique de traiter l'information, et vous découvrirez des capacités 
-                    de mémorisation que vous ne soupçonniez pas."
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Intégration du composant modulaire Memorisation */}
+            <Memorisation />
           </TabsContent>
           
           <TabsContent value="organisation">
