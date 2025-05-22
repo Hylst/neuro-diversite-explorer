@@ -14,3 +14,27 @@
   line-height: 1.6;
   padding: 1rem 0;
 }
+
+/* Styles pour le mode sombre */
+.dark .contextual-detail-term {
+  border-bottom: 1px dotted #60a5fa;
+}
+
+.dark .contextual-detail-term:hover {
+  color: #93c5fd;
+  border-bottom-style: solid;
+}
+
+/* Amélioration de l'accessibilité des boîtes de dialogue */
+.contextual-detail-dialog {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dark .contextual-detail-dialog {
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+}

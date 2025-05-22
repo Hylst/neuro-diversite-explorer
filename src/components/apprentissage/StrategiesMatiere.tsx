@@ -2,7 +2,13 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
-import { School, BookOpen, Calculator, GraduationCap, Lightbulb, Pencil } from 'lucide-react';
+import { School, BookOpen, Calculator, GraduationCap, Lightbulb, Pencil, BookMarked, Languages, FlaskConical, Palette } from 'lucide-react';
+import { ContextualDetail } from '@/components/ui/ContextualDetail';
+import { matieresDetails } from '@/data/matieres-details';
+import { niveauxScolairesDetails } from '@/data/niveaux-scolaires-details';
+import '@/styles/contextual-details.css';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const StrategiesMatiere = () => {
   return (
@@ -30,8 +36,16 @@ const StrategiesMatiere = () => {
           </p>
           
           <div className="grid md:grid-cols-2 gap-6 mt-6">
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <h4 className="font-semibold mb-2 text-neuro-purple">Organisation et présentation</h4>
+            <div className="bg-white p-4 rounded-lg shadow-sm dark:bg-muted/30">
+              <h4 className="font-semibold mb-2 text-neuro-purple dark:text-neuro-light-purple">
+                <ContextualDetail 
+                  term="Organisation et présentation"
+                  shortDescription="Stratégies pour structurer son travail et améliorer la clarté de présentation"
+                  longDescription={matieresDetails.organisation.longDescription}
+                >
+                  Organisation et présentation
+                </ContextualDetail>
+              </h4>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
                   <span className="font-medium">Tenue des supports</span> : Propre, claire, aérée. "Votre cahier, c'est votre carte de visite intellectuelle."
@@ -45,8 +59,16 @@ const StrategiesMatiere = () => {
               </ul>
             </div>
             
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <h4 className="font-semibold mb-2 text-neuro-purple">Méthodes d'apprentissage actif</h4>
+            <div className="bg-white p-4 rounded-lg shadow-sm dark:bg-muted/30">
+              <h4 className="font-semibold mb-2 text-neuro-purple dark:text-neuro-light-purple">
+                <ContextualDetail 
+                  term="Méthodes d'apprentissage actif"
+                  shortDescription="Techniques pour transformer l'apprentissage passif en processus actif et engageant"
+                  longDescription={matieresDetails.methodesApprentissage.longDescription}
+                >
+                  Méthodes d'apprentissage actif
+                </ContextualDetail>
+              </h4>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
                   <span className="font-medium">Relecture active</span> : Pas juste parcourir, mais vérifier, corriger, annoter.
@@ -67,24 +89,58 @@ const StrategiesMatiere = () => {
 
         <Tabs defaultValue="elementaire" className="w-full">
           <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-3 mb-8">
-            <TabsTrigger value="elementaire" className="flex items-center gap-2">
-              <School className="h-4 w-4" />
-              Élémentaire
-            </TabsTrigger>
-            <TabsTrigger value="college" className="flex items-center gap-2">
-              <BookOpen className="h-4 w-4" />
-              Collège
-            </TabsTrigger>
-            <TabsTrigger value="lycee" className="flex items-center gap-2">
-              <GraduationCap className="h-4 w-4" />
-              Lycée
-            </TabsTrigger>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="elementaire" className="flex items-center gap-2">
+                    <School className="h-4 w-4" />
+                    Élémentaire
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Stratégies adaptées pour les élèves neurodivergents du CP au CM2</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="college" className="flex items-center gap-2">
+                    <BookOpen className="h-4 w-4" />
+                    Collège
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Accompagnement des adolescents neurodivergents de la 6ème à la 3ème</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="lycee" className="flex items-center gap-2">
+                    <GraduationCap className="h-4 w-4" />
+                    Lycée
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Préparation des lycéens neurodivergents aux études supérieures</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </TabsList>
           
           <TabsContent value="elementaire">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">École Élémentaire (CP-CM2) : L'Apprentissage par le Jeu et la Découverte</h3>
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  <School className="h-5 w-5 text-neuro-purple" />
+                  <ContextualDetail 
+                    term="École Élémentaire (CP-CM2)"
+                    shortDescription="Stratégies adaptées pour les élèves neurodivergents du CP au CM2"
+                    longDescription={niveauxScolairesDetails.elementaire.longDescription}
+                  >
+                    École Élémentaire (CP-CM2) : L'Apprentissage par le Jeu et la Découverte
+                  </ContextualDetail>
+                </h3>
                 
                 <p className="mb-4">
                   À cet âge, l'apprentissage doit rester ludique et concret, particulièrement pour les enfants neurodivergents 
@@ -133,7 +189,7 @@ const StrategiesMatiere = () => {
                   </div>
                 </div>
                 
-                <div className="border-l-4 border-neuro-purple pl-4 mt-6">
+                <div className="border-l-4 border-neuro-purple pl-4 mt-6 dark:border-neuro-light-purple">
                   <h4 className="font-semibold mb-2">Conseil aux parents</h4>
                   <p>
                     Encouragez la curiosité, lisez ensemble, jouez ! À cet âge, l'apprentissage doit rester un plaisir. 
@@ -147,7 +203,16 @@ const StrategiesMatiere = () => {
           <TabsContent value="college">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">Collège (6ème-3ème) : Vers l'Autonomie et la Méthode</h3>
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  <BookOpen className="h-5 w-5 text-neuro-purple" />
+                  <ContextualDetail 
+                    term="Collège (6ème-3ème)"
+                    shortDescription="Accompagnement des adolescents neurodivergents de la 6ème à la 3ème"
+                    longDescription={niveauxScolairesDetails.college.longDescription}
+                  >
+                    Collège (6ème-3ème) : Vers l'Autonomie et la Méthode
+                  </ContextualDetail>
+                </h3>
                 
                 <p className="mb-4">
                   Au collège, l'accent est mis sur le développement de méthodes de travail efficaces et l'acquisition progressive d'autonomie, 
@@ -192,18 +257,23 @@ const StrategiesMatiere = () => {
                   </div>
                 </div>
                 
-                <div className="bg-muted p-4 rounded-lg mt-6">
-                  <h4 className="font-semibold mb-2 text-neuro-purple">Conseils spécifiques pour les élèves neurodivergents</h4>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Utiliser un code couleur cohérent pour toutes les matières</li>
-                    <li>Prévoir des temps de pause réguliers pendant les devoirs</li>
-                    <li>Fractionner les grandes tâches en étapes plus petites et gérables</li>
-                    <li>Utiliser des applications de rappel pour les devoirs et les contrôles</li>
-                    <li>Demander à l'enseignant des supports de cours adaptés si nécessaire</li>
-                  </ul>
+                <div className="bg-muted p-4 rounded-lg mt-6 dark:bg-muted/80">
+                  <h4 className="font-semibold mb-2 text-neuro-purple dark:text-neuro-light-purple">Conseils spécifiques pour les élèves neurodivergents</h4>
+                  <ScrollArea className="h-[150px] pr-4">
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li>Utiliser un code couleur cohérent pour toutes les matières</li>
+                      <li>Prévoir des temps de pause réguliers pendant les devoirs</li>
+                      <li>Fractionner les grandes tâches en étapes plus petites et gérables</li>
+                      <li>Utiliser des applications de rappel pour les devoirs et les contrôles</li>
+                      <li>Demander à l'enseignant des supports de cours adaptés si nécessaire</li>
+                      <li>Créer un environnement de travail adapté à ses besoins sensoriels</li>
+                      <li>Utiliser des outils numériques pour la prise de notes et l'organisation</li>
+                      <li>Participer à des groupes d'étude avec des camarades bienveillants</li>
+                    </ul>
+                  </ScrollArea>
                 </div>
                 
-                <div className="border-l-4 border-neuro-purple pl-4 mt-6">
+                <div className="border-l-4 border-neuro-purple pl-4 mt-6 dark:border-neuro-light-purple">
                   <h4 className="font-semibold mb-2">Conseil aux parents</h4>
                   <p>
                     Aidez à planifier et à organiser, soyez disponible pour répondre aux questions, mais laissez votre enfant chercher 
@@ -217,7 +287,16 @@ const StrategiesMatiere = () => {
           <TabsContent value="lycee">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">Lycée (Seconde-Terminale) : Approfondissement et Esprit Critique</h3>
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-neuro-purple" />
+                  <ContextualDetail 
+                    term="Lycée (Seconde-Terminale)"
+                    shortDescription="Préparation des lycéens neurodivergents aux études supérieures et à l'insertion professionnelle"
+                    longDescription={niveauxScolairesDetails.lycee.longDescription}
+                  >
+                    Lycée (Seconde-Terminale) : Approfondissement et Esprit Critique
+                  </ContextualDetail>
+                </h3>
                 
                 <p className="mb-4">
                   Au lycée, les exigences augmentent et la charge de travail s'intensifie. Les élèves neurodivergents doivent 
@@ -262,21 +341,27 @@ const StrategiesMatiere = () => {
                   </div>
                 </div>
                 
-                <div className="border p-4 rounded-lg mt-6">
+                <div className="border p-4 rounded-lg mt-6 dark:border-muted">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
-                    <Lightbulb className="h-4 w-4 text-neuro-purple" />
+                    <Lightbulb className="h-4 w-4 text-neuro-purple dark:text-neuro-light-purple" />
                     Spécificités pour les élèves neurodivergents
                   </h4>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Utiliser les points forts (ex: hyperfocus pour les sujets passionnants, pensée en arborescence pour les cartes mentales)</li>
-                    <li>Adapter les supports (audio, vidéo, schémas) selon votre profil d'apprentissage</li>
-                    <li>Fractionner les révisions en sessions courtes mais fréquentes</li>
-                    <li>Demander des aménagements si nécessaire (tiers-temps, consignes claires, utilisation d'ordinateur)</li>
-                    <li>Prévoir des stratégies de gestion du stress (techniques de respiration, visualisation positive)</li>
-                  </ul>
+                  <ScrollArea className="h-[180px] pr-4">
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li>Utiliser les points forts (ex: hyperfocus pour les sujets passionnants, pensée en arborescence pour les cartes mentales)</li>
+                      <li>Adapter les supports (audio, vidéo, schémas) selon votre profil d'apprentissage</li>
+                      <li>Fractionner les révisions en sessions courtes mais fréquentes</li>
+                      <li>Demander des aménagements si nécessaire (tiers-temps, consignes claires, utilisation d'ordinateur)</li>
+                      <li>Prévoir des stratégies de gestion du stress (techniques de respiration, visualisation positive)</li>
+                      <li>Préparer les examens en simulant les conditions réelles</li>
+                      <li>Utiliser des applications de planification adaptées aux profils neurodivergents</li>
+                      <li>Explorer les options d'orientation en fonction de ses centres d'intérêt spécifiques</li>
+                      <li>Développer des compétences d'auto-plaidoyer pour les études supérieures</li>
+                    </ul>
+                  </ScrollArea>
                 </div>
                 
-                <div className="border-l-4 border-neuro-purple pl-4 mt-6">
+                <div className="border-l-4 border-neuro-purple pl-4 mt-6 dark:border-neuro-light-purple">
                   <h4 className="font-semibold mb-2">Conseil aux parents</h4>
                   <p>
                     Faites confiance, apportez un soutien moral, aidez à la gestion du stress (examens), et respectez l'autonomie grandissante 
@@ -304,27 +389,77 @@ const StrategiesMatiere = () => {
             <CardContent>
               <div className="space-y-6">
                 {/* Encart Mathématiques */}
-                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
-                  <h3 className="font-semibold text-neuro-purple">Mathématiques</h3>
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2 hover:bg-muted/50 transition-colors cursor-pointer dark:hover:bg-muted/80">
+                  <h3 className="font-semibold text-neuro-purple dark:text-neuro-light-purple flex items-center gap-2">
+                    <Calculator className="h-4 w-4" />
+                    <ContextualDetail 
+                      term="Mathématiques"
+                      shortDescription="Approches adaptées pour l'apprentissage des mathématiques chez les personnes neurodivergentes"
+                      longDescription={matieresDetails.mathematiques.longDescription}
+                    >
+                      Mathématiques
+                    </ContextualDetail>
+                  </h3>
                   <p className="text-sm text-muted-foreground">Stratégies visuelles et concrètes pour rendre les concepts mathématiques accessibles.</p>
                 </div>
                 
                 {/* Encart Langues */}
-                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
-                  <h3 className="font-semibold text-neuro-purple">Langues</h3>
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2 hover:bg-muted/50 transition-colors cursor-pointer dark:hover:bg-muted/80">
+                  <h3 className="font-semibold text-neuro-purple dark:text-neuro-light-purple flex items-center gap-2">
+                    <Languages className="h-4 w-4" />
+                    <ContextualDetail 
+                      term="Langues"
+                      shortDescription="Stratégies pour faciliter l'apprentissage des langues chez les apprenants neurodivergents"
+                      longDescription={matieresDetails.langues.longDescription}
+                    >
+                      Langues
+                    </ContextualDetail>
+                  </h3>
                   <p className="text-sm text-muted-foreground">Approches multisensorielles pour faciliter l'apprentissage de la lecture, l'écriture et les langues étrangères.</p>
                 </div>
                 
                 {/* Encart Sciences */}
-                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
-                  <h3 className="font-semibold text-neuro-purple">Sciences</h3>
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2 hover:bg-muted/50 transition-colors cursor-pointer dark:hover:bg-muted/80">
+                  <h3 className="font-semibold text-neuro-purple dark:text-neuro-light-purple flex items-center gap-2">
+                    <FlaskConical className="h-4 w-4" />
+                    <ContextualDetail 
+                      term="Sciences"
+                      shortDescription="Méthodes d'enseignement des sciences adaptées aux apprenants neurodivergents"
+                      longDescription={matieresDetails.sciences.longDescription}
+                    >
+                      Sciences
+                    </ContextualDetail>
+                  </h3>
                   <p className="text-sm text-muted-foreground">Expériences pratiques et projets concrets pour explorer les concepts scientifiques.</p>
                 </div>
                 
                 {/* Encart Arts */}
-                <div className="bg-muted/30 p-4 rounded-lg space-y-2">
-                  <h3 className="font-semibold text-neuro-purple">Arts & Créativité</h3>
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2 hover:bg-muted/50 transition-colors cursor-pointer dark:hover:bg-muted/80">
+                  <h3 className="font-semibold text-neuro-purple dark:text-neuro-light-purple flex items-center gap-2">
+                    <Palette className="h-4 w-4" />
+                    <ContextualDetail 
+                      term="Arts & Créativité"
+                      shortDescription="Exploiter les talents créatifs souvent présents chez les personnes neurodivergentes"
+                      longDescription={matieresDetails.artsCreativite.longDescription}
+                    >
+                      Arts & Créativité
+                    </ContextualDetail>
+                  </h3>
                   <p className="text-sm text-muted-foreground">Exploiter les talents créatifs souvent présents chez les personnes neurodivergentes.</p>
+                </div>
+                
+                {/* Encart Autres ressources */}
+                <div className="bg-muted/30 p-4 rounded-lg space-y-2 hover:bg-muted/50 transition-colors cursor-pointer dark:hover:bg-muted/80">
+                  <h3 className="font-semibold text-neuro-purple dark:text-neuro-light-purple flex items-center gap-2">
+                    <BookMarked className="h-4 w-4" />
+                    <span>Autres ressources pédagogiques</span>
+                  </h3>
+                  <ul className="text-sm text-muted-foreground list-disc pl-5 space-y-1">
+                    <li>Fiches méthodes téléchargeables</li>
+                    <li>Outils d'organisation adaptés</li>
+                    <li>Vidéos explicatives par matière</li>
+                    <li>Exercices interactifs adaptés</li>
+                  </ul>
                 </div>
               </div>
             </CardContent>

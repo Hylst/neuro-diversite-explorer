@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
+import { cn } from '@/lib/utils';
 
 interface ContextualDetailProps {
   term: string;
@@ -39,11 +40,11 @@ export function ContextualDetail({
         </Tooltip>
       </TooltipProvider>
       
-      <DialogContent className="max-w-md md:max-w-lg">
+      <DialogContent className="max-w-md md:max-w-lg contextual-detail-dialog">
         <DialogHeader>
           <DialogTitle>{term}</DialogTitle>
         </DialogHeader>
-        <div className="contextual-detail-content">
+        <div className="contextual-detail-content dark:text-foreground">
           {typeof longDescription === 'string' ? (
             <p>{longDescription}</p>
           ) : (
