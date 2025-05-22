@@ -75,17 +75,20 @@ export const getBlogUrl = (slug: string): string => {
 /**
  * Vérifie si une route est active
  * @param path - Le chemin à vérifier
- * @param currentPath - Le chemin actuel
+ * @param currentPath - Le chemin actuel (avec HashRouter, ce sera la partie après le #)
  * @returns true si la route est active, false sinon
  */
 export const isRouteActive = (path: string, currentPath: string): boolean => {
+  // Avec HashRouter, nous devons nous assurer que currentPath ne contient pas le # initial
+  const normalizedCurrentPath = currentPath.startsWith('#') ? currentPath.substring(1) : currentPath;
+  
   // Gestion spéciale pour la page d'accueil
   if (path === ROUTES.HOME) {
-    return currentPath === ROUTES.HOME;
+    return normalizedCurrentPath === ROUTES.HOME || normalizedCurrentPath === '';
   }
   
   // Pour les autres routes, vérifie si le chemin actuel commence par le chemin spécifié
-  return currentPath.startsWith(path);
+  return normalizedCurrentPath.startsWith(path);
 };
 
 /**

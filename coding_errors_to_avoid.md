@@ -137,6 +137,35 @@ definition: '<p>Première ligne
 Deuxième ligne</p>' // Les guillemets simples ne supportent pas les sauts de ligne
 ```
 
+## 5. Erreurs de navigation avec HashRouter
+
+### Problème
+
+Confusion entre `location.pathname` et `location.hash` lors de l'utilisation de HashRouter, particulièrement dans la section "Ressources complémentaires" des pages "Apprentissage > Equipe gagnante > Enfants / Ados + Relation avec l'Ecole".
+
+### Exemple d'erreur
+
+```typescript
+// Erreur courante avec HashRouter
+const isActive = location.pathname.includes('/apprentissage/equipe-gagnante');
+// Ne fonctionne pas car avec HashRouter, le chemin est dans location.hash, pas dans location.pathname
+```
+
+### Solution
+
+1. Avec HashRouter, utilisez `location.hash` au lieu de `location.pathname`
+2. N'oubliez pas de supprimer le caractère '#' initial avec `substring(1)`
+3. Vérifiez toujours le comportement des liens dans les sections de ressources complémentaires
+
+```typescript
+// Solution correcte avec HashRouter
+const pathIncludes = (path: string) => {
+  // Avec HashRouter, nous devons comparer avec location.hash sans le # initial
+  const currentPath = location.hash.substring(1) || '/';
+  return currentPath.includes(path);
+};
+```
+
 ## Bonnes pratiques générales
 
 1. **Utilisez un linter** comme ESLint pour détecter les erreurs de syntaxe avant l'exécution

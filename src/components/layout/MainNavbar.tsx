@@ -17,11 +17,15 @@ const MainNavbar = () => {
   const { user } = useAuth();
 
   const isCurrentPage = (path: string) => {
-    return location.pathname === path;
+    // Avec HashRouter, nous devons comparer avec location.hash sans le # initial
+    const currentPath = location.hash.substring(1) || '/';
+    return currentPath === path;
   };
 
   const pathIncludes = (path: string) => {
-    return location.pathname.includes(path);
+    // Avec HashRouter, nous devons comparer avec location.hash sans le # initial
+    const currentPath = location.hash.substring(1) || '/';
+    return currentPath.includes(path);
   };
 
   const toggleSubmenu = (submenu: string) => {

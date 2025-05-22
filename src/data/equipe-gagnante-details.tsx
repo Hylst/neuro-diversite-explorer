@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/routes';
+import { BookOpen, Users, FileText } from 'lucide-react';
 
 // Données pour les détails contextuels de l'Équipe Gagnante
 export const equipeGagnanteDetails = {
@@ -140,7 +143,34 @@ export const equipeGagnanteDetails = {
         </ul>
         
         <div className="bg-muted p-4 rounded-lg">
-          <h3 className="text-md font-semibold">Facteurs de réussite</h3>
+          <h3 className="text-md font-semibold">Ressources clés</h3>
+          <div className="space-y-2">
+            <Link to={ROUTES.RESSOURCES.STRATEGIES_APPRENTISSAGE} className="flex items-center text-neuro-blue hover:underline">
+              <BookOpen className="h-4 w-4 mr-2" />
+              Guide pratique : Stratégies d'apprentissage
+            </Link>
+            <Link to={ROUTES.COMMUNAUTE} className="flex items-center text-neuro-blue hover:underline">
+              <Users className="h-4 w-4 mr-2" />
+              Groupe d'entraide entre jeunes
+            </Link>
+            <Link to={ROUTES.RESSOURCES.APPLICATIONS} className="flex items-center text-neuro-blue hover:underline">
+              <FileText className="h-4 w-4 mr-2" />
+              Applications d'organisation et d'aide à l'apprentissage
+            </Link>
+            <Link to={ROUTES.RESSOURCES.KITS} className="flex items-center text-neuro-blue hover:underline">
+              <FileText className="h-4 w-4 mr-2" />
+              Modèle de cahier de liaison adapté aux besoins spécifiques
+            </Link>
+            <Link to={ROUTES.RESSOURCES.GUIDE_ADMINISTRATIF} className="flex items-center text-neuro-blue hover:underline">
+              <FileText className="h-4 w-4 mr-2" />
+              Guide des dispositifs d'accompagnement scolaire (PAP, PPS, PPRE)
+            </Link>
+            <Link to={ROUTES.RESSOURCES.APPLICATIONS} className="flex items-center text-neuro-blue hover:underline">
+              <FileText className="h-4 w-4 mr-2" />
+              Applications de suivi collaboratif des progrès
+            </Link>
+          </div>
+          <h3 className="text-md font-semibold mt-4">Facteurs de réussite</h3>
           <p className="mb-2"><strong>Confiance mutuelle</strong> : Bâtir une relation de confiance entre tous les membres</p>
           <p className="mb-2"><strong>Communication transparente</strong> : Partager ouvertement les préoccupations et les succès</p>
           <p className="mb-2"><strong>Attentes réalistes</strong> : Fixer des objectifs ambitieux mais atteignables</p>

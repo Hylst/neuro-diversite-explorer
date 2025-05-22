@@ -19,7 +19,9 @@ export const NavbarLink: React.FC<NavbarLinkProps> = ({
   
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Si nous cliquons sur le lien de la page active, faisons un scroll to top
-    if (location.pathname === to) {
+    // Avec HashRouter, nous devons comparer avec location.hash sans le # initial
+    const currentPath = location.hash.substring(1) || '/';
+    if (currentPath === to) {
       e.preventDefault();
       window.scrollTo({
         top: 0,
