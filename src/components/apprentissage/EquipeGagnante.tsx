@@ -2,7 +2,10 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
-import { Users, User, School, Heart, MessageSquare, Lightbulb } from 'lucide-react';
+import { Users, User, School, Heart, MessageSquare, Lightbulb, UserPlus, BookOpen } from 'lucide-react';
+import { ContextualDetail } from '@/components/ui/ContextualDetail';
+import { equipeGagnanteDetails } from '@/data/equipe-gagnante-details';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const EquipeGagnante = () => {
   return (
@@ -15,33 +18,100 @@ const EquipeGagnante = () => {
           transition={{ duration: 0.5 }}
         >
         <h2 className="text-3xl font-bold mb-6 text-center">
-          <span className="neuro-gradient-text">Module 4:</span> L'Équipe Gagnante
+          <span className="neuro-gradient-text">Module 4:</span> 
+          <ContextualDetail 
+            term="L'Équipe Gagnante"
+            shortDescription={equipeGagnanteDetails.equipeGagnante.shortDescription}
+            longDescription={equipeGagnanteDetails.equipeGagnante.longDescription}
+          >
+            L'Équipe Gagnante
+          </ContextualDetail>
         </h2>
         
         <p className="text-lg text-center mb-8 max-w-3xl mx-auto">
           Parents, Enfants, et l'École : Ensemble, on va plus loin !
         </p>
+        
+        <div className="flex justify-center mb-8">
+          <div className="relative w-64 h-64 md:w-80 md:h-80">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" fill="#f3f4f6" stroke="#d1d5db" strokeWidth="2" />
+                <g transform="translate(60, 50)">
+                  <circle cx="0" cy="0" r="25" fill="#c084fc" opacity="0.7" />
+                  <text x="0" y="5" textAnchor="middle" fill="#4b5563" fontWeight="bold">Parents</text>
+                </g>
+                <g transform="translate(140, 50)">
+                  <circle cx="0" cy="0" r="25" fill="#60a5fa" opacity="0.7" />
+                  <text x="0" y="5" textAnchor="middle" fill="#4b5563" fontWeight="bold">École</text>
+                </g>
+                <g transform="translate(100, 130)">
+                  <circle cx="0" cy="0" r="25" fill="#34d399" opacity="0.7" />
+                  <text x="0" y="5" textAnchor="middle" fill="#4b5563" fontWeight="bold">Enfant</text>
+                </g>
+                <line x1="80" y1="60" x2="120" y2="60" stroke="#6b7280" strokeWidth="2" strokeDasharray="4" />
+                <line x1="70" y1="75" x2="90" y2="110" stroke="#6b7280" strokeWidth="2" strokeDasharray="4" />
+                <line x1="130" y1="75" x2="110" y2="110" stroke="#6b7280" strokeWidth="2" strokeDasharray="4" />
+                <circle cx="100" cy="100" r="15" fill="#fde68a" opacity="0.7" />
+                <text x="100" y="103" textAnchor="middle" fill="#4b5563" fontSize="8" fontWeight="bold">Équipe</text>
+              </svg>
+            </div>
+          </div>
+        </div>
 
         <Tabs defaultValue="parents" className="w-full">
           <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-3 mb-8">
-            <TabsTrigger value="parents" className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              Parents
-            </TabsTrigger>
-            <TabsTrigger value="enfants" className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              Enfants/Ados
-            </TabsTrigger>
-            <TabsTrigger value="ecole" className="flex items-center gap-2">
-              <School className="h-4 w-4" />
-              Relation avec l'École
-            </TabsTrigger>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="parents" className="flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    Parents
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>{equipeGagnanteDetails.parents.shortDescription}</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="enfants" className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    Enfants/Ados
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>{equipeGagnanteDetails.enfantsAdos.shortDescription}</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="ecole" className="flex items-center gap-2">
+                    <School className="h-4 w-4" />
+                    Relation avec l'École
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>{equipeGagnanteDetails.ecole.shortDescription}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </TabsList>
           
           <TabsContent value="parents">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">Parents : Coachs Bienveillants, Pas Bourreaux (ni magiciens)</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  <ContextualDetail 
+                    term="Parents : Coachs Bienveillants"
+                    shortDescription={equipeGagnanteDetails.parents.shortDescription}
+                    longDescription={equipeGagnanteDetails.parents.longDescription}
+                  >
+                    Parents : Coachs Bienveillants, Pas Bourreaux (ni magiciens)
+                  </ContextualDetail>
+                </h3>
                 
                 <p className="mb-4">
                   Le rôle des parents d'enfants neurodivergents est particulièrement délicat : soutenir sans surprotéger, 
@@ -115,7 +185,15 @@ const EquipeGagnante = () => {
           <TabsContent value="enfants">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">Enfants/Ados : Acteurs de Votre Réussite !</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  <ContextualDetail 
+                    term="Enfants et Adolescents"
+                    shortDescription={equipeGagnanteDetails.enfantsAdos.shortDescription}
+                    longDescription={equipeGagnanteDetails.enfantsAdos.longDescription}
+                  >
+                    Enfants/Ados : Acteurs de Votre Réussite !
+                  </ContextualDetail>
+                </h3>
                 
                 <p className="mb-4">
                   Être neurodivergent dans un monde conçu pour les neurotypiques peut être un défi quotidien. 
@@ -178,6 +256,51 @@ const EquipeGagnante = () => {
                     Tu as une façon unique de voir le monde, et c'est une force quand tu apprends à la canaliser.
                   </p>
                 </div>
+                
+                <div className="mt-6 p-4 bg-muted rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <UserPlus className="h-4 w-4 text-neuro-purple" />
+                    Témoignages inspirants
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="p-3 bg-white dark:bg-muted/30 rounded-lg">
+                      <p className="text-sm italic mb-2">
+                        "J'ai appris à utiliser mes hyperfocus comme une force. Maintenant, je suis en école d'ingénieur et je développe des applications."
+                      </p>
+                      <p className="text-xs text-right font-medium">- Thomas, 19 ans, TDAH</p>
+                    </div>
+                    <div className="p-3 bg-white dark:bg-muted/30 rounded-lg">
+                      <p className="text-sm italic mb-2">
+                        "Les stratégies visuelles m'ont aidée à mieux m'organiser. J'utilise des codes couleurs pour tout et ça a changé ma vie scolaire."
+                      </p>
+                      <p className="text-xs text-right font-medium">- Léa, 15 ans, dyslexie</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-muted rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-neuro-purple" />
+                    Ressources complémentaires
+                  </h4>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                      <a href="/ressources/documents" className="text-neuro-purple hover:underline">
+                        Guide pratique : "Stratégies d'apprentissage pour étudiants neurodivergents"
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/communaute/forum" className="text-neuro-purple hover:underline">
+                        Groupe d'entraide entre jeunes neurodivergents
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/ressources/applications" className="text-neuro-purple hover:underline">
+                        Applications d'organisation et d'aide à l'apprentissage
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -185,7 +308,15 @@ const EquipeGagnante = () => {
           <TabsContent value="ecole">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">La Relation avec l'École : Des Alliés, Pas des Adversaires</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  <ContextualDetail 
+                    term="Relation avec l'École"
+                    shortDescription={equipeGagnanteDetails.ecole.shortDescription}
+                    longDescription={equipeGagnanteDetails.ecole.longDescription}
+                  >
+                    La Relation avec l'École : Des Alliés, Pas des Adversaires
+                  </ContextualDetail>
+                </h3>
                 
                 <p className="mb-4">
                   Une collaboration efficace entre la famille et l'équipe éducative est essentielle pour la réussite 
@@ -244,6 +375,30 @@ const EquipeGagnante = () => {
                     quotidiennes. Votre écoute bienveillante et votre flexibilité font une énorme différence dans leur parcours. 
                     Ensemble, vous formez une équipe dont l'objectif commun est l'épanouissement de l'enfant.
                   </p>
+                </div>
+                
+                <div className="mt-6 p-4 bg-muted rounded-lg">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-neuro-purple" />
+                    Outils de collaboration
+                  </h4>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                      <a href="/ressources/documents" className="text-neuro-purple hover:underline">
+                        Modèle de cahier de liaison adapté aux besoins spécifiques
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/ressources/documents" className="text-neuro-purple hover:underline">
+                        Guide des dispositifs d'accompagnement scolaire (PAP, PPS, PPRE)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/ressources/applications" className="text-neuro-purple hover:underline">
+                        Applications de suivi collaboratif des progrès
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </CardContent>
             </Card>
