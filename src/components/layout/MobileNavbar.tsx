@@ -37,7 +37,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
       <div className="container py-2">
         <nav className="flex flex-col space-y-1">
           <NavbarLink to={ROUTES.HOME} isActive={isCurrentPage(ROUTES.HOME)} onClick={closeMenu}>
-            Accueil
+            
           </NavbarLink>
           
           <button

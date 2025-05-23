@@ -1,0 +1,129 @@
+/**
+ * Styles responsives pour améliorer l'expérience mobile
+ */
+
+/* Styles de base pour tous les appareils */
+:root {
+  --content-padding-x: 1rem;
+  --content-padding-y: 1.5rem;
+  --card-gap: 1rem;
+  --text-base: 1rem;
+  --heading-large: 2rem;
+  --heading-medium: 1.5rem;
+}
+
+/* Styles pour les appareils mobiles (< 640px) */
+@media (max-width: 639px) {
+  .container {
+    padding-left: var(--content-padding-x);
+    padding-right: var(--content-padding-x);
+  }
+
+  /* Amélioration des espacements sur mobile */
+  .py-12 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .py-8 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Réduction de la taille des textes sur mobile */
+  h1.text-4xl, h1.text-5xl, h1.text-6xl {
+    font-size: var(--heading-large) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2.text-3xl {
+    font-size: var(--heading-medium) !important;
+  }
+
+  /* Amélioration des cartes sur mobile */
+  .neuro-card-interactive {
+    height: 100%;
+  }
+
+  /* Amélioration des tableaux sur mobile */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Amélioration des formulaires sur mobile */
+  input, select, textarea {
+    font-size: 16px !important; /* Empêche le zoom automatique sur iOS */
+  }
+
+  /* Amélioration des boutons sur mobile */
+  button, .button {
+    touch-action: manipulation;
+  }
+}
+
+/* Styles pour les tablettes (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  :root {
+    --content-padding-x: 1.5rem;
+    --content-padding-y: 2rem;
+    --card-gap: 1.5rem;
+    --heading-large: 2.5rem;
+  }
+}
+
+/* Styles pour les grands écrans (≥ 1024px) */
+@media (min-width: 1024px) {
+  :root {
+    --content-padding-x: 2rem;
+    --content-padding-y: 3rem;
+    --card-gap: 2rem;
+    --heading-large: 3rem;
+  }
+}
+
+/* Améliorations spécifiques pour les composants */
+
+/* Grilles responsives avec meilleur espacement */
+.responsive-grid {
+  display: grid;
+  gap: var(--card-gap);
+  width: 100%;
+}
+
+/* Ajustement des tabs sur mobile */
+@media (max-width: 639px) {
+  [role="tablist"] {
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+  }
+
+  [role="tablist"]::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  [role="tab"] {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    min-width: max-content;
+  }
+}
+
+/* Amélioration des cartes de blog sur mobile */
+@media (max-width: 639px) {
+  .blog-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Amélioration de l'accessibilité tactile */
+@media (max-width: 639px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

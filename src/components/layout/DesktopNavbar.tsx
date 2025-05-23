@@ -22,7 +22,7 @@ export const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
   return (
     <nav className="hidden md:flex items-center space-x-1">
       <NavbarLink to={ROUTES.HOME} isActive={isCurrentPage(ROUTES.HOME)}>
-        Accueil
+        
       </NavbarLink>
       
       <div className="relative group">
