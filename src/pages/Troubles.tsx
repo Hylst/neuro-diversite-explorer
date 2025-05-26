@@ -10,6 +10,7 @@ import { ArrowRight, BookOpen, BrainCircuit, Calculator, MessageSquare, FileText
 import DysTroublesSection from '@/components/troubles/dys/DysTroublesSection';
 import TDAHSection from '@/components/troubles/tdah/TDAHSection';
 import TSASection from '@/components/troubles/tsa/TSASection';
+import MentalHealthSection from '@/components/troubles/mental-health/MentalHealthSection';
 import NeuroSection from '@/components/troubles/neuro/NeuroSection';
 
 const Troubles = () => {
@@ -58,10 +59,11 @@ const Troubles = () => {
         <div className="container py-12">
           <Tabs defaultValue="dys" className="w-full">
             <div className="flex justify-center mb-8">
-              <TabsList className="grid w-full max-w-2xl grid-cols-4">
+              <TabsList className="grid w-full max-w-4xl grid-cols-5">
                 <TabsTrigger value="dys">Troubles Dys</TabsTrigger>
                 <TabsTrigger value="tdah">TDAH</TabsTrigger>
                 <TabsTrigger value="tsa">TSA (Autisme)</TabsTrigger>
+                <TabsTrigger value="mental-health">Santé Mentale</TabsTrigger>
                 <TabsTrigger value="neuro">Neurodégénératifs</TabsTrigger>
               </TabsList>
             </div>
@@ -308,6 +310,10 @@ const Troubles = () => {
                   </CardFooter>
                 </Card>
               </div>
+            </TabsContent>
+            
+            <TabsContent value="mental-health">
+              <MentalHealthSection />
             </TabsContent>
             
             <TabsContent value="neuro">

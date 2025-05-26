@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { BookOpen, Brain, School, MessageSquare, Lightbulb, Book, Check, ArrowLeft } from 'lucide-react';
+import React, { useState } from 'react';
+import { BookOpen, Brain, School, MessageSquare, Lightbulb, Book, Check, ArrowLeft, Info, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -9,6 +9,32 @@ import { motion } from 'framer-motion';
 import { TroubleHeader } from '@/components/troubles/common';
 
 const Dyslexie = () => {
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeTooltip, setActiveTooltip] = useState(null);
+
+  const Tooltip = ({ id, children, content }) => (
+    <span 
+      className="relative inline-block cursor-help"
+      onMouseEnter={() => setActiveTooltip(id)}
+      onMouseLeave={() => setActiveTooltip(null)}
+    >
+      <span className="border-b-2 border-dotted border-neuro-blue text-neuro-blue font-medium">
+        {children}
+      </span>
+      {activeTooltip === id && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="absolute z-50 bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg max-w-xs whitespace-normal"
+        >
+          {content}
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+        </motion.div>
+      )}
+    </span>
+  );
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1">
@@ -39,18 +65,18 @@ const Dyslexie = () => {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Qu'est-ce que la dyslexie ?</h2>
                 <p className="text-muted-foreground mb-4">
-                  La dyslexie est un trouble neurologique qui affecte spécifiquement la capacité d'une personne à lire et à écrire, 
-                  indépendamment de son intelligence, de son éducation ou de sa motivation. Elle touche environ 5 à 10% de la population.
+                  La <Tooltip id="dyslexie-def" content="Trouble neurodéveloppemental spécifique de l'apprentissage de la lecture, d'origine neurobiologique, qui persiste malgré un enseignement approprié et une intelligence normale.">dyslexie</Tooltip> est un <Tooltip id="trouble-neurologique" content="Le trouble a une base neurobiologique, avec des différences observables dans le fonctionnement cérébral.">trouble neurologique</Tooltip> qui affecte spécifiquement la capacité d'une personne à lire et à écrire, 
+                  indépendamment de son intelligence, de son éducation ou de sa motivation. Elle touche environ <Tooltip id="prevalence" content="La prévalence varie selon les études et les critères diagnostiques utilisés, mais se situe généralement entre 5 et 10% de la population.">5 à 10% de la population</Tooltip>.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Les recherches en neurosciences ont montré que le cerveau des personnes dyslexiques présente des particularités 
-                  dans les zones impliquées dans le traitement phonologique et le décodage des mots. 
-                  Ces différences ne sont pas des déficits, mais des variations neurologiques naturelles 
+                  Les recherches en <Tooltip id="neurosciences" content="Sciences qui étudient le système nerveux et le cerveau. L'imagerie cérébrale a révélé des différences dans l'activation de certaines zones chez les dyslexiques.">neurosciences</Tooltip> ont montré que le cerveau des personnes dyslexiques présente des particularités 
+                  dans les zones impliquées dans le <Tooltip id="traitement-phonologique" content="Capacité à manipuler les sons du langage (phonèmes). Essentiel pour associer les lettres aux sons.">traitement phonologique</Tooltip> et le décodage des mots. 
+                  Ces différences ne sont pas des déficits, mais des <Tooltip id="variations-neurologiques" content="Différences naturelles dans le fonctionnement cérébral, comme la diversité des empreintes digitales.">variations neurologiques naturelles</Tooltip> 
                   qui nécessitent des adaptations dans l'apprentissage de la lecture.
                 </p>
                 <p className="text-muted-foreground">
-                  La dyslexie est un trouble durable qui persiste tout au long de la vie, mais avec des adaptations appropriées 
-                  et une prise en charge adaptée, les personnes dyslexiques peuvent développer des stratégies efficaces pour surmonter 
+                  La dyslexie est un <Tooltip id="trouble-durable" content="Le trouble ne disparaît pas mais peut être largement compensé par des stratégies et des outils appropriés.">trouble durable</Tooltip> qui persiste tout au long de la vie, mais avec des adaptations appropriées 
+                  et une <Tooltip id="prise-en-charge" content="Accompagnement multidisciplinaire incluant orthophonie, adaptations scolaires, et soutien psychologique si nécessaire.">prise en charge adaptée</Tooltip>, les personnes dyslexiques peuvent développer des stratégies efficaces pour surmonter 
                   leurs difficultés et réussir dans leurs études et leur vie professionnelle.
                 </p>
               </div>
@@ -58,33 +84,81 @@ const Dyslexie = () => {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Manifestations principales</h2>
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
-                  <Card className="p-4 border-neuro-blue">
-                    <h3 className="font-semibold mb-2 text-neuro-blue">Difficultés de décodage</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Problèmes dans la correspondance graphème-phonème (lettres/sons), rendant difficile la lecture de nouveaux mots.
-                    </p>
-                  </Card>
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.03, 
+                      rotateY: 2,
+                      boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="p-4 border-neuro-blue transition-all duration-300 hover:border-neuro-blue/80 hover:bg-blue-50/50">
+                      <h3 className="font-semibold mb-2 text-neuro-blue flex items-center gap-2">
+                        Difficultés de <Tooltip id="decodage" content="Processus de conversion des lettres écrites en sons correspondants, étape fondamentale de la lecture.">décodage</Tooltip>
+                        <HelpCircle className="h-4 w-4 text-neuro-blue/60" />
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Problèmes dans la <Tooltip id="grapheme-phoneme" content="Relation entre les lettres (graphèmes) et les sons (phonèmes). Par exemple, 'ch' = /ʃ/ ou 'eau' = /o/.">correspondance graphème-phonème</Tooltip> (lettres/sons), rendant difficile la lecture de nouveaux mots.
+                      </p>
+                    </Card>
+                  </motion.div>
                   
-                  <Card className="p-4 border-neuro-blue">
-                    <h3 className="font-semibold mb-2 text-neuro-blue">Confusions visuelles</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Confusion entre des lettres visuellement similaires (b/d, p/q, m/n) ou des mots proches visuellement.
-                    </p>
-                  </Card>
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.03, 
+                      rotateY: -2,
+                      boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="p-4 border-neuro-blue transition-all duration-300 hover:border-neuro-blue/80 hover:bg-blue-50/50">
+                      <h3 className="font-semibold mb-2 text-neuro-blue flex items-center gap-2">
+                        <Tooltip id="confusions-visuelles" content="Difficultés à distinguer des lettres ou mots similaires visuellement, fréquent en dyslexie.">Confusions visuelles</Tooltip>
+                        <HelpCircle className="h-4 w-4 text-neuro-blue/60" />
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Confusion entre des lettres visuellement similaires (<Tooltip id="exemples-confusions" content="Ces confusions sont dues à des difficultés de traitement visuo-spatial et de mémoire de travail visuelle.">b/d, p/q, m/n</Tooltip>) ou des mots proches visuellement.
+                      </p>
+                    </Card>
+                  </motion.div>
                   
-                  <Card className="p-4 border-neuro-blue">
-                    <h3 className="font-semibold mb-2 text-neuro-blue">Lenteur de lecture</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Déchiffrage laborieux et lent, nécessitant un effort cognitif important qui peut entraîner une fatigue excessive.
-                    </p>
-                  </Card>
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.03, 
+                      rotateY: 2,
+                      boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="p-4 border-neuro-blue transition-all duration-300 hover:border-neuro-blue/80 hover:bg-blue-50/50">
+                      <h3 className="font-semibold mb-2 text-neuro-blue flex items-center gap-2">
+                        <Tooltip id="lenteur-lecture" content="La lecture demande plus d'effort cognitif, réduisant la vitesse et augmentant la fatigue.">Lenteur de lecture</Tooltip>
+                        <HelpCircle className="h-4 w-4 text-neuro-blue/60" />
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        <Tooltip id="dechiffrage-laborieux" content="Processus de lecture non automatisé qui mobilise beaucoup de ressources attentionnelles.">Déchiffrage laborieux et lent</Tooltip>, nécessitant un effort cognitif important qui peut entraîner une <Tooltip id="fatigue-cognitive" content="Épuisement mental dû à l'effort soutenu nécessaire pour lire, pouvant affecter la concentration.">fatigue excessive</Tooltip>.
+                      </p>
+                    </Card>
+                  </motion.div>
                   
-                  <Card className="p-4 border-neuro-blue">
-                    <h3 className="font-semibold mb-2 text-neuro-blue">Difficultés orthographiques</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Difficultés persistantes à orthographier correctement les mots, même après de nombreuses expositions.
-                    </p>
-                  </Card>
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.03, 
+                      rotateY: -2,
+                      boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Card className="p-4 border-neuro-blue transition-all duration-300 hover:border-neuro-blue/80 hover:bg-blue-50/50">
+                      <h3 className="font-semibold mb-2 text-neuro-blue flex items-center gap-2">
+                        Difficultés <Tooltip id="orthographiques" content="L'orthographe implique la mémorisation de la forme visuelle des mots, particulièrement difficile en dyslexie.">orthographiques</Tooltip>
+                        <HelpCircle className="h-4 w-4 text-neuro-blue/60" />
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Difficultés persistantes à orthographier correctement les mots, même après de <Tooltip id="expositions-multiples" content="Contrairement aux lecteurs typiques, les dyslexiques ont besoin de beaucoup plus d'expositions pour mémoriser l'orthographe.">nombreuses expositions</Tooltip>.
+                      </p>
+                    </Card>
+                  </motion.div>
                 </div>
               </div>
 
@@ -243,7 +317,17 @@ const Dyslexie = () => {
                       ))}
                       
                       <div className="text-center mt-8">
-                        <Button variant="default">Partager votre expérience</Button>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Button 
+                            variant="default" 
+                            className="transition-all duration-300 hover:shadow-lg hover:bg-neuro-blue/90"
+                          >
+                            Partager votre expérience
+                          </Button>
+                        </motion.div>
                       </div>
                     </div>
                   </div>
@@ -296,26 +380,52 @@ const Dyslexie = () => {
                           <CardTitle>Outils numériques</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                          <div className="border-b pb-3">
-                            <h3 className="font-medium">Dysvocal</h3>
+                          <motion.div 
+                            className="border-b pb-3"
+                            whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.05)", x: 5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <h3 className="font-medium flex items-center gap-2">
+                              Dysvocal
+                              <Tooltip id="dysvocal" content="Logiciel français développé spécifiquement pour les troubles DYS. Il combine plusieurs outils : lecture vocale, prédiction de mots, et aide à l'écriture.">
+                                <HelpCircle className="h-4 w-4 text-neuro-blue" />
+                              </Tooltip>
+                            </h3>
                             <p className="text-sm text-muted-foreground">
-                              Logiciel complet offrant synthèse vocale, prédiction de mots et correction orthographique.
+                              Logiciel complet offrant <Tooltip id="synthese-vocale" content="Technologie qui convertit le texte écrit en parole, permettant d'écouter au lieu de lire.">synthèse vocale</Tooltip>, <Tooltip id="prediction-mots" content="Système qui propose des mots pendant la frappe, réduisant les erreurs et accélérant l'écriture.">prédiction de mots</Tooltip> et correction orthographique.
                             </p>
-                          </div>
+                          </motion.div>
                           
-                          <div className="border-b pb-3">
-                            <h3 className="font-medium">Antidote</h3>
+                          <motion.div 
+                            className="border-b pb-3"
+                            whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.05)", x: 5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <h3 className="font-medium flex items-center gap-2">
+                              Antidote
+                              <Tooltip id="antidote" content="Suite logicielle québécoise reconnue pour sa qualité. Particulièrement utile pour les dyslexiques grâce à ses explications détaillées des erreurs.">
+                                <HelpCircle className="h-4 w-4 text-neuro-blue" />
+                              </Tooltip>
+                            </h3>
                             <p className="text-sm text-muted-foreground">
-                              Correcteur orthographique et grammatical avancé avec dictionnaire intégré.
+                              <Tooltip id="correcteur-avance" content="Va au-delà de la simple correction : analyse le style, la syntaxe, et propose des améliorations contextuelles.">Correcteur orthographique et grammatical avancé</Tooltip> avec dictionnaire intégré.
                             </p>
-                          </div>
+                          </motion.div>
                           
-                          <div>
-                            <h3 className="font-medium">Fontes adaptées</h3>
+                          <motion.div
+                            whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.05)", x: 5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <h3 className="font-medium flex items-center gap-2">
+                              Fontes adaptées
+                              <Tooltip id="fontes-adaptees" content="Polices de caractères spécialement conçues pour réduire les confusions visuelles courantes en dyslexie (b/d, p/q, etc.).">
+                                <HelpCircle className="h-4 w-4 text-neuro-blue" />
+                              </Tooltip>
+                            </h3>
                             <p className="text-sm text-muted-foreground">
-                              OpenDyslexic, Dyslexie, Lexie Readable : polices conçues pour faciliter la lecture.
+                              <Tooltip id="exemples-fontes" content="OpenDyslexic : gratuite, caractères avec base lourde. Dyslexie : développée par un dyslexique. Lexie Readable : optimisée pour la lisibilité.">OpenDyslexic, Dyslexie, Lexie Readable</Tooltip> : polices conçues pour faciliter la lecture.
                             </p>
-                          </div>
+                          </motion.div>
                         </CardContent>
                       </Card>
                       
@@ -411,24 +521,54 @@ const Dyslexie = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <Button variant="outline" className="w-full justify-start" asChild>
-                      <Link to="/auto-evaluation">
-                        <Brain className="mr-2 h-4 w-4" />
-                        Test d'auto-évaluation
-                      </Link>
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start" asChild>
-                      <Link to="/glossaire">
-                        <Book className="mr-2 h-4 w-4" />
-                        Glossaire des termes
-                      </Link>
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start" asChild>
-                      <Link to="/ressources">
-                        <MessageSquare className="mr-2 h-4 w-4" />
-                        Consulter un spécialiste
-                      </Link>
-                    </Button>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button variant="outline" className="w-full justify-start transition-all duration-300 hover:bg-neuro-blue/10 hover:border-neuro-blue" asChild>
+                        <Link to="/auto-evaluation">
+                          <motion.div
+                            animate={{ rotate: [0, 10, -10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
+                          >
+                            <Brain className="mr-2 h-4 w-4" />
+                          </motion.div>
+                          Test d'auto-évaluation
+                        </Link>
+                      </Button>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button variant="outline" className="w-full justify-start transition-all duration-300 hover:bg-neuro-blue/10 hover:border-neuro-blue" asChild>
+                        <Link to="/glossaire">
+                          <motion.div
+                            animate={{ rotateY: [0, 180, 0] }}
+                            transition={{ duration: 3, repeat: Infinity, repeatDelay: 5 }}
+                          >
+                            <Book className="mr-2 h-4 w-4" />
+                          </motion.div>
+                          Glossaire des termes
+                        </Link>
+                      </Button>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button variant="outline" className="w-full justify-start transition-all duration-300 hover:bg-neuro-blue/10 hover:border-neuro-blue" asChild>
+                        <Link to="/ressources">
+                          <motion.div
+                            animate={{ scale: [1, 1.1, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 6 }}
+                          >
+                            <MessageSquare className="mr-2 h-4 w-4" />
+                          </motion.div>
+                          Consulter un spécialiste
+                        </Link>
+                      </Button>
+                    </motion.div>
                   </div>
                 </CardContent>
               </Card>

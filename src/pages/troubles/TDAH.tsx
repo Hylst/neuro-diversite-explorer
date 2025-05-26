@@ -792,22 +792,251 @@ const TDAH = () => {
                       <div className="grid md:grid-cols-2 gap-4 mt-4">
                         <div className="bg-secondary p-4 rounded-lg">
                           <h4 className="font-medium mb-2">Hygiène de vie</h4>
-                          <ul className="list-disc pl-5 text-muted-foreground">
+                          <ul className="list-disc pl-5 text-muted-foreground mb-4">
                             <li>Activité physique régulière</li>
                             <li>Sommeil suffisant et régulier</li>
                             <li>Alimentation équilibrée</li>
                             <li>Techniques de relaxation et pleine conscience</li>
                           </ul>
+                          
+                          <div className="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                            <h5 className="font-medium text-orange-800 mb-2 flex items-center">
+                              🎯 Focus : Influence du sucre sur le TDAH
+                            </h5>
+                            <div className="space-y-3 text-sm">
+                              <div>
+                                <span className="font-medium text-orange-700">Pic glycémique :</span>
+                                <span className="text-gray-700 ml-1">Les sucres rapides provoquent des variations brutales de glycémie, accentuant l'instabilité attentionnelle.</span>
+                              </div>
+                              <div>
+                                <span className="font-medium text-orange-700">Neurotransmetteurs :</span>
+                                <span className="text-gray-700 ml-1">L'excès de sucre perturbe la dopamine et sérotonine, déjà fragiles dans le TDAH.</span>
+                              </div>
+                              <div>
+                                <span className="font-medium text-orange-700">Hypersensibilité :</span>
+                                <span className="text-gray-700 ml-1">Les personnes TDAH sont plus sensibles aux fluctuations glycémiques.</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                            <h5 className="font-medium text-green-800 mb-2">🥣 Petit déjeuner recommandé pour TDAH</h5>
+                            <p className="text-sm text-gray-700 mb-3">Privilégier un index glycémique bas avec protéines, fibres et bonnes graisses :</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                              <div>
+                                <span className="font-medium text-green-700">✓ Recommandé :</span>
+                                <ul className="text-gray-700 ml-4 mt-1">
+                                  <li>• Œufs + pain complet</li>
+                                  <li>• Flocons d'avoine + noix</li>
+                                  <li>• Yaourt nature + baies</li>
+                                  <li>• Fruits entiers (pas de jus)</li>
+                                </ul>
+                              </div>
+                              <div>
+                                <span className="font-medium text-red-700">✗ À éviter :</span>
+                                <ul className="text-gray-700 ml-4 mt-1">
+                                  <li>• Céréales sucrées</li>
+                                  <li>• Viennoiseries</li>
+                                  <li>• Jus de fruits industriels</li>
+                                  <li>• Pain blanc + confiture</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <h5 className="font-medium text-blue-800 mb-2">🧠 Conseils nutritionnels spécifiques TDAH</h5>
+                            <ul className="text-sm text-gray-700 space-y-1">
+                              <li>• <strong>Protéines à chaque repas</strong> pour stabiliser l'attention</li>
+                              <li>• <strong>Éviter le sucre raffiné</strong>, surtout le matin et en collation</li>
+                              <li>• <strong>Limiter la caféine</strong> qui peut aggraver la nervosité</li>
+                              <li>• <strong>Régularité des repas</strong> pour éviter les fluctuations d'énergie</li>
+                              <li>• <strong>Compléments possibles</strong> (sous suivi médical) : oméga-3, magnésium, zinc</li>
+                            </ul>
+                          </div>
                         </div>
                         
                         <div className="bg-secondary p-4 rounded-lg">
-                          <h4 className="font-medium mb-2">Outils technologiques</h4>
-                          <ul className="list-disc pl-5 text-muted-foreground">
-                            <li>Applications dédiées au TDAH</li>
-                            <li>Logiciels de planification et de rappel</li>
-                            <li>Bloqueurs de distractions en ligne</li>
-                            <li>Enregistreurs pour les réunions importantes</li>
-                          </ul>
+                          <h4 className="font-medium mb-3">🔧 Outils technologiques</h4>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Les technologies peuvent considérablement améliorer la gestion quotidienne du TDAH en compensant les difficultés d'organisation, d'attention et de mémoire.
+                          </p>
+                          
+                          <div className="space-y-4">
+                            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                              <h5 className="font-medium text-blue-800 mb-2 flex items-center">
+                                📱 Applications dédiées au TDAH
+                                <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full cursor-help" title="Applications spécialement conçues pour répondre aux besoins des personnes avec TDAH">
+                                  ℹ️
+                                </span>
+                              </h5>
+                              <div className="space-y-3 text-sm">
+                                <div>
+                                  <span className="font-medium text-blue-700">Focus Apps :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://www.forestapp.cc/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Forest</a></strong> : Technique Pomodoro gamifiée avec plantation d'arbres virtuels</li>
+                                    <li>• <strong><a href="https://brainfocus.io/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Brain Focus</a></strong> : Timer personnalisable avec statistiques de productivité</li>
+                                    <li>• <strong><a href="https://focuskeeperapp.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Focus Keeper</a></strong> : Sessions de travail chronométrées avec pauses automatiques</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-blue-700">Gestion des tâches :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://todoist.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Todoist</a></strong> : Organisation par projets avec rappels intelligents</li>
+                                    <li>• <strong><a href="https://www.any.do/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Any.do</a></strong> : Interface simple avec reconnaissance vocale</li>
+                                    <li>• <strong><a href="https://ticktick.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">TickTick</a></strong> : Calendrier intégré et gestion des habitudes</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-blue-700">Spécialisées TDAH :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://play.google.com/store/apps/details?id=com.adhdassistant" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">ADHD Assistant</a></strong> : Rappels personnalisés et suivi des médicaments</li>
+                                    <li>• <strong><a href="https://brili.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Brili</a></strong> : Routines visuelles pour enfants et adolescents</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                              <h5 className="font-medium text-green-800 mb-2 flex items-center">
+                                📅 Logiciels de planification et de rappel
+                                <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full cursor-help" title="Outils pour structurer le temps et éviter les oublis, essentiels pour compenser les difficultés de mémoire de travail">
+                                  ℹ️
+                                </span>
+                              </h5>
+                              <div className="space-y-3 text-sm">
+                                <div>
+                                  <span className="font-medium text-green-700">Calendriers intelligents :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">Google Calendar</a></strong> : Synchronisation multi-appareils avec rappels multiples</li>
+                                    <li>• <strong><a href="https://flexibits.com/fantastical" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">Fantastical</a></strong> : Saisie en langage naturel ("Rendez-vous demain 14h")</li>
+                                    <li>• <strong><a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">Calendly</a></strong> : Planification automatique de rendez-vous</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-green-700">Rappels avancés :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://www.dueapp.com/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">Due</a></strong> : Rappels persistants jusqu'à validation</li>
+                                    <li>• <strong><a href="https://yoctoville.com/alarmed/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">Alarmed</a></strong> : Notifications récurrentes personnalisables</li>
+                                    <li>• <strong><a href="https://ifttt.com/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">IFTTT</a></strong> : Automatisation de rappels contextuels (lieu, heure, météo)</li>
+                                  </ul>
+                                </div>
+                                <div className="p-2 bg-green-100 rounded text-xs text-green-800">
+                                  <strong>💡 Astuce :</strong> Programmer des rappels 15 minutes avant les événements importants pour compenser les difficultés de transition.
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                              <h5 className="font-medium text-red-800 mb-2 flex items-center">
+                                🚫 Bloqueurs de distractions en ligne
+                                <span className="ml-2 text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full cursor-help" title="Outils pour limiter l'accès aux sites distrayants et maintenir la concentration sur les tâches importantes">
+                                  ℹ️
+                                </span>
+                              </h5>
+                              <div className="space-y-3 text-sm">
+                                <div>
+                                  <span className="font-medium text-red-700">Extensions navigateur :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://getcoldturkey.com/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">Cold Turkey Blocker</a></strong> : Blocage programmé avec mode strict</li>
+                                    <li>• <strong><a href="https://freedom.to/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">Freedom</a></strong> : Synchronisation multi-appareils (PC, mobile, tablette)</li>
+                                    <li>• <strong><a href="https://chrome.google.com/webstore/detail/stayfocusd/laankejkbhbdhmipfmgcngdelahlfoji" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">StayFocusd</a></strong> : Limitation du temps sur sites spécifiques</li>
+                                    <li>• <strong><a href="https://www.proginosko.com/leechblock/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">LeechBlock</a></strong> : Blocage par plages horaires personnalisables</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-red-700">Applications mobiles :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://offtime.app/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">Offtime</a></strong> : Mode "ne pas déranger" intelligent</li>
+                                    <li>• <strong><a href="https://findyourphonelifebalance.com/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">Space</a></strong> : Analyse et réduction du temps d'écran</li>
+                                    <li>• <strong><a href="https://inthemoment.io/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">Moment</a></strong> : Suivi détaillé de l'usage du téléphone</li>
+                                  </ul>
+                                </div>
+                                <div className="p-2 bg-red-100 rounded text-xs text-red-800">
+                                  <strong>⚠️ Important :</strong> Commencer par des blocages courts (30-60 min) pour éviter la frustration et augmenter progressivement.
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                              <h5 className="font-medium text-purple-800 mb-2 flex items-center">
+                                🎙️ Enregistreurs pour les réunions importantes
+                                <span className="ml-2 text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full cursor-help" title="Outils pour compenser les difficultés d'attention et de mémoire de travail lors de réunions ou cours">
+                                  ℹ️
+                                </span>
+                              </h5>
+                              <div className="space-y-3 text-sm">
+                                <div>
+                                  <span className="font-medium text-purple-700">Enregistrement audio :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://otter.ai/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Otter.ai</a></strong> : Transcription automatique en temps réel avec recherche</li>
+                                    <li>• <strong><a href="https://www.rev.com/voicerecorder" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Rev Voice Recorder</a></strong> : Enregistrement haute qualité avec service de transcription</li>
+                                    <li>• <strong>Voice Memos</strong> (iOS) / <strong>Enregistreur</strong> (Android) : Solutions natives simples</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-purple-700">Prise de notes intelligente :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Notion</a></strong> : Combinaison notes, tâches et base de données</li>
+                                    <li>• <strong><a href="https://obsidian.md/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Obsidian</a></strong> : Liens entre idées avec visualisation graphique</li>
+                                    <li>• <strong><a href="https://roamresearch.com/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Roam Research</a></strong> : Réseau de connaissances interconnectées</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-purple-700">Outils de visioconférence :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://zoom.us/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Zoom</a></strong> : Enregistrement cloud avec transcription automatique</li>
+                                    <li>• <strong><a href="https://www.microsoft.com/en-us/microsoft-teams/group-chat-software" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Microsoft Teams</a></strong> : Intégration OneNote pour notes partagées</li>
+                                    <li>• <strong><a href="https://meet.google.com/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Google Meet</a></strong> : Sous-titres automatiques en temps réel</li>
+                                  </ul>
+                                </div>
+                                <div className="p-2 bg-purple-100 rounded text-xs text-purple-800">
+                                  <strong>📝 Conseil :</strong> Toujours demander l'autorisation avant d'enregistrer et informer les participants.
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                              <h5 className="font-medium text-yellow-800 mb-2 flex items-center">
+                                🎯 Outils spécialisés supplémentaires
+                              </h5>
+                              <div className="space-y-3 text-sm">
+                                <div>
+                                  <span className="font-medium text-yellow-700">Gestion financière :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://www.youneedabudget.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">YNAB (You Need A Budget)</a></strong> : Budgétisation proactive avec alertes</li>
+                                    <li>• <strong><a href="https://mint.intuit.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">Mint</a></strong> : Suivi automatique des dépenses avec catégorisation</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-yellow-700">Méditation et relaxation :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://www.headspace.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">Headspace</a></strong> : Méditations guidées spécifiques TDAH</li>
+                                    <li>• <strong><a href="https://www.calm.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">Calm</a></strong> : Sons de fond et exercices de respiration</li>
+                                    <li>• <strong><a href="https://insighttimer.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">Insight Timer</a></strong> : Large bibliothèque de méditations gratuites</li>
+                                  </ul>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-yellow-700">Suivi des habitudes :</span>
+                                  <ul className="text-gray-700 ml-4 mt-1">
+                                    <li>• <strong><a href="https://habitica.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">Habitica</a></strong> : Gamification des habitudes avec système de récompenses</li>
+                                    <li>• <strong><a href="https://streaksapp.com/" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-800 underline">Streaks</a></strong> : Suivi visuel simple des habitudes quotidiennes</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="mt-4 p-3 bg-gray-100 rounded border border-gray-300">
+                              <h6 className="font-medium text-gray-800 mb-2">💡 Conseils d'utilisation optimale :</h6>
+                              <ul className="text-xs text-gray-700 space-y-1">
+                                <li>• <strong>Commencer progressivement</strong> : Introduire un outil à la fois pour éviter la surcharge</li>
+                                <li>• <strong>Personnaliser les notifications</strong> : Adapter la fréquence selon vos besoins sans créer de stress</li>
+                                <li>• <strong>Synchroniser entre appareils</strong> : Assurer la continuité entre téléphone, ordinateur et tablette</li>
+                                <li>• <strong>Évaluer régulièrement</strong> : Garder uniquement les outils qui apportent une réelle valeur ajoutée</li>
+                                <li>• <strong>Créer des sauvegardes</strong> : Protéger vos données importantes avec des exports réguliers</li>
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
