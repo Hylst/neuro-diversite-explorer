@@ -1,7 +1,9 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Brain, Heart, Users, Eye, Stethoscope } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Brain, Heart, Users, Eye, Stethoscope, ChevronDown, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 import AnxietyDisordersSection from './AnxietyDisordersSection';
 import MoodDisordersSection from './MoodDisordersSection';
 import BehaviorDisordersSection from './BehaviorDisordersSection';
@@ -13,6 +15,15 @@ import SpecializedDisordersSection from './SpecializedDisordersSection';
  * Provides overview and categorized mental health disorders for children and adolescents
  */
 const MentalHealthSection = () => {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (sectionId: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  };
+
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Introduction and Comparison Section */}
@@ -88,34 +99,170 @@ const MentalHealthSection = () => {
           {/* General Therapeutic Approaches */}
           <div>
             <h3 className="text-lg font-semibold mb-3">Approches thérapeutiques générales</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                {
-                  title: "Thérapie comportementale",
-                  description: "Traitement de première ligne pour la plupart des troubles anxieux"
-                },
-                {
-                  title: "Thérapie cognitivo-comportementale",
-                  description: "Efficace pour restructurer les pensées négatives"
-                },
-                {
-                  title: "Médicaments",
-                  description: "ISRS principalement, avec surveillance étroite des effets secondaires"
-                },
-                {
-                  title: "Approche familiale",
-                  description: "Implication des parents et de l'école essentielle"
-                },
-                {
-                  title: "Intervention précoce",
-                  description: "Améliore significativement le pronostic à long terme"
-                }
-              ].map((approach, index) => (
-                <div key={index} className="bg-green-50 p-3 rounded-lg border border-green-200">
-                  <h5 className="font-medium text-green-900 text-sm">{approach.title}</h5>
-                  <p className="text-xs text-green-800 mt-1">{approach.description}</p>
-                </div>
-              ))}
+            <div className="space-y-4">
+              {/* Behavioral Therapy */}
+              <Collapsible>
+                <CollapsibleTrigger 
+                  className="flex items-center justify-between w-full p-4 bg-green-50 rounded-lg border border-green-200 hover:bg-green-100 transition-colors"
+                  onClick={() => toggleSection('behavioral')}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-full bg-green-200">
+                      <Brain className="h-4 w-4 text-green-700" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-medium text-green-900">Thérapie comportementale</h4>
+                      <p className="text-sm text-green-700">Traitement de première ligne pour la plupart des troubles anxieux</p>
+                    </div>
+                  </div>
+                  {openSections['behavioral'] ? 
+                    <ChevronDown className="h-5 w-5 text-green-700" /> : 
+                    <ChevronRight className="h-5 w-5 text-green-700" />
+                  }
+                </CollapsibleTrigger>
+                <CollapsibleContent className="px-4 pb-4">
+                  <div className="bg-white p-4 rounded-lg border border-green-200 mt-2 space-y-3">
+                    <div>
+                      <h5 className="font-medium text-green-900 mb-2">Principes fondamentaux :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-green-800">
+                        <li>Exposition graduelle aux situations anxiogènes</li>
+                        <li>Désensibilisation systématique</li>
+                        <li>Renforcement des comportements adaptatifs</li>
+                        <li>Extinction des comportements d'évitement</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-green-900 mb-2">Techniques spécifiques :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-green-800">
+                        <li><strong>Séparations systématiques :</strong> Imposer des séparations régulières et brèves</li>
+                        <li><strong>Techniques de relaxation :</strong> Respiration profonde, relaxation musculaire progressive</li>
+                        <li><strong>Gestion de l'anxiété :</strong> Identification des déclencheurs et stratégies d'adaptation</li>
+                        <li><strong>Exposition in vivo :</strong> Confrontation progressive aux situations redoutées</li>
+                      </ul>
+                    </div>
+                    <div className="bg-green-100 p-3 rounded-lg">
+                      <p className="text-sm text-green-800">
+                        <strong>Efficacité :</strong> Particulièrement efficace pour l'anxiété de séparation et l'anxiété sociale chez l'enfant et l'adolescent.
+                      </p>
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* Cognitive-Behavioral Therapy */}
+              <Collapsible>
+                <CollapsibleTrigger 
+                  className="flex items-center justify-between w-full p-4 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors"
+                  onClick={() => toggleSection('cognitive')}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-full bg-blue-200">
+                      <Brain className="h-4 w-4 text-blue-700" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-medium text-blue-900">Thérapie cognitivo-comportementale</h4>
+                      <p className="text-sm text-blue-700">Restructuration des pensées négatives et modification des comportements</p>
+                    </div>
+                  </div>
+                  {openSections['cognitive'] ? 
+                    <ChevronDown className="h-5 w-5 text-blue-700" /> : 
+                    <ChevronRight className="h-5 w-5 text-blue-700" />
+                  }
+                </CollapsibleTrigger>
+                <CollapsibleContent className="px-4 pb-4">
+                  <div className="bg-white p-4 rounded-lg border border-blue-200 mt-2 space-y-3">
+                    <div>
+                      <h5 className="font-medium text-blue-900 mb-2">Composantes cognitives :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-blue-800">
+                        <li>Identification des pensées automatiques négatives</li>
+                        <li>Restructuration cognitive des distorsions</li>
+                        <li>Développement de pensées alternatives réalistes</li>
+                        <li>Techniques de résolution de problèmes</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-blue-900 mb-2">Composantes comportementales :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-blue-800">
+                        <li>Planification d'activités agréables</li>
+                        <li>Exposition graduelle aux situations évitées</li>
+                        <li>Entraînement aux compétences sociales</li>
+                        <li>Techniques de gestion du stress</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-blue-900 mb-2">Applications spécifiques :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-blue-800">
+                        <li><strong>Trouble anxieux généralisé :</strong> Gestion des inquiétudes excessives</li>
+                        <li><strong>TSPT :</strong> Thérapie axée sur le traumatisme</li>
+                        <li><strong>Dépression :</strong> Modification des schémas de pensée négatifs</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-100 p-3 rounded-lg">
+                      <p className="text-sm text-blue-800">
+                        <strong>Durée :</strong> Généralement 12-16 séances, adaptée selon l'âge et la sévérité des symptômes.
+                      </p>
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* Family Approach */}
+              <Collapsible>
+                <CollapsibleTrigger 
+                  className="flex items-center justify-between w-full p-4 bg-purple-50 rounded-lg border border-purple-200 hover:bg-purple-100 transition-colors"
+                  onClick={() => toggleSection('family')}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-full bg-purple-200">
+                      <Users className="h-4 w-4 text-purple-700" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-medium text-purple-900">Approche familiale</h4>
+                      <p className="text-sm text-purple-700">Implication des parents et de l'environnement dans le traitement</p>
+                    </div>
+                  </div>
+                  {openSections['family'] ? 
+                    <ChevronDown className="h-5 w-5 text-purple-700" /> : 
+                    <ChevronRight className="h-5 w-5 text-purple-700" />
+                  }
+                </CollapsibleTrigger>
+                <CollapsibleContent className="px-4 pb-4">
+                  <div className="bg-white p-4 rounded-lg border border-purple-200 mt-2 space-y-3">
+                    <div>
+                      <h5 className="font-medium text-purple-900 mb-2">Implication des parents :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-purple-800">
+                        <li>Formation aux techniques de gestion comportementale</li>
+                        <li>Apprentissage de réponses neutres aux protestations</li>
+                        <li>Maintien de routines structurées</li>
+                        <li>Renforcement positif des comportements adaptatifs</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-purple-900 mb-2">Collaboration école-famille :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-purple-800">
+                        <li>Communication régulière avec les enseignants</li>
+                        <li>Mise en place d'adaptations pédagogiques</li>
+                        <li>Suivi coordonné des progrès</li>
+                        <li>Prévention du refus scolaire</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-purple-900 mb-2">Gestion de l'anxiété parentale :</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-purple-800">
+                        <li>Identification des cercles vicieux anxiété parent-enfant</li>
+                        <li>Techniques de gestion du stress parental</li>
+                        <li>Soutien psychologique aux parents si nécessaire</li>
+                        <li>Éducation sur les troubles mentaux de l'enfant</li>
+                      </ul>
+                    </div>
+                    <div className="bg-purple-100 p-3 rounded-lg">
+                      <p className="text-sm text-purple-800">
+                        <strong>Importance :</strong> L'anxiété parentale peut aggraver les symptômes de l'enfant, créant un cercle vicieux qui ne peut être interrompu que par un traitement simultané.
+                      </p>
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
             </div>
           </div>
         </CardContent>

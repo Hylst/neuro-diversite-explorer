@@ -1,7 +1,8 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { RotateCcw, Heart, AlertTriangle } from 'lucide-react';
+import { RotateCcw, Heart, AlertTriangle, Scissors } from 'lucide-react';
+import NonSuicidalSelfInjurySection from './NonSuicidalSelfInjurySection';
 
 /**
  * Component for Specialized Disorders section with detailed information
@@ -24,10 +25,14 @@ const SpecializedDisordersSection = () => {
 
       <Tabs defaultValue="toc" className="w-full">
         <div className="flex justify-center mb-6">
-          <TabsList className="grid w-full max-w-3xl grid-cols-3">
+          <TabsList className="grid w-full max-w-3xl grid-cols-4">
             <TabsTrigger value="toc">TOC</TabsTrigger>
             <TabsTrigger value="somatoformes">Somatoformes</TabsTrigger>
             <TabsTrigger value="autolesion">Auto-lésion/Suicide</TabsTrigger>
+            <TabsTrigger value="nssi" className="flex items-center gap-2">
+              <Scissors className="h-4 w-4" />
+              <span className="hidden sm:inline">NSSI</span>
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -460,6 +465,10 @@ const SpecializedDisordersSection = () => {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="nssi">
+          <NonSuicidalSelfInjurySection />
         </TabsContent>
       </Tabs>
     </div>
