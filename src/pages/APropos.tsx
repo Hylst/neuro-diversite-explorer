@@ -202,8 +202,9 @@ const APropos = () => {
                   <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-500 mb-4">
                     <p className="font-semibold text-amber-700 dark:text-amber-300">
                       ⚠️ IMPORTANT : Ce site est actuellement en phase de développement. Plusieurs sections et fonctionnalités 
-                      sont encore incomplètes. Les témoignages présentés sont fictifs, bien que conçus pour être cohérents
-                      avec les expériences réelles des personnes neurodivergentes.
+                      sont encore incomplètes.  $Pour le moment, certains témoignages présentés sont fictifs, bien que conçus pour être cohérents
+                      avec les expériences réelles des personnes neurodivergentes. Une amélioration significative de la documentation du sourcing 
+                      des informations est également prévue.
                     </p>
                   </div>
                   
