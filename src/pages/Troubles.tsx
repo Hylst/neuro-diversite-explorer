@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -53,6 +52,17 @@ const Troubles = () => {
                 Faire un test d'auto-évaluation
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* AVERTISSEMENT auteur non médecin */}
+        <div className="container mt-8">
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-8">
+            <p className="text-yellow-900 text-sm">
+              L'auteur de ce site n'est ni neuro-psychologue, ni médecin, mais une personne se documentant depuis des années, et souhaitant aider les neuro-divers en situation de difficulté, et leurs proches, à améliorer leur quotidien, en s'informant de manière accessible (gratuité, disponibilité, vulgarisation).<br/>
+              <strong>Ces informations ne remplacent toutefois pas, en aucun cas, une consultation chez un spécialiste</strong>, tant chaque cas peut être complexe et demande souvent l'expertise d'un professionnel pour un diagnostic et traitement pertinent.<br/>
+              Mais ces informations permettent de se donner déjà une 1ère idée des cas de figure, paramètres influents, et possibilités.
+            </p>
           </div>
         </div>
 

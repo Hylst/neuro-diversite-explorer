@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import HeroBanner from '@/components/home/HeroBanner';
 import FeaturedTopics from '@/components/home/FeaturedTopics';
@@ -26,6 +25,19 @@ const Index = () => {
       <button onClick={scrollToContent} className="skip-to-content">
         Aller au contenu principal
       </button>
+
+      {/* AVERTISSEMENT auteur non médecin */}
+      <div className="container mt-4">
+        <Alert variant="warning" className="mb-6 border-yellow-400 bg-yellow-50 dark:bg-yellow-900/20">
+          <Info className="h-5 w-5 text-yellow-500" />
+          <AlertTitle className="text-yellow-700 dark:text-yellow-300 font-medium">Avertissement</AlertTitle>
+          <AlertDescription className="text-yellow-900 dark:text-yellow-100 text-sm">
+            L'auteur de ce site n'est ni neuro-psychologue, ni médecin, mais une personne se documentant depuis des années, et souhaitant aider les neuro-divers en situation de difficulté, et leurs proches, à améliorer leur quotidien, en s'informant de manière accessible (gratuité, disponibilité, vulgarisation).<br/>
+            <strong>Ces informations ne remplacent toutefois pas, en aucun cas, une consultation chez un spécialiste</strong>, tant chaque cas peut être complexe et demande souvent l'expertise d'un professionnel pour un diagnostic et traitement pertinent.<br/>
+            Mais ces informations permettent de se donner déjà une 1ère idée des cas de figure, paramètres influents, et possibilités.
+          </AlertDescription>
+        </Alert>
+      </div>
       
       <div ref={mainContentRef}>
       

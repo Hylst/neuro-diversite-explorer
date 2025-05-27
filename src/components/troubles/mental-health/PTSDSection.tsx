@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, Brain, Heart, Shield } from 'lucide-react';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 /**
  * Component for PTSD and Acute Stress Disorders section
@@ -166,11 +167,11 @@ const PTSDSection = () => {
               <div className="bg-green-50 p-4 rounded-lg border border-green-200">
                 <h5 className="font-medium text-green-900 mb-2">Thérapie axée sur le traumatisme</h5>
                 <ul className="text-sm text-green-800 space-y-1">
-                  <li>• Thérapie cognitivo-comportementale (TCC)</li>
-                  <li>• Thérapie d'exposition graduelle</li>
-                  <li>• EMDR (Eye Movement Desensitization and Reprocessing)</li>
-                  <li>• Thérapie de jeu pour les jeunes enfants</li>
-                  <li>• Thérapie familiale</li>
+                  <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Thérapie cognitivo-comportementale (TCC)</span></TooltipTrigger><TooltipContent side="top">Thérapie Cognitivo-Comportementale : approche structurée visant à identifier et modifier les pensées et comportements problématiques. Elle combine des techniques de restructuration cognitive et des exercices comportementaux (exposition, résolution de problèmes). Indiquée pour le TSPT, les troubles anxieux, etc.</TooltipContent></Tooltip></li>
+                  <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Thérapie d'exposition graduelle</span></TooltipTrigger><TooltipContent side="top">Thérapie d'exposition graduelle : Exposer progressivement la personne aux souvenirs ou situations traumatiques, de façon contrôlée, pour réduire la peur par habituation. Toujours accompagnée d'un professionnel.</TooltipContent></Tooltip></li>
+                  <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">EMDR (Eye Movement Desensitization and Reprocessing)</span></TooltipTrigger><TooltipContent side="top">EMDR : Thérapie spécifique du TSPT, utilisant des stimulations bilatérales (mouvements oculaires, sons alternés) pour retraiter les souvenirs traumatiques. Efficace pour les traumas.</TooltipContent></Tooltip></li>
+                  <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Thérapie de jeu</span></TooltipTrigger><TooltipContent side="top">Thérapie de jeu : Utilisation du jeu pour permettre à l'enfant d'exprimer ses émotions et de traiter des expériences difficiles, adaptée aux plus jeunes.</TooltipContent></Tooltip> pour les jeunes enfants</li>
+                  <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Thérapie familiale</span></TooltipTrigger><TooltipContent side="top">Thérapie familiale : Implique la famille pour améliorer la communication, la gestion des conflits et le soutien autour de l'enfant/adolescent.</TooltipContent></Tooltip></li>
                 </ul>
               </div>
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">

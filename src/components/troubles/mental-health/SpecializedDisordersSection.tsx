@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { RotateCcw, Heart, AlertTriangle, Scissors } from 'lucide-react';
 import NonSuicidalSelfInjurySection from './NonSuicidalSelfInjurySection';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 /**
  * Component for Specialized Disorders section with detailed information
@@ -127,12 +128,21 @@ const SpecializedDisordersSection = () => {
                 <h4 className="font-medium mb-2">Traitement :</h4>
                 <div className="grid md:grid-cols-2 gap-3">
                   <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-                    <h5 className="font-medium text-green-900 text-sm mb-1">TCC avec exposition</h5>
+                    <h5 className="font-medium text-green-900 text-sm mb-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="underline cursor-help">TCC avec exposition</span>
+                        </TooltipTrigger>
+                        <TooltipContent side="top">
+                          Thérapie Cognitivo-Comportementale centrée sur l'exposition : associe des exercices pratiques pour affronter les obsessions et des techniques pour modifier les pensées irrationnelles. Recommandée pour le TOC.
+                        </TooltipContent>
+                      </Tooltip>
+                    </h5>
                     <ul className="text-xs text-green-800 space-y-1">
-                      <li>• Exposition et prévention de la réponse</li>
-                      <li>• Restructuration cognitive</li>
-                      <li>• Techniques de relaxation</li>
-                      <li>• Implication familiale</li>
+                      <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Exposition et prévention de la réponse</span></TooltipTrigger><TooltipContent side="top">Exposer progressivement la personne à ses obsessions sans lui permettre d'effectuer ses rituels, afin de réduire l'anxiété et l'envie de compulsion.</TooltipContent></Tooltip></li>
+                      <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Restructuration cognitive</span></TooltipTrigger><TooltipContent side="top">Identifier et remettre en question les pensées irrationnelles ou exagérées liées aux obsessions, pour adopter des croyances plus réalistes.</TooltipContent></Tooltip></li>
+                      <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Techniques de relaxation</span></TooltipTrigger><TooltipContent side="top">Apprendre à gérer l'anxiété par la respiration, la relaxation musculaire ou la pleine conscience, pour mieux tolérer l'inconfort lié à l'exposition.</TooltipContent></Tooltip></li>
+                      <li>• <Tooltip><TooltipTrigger asChild><span className="underline cursor-help">Implication familiale</span></TooltipTrigger><TooltipContent side="top">Impliquer la famille pour soutenir l'enfant, limiter la participation aux rituels et renforcer les progrès.</TooltipContent></Tooltip></li>
                     </ul>
                   </div>
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
