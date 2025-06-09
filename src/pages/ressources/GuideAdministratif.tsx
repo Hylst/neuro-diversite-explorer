@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { FileText, FileDown, ExternalLink } from 'lucide-react';
+import { FileText, FileDown, ExternalLink, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { toast } from 'sonner';
@@ -119,6 +119,19 @@ const GuideAdministratif = () => {
 
         <Card className="mb-8">
           <CardContent className="pt-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
+                <div>
+                  <h3 className="font-semibold text-amber-800 mb-1">Information importante</h3>
+                  <p className="text-sm text-amber-700">
+                    Les documents marqués comme "modèles" ou "guides" sont des ébauches créées à des fins éducatives. 
+                    Pour les démarches officielles, veuillez toujours vous référer aux sites gouvernementaux officiels 
+                    (service-public.fr, MDPH, etc.) pour obtenir les formulaires et documents à jour.
+                  </p>
+                </div>
+              </div>
+            </div>
             <h2 className="text-xl font-bold mb-4">Documents utiles et formulaires</h2>
             
             <div className="grid gap-4 md:grid-cols-2">
@@ -130,15 +143,16 @@ const GuideAdministratif = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toast.info("Ce document sera disponible prochainement.", {
-                        description: "Nous travaillons actuellement sur la mise à disposition de ces ressources.",
-                        duration: 5000,
-                      });
-                    }}
+                    asChild
                   >
-                    Télécharger (.docx)
+                    <a 
+                      href="/documents/modele-lettre-demande-pap-2025.docx" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Télécharger (.docx)
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -154,7 +168,7 @@ const GuideAdministratif = () => {
                     asChild
                   >
                     <a 
-                      href="https://www.service-public.fr/particuliers/vosdroits/R19993" 
+                      href="https://www.formulaires.service-public.fr/gf/cerfa_15692.do" 
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -172,15 +186,15 @@ const GuideAdministratif = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toast.info("Ce document sera disponible prochainement.", {
-                        description: "Nous travaillons actuellement sur la mise à disposition de ces ressources.",
-                        duration: 5000,
-                      });
-                    }}
+                    asChild
                   >
-                    Télécharger (.pdf)
+                    <a 
+                      href="https://www.cnsa.fr/documentation/cnsa_guide_rqth.pdf" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Télécharger (.pdf)
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -193,15 +207,15 @@ const GuideAdministratif = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toast.info("Ce document sera disponible prochainement.", {
-                        description: "Nous travaillons actuellement sur la mise à disposition de ces ressources.",
-                        duration: 5000,
-                      });
-                    }}
+                    asChild
                   >
-                    Télécharger (.pdf)
+                    <a 
+                      href="https://www.agefiph.fr/sites/default/files/medias/fichiers/guide_amenagements_poste_travail.pdf" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Télécharger (.pdf)
+                    </a>
                   </Button>
                 </div>
               </div>

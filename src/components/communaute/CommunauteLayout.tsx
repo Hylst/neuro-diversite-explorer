@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { AlertTriangle } from 'lucide-react';
 
 interface CommunauteLayoutProps {
   children: React.ReactNode;
@@ -22,6 +23,27 @@ const CommunauteLayout = ({ children, title, subtitle }: CommunauteLayoutProps) 
           </div>
         </div>
       </div>
+      
+      {/* Disclaimer Banner */}
+      <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+          <div className="container">
+            <div className="flex items-start">
+              <AlertTriangle className="h-5 w-5 text-blue-400 mt-0.5 mr-3 flex-shrink-0" />
+              <div className="text-sm">
+                <p className="font-medium text-blue-800 mb-1">
+                  Événements réels 2025
+                </p>
+                <p className="text-blue-700">
+                  La section <strong>Événements</strong> présente des événements réels de neurodiversité en France pour 2025. 
+                  Le <strong>Forum</strong> est encore en développement. 
+                  Nous encourageons les associations, institutions et organisations à nous communiquer 
+                  leurs prochains événements publics sur le thème de la neurodiversité.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
       <div className="container py-12">
         {children}
       </div>

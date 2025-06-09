@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen, FileDown, ExternalLink, DownloadCloud, Star } from 'lucide-react';
+import { BookOpen, FileDown, ExternalLink, DownloadCloud, Star, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -610,6 +610,18 @@ const Applications = () => {
 
         <Card>
           <CardContent className="pt-6">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-blue-600 mt-0.5" />
+                <div>
+                  <h3 className="font-semibold text-blue-800 mb-1">Documents éducatifs</h3>
+                  <p className="text-sm text-blue-700">
+                    Les guides et documents proposés ci-dessous sont des ressources éducatives créées par notre équipe. 
+                    Ils ne remplacent pas les documentations officielles des éditeurs d'applications ou des systèmes d'exploitation.
+                  </p>
+                </div>
+              </div>
+            </div>
             <h2 className="text-xl font-bold mb-4">Guides d'accessibilité numérique</h2>
             
             <div className="grid gap-4 md:grid-cols-2">
@@ -618,7 +630,16 @@ const Applications = () => {
                 <div>
                   <h3 className="font-semibold">Guide d'optimisation des appareils</h3>
                   <p className="text-sm text-muted-foreground mb-2">Configuration des paramètres d'accessibilité sur iOS, Android et Windows</p>
-                  <Button variant="outline" size="sm">Télécharger (.pdf)</Button>
+                  <Button variant="outline" size="sm" asChild>
+                    <a 
+                      href="/documents/guide-optimisation-appareils-2025.pdf" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Télécharger (.pdf)
+                    </a>
+                  </Button>
                 </div>
               </div>
               
@@ -627,7 +648,16 @@ const Applications = () => {
                 <div>
                   <h3 className="font-semibold">Sécurité numérique adaptée</h3>
                   <p className="text-sm text-muted-foreground mb-2">Protection des comptes et gestion des mots de passe pour neurodivergents</p>
-                  <Button variant="outline" size="sm">Télécharger (.pdf)</Button>
+                  <Button variant="outline" size="sm" asChild>
+                    <a 
+                      href="/documents/securite-numerique-neurodivergents-2025.pdf" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Télécharger (.pdf)
+                    </a>
+                  </Button>
                 </div>
               </div>
               
@@ -636,7 +666,16 @@ const Applications = () => {
                 <div>
                   <h3 className="font-semibold">Comparatif détaillé d'applications</h3>
                   <p className="text-sm text-muted-foreground mb-2">Analyse de 50+ applications par type de trouble et fonctionnalité</p>
-                  <Button variant="outline" size="sm">Télécharger (.xlsx)</Button>
+                  <Button variant="outline" size="sm" asChild>
+                    <a 
+                      href="/documents/comparatif-applications-neurodiversite-2025.xlsx" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Télécharger (.xlsx)
+                    </a>
+                  </Button>
                 </div>
               </div>
               
@@ -645,7 +684,16 @@ const Applications = () => {
                 <div>
                   <h3 className="font-semibold">Extensions de navigateur utiles</h3>
                   <p className="text-sm text-muted-foreground mb-2">Guide d'installation et configuration pour Chrome, Firefox et Edge</p>
-                  <Button variant="outline" size="sm">Télécharger (.pdf)</Button>
+                  <Button variant="outline" size="sm" asChild>
+                    <a 
+                      href="/documents/extensions-navigateur-neurodiversite-2025.pdf" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Télécharger (.pdf)
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>

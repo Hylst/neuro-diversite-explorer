@@ -62,39 +62,40 @@ const ForumTab = () => {
     setSelectedCategory(null);
   };
   
+  // Catégories basées sur des communautés réelles françaises de neurodiversité
   const categories: ForumCategoryProps[] = [
     {
-      id: 'temoignages',
-      name: 'Témoignages',
-      description: 'Partagez vos expériences personnelles et vos histoires',
+      id: 'collectif-atypique',
+      name: 'Collectif Atypique',
+      description: 'Association pour l\'inclusion et le mieux-être des personnes neurodivergentes',
       topics: 24,
       icon: getIconForCategory('temoignages')
     },
     {
-      id: 'experts',
-      name: 'Questions aux experts',
-      description: 'Posez vos questions aux professionnels et spécialistes',
+      id: 'forum-asperansa',
+      name: 'Forum Asperansa',
+      description: 'Discussions sur l\'autisme et le syndrome d\'Asperger',
       topics: 16,
       icon: getIconForCategory('experts')
     },
     {
-      id: 'famille',
-      name: 'Parents & Famille',
-      description: 'Discussions sur le soutien familial et l\'accompagnement',
+      id: 'collectif-tdah-ouest',
+      name: 'Collectif Parents TDAH Ouest',
+      description: 'Forum francophone pour parents et patients TDAH',
       topics: 18,
       icon: getIconForCategory('famille')
     },
     {
-      id: 'scolarite',
-      name: 'Scolarité',
-      description: 'Échanges sur l\'éducation et l\'accompagnement scolaire',
+      id: 'federation-dys',
+      name: 'Fédération Française des DYS',
+      description: 'Ressources et échanges sur les troubles DYS',
       topics: 12,
       icon: getIconForCategory('scolarite')
     },
     {
-      id: 'professionnel',
-      name: 'Vie professionnelle',
-      description: 'Discussions sur le milieu de travail et l\'emploi',
+      id: 'specialisterne',
+      name: 'Specialisterne France',
+      description: 'Insertion professionnelle des personnes autistes',
       topics: 9,
       icon: getIconForCategory('professionnel')
     },

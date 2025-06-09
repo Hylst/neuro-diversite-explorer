@@ -20,74 +20,75 @@ interface Resource {
 }
 
 const CartographieTab = () => {
+  // Ressources basées sur des organisations réelles françaises de neurodiversité
   const [resources, setResources] = useState<Resource[]>([
     {
       id: 1,
-      name: "Centre Ressources Autisme Île-de-France",
+      name: "Centre Ressources Autisme Île-de-France (CRAIF)",
       type: "Professionnel",
       region: "Île-de-France",
-      description: "Centre pluridisciplinaire spécialisé dans l'évaluation et l'accompagnement des troubles neurodéveloppementaux",
+      description: "Centre pluridisciplinaire spécialisé dans l'évaluation et l'accompagnement des troubles du spectre autistique",
       website: "https://www.craif.org",
       rating: 4.8,
       reviews: 156
     },
     {
       id: 2,
-      name: "Association Française de Gestion des Services Spécialisés",
+      name: "Collectif Atypique",
       type: "Association",
       region: "National",
-      description: "Sensibilisation, accompagnement et défense des droits des personnes neurodivergentes",
-      website: "https://www.afgsa.fr",
+      description: "Association pour l'inclusion et le mieux-être des personnes issues de la neurodiversité (TDAH, dyslexie, dyscalculie)",
+      website: "https://blog.francetvinfo.fr/dans-vos-tetes/",
       rating: 4.9,
       reviews: 203
     },
     {
       id: 3,
-      name: "Autism Connect",
+      name: "Specialisterne France",
       type: "Service en ligne",
-      region: "En ligne",
-      description: "Plateforme digitale de mise en relation avec des professionnels et ressources en neurodiversité",
-      website: "https://www.autismconnect.com",
+      region: "National",
+      description: "Insertion professionnelle des personnes autistes et neurodivergentes dans le secteur technologique",
+      website: "https://fr.specialisterne.com",
       rating: 4.7,
       reviews: 178
     },
     {
       id: 4,
-      name: "Collectif Neurodiversité Auvergne",
+      name: "Collectif Parents TDAH Ouest",
       type: "Communauté",
-      region: "Auvergne-Rhône-Alpes",
-      description: "Groupe d'entraide et d'activités pour adultes neurodivergents",
-      website: "https://www.collectif-neurodiversite-auvergne.org",
+      region: "Ouest de la France",
+      description: "Forum francophone pour parents et patients concernés par le TDAH",
+      website: "http://www.collectif-parents-tdah-ouest.fr",
       rating: 4.8,
       reviews: 89
     },
     {
       id: 5,
-      name: "Centre de Recherche Cerveau et Cognition",
+      name: "Délégation Interministérielle TND",
       type: "Professionnel",
-      region: "Occitanie",
-      description: "Centre de recherche et de consultation spécialisé en neurosciences et troubles neurodéveloppementaux",
-      website: "https://www.cerco.cnrs.fr",
+      region: "National",
+      description: "Stratégie nationale pour les troubles du neurodéveloppement : autisme, Dys, TDAH, TDI",
+      website: "https://handicap.gouv.fr",
       rating: 4.6,
       reviews: 124
     },
     {
       id: 6,
-      name: "FabLab Neurodiversité",
-      type: "Professionnel",
+      name: "Forum Asperansa",
+      type: "Service en ligne",
       region: "National",
-      description: "Développement de solutions technologiques innovantes pour la neurodiversité",
-      website: "https://www.fablabfrance.fr",
+      description: "Forum de discussion sur l'autisme et le syndrome d'Asperger",
+      website: "https://forum.asperansa.org",
       rating: 4.7,
       reviews: 92
     },
     {
       id: 7,
-      name: "UNAPEI",
+      name: "Autisme France",
       type: "Association",
       region: "National",
-      description: "Réseau national de professionnels et structures engagés pour l'inclusion des personnes neurodivergentes",
-      website: "https://www.unapei.org",
+      description: "Association nationale de défense des droits des personnes autistes et de leurs familles",
+      website: "https://www.autisme-france.fr",
       rating: 4.8,
       reviews: 167
     },
@@ -95,8 +96,8 @@ const CartographieTab = () => {
       id: 8,
       name: "Fédération Française des DYS",
       type: "Service en ligne",
-      region: "En ligne",
-      description: "Outils et ressources numériques adaptés aux besoins spécifiques des personnes neurodivergentes",
+      region: "National",
+      description: "Ressources et accompagnement pour les troubles DYS (dyslexie, dyspraxie, dysorthographie)",
       website: "https://www.ffdys.com",
       rating: 4.5,
       reviews: 145

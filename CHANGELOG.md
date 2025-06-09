@@ -17,6 +17,14 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [1.2.0] - Prochaine version
 
 ### ✨ Ajouté
+- **Événements neurodiversité 2025** : Intégration d'événements réels français pour 2025 dans la section Communauté
+  - Grand Salon de l'Autisme (5-6 avril 2025, 100% en ligne)
+  - Journée Mondiale de Sensibilisation à l'Autisme (2 avril 2025)
+  - Challenge des Cœurs Bleus (22 mars - 2 avril 2025)
+  - Projection "Musicalement Autre" (28 mars 2025, Vitry-Châtillon)
+  - Table ronde inclusion à Mitry-Mory (2 avril 2025)
+  - Journée spéciale ASDAA à Lésigny (2 avril 2025)
+  - Congrès Autisme France et FFDys (dates à confirmer)
 - Nouveaux témoignages neurodivergents dans la section Blog (synesthésie, douance/TDAH, trisomie 21, bipolarité, trouble dissociatif, hypersensibilité sensorielle, autisme à diagnostic tardif)
 - Support pour davantage d'icônes dans les cartes de blog (puzzle, music, book-open, sparkles, stars, cloud)
 - Amélioration de l'affichage des avatars locaux pour les nouveaux témoignages
@@ -45,7 +53,27 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Mise à jour des liens fictifs dans la cartographie par des liens réels et valides
 - Désactivation temporaire des boutons de réseaux sociaux dans le footer
 
+### 🔄 Modifié
+- **Liens des événements** : Mise à jour avec des URLs officielles fonctionnelles
+  - CRAIF pour les événements Île-de-France 2025
+  - Grand Salon de l'Autisme avec lien direct d'inscription
+  - Autisme France et FFDys pour les congrès
+  - Autisme & Sommeil pour les ressources spécialisées
+- **Contenu des événements** : Amélioration des descriptions avec informations pratiques
+  - Horaires précis et tarifs quand disponibles
+  - Numéros de téléphone pour réservations
+  - Hashtags officiels pour les challenges
+  - Détails sur les replays et inscriptions
+
 ### 🐛 Corrections
+- **Syntaxe JSX** : Correction d'une balise div fermante orpheline dans CommunauteLayout.tsx
+- **Affichage des événements** : Correction du problème d'affichage des 8 événements réels 2025
+  - Suppression des événements factices dans EventsTab.tsx qui masquaient les vrais événements
+  - Harmonisation des interfaces Event entre EventsTab et EventList
+  - Correction du passage de données vides qui empêchait l'affichage des defaultEvents
+  - Mise à jour du message d'information pour refléter le contenu réel
+- **Événements communauté** : Remplacement du contenu factice par des événements réels 2025
+- **Liens brisés** : Correction des liens non fonctionnels vers des pages officielles
 - Correction d'une erreur de chaîne non terminée dans BlogData.ts
 - Correction de l'affichage des icônes dans les cartes d'articles de blog
 - Correction du chevauchement du footer avec les cartes de blog

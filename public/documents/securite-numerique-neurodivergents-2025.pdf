@@ -1,0 +1,217 @@
+# Guide de sécurité numérique adapté aux neurodivergents
+
+**⚠️ DOCUMENT ÉDUCATIF - RESSOURCE NON OFFICIELLE ⚠️**
+
+*Ce guide est une ressource éducative créée par l'équipe NeuroDiversité Explorer. Il ne remplace pas les recommandations officielles de sécurité des organismes spécialisés (ANSSI, CNIL) ou des éditeurs de logiciels. Les conseils de sécurité évoluent constamment.*
+
+---
+
+## Gestion des mots de passe
+
+### Table des matières
+1. Principes de base de la sécurité numérique
+2. Gestion des mots de passe adaptée
+3. Authentification à deux facteurs simplifiée
+4. Protection contre le phishing
+5. Sécurisation des appareils
+6. Conseils spécifiques par profil neurodivergent
+
+---
+
+## 1. Principes de base de la sécurité numérique
+
+### Pourquoi la sécurité est importante :
+- Protection des données personnelles
+- Prévention de l'usurpation d'identité
+- Sécurisation des informations médicales
+- Protection financière
+
+### Règles d'or :
+1. Un mot de passe unique par compte
+2. Activation de l'authentification à deux facteurs
+3. Mise à jour régulière des logiciels
+4. Méfiance envers les liens suspects
+
+---
+
+## 2. Gestion des mots de passe adaptée
+
+### Gestionnaires de mots de passe recommandés :
+
+**Pour débutants :**
+- **Bitwarden** (gratuit, interface simple)
+- **1Password** (payant, très intuitif)
+
+**Pour utilisateurs avancés :**
+- **KeePass** (gratuit, open source)
+- **Dashlane** (payant, fonctionnalités avancées)
+
+### Configuration simplifiée :
+
+1. **Installation :**
+   - Télécharger depuis le site officiel uniquement
+   - Installer sur tous vos appareils
+   - Créer un mot de passe maître fort
+
+2. **Utilisation quotidienne :**
+   - Laisser le gestionnaire générer les mots de passe
+   - Utiliser la fonction de remplissage automatique
+   - Sauvegarder régulièrement
+
+### Techniques mnémotechniques pour le mot de passe maître :
+- Utiliser une phrase personnelle + chiffres + symboles
+- Exemple : "MonChat2Miaule!" devient "MC2M!"
+- Associer à une image mentale forte
+
+---
+
+## 3. Authentification à deux facteurs (2FA)
+
+### Applications recommandées :
+- **Google Authenticator** (simple)
+- **Authy** (sauvegarde cloud)
+- **Microsoft Authenticator** (intégration Office)
+
+### Configuration étape par étape :
+
+1. **Activation sur le compte :**
+   - Aller dans les paramètres de sécurité
+   - Chercher "Authentification à deux facteurs" ou "2FA"
+   - Suivre les instructions
+
+2. **Codes de récupération :**
+   - Toujours sauvegarder les codes de récupération
+   - Les imprimer et les ranger en sécurité
+   - Ne jamais les partager
+
+### Conseils pour neurodivergents :
+- Créer une routine pour vérifier les codes
+- Utiliser des rappels visuels
+- Pratiquer la procédure plusieurs fois
+
+---
+
+## 4. Protection contre le phishing
+
+### Signaux d'alarme :
+- Urgence artificielle ("Votre compte sera fermé")
+- Fautes d'orthographe nombreuses
+- Adresse email suspecte
+- Demande d'informations personnelles
+
+### Vérifications à effectuer :
+1. **Vérifier l'expéditeur :**
+   - Regarder l'adresse email complète
+   - Comparer avec les emails officiels précédents
+
+2. **Analyser le contenu :**
+   - Méfiance envers l'urgence
+   - Vérifier les liens avant de cliquer
+
+3. **Confirmer par un autre canal :**
+   - Appeler directement l'organisation
+   - Se connecter au site officiel séparément
+
+### Technique du "STOP" :
+- **S**'arrêter avant de cliquer
+- **T**éléphoner pour vérifier si nécessaire
+- **O**bserver les détails suspects
+- **P**enser aux conséquences
+
+---
+
+## 5. Sécurisation des appareils
+
+### Paramètres essentiels :
+
+**Smartphone :**
+- Code PIN/empreinte/reconnaissance faciale
+- Verrouillage automatique (30 secondes à 2 minutes)
+- Chiffrement activé
+- Localisation activée pour retrouver l'appareil
+
+**Ordinateur :**
+- Mot de passe de session
+- Mise en veille automatique
+- Antivirus à jour
+- Pare-feu activé
+
+**Navigateur web :**
+- Navigation privée pour les sites sensibles
+- Blocage des pop-ups
+- Suppression régulière de l'historique
+- Extensions de sécurité (uBlock Origin, Privacy Badger)
+
+---
+
+## 6. Conseils spécifiques par profil
+
+### Pour les personnes avec TDAH :
+- **Automatisation maximale :**
+  - Gestionnaire de mots de passe avec remplissage auto
+  - Rappels programmés pour les mises à jour
+  - Notifications de sécurité simplifiées
+
+- **Organisation visuelle :**
+  - Codes couleur pour différents types de comptes
+  - Checklist de sécurité affichée
+  - Routine de vérification hebdomadaire
+
+### Pour les personnes autistes :
+- **Procédures détaillées :**
+  - Scripts étape par étape pour chaque action
+  - Même routine de sécurité chaque fois
+  - Documentation personnelle des procédures
+
+- **Environnement prévisible :**
+  - Éviter les changements fréquents de mots de passe
+  - Utiliser les mêmes outils de sécurité
+  - Préparer aux mises à jour de sécurité
+
+### Pour les personnes avec dyslexie :
+- **Supports visuels :**
+  - Icônes et symboles plutôt que texte
+  - Codes couleur pour identifier les niveaux de sécurité
+  - Synthèse vocale pour les instructions
+
+- **Simplification :**
+  - Phrases courtes dans les instructions
+  - Éviter les termes techniques complexes
+  - Validation par répétition
+
+### Pour les personnes avec dyspraxie :
+- **Interfaces adaptées :**
+  - Boutons plus grands
+  - Temps de réaction plus longs
+  - Confirmation avant actions importantes
+
+- **Alternatives gestuelles :**
+  - Reconnaissance vocale quand possible
+  - Raccourcis clavier simples
+  - Éviter les gestes complexes
+
+---
+
+## Ressources supplémentaires
+
+### Sites web utiles :
+- **Have I Been Pwned** : Vérifier si vos comptes ont été compromis
+- **CNIL** : Conseils officiels sur la protection des données
+- **ANSSI** : Agence nationale de sécurité des systèmes d'information
+
+### Numéros d'urgence :
+- **Info Escroqueries** : 0 805 805 817
+- **Cybermalveillance.gouv.fr** : Assistance en cas d'incident
+
+### Formation continue :
+- Webinaires mensuels sur la sécurité numérique
+- Ateliers pratiques en ligne
+- Communauté d'entraide sur notre forum
+
+---
+
+**Document réalisé par l'équipe NeuroDiversité Explorer**
+**Dernière mise à jour :** Mars 2025
+**Version :** 1.2
+
+*Ce guide est spécialement conçu pour les personnes neurodivergentes. Pour toute question, contactez notre équipe de support technique.*
