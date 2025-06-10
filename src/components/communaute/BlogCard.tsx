@@ -11,11 +11,12 @@ import { BlogPost, getAuthorName, getAuthorAvatar } from './BlogTypes';
 
 interface BlogCardProps {
   post: BlogPost;
-  index: number;
+  index?: number;
   onClick: () => void;
+  className?: string;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ post, index, onClick }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ post, index = 0, onClick, className }) => {
   // Animation variants pour l'apparition des cartes
   const variants = {
     hidden: { opacity: 0, y: 20 },
@@ -68,57 +69,79 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index, onClick }) => {
       variants={variants}
     >
       <Card 
-        className="w-full h-full flex flex-col cursor-pointer transition-all hover:shadow-md dark:hover:shadow-primary/10"
+        className={`w-full h-full flex flex-col cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] dark:hover:shadow-primary/20 border-0 bg-gradient-to-br from-background to-muted/30 backdrop-blur-sm ${className || ''}`}
         onClick={onClick}
       >
-        <CardHeader className="pb-3 flex flex-row items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src={avatarSrc} alt={authorName} />
-              <AvatarFallback>{authorName?.[0] || '?'}</AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="text-sm font-medium leading-none">{authorName}</p>
-              <p className="text-xs text-muted-foreground">{post.date}</p>
+        {/* Header avec gradient et icône améliorée */}
+        <CardHeader className="pb-3 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-50" />
+          <div className="relative flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Avatar className="h-10 w-10 ring-2 ring-primary/20">
+                <AvatarImage src={avatarSrc} alt={authorName} />
+                <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-white font-semibold">
+                  {authorName?.[0] || '?'}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="text-sm font-semibold leading-none">{authorName}</p>
+                <p className="text-xs text-muted-foreground mt-1">{post.date}</p>
+              </div>
             </div>
+            
+            {getIconComponent() && (
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
+                <div className="text-primary">
+                  {getIconComponent()}
+                </div>
+              </div>
+            )}
           </div>
-          
-          {getIconComponent() && (
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
-              {getIconComponent()}
-            </div>
-          )}
         </CardHeader>
         
-        <CardContent className="pb-3 flex-grow">
-          <CardTitle className="text-lg mb-2 line-clamp-2">{post.title}</CardTitle>
-          <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
+        {/* Contenu principal avec meilleure typographie */}
+        <CardContent className="pb-4 flex-grow">
+          <CardTitle className="text-lg mb-3 line-clamp-2 font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
+            {post.title}
+          </CardTitle>
+          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+            {post.excerpt}
+          </p>
         </CardContent>
         
-        <CardFooter className="flex justify-between items-center pt-0 mt-auto">
+        {/* Footer avec design amélioré */}
+        <CardFooter className="flex justify-between items-center pt-0 mt-auto border-t border-border/50 bg-muted/20">
           <div className="flex items-center space-x-4 text-muted-foreground">
-            <div className="flex items-center text-xs">
+            <div className="flex items-center text-xs hover:text-primary transition-colors">
               <ThumbsUp className="h-3.5 w-3.5 mr-1" />
-              <span>{post.likes}</span>
+              <span className="font-medium">{post.likes}</span>
             </div>
-            <div className="flex items-center text-xs">
+            <div className="flex items-center text-xs hover:text-primary transition-colors">
               <MessageSquare className="h-3.5 w-3.5 mr-1" />
-              <span>{post.comments}</span>
+              <span className="font-medium">{post.comments}</span>
             </div>
-            <div className="flex items-center text-xs">
+            <div className="flex items-center text-xs hover:text-primary transition-colors">
               <Clock className="h-3.5 w-3.5 mr-1" />
-              <span>{post.readtime}</span>
+              <span className="font-medium">{post.readtime}</span>
             </div>
           </div>
           
+          {/* Tags avec design amélioré */}
           <div className="flex flex-wrap justify-end gap-1 max-w-[150px]">
             {post.tags.slice(0, 2).map((tag, i) => (
-              <Badge key={i} variant="outline" className="text-xs">
+              <Badge 
+                key={i} 
+                variant="secondary" 
+                className="text-xs bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20 hover:from-primary/20 hover:to-secondary/20 transition-all"
+              >
                 {tag}
               </Badge>
             ))}
             {post.tags.length > 2 && (
-              <Badge variant="outline" className="text-xs">
+              <Badge 
+                variant="secondary" 
+                className="text-xs bg-gradient-to-r from-muted to-muted/80 border-border hover:from-primary/10 hover:to-secondary/10 transition-all"
+              >
                 +{post.tags.length - 2}
               </Badge>
             )}

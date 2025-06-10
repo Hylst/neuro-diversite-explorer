@@ -64,4 +64,5 @@ export interface BlogPost {
   icon?: string;
   avatar_id?: string;
   avatar_url?: string;
+  featured?: boolean;
 }

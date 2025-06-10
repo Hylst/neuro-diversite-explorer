@@ -31,9 +31,18 @@ const APropos = () => {
                   <h2 className="text-2xl font-bold">Qui suis-je?</h2>
                 </div>
 
-                <div className="space-y-4 text-muted-foreground">
+                <div className="flex flex-col md:flex-row gap-6 mb-6">
+                  <div className="flex-shrink-0">
+                    <img 
+                      src="/assets/avatars/geoffroy-s-avatar.svg" 
+                      alt="Geoffroy S." 
+                      className="w-32 h-32 rounded-full border-2 border-secondary shadow-lg"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Bonjour, je m'appelle Geoffroy Streit. Je ne suis ni médecin, ni neuropsychologue, mais un passionné profondément humain qui s'intéresse depuis de nombreuses années aux questions de neurodiversité.
+                    Bonjour, je m'appelle Geoffroy S. Je ne suis ni médecin, ni neuropsychologue, mais un passionné profondément humain qui s'intéresse depuis de nombreuses années aux questions de neurodiversité.
                   </p>
                   
                   <p>
@@ -47,6 +56,8 @@ const APropos = () => {
                   <p>
                     C'est cette volonté de partager mes connaissances et mon expérience qui m'a poussé à créer NeuroDiversité Explorer, avec beaucoup d'humilité et le désir sincère d'aider les autres.
                   </p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>

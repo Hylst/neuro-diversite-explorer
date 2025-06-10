@@ -1,0 +1,62 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="circle">
+      <circle cx="100" cy="100" r="100"/>
+    </clipPath>
+  </defs>
+  
+  <!-- Background with city lights bokeh effect -->
+  <rect width="200" height="200" fill="url(#cityGradient)"/>
+  
+  <defs>
+    <radialGradient id="cityGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Bokeh lights -->
+  <circle cx="30" cy="40" r="3" fill="#fbbf24" opacity="0.7"/>
+  <circle cx="170" cy="60" r="2" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="150" cy="30" r="2.5" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="60" cy="170" r="2" fill="#f59e0b" opacity="0.5"/>
+  <circle cx="180" cy="150" r="3" fill="#fbbf24" opacity="0.7"/>
+  
+  <!-- Main portrait -->
+  <g clip-path="url(#circle)">
+    <!-- Face base -->
+    <ellipse cx="100" cy="85" rx="35" ry="40" fill="#fdbcb4"/>
+    
+    <!-- Hair -->
+    <path d="M65 60 Q100 45 135 60 Q140 70 135 80 Q130 75 125 78 Q120 82 115 85 Q110 88 105 90 Q100 92 95 90 Q90 88 85 85 Q80 82 75 78 Q70 75 65 80 Q60 70 65 60" fill="#8b7355"/>
+    
+    <!-- Eyes -->
+    <ellipse cx="88" cy="78" rx="4" ry="3" fill="white"/>
+    <ellipse cx="112" cy="78" rx="4" ry="3" fill="white"/>
+    <circle cx="88" cy="78" r="2" fill="#4a5568"/>
+    <circle cx="112" cy="78" r="2" fill="#4a5568"/>
+    
+    <!-- Eyebrows -->
+    <path d="M82 72 Q88 70 94 72" stroke="#6b5b47" stroke-width="2" fill="none"/>
+    <path d="M106 72 Q112 70 118 72" stroke="#6b5b47" stroke-width="2" fill="none"/>
+    
+    <!-- Nose -->
+    <path d="M98 82 Q100 88 102 82" stroke="#e2b5a8" stroke-width="1" fill="none"/>
+    
+    <!-- Mouth -->
+    <path d="M92 95 Q100 102 108 95" stroke="#d69e2e" stroke-width="2" fill="none"/>
+    
+    <!-- Beard/facial hair -->
+    <path d="M85 100 Q100 110 115 100 Q118 105 115 110 Q100 120 85 110 Q82 105 85 100" fill="#6b5b47" opacity="0.8"/>
+    
+    <!-- Shirt/clothing -->
+    <rect x="70" y="130" width="60" height="70" fill="#2d3748" rx="5"/>
+    
+    <!-- Smile lines -->
+    <path d="M85 92 Q88 95 85 98" stroke="#e2b5a8" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M115 92 Q112 95 115 98" stroke="#e2b5a8" stroke-width="1" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- Border -->
+  <circle cx="100" cy="100" r="99" fill="none" stroke="#374151" stroke-width="2"/>
+</svg>

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Avatar } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -14,25 +14,71 @@ interface BlogPostDetailProps {
 
 const BlogPostDetail: React.FC<BlogPostDetailProps> = ({ post, onClose }) => {
   const IconComponent = post.icon ? Calendar : Calendar;
+  const modalRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'Escape':
+          onClose();
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          if (contentRef.current) {
+            contentRef.current.scrollBy({ top: -100, behavior: 'smooth' });
+          }
+          break;
+        case 'ArrowDown':
+          event.preventDefault();
+          if (contentRef.current) {
+            contentRef.current.scrollBy({ top: 100, behavior: 'smooth' });
+          }
+          break;
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+  
+  // Handle click outside to close
+  const handleBackdropClick = (event: React.MouseEvent) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
   
   return (
     <motion.div
+      ref={modalRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex justify-center items-start overflow-y-auto py-10"
+      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-start overflow-y-auto py-4 md:py-10"
+      onClick={handleBackdropClick}
     >
-      <div className="bg-background rounded-lg shadow-lg max-w-3xl w-full mx-4 relative">
+      <motion.div 
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="bg-background rounded-xl shadow-2xl max-w-4xl w-full mx-4 relative border border-border/50"
+        onClick={(e) => e.stopPropagation()}
+      >
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={onClose} 
-          className="absolute right-4 top-4 z-10"
+          className="absolute right-4 top-4 z-10 hover:bg-destructive/10 hover:text-destructive transition-colors"
         >
           ✕
         </Button>
         
-        <div className="p-6 md:p-8">
+        <div 
+          ref={contentRef}
+          className="p-6 md:p-8 max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
+        >
           <div className="flex items-center gap-2 mb-6">
             {post.tags && post.tags.map((tag, index) => (
               <Badge key={index} variant="outline" className="bg-secondary/20">
@@ -69,40 +115,41 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({ post, onClose }) => {
             </div>
           </div>
           
-          <div className="prose prose-sm md:prose-base max-w-none">
+          <div className="prose prose-sm md:prose-lg max-w-none dark:prose-invert">
             {post.content && post.content.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">{paragraph}</p>
+              <p key={index} className="mb-6 leading-relaxed text-foreground/90">{paragraph}</p>
             ))}
           </div>
           
-          <div className="mt-8 pt-6 border-t flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" className="rounded-full gap-2">
-                  <Heart className="h-4 w-4" />
-                  {post.likes}
-                </Button>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" className="rounded-full gap-2">
-                  <MessageSquare className="h-4 w-4" />
-                  {post.comments}
-                </Button>
-              </div>
+          <div className="mt-8 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <Button variant="outline" size="sm" className="rounded-full gap-2 hover:bg-primary/10 hover:text-primary transition-colors">
+                <Heart className="h-4 w-4" />
+                {post.likes}
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-full gap-2 hover:bg-primary/10 hover:text-primary transition-colors">
+                <MessageSquare className="h-4 w-4" />
+                {post.comments}
+              </Button>
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="rounded-full gap-2">
+              <Button variant="outline" size="sm" className="rounded-full gap-2 hover:bg-primary/10 hover:text-primary transition-colors">
                 <Bookmark className="h-4 w-4" />
                 Enregistrer
               </Button>
-              <Button variant="outline" size="sm" className="rounded-full gap-2">
+              <Button variant="outline" size="sm" className="rounded-full gap-2 hover:bg-primary/10 hover:text-primary transition-colors">
                 <Share2 className="h-4 w-4" />
                 Partager
               </Button>
             </div>
           </div>
+          
+          {/* Keyboard navigation hint */}
+          <div className="mt-4 pt-4 border-t border-border/30 text-xs text-muted-foreground text-center">
+            <p>💡 Utilisez <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">ESC</kbd> pour fermer • <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">↑↓</kbd> pour faire défiler</p>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

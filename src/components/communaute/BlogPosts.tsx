@@ -10,7 +10,7 @@ import { BlogPost, getAuthorName, getAuthorAvatar } from './BlogTypes';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import { Shield } from 'lucide-react';
+import { Shield, MessageSquare, Calendar } from 'lucide-react';
 
 // Composant principal pour afficher la liste des articles
 const BlogPosts: React.FC = () => {
@@ -31,53 +31,115 @@ const BlogPosts: React.FC = () => {
   }, []);
   
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchBlogPosts = async () => {
+      setLoading(true);
+      
+      // Start with local data immediately
+      setPosts(blogPosts);
+      
       try {
-        setLoading(true);
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*');
+        // Create a timeout promise
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Timeout')), 5000)
+        );
         
-        if (error) {
-          console.error('Error fetching blog posts from Supabase:', error);
-          // Fallback to local data
-          console.log('Falling back to local blog data');
-          setPosts(blogPosts);
-        } else if (data && data.length > 0) {
-          console.log('Successfully loaded', data.length, 'posts from Supabase');
-          // Convert Supabase data to BlogPost type
-          const formattedPosts = data.map(post => ({
-            id: post.id,
-            title: post.title,
-            excerpt: post.excerpt,
-            content: post.content,
-            author: post.author,
-            date: post.date,
-            readtime: post.readtime,
-            likes: post.likes || 0,
-            comments: post.comments || 0,
-            tags: post.tags,
-            icon: post.icon,
-            avatar_id: post.avatar_id,
-            avatar_url: post.avatar_url
-          })) as BlogPost[];
-          setPosts(formattedPosts);
+        // Race between fetch and timeout
+        const { data: supabasePosts, error } = await Promise.race([
+          supabase
+            .from('blog_posts')
+            .select('*')
+            .order('created_at', { ascending: false }),
+          timeoutPromise
+        ]) as any;
+        
+        if (error) throw error;
+        
+        if (supabasePosts && supabasePosts.length > 0) {
+          // Create a map of existing posts by title to avoid duplicates
+          const existingTitles = new Set(blogPosts.map(post => post.title.toLowerCase().trim()));
+          
+          // Filter out Supabase posts that have the same title as local posts
+          const uniqueSupabasePosts = supabasePosts.filter((post: any) => 
+            !existingTitles.has(post.title?.toLowerCase().trim() || '')
+          );
+          
+          const allPosts = [...blogPosts, ...uniqueSupabasePosts];
+          
+          // Sort posts: Geoffroy S. first, then by date
+          const sortedPosts = allPosts.sort((a, b) => {
+            const authorA = getAuthorName(a.author);
+            const authorB = getAuthorName(b.author);
+            
+            // Prioritize Geoffroy S. articles
+            const isGeoffroyA = authorA.toLowerCase().includes('geoffroy s.') || authorA.toLowerCase().includes('geoffroy streit');
+            const isGeoffroyB = authorB.toLowerCase().includes('geoffroy s.') || authorB.toLowerCase().includes('geoffroy streit');
+            
+            if (isGeoffroyA && !isGeoffroyB) return -1;
+            if (!isGeoffroyA && isGeoffroyB) return 1;
+            
+            // Then sort by date (newest first)
+            const dateA = new Date(a.date || a.created_at);
+            const dateB = new Date(b.date || b.created_at);
+            return dateB.getTime() - dateA.getTime();
+          });
+          
+          setPosts(sortedPosts);
+          
+          if (uniqueSupabasePosts.length > 0) {
+            toast.success(`${allPosts.length} articles chargés (${blogPosts.length} locaux + ${uniqueSupabasePosts.length} Supabase)`);
+          } else {
+            toast.success(`${blogPosts.length} articles locaux chargés`);
+          }
         } else {
-          // If no data in Supabase, sync local data to Supabase
-          console.log('No posts found in Supabase, syncing local data');
-          await syncLocalDataToSupabase();
-          setPosts(blogPosts);
+          // Sort local posts: Geoffroy S. first, then by date
+          const sortedLocalPosts = [...blogPosts].sort((a, b) => {
+          const authorA = getAuthorName(a.author);
+          const authorB = getAuthorName(b.author);
+            
+            // Prioritize Geoffroy S. articles
+            const isGeoffroyA = authorA.toLowerCase().includes('geoffroy s.') || authorA.toLowerCase().includes('geoffroy streit');
+            const isGeoffroyB = authorB.toLowerCase().includes('geoffroy s.') || authorB.toLowerCase().includes('geoffroy streit');
+            
+            if (isGeoffroyA && !isGeoffroyB) return -1;
+            if (!isGeoffroyA && isGeoffroyB) return 1;
+            
+            // Then sort by date (newest first)
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB.getTime() - dateA.getTime();
+          });
+          
+          setPosts(sortedLocalPosts);
+          toast.success(`${blogPosts.length} articles locaux chargés`);
         }
       } catch (error) {
-        console.error('Failed to fetch blog posts:', error);
-        // Fallback to local data
-        setPosts(blogPosts);
+        console.error('Erreur lors du chargement des articles:', error);
+        // Sort local posts even on error
+        const sortedLocalPosts = [...blogPosts].sort((a, b) => {
+          const authorA = getAuthorName(a.author);
+          const authorB = getAuthorName(b.author);
+          
+          // Prioritize Geoffroy S. articles
+          const isGeoffroyA = authorA.toLowerCase().includes('geoffroy s.') || authorA.toLowerCase().includes('geoffroy streit');
+          const isGeoffroyB = authorB.toLowerCase().includes('geoffroy s.') || authorB.toLowerCase().includes('geoffroy streit');
+          
+          if (isGeoffroyA && !isGeoffroyB) return -1;
+          if (!isGeoffroyA && isGeoffroyB) return 1;
+          
+          // Then sort by date (newest first)
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB.getTime() - dateA.getTime();
+        });
+        
+        setPosts(sortedLocalPosts);
+        toast.success(`${blogPosts.length} articles locaux chargés (Supabase indisponible)`);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchPosts();
+    
+    fetchBlogPosts();
   }, []);
 
   // Function to sync local data to Supabase
@@ -160,79 +222,188 @@ const BlogPosts: React.FC = () => {
   
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-center">
-        <BlogFilter 
-          tags={uniqueTags} 
-          selectedTag={selectedTag} 
-          onSelectTag={setSelectedTag} 
-        />
-        
-        {isAdmin && (
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => syncLocalDataToSupabase()}
-            >
-              Sync Local Data
-            </Button>
-            <Button 
-              variant="default" 
-              size="sm"
-              onClick={() => navigate('/blog_article_import')}
-            >
-              <Shield className="mr-2 h-4 w-4" />
-              Proposer un article
-            </Button>
+      {/* Header avec statistiques et filtres */}
+      <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-lg p-6 border border-border/50">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Articles de Blog
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              {filteredPosts.length} article{filteredPosts.length > 1 ? 's' : ''} 
+              {selectedTag ? ` dans "${selectedTag}"` : ' au total'}
+            </p>
           </div>
-        )}
+          
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <BlogFilter 
+              tags={uniqueTags} 
+              selectedTag={selectedTag} 
+              onSelectTag={setSelectedTag} 
+            />
+            
+            {isAdmin && (
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => syncLocalDataToSupabase()}
+                  className="bg-background/50 backdrop-blur-sm"
+                >
+                  Sync Local Data
+                </Button>
+                <Button 
+                  variant="default" 
+                  size="sm"
+                  onClick={() => navigate('/blog_article_import')}
+                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                >
+                  <Shield className="mr-2 h-4 w-4" />
+                  Proposer un article
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
       
       {filteredPosts.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {filteredPosts.slice(0, 3).map((post, index) => (
-              <div key={post.id} className="h-full">
-                <BlogCard 
-                  post={post} 
-                  index={index}
-                  onClick={() => setSelectedPost(post)}
-                />
-              </div>
-            ))}
+          {/* Section vedette */}
+          <div className="mb-12">
+            <h3 className="text-xl font-semibold mb-6 text-primary">Article en vedette</h3>
+            {(() => {
+              // Find featured article by title or use first article as fallback
+              const featuredArticle = filteredPosts.find(post => 
+                post.title.toLowerCase().includes('marre d\'apprendre') ||
+                post.title.toLowerCase().includes('clé de toutes les aventures')
+              ) || filteredPosts[0];
+              
+              return featuredArticle && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 rounded-xl border border-primary/10 shadow-lg">
+                  <div className="space-y-4">
+                    <BlogCard 
+                      post={featuredArticle} 
+                      onClick={() => setSelectedPost(featuredArticle)}
+                      className="border-0 shadow-lg bg-background/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300"
+                    />
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <div className="text-center space-y-4">
+                      <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                         <Calendar className="h-10 w-10 text-primary" />
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-lg">Article vedette</h4>
+                        <p className="text-muted-foreground max-w-sm leading-relaxed">
+                          Découvrez cet article exceptionnel sélectionné par notre équipe pour sa pertinence et son impact sur la communauté neurodivergente.
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-center gap-2 text-sm text-primary">
+                        <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                        <span>Lecture recommandée</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()} 
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.slice(3).map((post, index) => (
-              <div key={post.id} className="h-full">
-                <BlogCard 
-                  post={post} 
-                  index={index + 3}
-                  onClick={() => setSelectedPost(post)}
-                />
-              </div>
-            ))}
-          </div>
-          
-          {filteredPosts.length > 9 && (
-            <div className="text-center mt-8">
-              <Button variant="outline" className="rounded-full px-8">
-                Voir plus d'articles
-              </Button>
+          {/* Grille des autres articles */}
+          {filteredPosts.length > 1 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {(() => {
+                // Find featured article to exclude it from the main grid
+                const featuredArticle = filteredPosts.find(post => 
+                  post.title.toLowerCase().includes('marre d\'apprendre') ||
+                  post.title.toLowerCase().includes('clé de toutes les aventures')
+                ) || filteredPosts[0];
+                
+                // Filter out the featured article from the main grid
+                const remainingPosts = filteredPosts.filter(post => post.id !== featuredArticle?.id);
+                
+                return remainingPosts.map((post, index) => (
+                  <motion.div 
+                    key={post.id} 
+                    className="h-full"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: (index + 1) * 0.1 }}
+                  >
+                    <BlogCard 
+                      post={post} 
+                      index={index + 1}
+                      onClick={() => setSelectedPost(post)}
+                    />
+                  </motion.div>
+                ));
+              })()} 
             </div>
           )}
+          
+          {(() => {
+            // Calculate remaining posts excluding featured article
+            const featuredArticle = filteredPosts.find(post => 
+              post.title.toLowerCase().includes('marre d\'apprendre') ||
+              post.title.toLowerCase().includes('clé de toutes les aventures')
+            ) || filteredPosts[0];
+            
+            const remainingPosts = filteredPosts.filter(post => post.id !== featuredArticle?.id);
+            
+            return remainingPosts.length > 9 && (
+              <motion.div 
+                className="text-center mt-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="bg-background/50 backdrop-blur-sm border-primary/20 hover:bg-primary/5"
+                >
+                  Voir plus d'articles
+                </Button>
+              </motion.div>
+            );
+          })()}
         </>
       ) : (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground mb-4">Aucun article ne correspond à votre recherche</p>
-          <Button onClick={() => setSelectedTag(null)}>Voir tous les articles</Button>
-        </div>
+        <motion.div 
+          className="text-center py-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="space-y-4">
+            <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full flex items-center justify-center">
+              <MessageSquare className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold">Aucun article trouvé</h3>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              {selectedTag 
+                ? `Aucun article trouvé pour le tag "${selectedTag}". Essayez un autre filtre.`
+                : 'Aucun article disponible pour le moment.'
+              }
+            </p>
+            {selectedTag && (
+              <Button 
+                variant="outline" 
+                onClick={() => setSelectedTag(null)}
+                className="mt-4"
+              >
+                Voir tous les articles
+              </Button>
+            )}
+          </div>
+        </motion.div>
       )}
       
       {selectedPost && (
         <BlogPostDetail 
           post={selectedPost} 
-          onClose={() => setSelectedPost(null)} 
+          onClose={() => setSelectedPost(null)}
         />
       )}
     </div>

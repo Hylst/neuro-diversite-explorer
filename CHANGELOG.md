@@ -66,9 +66,24 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - Détails sur les replays et inscriptions
 
 ### 🐛 Corrections
+- **Amélioration du système de blog** : Intégration consolidée des articles Supabase et locaux avec design amélioré
+  - **Intégration robuste** : Nouveau système de fallback avec timeout de 5 secondes pour Supabase
+  - **Consolidation des données** : Fusion intelligente des articles locaux (10) et Supabase sans doublons
+  - **Tri automatique** : Articles triés par date (plus récents en premier)
+  - **Notifications utilisateur** : Messages informatifs sur le statut de chargement des données
+  - **Design modernisé** : Cartes d'articles avec gradients, animations et effets hover améliorés
+  - **Layout responsive** : Nouvelle mise en page avec article en vedette et grille adaptative
+  - **Header enrichi** : Statistiques des articles et filtres dans un design moderne
+  - **Animations fluides** : Transitions et animations Framer Motion pour une meilleure UX
+  - **Gestion d'erreurs** : Fallback gracieux vers les données locales en cas d'indisponibilité Supabase
 - **Syntaxe JSX** : Correction d'une balise div fermante orpheline dans CommunauteLayout.tsx
 - **Affichage des événements** : Correction du problème d'affichage des 8 événements réels 2025
   - Suppression des événements factices dans EventsTab.tsx qui masquaient les vrais événements
+- **Corrections TypeScript Blog** : Résolution des erreurs de type dans BlogPosts.tsx et BlogCard.tsx
+  - Utilisation correcte des fonctions helper getAuthorName() pour l'accès aux propriétés author
+  - Ajout de l'import Calendar manquant depuis lucide-react
+  - Ajout du prop className optionnel à l'interface BlogCardProps
+  - Correction de la gestion des types author (BlogAuthor vs Json) pour éviter les erreurs de propriété
   - Harmonisation des interfaces Event entre EventsTab et EventList
   - Correction du passage de données vides qui empêchait l'affichage des defaultEvents
   - Mise à jour du message d'information pour refléter le contenu réel
