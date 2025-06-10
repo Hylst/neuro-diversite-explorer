@@ -1,3 +1,5 @@
+# Marre d'Apprendre 😫 ? Et si c'était la Clé 🔑 de Toutes les Aventures 🚀 ?
+
 Aujourd'hui, je partage avec vous un texte destiné à faire prendre de conscience aux 'jeunes' et étudiants en perte de sens💡s'interrogeant sur l'intérêt d'apprendre ❓, d'étudier 📚, de suivre les cours à l'école 🏫, dans des matières pour lesquelles ils ne voient aucun intérêt 🤷‍♂️, des 'jeunes' qui se découragent vite devant un peu de difficulté 😥, qui ont du mal à se projeteret privilégient la gratification immédiate ⚡, recourent par réflexe à la facilité d'une recherche google 💻ou requête IA 🤖, en ne faisant plus l'effort de se souvenir, de faire des calculs simplesou raisonnements 🤔, même élémentaires aux yeux de leurs aîné(e)s, ...
 
 Voici mon texte dans son état actuel, revu, corrigé et simplifié 3 fois depuis (trop peut être 🤔 ?), pour rester accessible et pas trop rébarbatif 😊 :

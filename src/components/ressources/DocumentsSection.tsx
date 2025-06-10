@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Download, FileText } from 'lucide-react';
+import { ExternalLink, Download, FileText, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Document } from './types';
@@ -19,6 +20,27 @@ const DocumentsSection: React.FC<DocumentsSectionProps> = ({
   itemsPerPage,
   onPageChange
 }) => {
+  const navigate = useNavigate();
+  
+  // Function to handle download/navigation logic
+  const handleDownload = (url: string, filename: string) => {
+    if (url.startsWith('/ressources/')) {
+      // Internal route - navigate to the page
+      navigate(url);
+    } else if (url.startsWith('http')) {
+      // External link - open in new tab
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      // Local file - trigger download
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+  
   // Calcul des documents à afficher sur la page actuelle
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -80,20 +102,20 @@ const DocumentsSection: React.FC<DocumentsSectionProps> = ({
                   </p>
                 </div>
                 <div className="flex justify-end">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="gap-1"
-                    asChild
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 hover:bg-blue-50 hover:border-blue-300 transition-colors"
+                    onClick={() => handleDownload(document.link, document.title)}
                   >
-                    <a href={document.link} target="_blank" rel="noopener noreferrer">
-                      {document.link.startsWith('http') ? (
-                        <ExternalLink className="h-4 w-4" />
-                      ) : (
-                        <Download className="h-4 w-4" />
-                      )}
-                      {document.link.startsWith('http') ? 'Consulter' : 'Télécharger'}
-                    </a>
+                    {document.link.startsWith('/ressources/') ? (
+                      <Eye className="h-4 w-4" />
+                    ) : document.link.startsWith('http') ? (
+                      <ExternalLink className="h-4 w-4" />
+                    ) : (
+                      <Download className="h-4 w-4" />
+                    )}
+                    {document.link.startsWith('/ressources/') ? 'Consulter' : document.link.startsWith('http') ? 'Consulter' : 'Télécharger'}
                   </Button>
                 </div>
               </CardContent>

@@ -1,15 +1,30 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Lightbulb, BookOpen, FileDown, Brain, Database } from 'lucide-react';
+import { Lightbulb, BookOpen, FileDown, Brain, Database, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { useNavigate } from 'react-router-dom';
 
 const StrategiesApprentissage = () => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate('/ressources');
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 container py-8">
+        <Button
+          variant="ghost"
+          onClick={handleBack}
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors mb-4"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Retour aux ressources
+        </Button>
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
             <BreadcrumbItem>

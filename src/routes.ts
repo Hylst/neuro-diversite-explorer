@@ -52,6 +52,7 @@ export const ROUTES = {
     PLANNINGS: '/ressources/plannings',
     KITS: '/ressources/kits',
     REFLEXION_STRUCTUREE: '/ressources/reflexion-structuree',
+    PENSEE_EN_EBULLITION: '/ressources/pensee-en-ebullition',
   },
   
   // Blog

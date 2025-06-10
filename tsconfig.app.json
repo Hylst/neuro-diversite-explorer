@@ -26,5 +26,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "src/pages/ressources/NavigationLabyrintheIdees.tsx", "src/pages/ressources/ReflexionStructureeOptimized.tsx", "src/pages/ressources/PenseeEnEbullition.tsx"]
 }

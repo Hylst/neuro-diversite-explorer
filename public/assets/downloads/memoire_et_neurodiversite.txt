@@ -1,0 +1,44 @@
+Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes
+Les troubles de la mémoire sont une composante fréquente, bien que souvent méconnue ou mal interprétée, des profils neurodivergents comme le Trouble du Déficit de l'Attention avec ou sans Hyperactivité (TDA/H), le Trouble du Spectre de l'Autisme (TSA) et les troubles "Dys" (dyslexie, dyspraxie, etc.). Loin d'une simple "tête en l'air", ces difficultés s'ancrent dans des fonctionnements cérébraux spécifiques et impactent profondément le quotidien, la scolarité et la vie sociale. Il ne s'agit pas de troubles mnésiques globaux comme l'amnésie, mais plutôt d'atteintes sélectives de certains systèmes de mémoire.
+
+Les Différents Visages de la Mémoire et Leurs Atteintes
+Notre mémoire n'est pas un bloc monolithique, mais un ensemble de systèmes complexes. Les profils neurodivergents présentent des vulnérabilités particulières sur certains d'entre eux :
+
+Faire tableau :
+
+Type de Mémoire	Description	Profils Neurodivers Concernés	Manifestations Typiques
+Mémoire de Travail	Système à capacité limitée qui maintient et manipule temporairement l'information nécessaire à la réalisation de tâches cognitives (raisonner, apprendre, comprendre). C'est le "post-it" ou la "RAM" du cerveau.	TDA/H (très fortement), Dyslexie, Dyspraxie, TSA	Oublier une instruction donnée à l'oral, perdre le fil de ses idées en parlant, avoir du mal à suivre une conversation de groupe, difficultés en calcul mental, oublier ce qu'on est venu chercher dans une pièce.
+Mémoire Procédurale	Mémoire des savoir-faire et des habiletés motrices, qui permet d'automatiser les gestes et les procédures (faire du vélo, écrire, taper sur un clavier).	Dyspraxie (fortement), TDA/H	Lenteur pour apprendre les gestes du quotidien (lacer ses chaussures), écriture manuscrite difficile et non automatisée, difficultés à apprendre une chorégraphie ou une séquence de mouvements.
+Mémoire Épisodique / Autobiographique	Mémoire des événements vécus personnellement, avec leur contexte émotionnel, spatial et temporel. C'est le film de notre vie.	TSA	Souvenirs moins détaillés, factuels, avec une difficulté à se remémorer le contexte émotionnel. Difficulté à se "re-projeter" dans le souvenir et à le partager de manière narrative.
+Mémoire Sémantique	Mémoire des connaissances générales sur le monde, des faits, des concepts et du sens des mots. C'est notre encyclopédie interne.	Généralement préservée, mais l'accès peut être fluctuant chez les TDA/H ("le mot sur le bout de la langue").	Difficultés ponctuelles à retrouver un mot ou une information pourtant connue, nécessitant des indices pour y accéder.
+Mémoire Prospective	Mémoire du futur : se souvenir d'exécuter une action planifiée (se souvenir de prendre ses médicaments, de poster une lettre, d'un rendez-vous).	TDA/H (très fortement), TSA	Oublis fréquents de rendez-vous, de rendre des travaux à temps, de payer des factures, de répondre à un message.
+
+Niveaux de Gravité et Profils Concernés
+La sévérité des troubles de la mémoire varie considérablement d'un individu à l'autre, même au sein d'un même diagnostic. On ne parle pas de stades comme dans les maladies dégénératives, mais plutôt d'un continuum de l'impact fonctionnel.
+
+TDA/H : Le trouble de la mémoire le plus central et handicapant est celui de la mémoire de travail. Son atteinte est quasi systématique et constitue un critère diagnostique majeur. L'impact est souvent qualifié de modéré à sévère, car il affecte l'ensemble des apprentissages et de l'organisation quotidienne. La mémoire prospective est également très touchée.
+
+TSA : Les particularités de la mémoire autobiographique sont une caractéristique fondamentale du profil. La gravité dépend de la capacité de la personne à développer des stratégies de compensation. La mémoire sémantique peut être un point fort (hypermnésie sur les intérêts spécifiques), tandis que la mémoire de travail peut être hétérogène.
+
+Troubles "Dys" :
+
+Dyspraxie : L'atteinte de la mémoire procédurale est au cœur du trouble, avec un impact sévère sur l'automatisation des gestes.
+Dyslexie : La surcharge de la mémoire de travail est une conséquence directe des efforts de décodage. L'impact est majeur sur les apprentissages écrits.
+Autres "Dys" (dysphasie, dyscalculie) : Ils impliquent également une forte sollicitation et une potentielle fragilité de la mémoire de travail.
+Il est crucial de noter que ces troubles sont souvent associés (comorbidités). Un enfant dyslexique peut aussi avoir un TDA/H, cumulant ainsi les fragilités de la mémoire de travail, ce qui majore l'impact sur sa scolarité.
+
+Manifestations, Impacts et Conséquences
+Les difficultés de mémoire chez les personnes neuroatypiques ne sont pas de simples oublis ; elles engendrent une cascade de conséquences dans toutes les sphères de la vie.
+
+Faire tableau :
+
+Domaine	Manifestations et Conséquences
+Scolarité et Apprentissages	- Difficulté à retenir les leçons, les consignes multiples, les tables de multiplication. &lt;br> - Lenteur dans l'exécution des tâches. &lt;br> - Difficulté à prendre des notes et à écouter simultanément. &lt;br> - Oubli du matériel scolaire, des devoirs à faire, des dates d'examen. &lt;br> - Épuisement cognitif et sentiment d'échec malgré les efforts.
+Vie Quotidienne et Autonomie	- Perte fréquente d'objets personnels (clés, téléphone, portefeuille). &lt;br> - Difficulté à gérer les tâches administratives, les rendez-vous. &lt;br> - Procrastination due à la difficulté d'initier et de se souvenir des étapes d'une tâche. &lt;br> - Difficulté à suivre une recette de cuisine ou des instructions de montage. &lt;br> - Sentiment d'être constamment dépassé et désorganisé.
+Vie Sociale et Relationnelle	- Difficulté à retenir les prénoms ou les informations partagées par les autres, pouvant être perçu comme un désintérêt. &lt;br> - Perte du fil dans les conversations. &lt;br> - Oubli des anniversaires ou des événements importants. &lt;br> - Difficulté à raconter des souvenirs personnels de manière fluide (TSA). &lt;br> - Anxiété sociale liée à la peur de l'oubli ou de commettre un impair.
+Estime de Soi et Santé Mentale	- Faible estime de soi, sentiment d'être "nul" ou "paresseux". &lt;br> - Anxiété de performance, stress chronique. &lt;br> - Frustration, irritabilité. &lt;br> - Risque accru de dépression et d'épuisement (burn-out) en raison de l'effort constant de compensation.
+
+En conclusion, les troubles de la mémoire associés à la neurodiversité sont spécifiques, persistants et envahissants. Les reconnaître comme une partie intégrante du trouble, et non comme un défaut de caractère, est la première étape pour mettre en place des stratégies de compensation efficaces (agendas, alarmes, routines, aides visuelles) et un accompagnement bienveillant, permettant de réduire la charge mentale et de valoriser les autres forces cognitives de ces individus.
+
+Auteur : Geoffroy Streit - 2021 - revu et amélioré en 2025
+Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes

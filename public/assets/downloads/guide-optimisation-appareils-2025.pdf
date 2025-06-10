@@ -1,0 +1,128 @@
+# Guide d'optimisation des appareils pour la neurodiversité
+
+**⚠️ DOCUMENT ÉDUCATIF - RESSOURCE NON OFFICIELLE ⚠️**
+
+*Ce guide est une ressource éducative créée par l'équipe NeuroDiversité Explorer. Il ne remplace pas les documentations officielles d'Apple, Google, Microsoft ou d'autres éditeurs. Les paramètres et fonctionnalités peuvent varier selon les versions des systèmes d'exploitation.*
+
+---
+
+## Configuration des paramètres d'accessibilité sur iOS, Android et Windows
+
+### Table des matières
+1. Configuration iOS
+2. Configuration Android
+3. Configuration Windows
+4. Applications recommandées
+5. Conseils généraux
+
+---
+
+## 1. Configuration iOS
+
+### Paramètres d'accessibilité essentiels :
+
+**Réglages > Accessibilité > Affichage et taille du texte**
+- Activer "Texte plus grand"
+- Ajuster la taille du texte selon les besoins
+- Activer "Texte en gras" si nécessaire
+
+**Réglages > Accessibilité > Mouvement**
+- Réduire les animations
+- Désactiver "Lecture automatique des aperçus de messages"
+
+**Réglages > Accessibilité > Audio/Visuel**
+- Activer "Audio mono" si nécessaire
+- Ajuster l'équilibre audio
+
+**Réglages > Temps d'écran**
+- Configurer des limites d'applications
+- Programmer des temps d'arrêt
+
+---
+
+## 2. Configuration Android
+
+### Paramètres d'accessibilité :
+
+**Paramètres > Accessibilité > Affichage**
+- Ajuster la taille de police
+- Modifier la taille d'affichage
+- Activer le contraste élevé
+
+**Paramètres > Accessibilité > Interaction et dextérité**
+- Configurer les délais tactiles
+- Activer "Ignorer les touchers répétés"
+
+**Paramètres > Bien-être numérique**
+- Définir des minuteurs d'applications
+- Configurer le mode "Ne pas déranger"
+
+---
+
+## 3. Configuration Windows
+
+### Paramètres d'accessibilité Windows 11 :
+
+**Paramètres > Accessibilité > Vision**
+- Ajuster la taille du texte
+- Modifier les couleurs et le contraste
+- Configurer la loupe
+
+**Paramètres > Accessibilité > Interaction**
+- Configurer le clavier visuel
+- Ajuster les paramètres de la souris
+- Activer les touches rémanentes
+
+**Paramètres > Système > Notifications**
+- Désactiver les notifications non essentielles
+- Configurer les heures de silence
+
+---
+
+## 4. Applications recommandées
+
+### iOS :
+- **Forest** : Gestion du temps et concentration
+- **Todoist** : Organisation des tâches
+- **Calm** : Méditation et relaxation
+
+### Android :
+- **Focus To-Do** : Technique Pomodoro
+- **Any.do** : Gestion des tâches
+- **Headspace** : Méditation guidée
+
+### Windows :
+- **Cold Turkey** : Blocage de distractions
+- **Notion** : Organisation et prise de notes
+- **f.lux** : Ajustement de la lumière bleue
+
+---
+
+## 5. Conseils généraux
+
+### Pour le TDAH :
+- Réduire les notifications au minimum
+- Utiliser des rappels visuels
+- Configurer des minuteurs pour les tâches
+
+### Pour l'autisme :
+- Maintenir une interface cohérente
+- Éviter les changements brusques d'affichage
+- Utiliser des couleurs apaisantes
+
+### Pour la dyslexie :
+- Choisir des polices sans-serif
+- Augmenter l'espacement des lignes
+- Utiliser la synthèse vocale
+
+### Pour la dyspraxie :
+- Agrandir les zones tactiles
+- Simplifier les gestes
+- Utiliser la reconnaissance vocale
+
+---
+
+**Dernière mise à jour :** Mars 2025
+**Version :** 2.1
+
+Pour plus d'informations, consultez notre site web ou contactez notre équipe de support.

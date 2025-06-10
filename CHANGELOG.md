@@ -106,6 +106,8 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Amélioration de la navigation au clavier et focus visibles sur tous les éléments interactifs
 - Correction de l'erreur d'importation de l'icône QuestionMark, remplacée par HelpCircle
 - Remplacement des liens fictifs de la cartographie par des liens réels vers des organisations existantes
+- **Corrections TypeScript `OptimizedCollapsibleSection`** : Résolution des erreurs de props invalides (`isExpanded`, `onToggle`, `className`) dans `PenseeEnEbullition.tsx`.
+- **Corrections TypeScript `OptimizedCollapsibleSection`** : Ajout des props manquantes (`id`, `icon`) dans `NavigationLabyrintheIdees.tsx`.
 
 ### 🔄 À améliorer
 - Optimisation des performances sur les pages complexes

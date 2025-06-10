@@ -33,6 +33,7 @@ const LesionsCerebrales = lazy(() => import("./pages/troubles/LesionsCerebrales"
 const Communaute = lazy(() => import("./pages/Communaute"));
 const Ressources = lazy(() => import("./pages/Ressources"));
 const ReflexionStructuree = lazy(() => import("./pages/ressources/ReflexionStructuree"));
+const PenseeEnEbullition = lazy(() => import("./pages/ressources/PenseeEnEbullition"));
 const GuideAdministratif = lazy(() => import("./pages/ressources/GuideAdministratif"));
 const StrategiesApprentissage = lazy(() => import("./pages/ressources/StrategiesApprentissage"));
 const Communication = lazy(() => import("./pages/ressources/Communication"));
@@ -106,7 +107,8 @@ const App = () => (
                 <Route path={ROUTES.RESSOURCES.APPLICATIONS} element={<Applications />} />
                 <Route path={ROUTES.RESSOURCES.PLANNINGS} element={<Plannings />} />
                 <Route path={ROUTES.RESSOURCES.KITS} element={<Kits />} />
-                <Route path="/ressources/reflexion-structuree" element={<ReflexionStructuree />} />
+                <Route path={ROUTES.RESSOURCES.REFLEXION_STRUCTUREE} element={<ReflexionStructuree />} />
+                <Route path={ROUTES.RESSOURCES.PENSEE_EN_EBULLITION} element={<PenseeEnEbullition />} />
                 
                 {/* Autres pages */}
                 <Route path={ROUTES.APPRENTISSAGE} element={<Apprentissage />} />

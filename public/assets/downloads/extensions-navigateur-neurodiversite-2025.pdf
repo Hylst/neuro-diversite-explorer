@@ -1,0 +1,358 @@
+# Extensions de navigateur utiles pour la neurodiversité
+
+**⚠️ DOCUMENT ÉDUCATIF - RESSOURCE NON OFFICIELLE ⚠️**
+
+*Ce guide est une ressource éducative créée par l'équipe NeuroDiversité Explorer. Il ne remplace pas les documentations officielles des développeurs d'extensions ou des navigateurs. Les extensions et leurs fonctionnalités peuvent évoluer ou être supprimées.*
+
+---
+
+## Guide d'installation et configuration pour Chrome, Firefox et Edge
+
+### Table des matières
+1. Extensions essentielles par trouble
+2. Installation étape par étape
+3. Configuration optimale
+4. Dépannage courant
+5. Alternatives et recommandations
+
+---
+
+## 1. Extensions essentielles par trouble
+
+### Pour TDAH
+
+**🎯 Focus - Bloqueur de sites**
+- **Fonction :** Bloque les sites distrayants pendant les périodes de travail
+- **Navigateurs :** Chrome, Firefox, Edge
+- **Prix :** Gratuit + Premium
+- **Avantages :** Programmation flexible, statistiques d'utilisation
+
+**⏰ Momentum**
+- **Fonction :** Remplace la page d'accueil par un tableau de bord motivant
+- **Navigateurs :** Chrome, Firefox
+- **Prix :** Gratuit + Premium
+- **Avantages :** To-do list intégrée, citations inspirantes
+
+**🔔 Mercury Reader**
+- **Fonction :** Mode lecture épuré, supprime les distractions
+- **Navigateurs :** Chrome, Firefox, Edge
+- **Prix :** Gratuit
+- **Avantages :** Interface minimaliste, focus sur le contenu
+
+### Pour Dyslexie
+
+**📖 Read&Write**
+- **Fonction :** Synthèse vocale, prédiction de texte, dictée
+- **Navigateurs :** Chrome, Edge
+- **Prix :** Gratuit (version éducation) + Premium
+- **Avantages :** Très complet, support multilingue
+
+**🎨 OpenDyslexic Font**
+- **Fonction :** Change la police de tous les sites web
+- **Navigateurs :** Chrome, Firefox
+- **Prix :** Gratuit
+- **Avantages :** Police spécialement conçue pour la dyslexie
+
+**🔍 Bionic Reading**
+- **Fonction :** Met en gras les premières lettres pour faciliter la lecture
+- **Navigateurs :** Chrome, Firefox, Edge
+- **Prix :** Gratuit
+- **Avantages :** Améliore la vitesse de lecture
+
+### Pour Autisme
+
+**🌈 Dark Reader**
+- **Fonction :** Mode sombre pour tous les sites web
+- **Navigateurs :** Chrome, Firefox, Edge
+- **Prix :** Gratuit
+- **Avantages :** Réduit la fatigue oculaire, personnalisable
+
+**🔇 uBlock Origin**
+- **Fonction :** Bloque publicités et éléments distrayants
+- **Navigateurs :** Chrome, Firefox, Edge
+- **Prix :** Gratuit
+- **Avantages :** Interface plus calme, moins de stimuli
+
+**📱 User-Agent Switcher**
+- **Fonction :** Affiche la version mobile des sites (souvent plus simple)
+- **Navigateurs :** Chrome, Firefox
+- **Prix :** Gratuit
+- **Avantages :** Interfaces simplifiées
+
+### Pour Dyspraxie
+
+**🖱️ Click by Voice**
+- **Fonction :** Navigation par commandes vocales
+- **Navigateurs :** Chrome
+- **Prix :** Gratuit
+- **Avantages :** Réduit l'utilisation de la souris
+
+**⌨️ Vimium**
+- **Fonction :** Navigation au clavier uniquement
+- **Navigateurs :** Chrome, Firefox
+- **Prix :** Gratuit
+- **Avantages :** Évite les mouvements de souris complexes
+
+**🎯 Large Cursor**
+- **Fonction :** Agrandit et personnalise le curseur
+- **Navigateurs :** Chrome
+- **Prix :** Gratuit
+- **Avantages :** Curseur plus visible et facile à suivre
+
+---
+
+## 2. Installation étape par étape
+
+### Google Chrome
+
+1. **Accéder au Chrome Web Store :**
+   - Ouvrir Chrome
+   - Aller sur chrome.google.com/webstore
+   - Ou taper "chrome://extensions/" dans la barre d'adresse
+
+2. **Rechercher l'extension :**
+   - Utiliser la barre de recherche
+   - Taper le nom exact de l'extension
+   - Vérifier l'éditeur (éviter les copies)
+
+3. **Installer :**
+   - Cliquer sur "Ajouter à Chrome"
+   - Confirmer en cliquant "Ajouter l'extension"
+   - L'icône apparaît dans la barre d'outils
+
+4. **Épingler l'extension :**
+   - Cliquer sur l'icône puzzle (extensions)
+   - Cliquer sur l'épingle à côté de l'extension
+   - L'icône reste visible en permanence
+
+### Mozilla Firefox
+
+1. **Accéder aux modules complémentaires :**
+   - Menu Firefox > Modules complémentaires et thèmes
+   - Ou taper "about:addons" dans la barre d'adresse
+
+2. **Rechercher :**
+   - Cliquer sur "Découvrir d'autres modules"
+   - Rechercher l'extension souhaitée
+
+3. **Installer :**
+   - Cliquer sur "Ajouter à Firefox"
+   - Confirmer l'installation
+   - Redémarrer Firefox si demandé
+
+### Microsoft Edge
+
+1. **Accéder aux extensions :**
+   - Menu Edge (3 points) > Extensions
+   - Ou aller sur microsoftedge.microsoft.com/addons
+
+2. **Installer :**
+   - Rechercher l'extension
+   - Cliquer sur "Obtenir"
+   - Confirmer l'ajout
+
+**Note :** Edge peut aussi utiliser les extensions Chrome :
+- Activer "Autoriser les extensions d'autres magasins"
+- Aller sur le Chrome Web Store
+- Installer normalement
+
+---
+
+## 3. Configuration optimale
+
+### Configuration générale
+
+**Permissions :**
+- Accorder uniquement les permissions nécessaires
+- Vérifier régulièrement les permissions accordées
+- Désactiver l'accès aux données sensibles si non nécessaire
+
+**Synchronisation :**
+- Activer la synchronisation pour retrouver ses extensions sur tous les appareils
+- Chrome : Compte Google
+- Firefox : Compte Firefox
+- Edge : Compte Microsoft
+
+### Configurations spécifiques
+
+**Pour Read&Write (Dyslexie) :**
+```
+Paramètres recommandés :
+- Vitesse de lecture : Moyenne (150-200 mots/min)
+- Voix : Choisir une voix naturelle
+- Surlignage : Activer le surlignage pendant la lecture
+- Dictionnaire : Activer les définitions au survol
+- Prédiction : Activer pour l'aide à la saisie
+```
+
+**Pour Dark Reader (Autisme) :**
+```
+Paramètres recommandés :
+- Luminosité : 90-100%
+- Contraste : 90-100%
+- Sépia : 0-10%
+- Mode : Filtre ou Filtre+
+- Exceptions : Ajouter les sites avec design sombre natif
+```
+
+**Pour Focus (TDAH) :**
+```
+Configuration type :
+- Sites à bloquer : Réseaux sociaux, actualités, jeux
+- Horaires : 9h-12h et 14h-17h (heures de travail)
+- Mode strict : Activé (empêche la désactivation)
+- Pause autorisée : 5 minutes toutes les heures
+```
+
+---
+
+## 4. Dépannage courant
+
+### Problèmes fréquents
+
+**L'extension ne fonctionne pas :**
+1. Vérifier qu'elle est activée
+2. Actualiser la page web
+3. Redémarrer le navigateur
+4. Vérifier les mises à jour
+5. Désactiver/réactiver l'extension
+
+**Conflits entre extensions :**
+1. Désactiver temporairement les autres extensions
+2. Identifier l'extension problématique
+3. Chercher des alternatives compatibles
+4. Contacter le support de l'extension
+
+**Performance ralentie :**
+1. Limiter le nombre d'extensions actives
+2. Désactiver les extensions non utilisées
+3. Vérifier la consommation mémoire
+4. Mettre à jour le navigateur
+
+### Solutions par navigateur
+
+**Chrome :**
+- Gestionnaire de tâches : Shift+Esc
+- Mode incognito pour tester sans extensions
+- Réinitialisation : chrome://settings/reset
+
+**Firefox :**
+- Mode sans échec : Aide > Redémarrer avec modules désactivés
+- Actualisation de Firefox : about:support
+- Gestionnaire de modules : about:addons
+
+**Edge :**
+- Réparation : Paramètres > Réinitialiser les paramètres
+- Mode InPrivate pour tester
+- Diagnostic : edge://settings/help
+
+---
+
+## 5. Alternatives et recommandations
+
+### Extensions alternatives
+
+**Si Read&Write ne fonctionne pas :**
+- **Natural Reader** (Chrome, Firefox)
+- **Speech Central** (Chrome)
+- **Voice Dream Reader** (application mobile)
+
+**Si Dark Reader pose problème :**
+- **Night Eye** (payant mais plus stable)
+- **Turn Off the Lights** (pour les vidéos)
+- **Care your Eyes** (filtre bleu)
+
+**Si Focus est trop restrictif :**
+- **Cold Turkey** (application desktop)
+- **Freedom** (multiplateforme)
+- **StayFocusd** (Chrome uniquement)
+
+### Recommandations par profil
+
+**Pack débutant (3-5 extensions) :**
+1. uBlock Origin (publicités)
+2. Dark Reader (confort visuel)
+3. Bionic Reading (lecture facilitée)
+
+**Pack intermédiaire (5-8 extensions) :**
+1. Pack débutant +
+2. Read&Write (synthèse vocale)
+3. Momentum (organisation)
+4. Grammarly (correction)
+
+**Pack avancé (8-12 extensions) :**
+1. Pack intermédiaire +
+2. Focus (blocage sites)
+3. LastPass (mots de passe)
+4. Pocket (sauvegarde articles)
+5. Honey (bons de réduction)
+
+### Maintenance régulière
+
+**Hebdomadaire :**
+- Vérifier les mises à jour
+- Nettoyer les données de navigation
+- Sauvegarder les paramètres importants
+
+**Mensuelle :**
+- Réviser les extensions installées
+- Supprimer celles non utilisées
+- Vérifier les permissions accordées
+
+**Trimestrielle :**
+- Évaluer l'efficacité des extensions
+- Rechercher de nouvelles alternatives
+- Optimiser la configuration
+
+---
+
+## Ressources supplémentaires
+
+### Sites utiles :
+- **Chrome Web Store :** chrome.google.com/webstore
+- **Firefox Add-ons :** addons.mozilla.org
+- **Edge Add-ons :** microsoftedge.microsoft.com/addons
+
+### Support communautaire :
+- Forum NeuroDiversité Explorer
+- Groupes Facebook spécialisés
+- Reddit : r/accessibility, r/ADHD, r/autism
+
+### Formation :
+- Webinaires mensuels sur les outils numériques
+- Tutoriels vidéo sur notre chaîne YouTube
+- Ateliers pratiques en ligne
+
+---
+
+**Équipe de rédaction :**
+- Alex Moreau, Spécialiste accessibilité web
+- Dr. Sophie Laurent, Ergothérapeute
+- Communauté NeuroDiversité Explorer
+
+**Dernière mise à jour :** Mars 2025
+**Version :** 2.0
+
+*Ce guide est mis à jour régulièrement avec les nouvelles extensions et les retours de notre communauté.*
+
+---
+
+## Annexe : Raccourcis clavier utiles
+
+### Chrome :
+- Ctrl+Shift+Delete : Effacer données
+- Ctrl+Shift+N : Mode incognito
+- Ctrl+Shift+T : Rouvrir onglet fermé
+- Ctrl+L : Aller à la barre d'adresse
+
+### Firefox :
+- Ctrl+Shift+P : Navigation privée
+- Ctrl+Shift+A : Gestionnaire modules
+- F12 : Outils développeur
+- Ctrl+U : Code source
+
+### Edge :
+- Ctrl+Shift+P : InPrivate
+- Ctrl+Shift+O : Favoris
+- F12 : Outils développeur
+- Ctrl+H : Historique

@@ -1,6 +1,10 @@
 import { Document } from '../types';
 
 // Données des documents
+// Function to handle document downloads
+const getDownloadPath = (filename: string) => `/assets/downloads/${filename}`;
+
+// Updated documents with corrected paths
 export const documents: Document[] = [
   {
     id: 16,
@@ -9,7 +13,7 @@ export const documents: Document[] = [
     description: "Pourquoi certains esprits neurodivergents peinent à structurer leurs idées. Une analyse approfondie des mécanismes cognitifs chez les personnes TDA/H, TSA et présentant des troubles dys.",
     author: "Geoffroy Streit",
     date: "2021 - revu 2025",
-    link: "/ressources/reflexion-structuree",
+    link: "/ressources/pensee-en-ebullition",
     size: "Article complet"
   },
   {
@@ -19,7 +23,7 @@ export const documents: Document[] = [
     description: "Un guide pour redécouvrir le plaisir d'apprendre et transformer l'apprentissage en aventure passionnante.",
     author: "Geoffroy Streit",
     date: "2025",
-    link: "d:\\0CODE\\lovable\\NeuroDiversiteExplorer\\neurodiversity-explorer-main\\dist\\documents\\marre_d_apprendre.pdf",
+    link: getDownloadPath("marre_d_apprendre.pdf"),
     size: "2.1 MB"
   },
   {
@@ -29,7 +33,7 @@ export const documents: Document[] = [
     description: "Document pédagogique expliquant avec simplicité et bienveillance le concept de neurodiversité aux enfants",
     author: "Geoffroy Streit",
     date: "Mars 2023",
-    link: "./documents/explication_neurodiversite_enfant.pdf",
+    link: getDownloadPath("explication_neurodiversite_enfant.pdf"),
     size: "2.1 MB"
   },
   {
@@ -39,7 +43,7 @@ export const documents: Document[] = [
     description: "Voyage au cœur de la dyspraxie : témoignage sincère et guide pratique d'un 'expert par expérience' qui partage ses découvertes neuroscientifiques, ses nombreuses stratégies éprouvées et sa vision positive de cette différence neurologique qui transforme chaque geste quotidien en défi mais aussi en source insoupçonnée de forces uniques",
     author: "Geoffroy Streit",
     date: "Mars 2003",
-    link: "./documents/Lettre_d_un_dyspraxique.pdf",
+    link: getDownloadPath("lettre_d_un_dyspraxique.pdf"),
     size: "2.1 MB"
   },
   {
@@ -49,7 +53,7 @@ export const documents: Document[] = [
     description: "Dans un monde conçu pour les lignes droites, mon cerveau dessine des spirales colorées : bienvenue dans la réalité quotidienne d'un esprit dys/TDA/H, où chaque jour est une aventure imprévisible entre génie créatif et chaos organisé.",
     author: "Geoffroy S.",
     date: "2005",
-    link: "./documents/Ma_vie_en_mode_chaos_organise.pdf",
+    link: getDownloadPath("ma_vie_en_mode_chaos_organise.pdf"),
     size: "2.3 MB"
   },
   {
