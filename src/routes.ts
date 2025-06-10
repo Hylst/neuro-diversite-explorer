@@ -51,6 +51,7 @@ export const ROUTES = {
     APPLICATIONS: '/ressources/applications',
     PLANNINGS: '/ressources/plannings',
     KITS: '/ressources/kits',
+    REFLEXION_STRUCTUREE: '/ressources/reflexion-structuree',
   },
   
   // Blog

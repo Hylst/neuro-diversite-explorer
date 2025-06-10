@@ -3,6 +3,26 @@ import { Document } from '../types';
 // Données des documents
 export const documents: Document[] = [
   {
+    id: 16,
+    title: "La pensée en ébullition",
+    type: "Article",
+    description: "Pourquoi certains esprits neurodivergents peinent à structurer leurs idées. Une analyse approfondie des mécanismes cognitifs chez les personnes TDA/H, TSA et présentant des troubles dys.",
+    author: "Geoffroy Streit",
+    date: "2021 - revu 2025",
+    link: "/ressources/reflexion-structuree",
+    size: "Article complet"
+  },
+  {
+    id: 15,
+    title: "Marre d'Apprendre ? Et si c'était la Clé de Toutes les Aventures ?",
+    type: "PDF",
+    description: "Un guide pour redécouvrir le plaisir d'apprendre et transformer l'apprentissage en aventure passionnante.",
+    author: "Geoffroy Streit",
+    date: "2025",
+    link: "d:\\0CODE\\lovable\\NeuroDiversiteExplorer\\neurodiversity-explorer-main\\dist\\documents\\marre_d_apprendre.pdf",
+    size: "2.1 MB"
+  },
+  {
     id: 0,
     title: "Explication à un enfant de 8 ans de ce qu'est la neurodiversité",
     type: "PDF",
