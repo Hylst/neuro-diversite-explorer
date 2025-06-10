@@ -9,6 +9,7 @@ export interface Document {
   author: string;
   date: string;
   link: string;
+  consultLink?: string;
   size: string;
 }
 

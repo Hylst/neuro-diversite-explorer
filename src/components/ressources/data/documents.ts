@@ -34,6 +34,7 @@ export const documents: Document[] = [
     author: "Geoffroy Streit",
     date: "Mars 2023",
     link: getDownloadPath("explication_neurodiversite_enfant.pdf"),
+    consultLink: "/ressources/neurodiversite-enfant",
     size: "2.1 MB"
   },
   {

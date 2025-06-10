@@ -53,6 +53,7 @@ export const ROUTES = {
     KITS: '/ressources/kits',
     REFLEXION_STRUCTUREE: '/ressources/reflexion-structuree',
     PENSEE_EN_EBULLITION: '/ressources/pensee-en-ebullition',
+    NEURODIVERSITE_ENFANT: '/ressources/neurodiversite-enfant',
   },
   
   // Blog

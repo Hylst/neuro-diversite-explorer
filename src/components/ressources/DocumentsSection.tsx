@@ -101,7 +101,18 @@ const DocumentsSection: React.FC<DocumentsSectionProps> = ({
                     {document.author}, {document.date}
                   </p>
                 </div>
-                <div className="flex justify-end">
+                <div className="flex justify-end gap-2">
+                  {document.consultLink && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-2 hover:bg-blue-50 hover:border-blue-300 transition-colors"
+                      onClick={() => handleDownload(document.consultLink!, document.title)}
+                    >
+                      <Eye className="h-4 w-4" />
+                      Consulter
+                    </Button>
+                  )}
                   <Button
                     variant="outline"
                     size="sm"
