@@ -24,6 +24,7 @@ export const documents: Document[] = [
     author: "Geoffroy Streit",
     date: "2025",
     link: getDownloadPath("marre_d_apprendre.pdf"),
+    consultLink: "/ressources/marre-apprendre",
     size: "2.1 MB"
   },
   {
@@ -45,6 +46,7 @@ export const documents: Document[] = [
     author: "Geoffroy Streit",
     date: "Mars 2003",
     link: getDownloadPath("lettre_d_un_dyspraxique.pdf"),
+    consultLink: "/ressources/lettre-dyspraxique",
     size: "2.1 MB"
   },
   {
@@ -55,6 +57,7 @@ export const documents: Document[] = [
     author: "Geoffroy S.",
     date: "2005",
     link: getDownloadPath("ma_vie_en_mode_chaos_organise.pdf"),
+    consultLink: "/ressources/vie-chaos-organise",
     size: "2.3 MB"
   },
   {

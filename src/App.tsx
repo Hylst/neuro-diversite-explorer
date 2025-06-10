@@ -35,6 +35,9 @@ const Ressources = lazy(() => import("./pages/Ressources"));
 const ReflexionStructuree = lazy(() => import("./pages/ressources/ReflexionStructuree"));
 const PenseeEnEbullition = lazy(() => import("./pages/ressources/PenseeEnEbullition"));
 const NeurodiversiteEnfant = lazy(() => import("./pages/NeurodiversiteEnfant"));
+const MarreApprendre = lazy(() => import("./pages/ressources/MarreApprendre"));
+const LettreDyspraxique = lazy(() => import("./pages/ressources/LettreDyspraxique"));
+const VieChaosOrganise = lazy(() => import("./pages/ressources/VieChaosOrganise"));
 const GuideAdministratif = lazy(() => import("./pages/ressources/GuideAdministratif"));
 const StrategiesApprentissage = lazy(() => import("./pages/ressources/StrategiesApprentissage"));
 const Communication = lazy(() => import("./pages/ressources/Communication"));
@@ -111,6 +114,9 @@ const App = () => (
                 <Route path={ROUTES.RESSOURCES.REFLEXION_STRUCTUREE} element={<ReflexionStructuree />} />
                 <Route path={ROUTES.RESSOURCES.PENSEE_EN_EBULLITION} element={<PenseeEnEbullition />} />
                 <Route path={ROUTES.RESSOURCES.NEURODIVERSITE_ENFANT} element={<NeurodiversiteEnfant />} />
+                <Route path={ROUTES.RESSOURCES.MARRE_APPRENDRE} element={<MarreApprendre />} />
+                <Route path={ROUTES.RESSOURCES.LETTRE_DYSPRAXIQUE} element={<LettreDyspraxique />} />
+                <Route path={ROUTES.RESSOURCES.VIE_CHAOS_ORGANISE} element={<VieChaosOrganise />} />
                 
                 {/* Autres pages */}
                 <Route path={ROUTES.APPRENTISSAGE} element={<Apprentissage />} />

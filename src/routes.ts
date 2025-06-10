@@ -54,6 +54,9 @@ export const ROUTES = {
     REFLEXION_STRUCTUREE: '/ressources/reflexion-structuree',
     PENSEE_EN_EBULLITION: '/ressources/pensee-en-ebullition',
     NEURODIVERSITE_ENFANT: '/ressources/neurodiversite-enfant',
+    MARRE_APPRENDRE: '/ressources/marre-apprendre',
+    LETTRE_DYSPRAXIQUE: '/ressources/lettre-dyspraxique',
+    VIE_CHAOS_ORGANISE: '/ressources/vie-chaos-organise',
   },
   
   // Blog

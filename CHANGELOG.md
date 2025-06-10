@@ -14,6 +14,11 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - 🗑️ **Supprimé** : Fonctionnalités supprimées
 - 🔒 **Sécurité** : Vulnérabilités
 
+## [Unreleased]
+
+### Fixed
+- Replaced `Ladder` icon with `List` in `MarreApprendre.tsx` due to `Ladder` not being an exported member of `lucide-react`.
+
 ## [1.2.0] - Prochaine version
 
 ### ✨ Ajouté
