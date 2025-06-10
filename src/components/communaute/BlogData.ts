@@ -68,8 +68,7 @@ Geoffroy Streit - 2025
 
 ### À Propos de l'Auteur
 
-Geoffroy Streit (Geoffroy S.) est l'auteur et créateur du site NeuroDiversité Explorer. Coach en neurodiversité et formateur spécialisé dans l'optimisation des apprentissages pour les profils atypiques. Fort de 10 ans d'expérience et lui-même neurodivergent, il accompagne particuliers et entreprises dans la valorisation des différences cognitives.
-
+Geoffroy Streit (Geoffroy S.) est l'auteur et créateur du site NeuroDiversité Explorer. 
 `,
     author: {
       name: "Geoffroy Streit (Geoffroy S.)",

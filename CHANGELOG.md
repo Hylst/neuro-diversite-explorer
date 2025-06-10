@@ -108,6 +108,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Remplacement des liens fictifs de la cartographie par des liens réels vers des organisations existantes
 - **Corrections TypeScript `OptimizedCollapsibleSection`** : Résolution des erreurs de props invalides (`isExpanded`, `onToggle`, `className`) dans `PenseeEnEbullition.tsx`.
 - **Corrections TypeScript `OptimizedCollapsibleSection`** : Ajout des props manquantes (`id`, `icon`) dans `NavigationLabyrintheIdees.tsx`.
+- Correction des problèmes de contraste/visibilité en mode sombre pour la présentation modulaire dans `PenseeEnEbullition.tsx` en ajustant les couleurs du texte.
 
 ### 🔄 À améliorer
 - Optimisation des performances sur les pages complexes
