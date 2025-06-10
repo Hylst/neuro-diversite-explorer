@@ -34,7 +34,7 @@ const APropos = () => {
                 <div className="flex flex-col md:flex-row gap-6 mb-6">
                   <div className="flex-shrink-0">
                     <img 
-                      src="/assets/avatars/geoffroy-s-avatar.svg" 
+                      src="https://www.hylst.fr/img/geoffroy_s_id.png" 
                       alt="Geoffroy S." 
                       className="w-32 h-32 rounded-full border-2 border-secondary shadow-lg"
                     />
