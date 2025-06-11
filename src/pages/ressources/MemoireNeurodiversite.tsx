@@ -73,7 +73,7 @@ Auteur : Geoffroy Streit - 2021 - revu et amélioré en 2025
 Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <motion.div
@@ -84,19 +84,19 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
           <Button
             onClick={handleBack}
             variant="ghost"
-            className="mb-4 hover:bg-blue-100"
+            className="mb-4 hover:bg-blue-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Retour aux ressources
           </Button>
           
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center justify-center gap-3">
               <Brain className="h-10 w-10 text-blue-600" />
               Mémoire et Neurodiversité
             </h1>
-            <p className="text-xl text-gray-600 mb-2">Un Labyrinthe aux Multiples Facettes</p>
-            <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">Un Labyrinthe aux Multiples Facettes</p>
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
               <span>Par Geoffroy Streit</span>
               <span>•</span>
               <span>2021 - revu 2025</span>
@@ -105,19 +105,19 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
         </motion.div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-100 dark:bg-gray-700">
             <TabsTrigger value="modular">Présentation modulaire</TabsTrigger>
             <TabsTrigger value="textual">Présentation textuelle</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="modular">
+          <TabsContent value="modular" className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             {/* Introduction */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="mb-8">
+              <Card className="mb-8 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <AlertCircle className="h-5 w-5 text-amber-600" />
@@ -125,7 +125,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     Les troubles de la mémoire sont une composante fréquente, bien que souvent méconnue ou mal interprétée, 
                     des profils neurodivergents comme le Trouble du Déficit de l'Attention avec ou sans Hyperactivité (TDA/H), 
                     le Trouble du Spectre de l'Autisme (TSA) et les troubles "Dys" (dyslexie, dyspraxie, etc.). 
@@ -142,7 +142,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="mb-8">
+          <Card className="mb-8 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Brain className="h-5 w-5 text-blue-600" />
@@ -159,7 +159,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Clock className="h-4 w-4 text-red-600" />
                   Mémoire de Travail
                 </h4>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   Système à capacité limitée qui maintient et manipule temporairement l'information nécessaire 
                   à la réalisation de tâches cognitives. C'est le "post-it" ou la "RAM" du cerveau.
                 </p>
@@ -169,7 +169,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Badge variant="secondary">Dyspraxie</Badge>
                   <Badge variant="secondary">TSA</Badge>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>Manifestations :</strong> Oublier une instruction donnée à l'oral, perdre le fil de ses idées, 
                   difficultés en calcul mental, oublier ce qu'on est venu chercher.
                 </p>
@@ -181,14 +181,14 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Target className="h-4 w-4 text-orange-600" />
                   Mémoire Procédurale
                 </h4>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   Mémoire des savoir-faire et des habiletés motrices, qui permet d'automatiser les gestes et les procédures.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-2">
                   <Badge variant="destructive">Dyspraxie (fortement)</Badge>
                   <Badge variant="secondary">TDA/H</Badge>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>Manifestations :</strong> Lenteur pour apprendre les gestes du quotidien, écriture manuscrite difficile, 
                   difficultés à apprendre une chorégraphie.
                 </p>
@@ -200,14 +200,14 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <BookOpen className="h-4 w-4 text-purple-600" />
                   Mémoire Épisodique / Autobiographique
                 </h4>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   Mémoire des événements vécus personnellement, avec leur contexte émotionnel, spatial et temporel. 
                   C'est le film de notre vie.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-2">
                   <Badge variant="secondary">TSA</Badge>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>Manifestations :</strong> Souvenirs moins détaillés, factuels, difficulté à se "re-projeter" 
                   dans le souvenir et à le partager de manière narrative.
                 </p>
@@ -219,14 +219,14 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Users className="h-4 w-4 text-green-600" />
                   Mémoire Prospective
                 </h4>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   Mémoire du futur : se souvenir d'exécuter une action planifiée.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-2">
                   <Badge variant="destructive">TDA/H (très fortement)</Badge>
                   <Badge variant="secondary">TSA</Badge>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   <strong>Manifestations :</strong> Oublis fréquents de rendez-vous, de rendre des travaux à temps, 
                   de payer des factures, de répondre à un message.
                 </p>
@@ -241,7 +241,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Card className="mb-8">
+          <Card className="mb-8 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-amber-600" />
@@ -250,36 +250,36 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-3 gap-4">
-                <Card className="border-red-200">
+                <Card className="border-red-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg text-red-700">TDA/H</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       Atteinte quasi systématique de la mémoire de travail. Impact modéré à sévère 
                       sur l'ensemble des apprentissages et de l'organisation quotidienne.
                     </p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-blue-200">
+                <Card className="border-blue-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg text-blue-700">TSA</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       Particularités de la mémoire autobiographique. La mémoire sémantique peut être 
                       un point fort (hypermnésie sur les intérêts spécifiques).
                     </p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-purple-200">
+                <Card className="border-purple-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg text-purple-700">Troubles "Dys"</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       Dyspraxie : atteinte sévère de la mémoire procédurale. 
                       Dyslexie : surcharge de la mémoire de travail par les efforts de décodage.
                     </p>
@@ -296,7 +296,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <Card className="mb-8">
+          <Card className="mb-8 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Heart className="h-5 w-5 text-pink-600" />
@@ -313,7 +313,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <BookOpen className="h-4 w-4 text-blue-600" />
                   Scolarité et Apprentissages
                 </h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
+                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">dark:text-gray-300 text-sm">
                   <li>Difficulté à retenir les leçons, les consignes multiples, les tables de multiplication</li>
                   <li>Lenteur dans l'exécution des tâches</li>
                   <li>Difficulté à prendre des notes et à écouter simultanément</li>
@@ -330,7 +330,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Target className="h-4 w-4 text-green-600" />
                   Vie Quotidienne et Autonomie
                 </h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
+                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">
                   <li>Perte fréquente d'objets personnels (clés, téléphone, portefeuille)</li>
                   <li>Difficulté à gérer les tâches administratives, les rendez-vous</li>
                   <li>Procrastination due à la difficulté d'initier et de se souvenir des étapes d'une tâche</li>
@@ -347,7 +347,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Users className="h-4 w-4 text-purple-600" />
                   Vie Sociale et Relationnelle
                 </h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
+                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">
                   <li>Difficulté à retenir les prénoms ou les informations partagées par les autres</li>
                   <li>Perte du fil dans les conversations</li>
                   <li>Oubli des anniversaires ou des événements importants</li>
@@ -364,7 +364,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <Heart className="h-4 w-4 text-pink-600" />
                   Estime de Soi et Santé Mentale
                 </h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
+                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">
                   <li>Faible estime de soi, sentiment d'être "nul" ou "paresseux"</li>
                   <li>Anxiété de performance, stress chronique</li>
                   <li>Frustration, irritabilité</li>
@@ -401,7 +401,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
             </motion.div>
           </TabsContent>
 
-          <TabsContent value="textual">
+          <TabsContent value="textual" className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -419,7 +419,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                 </CardHeader>
                 <CardContent>
                   <div className="prose prose-gray max-w-none">
-                    <div className="whitespace-pre-line text-gray-700 leading-relaxed">
+                    <div className="whitespace-pre-line text-gray-700 dark:text-gray-300 leading-relaxed">
                       {textContent}
                     </div>
                   </div>
