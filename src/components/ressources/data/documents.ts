@@ -1,4 +1,5 @@
 import { Document } from '../types';
+import { ROUTES } from '../../../routes';
 
 // Données des documents
 // Function to handle document downloads
@@ -6,6 +7,16 @@ const getDownloadPath = (filename: string) => `/assets/downloads/${filename}`;
 
 // Updated documents with corrected paths
 export const documents: Document[] = [
+  {
+    id: 17,
+    title: "Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes",
+    type: "Article",
+    description: "Guide complet sur les troubles de la mémoire chez les personnes neurodivergentes. Exploration des différents types de mémoire, leurs atteintes spécifiques et leurs impacts sur le quotidien.",
+    author: "Geoffroy Streit",
+    date: "2021 - revu 2025",
+    link: ROUTES.RESSOURCES.MEMOIRE_NEURODIVERSITE,
+    size: "Guide complet"
+  },
   {
     id: 16,
     title: "La pensée en ébullition",

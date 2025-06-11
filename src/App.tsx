@@ -38,6 +38,7 @@ const NeurodiversiteEnfant = lazy(() => import("./pages/NeurodiversiteEnfant"));
 const MarreApprendre = lazy(() => import("./pages/ressources/MarreApprendre"));
 const LettreDyspraxique = lazy(() => import("./pages/ressources/LettreDyspraxique"));
 const VieChaosOrganise = lazy(() => import("./pages/ressources/VieChaosOrganise"));
+const MemoireNeurodiversite = lazy(() => import("./pages/ressources/MemoireNeurodiversite"));
 const GuideAdministratif = lazy(() => import("./pages/ressources/GuideAdministratif"));
 const StrategiesApprentissage = lazy(() => import("./pages/ressources/StrategiesApprentissage"));
 const Communication = lazy(() => import("./pages/ressources/Communication"));
@@ -117,6 +118,7 @@ const App = () => (
                 <Route path={ROUTES.RESSOURCES.MARRE_APPRENDRE} element={<MarreApprendre />} />
                 <Route path={ROUTES.RESSOURCES.LETTRE_DYSPRAXIQUE} element={<LettreDyspraxique />} />
                 <Route path={ROUTES.RESSOURCES.VIE_CHAOS_ORGANISE} element={<VieChaosOrganise />} />
+                <Route path={ROUTES.RESSOURCES.MEMOIRE_NEURODIVERSITE} element={<MemoireNeurodiversite />} />
                 
                 {/* Autres pages */}
                 <Route path={ROUTES.APPRENTISSAGE} element={<Apprentissage />} />

@@ -57,6 +57,7 @@ export const ROUTES = {
     MARRE_APPRENDRE: '/ressources/marre-apprendre',
     LETTRE_DYSPRAXIQUE: '/ressources/lettre-dyspraxique',
     VIE_CHAOS_ORGANISE: '/ressources/vie-chaos-organise',
+    MEMOIRE_NEURODIVERSITE: '/ressources/memoire-neurodiversite',
   },
   
   // Blog
