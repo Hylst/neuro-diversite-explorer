@@ -2,36 +2,30 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedCollapsibleSection from '../../components/ui/OptimizedCollapsibleSection';
 import OptimizedTooltip from '../../components/ui/OptimizedTooltip';
-import { ArrowLeft, Brain, Lightbulb, Target, Zap, Users, BookOpen, Smartphone, Gamepad2, Map, Mic, PenTool, Eye, Clock, Star, AlertCircle, CheckCircle, Sparkles } from 'lucide-react';
+import { ArrowLeft, Brain, Lightbulb, Target, Zap, Users, BookOpen, Smartphone, Gamepad2, Map, Mic, PenTool, Eye, Clock, Star, AlertCircle, CheckCircle, Sparkles, FileText, Layout } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 /**
  * NavigationLabyrintheIdees Component
- * 
+ *
  * Displays the "Guide Pratique : Naviguer dans le Labyrinthe des Idées" article
  * as an in-app page with modern design and interactive elements.
- * 
+ *
  * Features:
  * - Structured content with clear sections
  * - Visual icons and animations
  * - Professional typography and spacing
  * - Responsive design
  * - Author information and development note
+ * - Dark mode compatibility
  */
 const NavigationLabyrintheIdees: React.FC = () => {
   const navigate = useNavigate();
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-
+  const [activeTab, setActiveTab] = useState<'modular' | 'textual'>('modular');
+  
   const handleBackClick = useCallback(() => {
     navigate('/ressources');
   }, [navigate]);
-
-  const toggleSection = useCallback((id: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  }, []);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -47,11 +41,112 @@ const NavigationLabyrintheIdees: React.FC = () => {
     }
   };
 
+  const textContent = useMemo(() => ({
+    preamble: {
+      title: "Préambule : Différence et Liens entre Mémoire et Structuration de la Pensée",
+      intro: "Il est essentiel de comprendre pourquoi ces deux difficultés sont si souvent liées, notamment chez les profils neuroatypiques.",
+      difference: {
+        title: "La Différence :",
+        structuring: "La structuration de la pensée est une fonction exécutive. C'est le travail de l'architecte : planifier, organiser, hiérarchiser les idées, créer des liens logiques et suivre un raisonnement.",
+        memory: "La mémoire, et plus spécifiquement la mémoire de travail, est le chantier de l'architecte. C'est l'espace mental limité où l'on conserve et manipule les \"briques\" (les idées, les faits, les consignes) le temps de construire le \"mur\" (la réflexion)."
+      },
+      link: {
+        title: "Le Lien Indissociable :",
+        analogy: "Imaginez que vous essayez de construire un mur, mais que les briques disparaissent de vos mains dès que vous en saisissez une nouvelle. C'est exactement ce qui se passe lorsqu'une mémoire de travail défaillante rencontre un besoin de structuration :",
+        surcharge: "Surcharge Cognitive : Le cerveau dépense une énergie considérable juste pour retenir les éléments de la pensée (le début d'une phrase, l'idée A, l'argument B). Il ne lui reste alors que peu de ressources pour le travail de structuration (comment A et B sont-ils liés ? Lequel est le plus important ?).",
+        lossOfThread: "Perte du Fil : Au milieu d'une réflexion, une nouvelle idée (pensée en arborescence du TDA/H) ou une distraction survient. La mémoire de travail, déjà saturée, \"lâche\" les informations précédentes pour traiter la nouvelle. Le fil est rompu.",
+        forgettingGoal: "L'Oubli de l'Objectif : Sans une mémoire de travail solide pour garder l'objectif final en tête, il est facile de se perdre dans les méandres des sous-idées et de ne jamais arriver à une conclusion.",
+        conclusion: "Ce guide propose des stratégies visant précisément à décharger la mémoire de travail pour libérer des ressources mentales au profit de la structuration."
+      }
+    },
+    part1: {
+      title: "Partie 1 : La Fondation - Externaliser sa Pensée pour Libérer sa Mémoire",
+      intro: "L'objectif est de sortir les idées de votre tête le plus vite et le plus fidèlement possible, sans filtre ni jugement.",
+      brainDumping: {
+        title: "1. La \"Vidange Cérébrale\" (Brain Dumping)",
+        description: "C'est la technique la plus fondamentale. L'idée est de créer un réceptacle externe pour vos pensées.",
+        principle: "Principe : Sur une feuille de papier, un tableau blanc ou un document numérique (Notion, OneNote, etc.), écrivez absolument tout ce qui vous passe par la tête concernant votre sujet de réflexion.",
+        methodVrac: "En Vrac Total : Ne vous souciez ni de l'ordre, ni de la grammaire, ni de la pertinence. Notez des mots-clés, des bribes de phrases, des questions, des doutes.",
+        methodNoJudgment: "Sans Jugement : L'objectif n'est pas de produire un texte parfait, mais de vider votre charge mentale. Une idée \"bête\" peut en cacher une brillante.",
+        result: "Le Résultat : Vous disposez maintenant d'une \"photographie\" de votre pensée à un instant T. Votre cerveau n'a plus à lutter pour tout retenir, il peut passer à l'étape suivante : l'organisation."
+      },
+      voiceDictation: {
+        title: "2. La Dictée Vocale : La Pensée Fluide",
+        description: "Pour beaucoup, la pensée est plus rapide et instinctive que la vitesse de frappe ou d'écriture, souvent source de blocage (sauf en cas de dysphasie sévère).",
+        principle: "Principe : Utiliser la fonction dictaphone de votre téléphone ou un logiciel de transcription pour parler de votre idée, comme si vous l'expliquiez à quelqu'un.",
+        method: "Méthode : Ouvrez une note ou un enregistreur et parlez. Décrivez votre projet, posez vos questions à voix haute, développez vos arguments de manière décousue.",
+        advantage: "L'avantage crucial : Même si au bout de la phrase vous avez oublié le début, l'enregistrement, lui, sera complet.",
+        exploitation: "Exploitation : Relisez (ou faites lire par une IA) la transcription. Le simple fait de voir vos propres mots vous remettra sur les rails de votre pensée, vous permettant de la poursuivre, de la corriger et de l'enrichir."
+      }
+    },
+    part2: {
+      title: "Partie 2 : L'Atelier d'Organisation - Structurer le Chaos",
+      intro: "Une fois vos idées externalisées, il faut les organiser. C'est là que la magie opère.",
+      visualLab: {
+        title: "3. Le Laboratoire Visuel et Itératif",
+        description: "C'est la phase d'organisation manuelle et visuelle, très efficace pour les penseurs visuels.",
+        principle: "Principe : Utiliser des codes visuels pour regrouper, hiérarchiser et relier les idées issues de votre \"vidange cérébrale\".",
+        methodGroup: "Regrouper : Utilisez des surligneurs de couleurs différentes pour lier les idées qui vont ensemble. Entourez les concepts similaires.",
+        methodHierarchy: "Hiérarchiser : Utilisez des symboles (étoiles, chiffres) ou des tailles d'écriture différentes pour marquer les idées principales, les sous-idées et les détails.",
+        methodLinks: "Faire des Liens : Dessinez des flèches, des schémas, des tableaux simples pour visualiser les relations de cause à effet, les oppositions, les séquences.",
+        tools: "Outils : Des post-it de couleurs différentes sur un mur, un grand tableau blanc, ou des applications de mind mapping (Xmind, Miro, Coggle)."
+      },
+      chainOfThought: {
+        title: "4. Le Principe de la \"Chaîne de Pensée\" (Chain of Thought)",
+        description: "Cette technique aide à construire un raisonnement linéaire à partir d'un point de départ.",
+        principle: "Principe : Partir d'une idée initiale et se forcer à la lier à la suivante par une question ou une déduction logique, créant une chaîne.",
+        methodExample: "Méthode : Phrase de départ : \"Je dois organiser un événement.\" Question induite : \"Quel est le but de cet événement ?\" -> Réponse/Maillon suivant : \"Le but est de célébrer le lancement du produit X.\" Question induite : \"Qui devons-nous inviter ?\" -> Réponse/Maillon suivant : \"Les clients, les partenaires, la presse.\" ... et ainsi de suite.",
+        conclusion: "Cela transforme une montagne de réflexion en une série de petites collines à franchir l'une après l'autre."
+      }
+    },
+    part3: {
+      title: "Partie 3 : Consolider les Acquis - Techniques de Mémorisation Active",
+      intro: "Même avec des notes, il faut parfois garder des éléments clés en tête.",
+      mentalPalace: {
+        title: "5. Le Palais Mental : Une Technique Puissante mais Exigeante",
+        principle: "Principe : Associer des informations à mémoriser à des lieux ou des objets dans un endroit que vous connaissez parfaitement (votre maison, votre trajet pour le travail). Pour se souvenir, on parcourt mentalement ce lieu.",
+        adapted: "Est-ce adapté ? Oui : Pour mémoriser une liste d'éléments structurés et ordonnés (les étapes d'un discours, les points clés d'une présentation). Non : Moins adapté pour la phase créative et chaotique de la réflexion. C'est un outil de stockage, pas de création.",
+        method: "Méthode Simplifiée : Choisissez votre lieu : Votre appartement. Définissez un parcours logique : Porte d'entrée -> Couloir -> Cuisine -> Salon... Placez vos idées : Associez votre première idée (ex: \"Introduction du projet\") à la porte d'entrée de manière imagée et marquante (ex: la porte est recouverte du logo du projet). Associez la deuxième idée à l'objet suivant sur votre parcours, etc. Répétez la promenade mentale pour la renforcer."
+      },
+      quickMemoryAids: {
+        title: "6. Aides à la Mémorisation Rapides",
+        description: "Pour les concepts importants au sein de vos réflexions, utilisez des techniques plus légères :",
+        images: "Images Mentales Frappantes : Associez un concept abstrait à une image absurde, drôle ou émotionnellement forte.",
+        analogies: "Analogies Familières : Reliez une nouvelle idée à quelque chose que vous connaissez déjà très bien.",
+        acronyms: "Acronymes : Créez un mot avec la première lettre de chaque élément d'une liste."
+      }
+    },
+    part4: {
+      title: "Partie 4 : L'Allié Moderne - Utiliser l'Intelligence Artificielle et la Technologie",
+      intro: "L'IA peut agir comme un co-pilote pour votre pensée.",
+      aiStructuring: {
+        title: "L'IA comme Assistant de Structuration :",
+        method: "Copiez-collez votre \"vidange cérébrale\" ou la transcription de votre dictée vocale dans une IA (Gemini, ChatGPT, etc.). Demandez-lui : \"Résume ce texte en 5 points clés.\" \"Regroupe ces idées par thèmes.\" \"Identifie une structure logique (introduction, développement, conclusion) dans ce texte.\" \"Propose une suite ou des aspects à développer à partir de ces notes.\" \"Transforme cette liste de points en un plan détaillé.\""
+      },
+      aiTasks: {
+        title: "L'IA pour Décomposer les Tâches et Gérer le Temps :",
+        todo: "To-Do Lists Assistées : Des applications comme Todoist ou Motion peuvent organiser vos tâches et vous aider à planifier votre journée.",
+        planning: "Programmation de Tâches : Donnez un objectif à une IA (\"Je dois préparer une présentation sur le sujet X pour vendredi\") et demandez-lui de décomposer le projet en une liste de tâches réalisables avec des échéances.",
+        reminders: "Rappels Intelligents : Utilisez les assistants vocaux (\"Hey Google, rappelle-moi d'envoyer un mail à Paul à 14h\") pour décharger votre mémoire prospective. Des applications comme Tiimo sont spécifiquement conçues pour les profils neuroatypiques, avec des rappels visuels et une structuration du temps."
+      },
+      forChildren: {
+        title: "Pour les Enfants : Adapter les Astuces à l'Apprentissage",
+        intro: "Les mêmes principes s'appliquent, mais de manière plus ludique.",
+        ideaBox: "La \"Boîte à Idées\" : Au lieu d'une feuille, utilisez une vraie boîte où l'enfant peut déposer des dessins, des post-it, des objets (LEGOs) qui représentent ses idées pour une rédaction ou un exposé.",
+        mindMapping: "Le Dessin en Étoile (Mind Mapping) : Mettez le sujet principal au centre d'une grande feuille et demandez à l'enfant de dessiner des \"branches\" pour chaque idée qui s'y rattache. Utilisez beaucoup de couleurs.",
+        recipe: "La Recette de Cuisine : Pour un devoir complexe, présentez les étapes comme une recette : \"Ingrédient 1 : Lire la consigne. Ingrédient 2 : Souligner les mots importants... Étape 1 : Préparer le brouillon...\"",
+        treasureHunt: "Le Chemin du Trésor dans la Chambre : Pour mémoriser une leçon (les planètes du système solaire, par exemple), \"cachez\" chaque planète dans un endroit de la chambre (le Soleil sur la lampe, Mars sous le tapis rouge...). L'enfant mémorise le parcours pour retrouver sa leçon."
+      }
+    },
+    author: "Geoffroy Streit",
+    year: "2021 - revu et amélioré en 2025"
+  }), []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950 text-gray-900 dark:text-gray-100">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -59,35 +154,35 @@ const NavigationLabyrintheIdees: React.FC = () => {
         >
           <button
             onClick={handleBackClick}
-            className="flex items-center gap-2 text-neuro-purple hover:text-neuro-blue transition-colors mb-6 group"
+            className="flex items-center gap-2 text-neuro-purple hover:text-neuro-blue transition-colors mb-6 group dark:text-purple-400 dark:hover:text-blue-300"
           >
             <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
             Retour aux ressources
           </button>
-          
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-gradient-to-r from-neuro-purple to-neuro-blue rounded-xl">
                 <Map className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 leading-tight">
+                <h1 className="text-3xl font-bold text-gray-900 leading-tight dark:text-gray-100">
                   Guide Pratique : Naviguer dans le Labyrinthe des Idées
                 </h1>
-                <p className="text-lg text-gray-600 mt-2">
+                <p className="text-lg text-gray-600 mt-2 dark:text-gray-300">
                   Pour les esprits foisonnants qui peinent à structurer leurs pensées et à retenir l'essentiel
                 </p>
               </div>
             </div>
-            
-            <div className="flex items-center gap-4 text-sm text-gray-500">
+
+            <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
               <span className="flex items-center gap-1">
                 <Users className="h-4 w-4" />
-                Geoffroy Streit
+                {textContent.author}
               </span>
               <span className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                2021 - revu et corrigé en 2025
+                {textContent.year}
               </span>
             </div>
           </div>
@@ -100,15 +195,15 @@ const NavigationLabyrintheIdees: React.FC = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mb-8"
         >
-          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
+          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200 dark:from-indigo-900 dark:to-purple-900 dark:border-indigo-700">
             <div className="flex items-start gap-3">
-              <Sparkles className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
+              <Sparkles className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0 dark:text-indigo-300" />
               <div>
-                <h3 className="text-lg font-semibold text-indigo-900 mb-2">Développement en cours</h3>
-                <p className="text-indigo-800 leading-relaxed">
-                  L'auteur développe actuellement une suite d'applications gratuites et faciles d'accès 
-                  pour répondre concrètement à ces problématiques. Ces outils numériques viendront 
-                  compléter les stratégies présentées dans ce guide pour offrir un accompagnement 
+                <h3 className="text-lg font-semibold text-indigo-900 mb-2 dark:text-indigo-100">Développement en cours</h3>
+                <p className="text-indigo-800 leading-relaxed dark:text-indigo-200">
+                  L'auteur développe actuellement une suite d'applications gratuites et faciles d'accès
+                  pour répondre concrètement à ces problématiques. Ces outils numériques viendront
+                  compléter les stratégies présentées dans ce guide pour offrir un accompagnement
                   pratique aux personnes neurodivergentes.
                 </p>
               </div>
@@ -116,1053 +211,600 @@ const NavigationLabyrintheIdees: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Préambule enrichi */}
+        {/* Tab Navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mb-8"
+        >
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+            <div className="flex">
+              <button
+                onClick={() => setActiveTab('modular')}
+                className={`flex-1 px-6 py-4 text-center font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
+                  activeTab === 'modular'
+                    ? 'bg-gradient-to-r from-neuro-purple to-neuro-blue text-white'
+                    : 'text-gray-600 hover:text-neuro-purple hover:bg-gray-50 dark:text-gray-300 dark:hover:text-purple-400 dark:hover:bg-gray-700'
+                }`}
+              >
+                <Layout className="h-5 w-5" />
+                Présentation modulaire
+              </button>
+              <button
+                onClick={() => setActiveTab('textual')}
+                className={`flex-1 px-6 py-4 text-center font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
+                  activeTab === 'textual'
+                    ? 'bg-gradient-to-r from-neuro-purple to-neuro-blue text-white'
+                    : 'text-gray-600 hover:text-neuro-purple hover:bg-gray-50 dark:text-gray-300 dark:hover:text-purple-400 dark:hover:bg-gray-700'
+                }`}
+              >
+                <FileText className="h-5 w-5" />
+                Présentation textuelle
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Tab Content */}
+        <AnimatePresence mode="wait">
+          {activeTab === 'modular' ? (
+            <motion.div
+              key="modular"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Préambule enrichi */}
         <motion.section
           {...fadeInUp}
           transition={{ delay: 0.3 }}
           className="mb-12"
         >
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-8 dark:bg-gray-800">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-neuro-purple mb-4">
-                🧠 Préambule : Quand Votre Cerveau Joue à Cache-Cache avec Vos Idées
+              <h2 className="text-3xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                🧠 {textContent.preamble.title}
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Bienvenue dans l'univers fascinant (et parfois frustrant) de la pensée neurodivergente ! 
-                Ici, nous allons démystifier pourquoi votre cerveau semble parfois avoir sa propre logique... 🎭
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto dark:text-gray-300">
+                {textContent.preamble.intro}
               </p>
             </div>
-            
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 mb-8 border-2 border-blue-200">
+
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 mb-8 border-2 border-blue-200 dark:from-blue-900 dark:to-indigo-900 dark:border-blue-700">
               <div className="flex items-start gap-4 mb-6">
                 <div className="bg-blue-500 p-3 rounded-full">
                   <Lightbulb className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">L'Analogie du Jongleur Distrait 🤹‍♂️</h3>
-                  <p className="text-blue-800 text-lg">
-                    Imaginez un jongleur talentueux qui doit jongler avec 5 balles tout en construisant une tour de Jenga. 
+                  <h3 className="text-2xl font-bold text-blue-900 mb-2 dark:text-blue-100">L'Analogie du Jongleur Distrait 🤹‍♂️</h3>
+                  <p className="text-blue-800 text-lg dark:text-blue-200">
+                    Imaginez un jongleur talentueux qui doit jongler avec 5 balles tout en construisant une tour de Jenga.
                     Sauf que parfois, il regarde passer un papillon et... POUF ! Tout s'écroule !
                   </p>
                 </div>
               </div>
-              
-              <div className="bg-white rounded-lg p-6">
-                <h4 className="font-bold text-blue-900 mb-3">Dans votre cerveau, ça donne :</h4>
+
+              <div className="bg-white rounded-lg p-6 dark:bg-gray-700">
+                <h4 className="font-bold text-blue-900 mb-3 dark:text-blue-200">Dans votre cerveau, ça donne :</h4>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <p className="text-blue-800"><strong>Les balles =</strong> Vos idées brillantes</p>
-                    <p className="text-blue-800"><strong>La tour de Jenga =</strong> Votre raisonnement structuré</p>
-                    <p className="text-blue-800"><strong>Le papillon =</strong> Cette notification, ce bruit, cette pensée parasite</p>
+                    <p className="text-blue-800 dark:text-blue-200"><strong>Les balles =</strong> Vos idées brillantes</p>
+                    <p className="text-blue-800 dark:text-blue-200"><strong>La tour de Jenga =</strong> Votre raisonnement structuré</p>
+                    <p className="text-blue-800 dark:text-blue-200"><strong>Le papillon =</strong> Cette notification, ce bruit, cette pensée parasite</p>
                   </div>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <p className="text-blue-700 italic">
+                  <div className="bg-blue-50 p-4 rounded-lg dark:bg-blue-800">
+                    <p className="text-blue-700 italic dark:text-blue-300">
                       "Alors, où j'en étais déjà ? Ah oui, je parlais de... euh... 🤔"
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200 dark:from-green-900 dark:to-emerald-900 dark:border-green-700">
                 <div className="flex items-center mb-4">
                   <div className="bg-green-500 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-green-900">Quand Tout Roule 🚗💨</h3>
+                  <h3 className="text-xl font-bold text-green-900 dark:text-green-100">Quand Tout Roule 🚗💨</h3>
                 </div>
                 <div className="space-y-3">
-                  <div className="bg-white p-4 rounded-lg border-l-4 border-green-400">
-                    <p className="text-green-800 font-semibold mb-1">🎯 Focus Laser</p>
-                    <p className="text-green-700 text-sm">Vos idées s'enchaînent comme des dominos parfaitement alignés</p>
+                  <div className="bg-white p-4 rounded-lg border-l-4 border-green-400 dark:bg-gray-700 dark:border-green-600">
+                    <p className="text-green-800 font-semibold mb-1 dark:text-green-200">🎯 Focus Laser</p>
+                    <p className="text-gray-700 text-sm dark:text-gray-300">Votre mémoire de travail est au top, elle retient toutes les balles sans effort. Votre cerveau peut se concentrer sur la construction de la tour.</p>
                   </div>
-                  <div className="bg-white p-4 rounded-lg border-l-4 border-green-400">
-                    <p className="text-green-800 font-semibold mb-1">🔗 Connexions Magiques</p>
-                    <p className="text-green-700 text-sm">Votre cerveau fait des liens que même Einstein envierait</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg border-l-4 border-green-400">
-                    <p className="text-green-800 font-semibold mb-1">🏗️ Architecture Mentale</p>
-                    <p className="text-green-700 text-sm">Vos raisonnements se construisent comme des cathédrales</p>
+                  <div className="bg-white p-4 rounded-lg border-l-4 border-green-400 dark:bg-gray-700 dark:border-green-600">
+                    <p className="text-green-800 font-semibold mb-1 dark:text-green-200">🚀 Idées Fluides</p>
+                    <p className="text-gray-700 text-sm dark:text-gray-300">Les idées s'enchaînent logiquement, la tour monte sans accroc. Vous savez où vous allez.</p>
                   </div>
                 </div>
               </div>
-              
-              <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-6 border-2 border-red-200">
+
+              <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-6 border-2 border-red-200 dark:from-red-900 dark:to-rose-900 dark:border-red-700">
                 <div className="flex items-center mb-4">
                   <div className="bg-red-500 p-2 rounded-full mr-3">
                     <AlertCircle className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-900">Quand Ça Déraille 🚂💥</h3>
+                  <h3 className="text-xl font-bold text-red-900 dark:text-red-100">Quand Ça Coince 🚧💥</h3>
                 </div>
                 <div className="space-y-3">
-                  <div className="bg-white p-4 rounded-lg border-l-4 border-red-400">
-                    <p className="text-red-800 font-semibold mb-1">🌪️ Tornade Mentale</p>
-                    <p className="text-red-700 text-sm">"Qu'est-ce que je disais déjà ? Ah oui... non, en fait..."</p>
+                  <div className="bg-white p-4 rounded-lg border-l-4 border-red-400 dark:bg-gray-700 dark:border-red-600">
+                    <p className="text-red-800 font-semibold mb-1 dark:text-red-200">🤯 Surcharge Mentale</p>
+                    <p className="text-gray-700 text-sm dark:text-gray-300">Votre mémoire de travail est comme un petit bureau encombré. Dès qu'une nouvelle idée arrive, une ancienne doit partir. Impossible de jongler avec tout !</p>
                   </div>
-                  <div className="bg-white p-4 rounded-lg border-l-4 border-red-400">
-                    <p className="text-red-800 font-semibold mb-1">🧩 Puzzle Impossible</p>
-                    <p className="text-red-700 text-sm">Les pièces de votre réflexion jouent à cache-cache</p>
+                  <div className="bg-white p-4 rounded-lg border-l-4 border-red-400 dark:bg-gray-700 dark:border-red-600">
+                    <p className="text-red-800 font-semibold mb-1 dark:text-red-200">🌀 Pensée en Arborescence</p>
+                    <p className="text-gray-700 text-sm dark:text-gray-300">Une idée en appelle 10 autres, qui en appellent 10 autres... Vous partez dans tous les sens, la tour de Jenga s'écroule avant même d'avoir commencé.</p>
                   </div>
-                  <div className="bg-white p-4 rounded-lg border-l-4 border-red-400">
-                    <p className="text-red-800 font-semibold mb-1">☁️ Brouillard Cérébral</p>
-                    <p className="text-red-700 text-sm">Sensation d'avoir la tête dans du coton... épais</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-8 border-2 border-yellow-300">
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-500 p-3 rounded-full">
-                  <Target className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-yellow-900 mb-3">🎯 Mission de ce Guide</h3>
-                  <p className="text-yellow-800 text-lg mb-4">
-                    Transformer votre cerveau "rebelle" en allié de choc ! Nous allons vous donner les clés pour :
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div className="bg-white p-4 rounded-lg">
-                      <p className="font-semibold text-yellow-900 mb-1">🔧 Réparer</p>
-                      <p className="text-yellow-700 text-sm">Les fuites de votre mémoire de travail</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg">
-                      <p className="font-semibold text-yellow-900 mb-1">🏗️ Construire</p>
-                      <p className="text-yellow-700 text-sm">Des structures de pensée solides</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg">
-                      <p className="font-semibold text-yellow-900 mb-1">🚀 Optimiser</p>
-                      <p className="text-yellow-700 text-sm">Votre potentiel créatif unique</p>
-                    </div>
+                  <div className="bg-white p-4 rounded-lg border-l-4 border-red-400 dark:bg-gray-700 dark:border-red-600">
+                    <p className="text-red-800 font-semibold mb-1 dark:text-red-200">⏳ Perte de Temps</p>
+                    <p className="text-gray-700 text-sm dark:text-gray-300">Vous passez plus de temps à essayer de vous souvenir de ce que vous vouliez dire qu'à réellement avancer. Frustration garantie !</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </motion.section>
 
-        {/* Partie 1 enrichie */}
-        <motion.section
-          {...fadeInUp}
-          transition={{ delay: 0.4 }}
-          className="mb-12"
-        >
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-neuro-purple mb-4">
-                🏗️ Partie 1 : La Fondation - Externaliser sa Pensée pour Libérer sa Mémoire
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                L'objectif est de sortir les idées de votre tête le plus vite et le plus fidèlement possible, 
-                sans filtre ni jugement. Pensez "déménagement mental" ! 📦➡️🧠
+            <div className="mt-8 text-center">
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                Ce guide est votre <span className="font-bold text-neuro-blue dark:text-blue-300">boîte à outils</span> pour devenir un <span className="font-bold text-neuro-purple dark:text-purple-300">architecte de la pensée</span>, même avec un jongleur distrait dans la tête !
               </p>
             </div>
-
-            <div className="space-y-8">
-              {/* Brain Dumping enrichi */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-8 border-2 border-green-200">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-green-500 p-3 rounded-full">
-                    <Lightbulb className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-green-900 mb-2">1. La "Vidange Cérébrale" (Brain Dumping) 🧠💨</h3>
-                    <p className="text-green-800 text-lg">
-                      C'est la technique la plus fondamentale. L'idée est de créer un réceptacle externe pour vos pensées. 
-                      Imaginez que vous videz un tiroir en bazar... mais en version cerveau ! 🗂️
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="bg-white rounded-lg p-6 mb-6 border-2 border-green-300">
-                  <h4 className="font-bold text-green-900 mb-3 flex items-center gap-2">
-                    <span className="text-xl">🎯</span>
-                    Principe de Base :
-                  </h4>
-                  <p className="text-green-700 leading-relaxed">
-                    Sur une feuille de papier, un tableau blanc ou un document numérique (Notion, OneNote, etc.), 
-                    écrivez absolument TOUT ce qui vous passe par la tête concernant votre sujet de réflexion. 
-                    Même "j'ai soif" ou "tiens, un oiseau" ! 🐦
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-green-400">
-                    <div className="flex items-center mb-3">
-                      <span className="text-2xl mr-2">🌪️</span>
-                      <h5 className="font-bold text-green-900">En Vrac Total</h5>
-                    </div>
-                    <p className="text-sm text-green-700 leading-relaxed">
-                      Ne vous souciez ni de l'ordre, ni de la grammaire, ni de la pertinence. 
-                      C'est le moment d'être un rebelle de l'organisation ! 😈
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-green-400">
-                    <div className="flex items-center mb-3">
-                      <span className="text-2xl mr-2">🚫</span>
-                      <h5 className="font-bold text-green-900">Sans Jugement</h5>
-                    </div>
-                    <p className="text-sm text-green-700 leading-relaxed">
-                      L'objectif n'est pas de produire un texte parfait, mais de vider votre charge mentale. 
-                      Votre critique intérieur peut aller boire un café ! ☕
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-green-400">
-                    <div className="flex items-center mb-3">
-                      <span className="text-2xl mr-2">✨</span>
-                      <h5 className="font-bold text-green-900">Le Résultat Magique</h5>
-                    </div>
-                    <p className="text-sm text-green-700 leading-relaxed">
-                      Votre cerveau n'a plus à lutter pour tout retenir, il peut enfin passer à l'organisation. 
-                      Libération garantie ! 🕊️
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="mt-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-6 border-2 border-yellow-300">
-                  <h4 className="font-bold text-yellow-900 mb-3 flex items-center gap-2">
-                    <span className="text-xl">🎬</span>
-                    Exemple Pratique : "Mission Vacances" (version brute)
-                  </h4>
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-yellow-400">
-                    <p className="text-yellow-800 italic mb-2 font-semibold">"Sujet : Organiser mes vacances"</p>
-                    <div className="bg-yellow-50 p-4 rounded-lg">
-                      <p className="text-yellow-700 text-sm leading-relaxed">
-                        Réserver hôtel - vérifier passeport - acheter crème solaire SPF combien déjà ? - 
-                        prévenir voisins - arrêter journal - réserver restaurant le bon ou l'autre ? - 
-                        faire valises mais lesquelles - check-in en ligne 24h avant noter ça où - 
-                        télécharger cartes offline - batterie externe - chargeur - adaptateur - 
-                        prendre RDV vétérinaire pour le chat - vider frigo - payer factures avant départ - 
-                        ah et l'assurance voyage ? - prévenir banque - retirer espèces - 
-                        vérifier météo - lunettes de soleil où elles sont ? - 
-                        livre pour l'avion - playlist - écouteurs...
-                      </p>
-                    </div>
-                    <p className="text-yellow-600 text-xs mt-2 italic">
-                      ↑ Voilà ! Tout est sorti, même le chaos. Maintenant on peut respirer et organiser ! 😮‍💨
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dictée Vocale enrichie */}
-              <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-8 border-2 border-purple-200">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-purple-500 p-3 rounded-full">
-                    <Mic className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-purple-900 mb-2">2. La Dictée Vocale : Quand Votre Bouche Va Plus Vite Que Vos Doigts 🗣️💨</h3>
-                    <p className="text-purple-800 text-lg">
-                      Pour beaucoup, la pensée est plus rapide et instinctive que la vitesse de frappe ou d'écriture. 
-                      C'est comme avoir un robinet à idées... mais qui coule plus vite que votre capacité à remplir le seau ! 🚰💭
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="bg-white rounded-lg p-6 mb-6 border-2 border-purple-300">
-                  <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
-                    <span className="text-xl">🎙️</span>
-                    Principe de la "Radio Cerveau" :
-                  </h4>
-                  <p className="text-purple-700 leading-relaxed">
-                    Utiliser la fonction dictaphone de votre téléphone ou un logiciel de transcription pour parler 
-                    de votre idée, comme si vous l'expliquiez à votre meilleur ami... ou à votre chat ! 🐱 
-                    L'important c'est de PARLER, pas d'être éloquent.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-purple-400">
-                    <div className="flex items-center mb-3">
-                      <span className="text-2xl mr-2">🎬</span>
-                      <h5 className="font-bold text-purple-900">La Méthode "Action !"</h5>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="bg-purple-50 p-3 rounded-lg">
-                        <p className="text-sm text-purple-700">
-                          <strong>1. Appuyez sur REC</strong> 🔴<br/>
-                          Ouvrez une note vocale ou un enregistreur
-                        </p>
-                      </div>
-                      <div className="bg-purple-50 p-3 rounded-lg">
-                        <p className="text-sm text-purple-700">
-                          <strong>2. Parlez naturellement</strong> 💬<br/>
-                          "Alors, mon projet c'est...", "Le problème que j'ai c'est..."
-                        </p>
-                      </div>
-                      <div className="bg-purple-50 p-3 rounded-lg">
-                        <p className="text-sm text-purple-700">
-                          <strong>3. Posez-vous des questions</strong> ❓<br/>
-                          "Mais au fait, pourquoi je veux faire ça ?"
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-purple-400">
-                    <div className="flex items-center mb-3">
-                      <span className="text-2xl mr-2">🦸‍♀️</span>
-                      <h5 className="font-bold text-purple-900">Super-Pouvoir Débloqué</h5>
-                    </div>
-                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
-                      <p className="text-purple-800 font-semibold mb-2">L'Avantage Magique :</p>
-                      <p className="text-purple-700 text-sm leading-relaxed">
-                        Même si au bout de la phrase vous avez oublié le début (classique !), 
-                        l'enregistrement, lui, sera complet. C'est comme avoir une mémoire externe 
-                        qui ne bugge jamais ! 🧠💾
-                      </p>
-                    </div>
-                    
-                    <div className="mt-4 bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                      <p className="text-yellow-800 text-sm">
-                        <strong>💡 Astuce Pro :</strong> Utilisez la transcription automatique de votre téléphone. 
-                        Même avec des erreurs, ça vous donne une base écrite à corriger !
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-6 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-6 border-2 border-indigo-300">
-                  <h4 className="font-bold text-indigo-900 mb-3 flex items-center gap-2">
-                    <span className="text-xl">🎭</span>
-                    Exemple : "Monologue Intérieur" vs "Radio Cerveau"
-                  </h4>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-lg">
-                      <h5 className="font-semibold text-red-900 mb-2 flex items-center gap-2">
-                        <span className="text-lg">😵‍💫</span>
-                        Dans ma tête (le chaos)
-                      </h5>
-                      <p className="text-red-700 text-sm italic">
-                        "Projet... euh... présentation... slides... non attends... public... combien... 
-                        ah oui budget... mais d'abord... qu'est-ce que je disais déjà ?"
-                      </p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg">
-                      <h5 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
-                        <span className="text-lg">🎙️</span>
-                        En mode vocal (la clarté)
-                      </h5>
-                      <p className="text-green-700 text-sm">
-                        "Bon alors, je dois faire une présentation pour vendre mon projet. 
-                        Le public c'est des investisseurs, donc il faut que je parle budget et rentabilité..."
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </motion.section>
 
-        {/* Partie 2 */}
-        <motion.section
-          {...fadeInUp}
-          transition={{ delay: 0.5 }}
-          className="mb-12"
-        >
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-neuro-purple mb-6 flex items-center gap-2">
-              <Eye className="h-6 w-6" />
-              Partie 2 : L'Atelier d'Organisation - Structurer le Chaos
-            </h2>
-            
-            <p className="text-gray-700 mb-8 text-lg">
-              Une fois vos idées externalisées, il faut les organiser. C'est là que la magie opère.
+        {/* Main Content */} 
+        <motion.div variants={staggerChildren} initial="initial" animate="animate">
+          {/* Partie 1 */} 
+          <OptimizedCollapsibleSection
+            title={textContent.part1.title}
+            icon={PenTool}
+            id="part1"
+          >
+            <p className="text-lg text-gray-700 mb-6 dark:text-gray-300">
+              {textContent.part1.intro}
             </p>
 
             <div className="space-y-8">
-              {/* Laboratoire Visuel enrichi */}
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8 border-2 border-orange-200">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-orange-500 p-3 rounded-full">
-                    <Eye className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-orange-900 mb-2">3. Le Laboratoire Visuel et Itératif : Votre Cerveau en Mode "Artiste Fou" 🎨🔬</h3>
-                    <p className="text-orange-800 text-lg">
-                      Certains cerveaux neurodivergents sont des machines visuelles ! Si votre tête fonctionne 
-                      comme un film plutôt qu'un livre, cette section est votre terrain de jeu ! 🎬✨
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="bg-white rounded-lg p-6 mb-6 border-2 border-orange-300">
-                  <h4 className="font-bold text-orange-900 mb-3 flex items-center gap-2">
-                    <span className="text-xl">🧩</span>
-                    Principe du "Puzzle Mental Géant" :
-                  </h4>
-                  <p className="text-orange-700 leading-relaxed">
-                    Imaginez que vos idées soient des pièces de puzzle colorées qui flottent dans l'espace. 
-                    Au lieu de les garder dans votre tête (où elles se cognent et tombent), 
-                    vous les posez sur une table géante pour voir le tableau d'ensemble ! 🧩🌈
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-orange-400">
-                    <div className="flex items-center mb-4">
-                      <span className="text-2xl mr-2">🛠️</span>
-                      <h5 className="font-bold text-orange-900">La Boîte à Outils du Génie Visuel</h5>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div className="bg-orange-50 p-4 rounded-lg">
-                        <h6 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
-                          <span className="text-lg">🗺️</span>
-                          Mind Maps (Cartes Mentales)
-                        </h6>
-                        <p className="text-orange-700 text-sm mb-2">Comme un arbre de Noël pour vos idées !</p>
-                        <div className="text-xs text-orange-600">
-                          <strong>Outils :</strong> XMind, MindMeister, ou même du papier + crayons
-                        </div>
-                      </div>
-                      
-                      <div className="bg-orange-50 p-4 rounded-lg">
-                        <h6 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
-                          <span className="text-lg">📋</span>
-                          Tableaux Kanban
-                        </h6>
-                        <p className="text-orange-700 text-sm mb-2">"À faire", "En cours", "Fini" - Simple et efficace !</p>
-                        <div className="text-xs text-orange-600">
-                          <strong>Outils :</strong> Trello, Notion, ou des colonnes sur papier
-                        </div>
-                      </div>
-                      
-                      <div className="bg-orange-50 p-4 rounded-lg">
-                        <h6 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
-                          <span className="text-lg">🎨</span>
-                          Schémas & Dessins
-                        </h6>
-                        <p className="text-orange-700 text-sm mb-2">Même vos gribouillis ont du génie !</p>
-                        <div className="text-xs text-orange-600">
-                          <strong>Outils :</strong> Draw.io, Excalidraw, ou le dos d'une enveloppe
-                        </div>
-                      </div>
-                      
-                      <div className="bg-orange-50 p-4 rounded-lg">
-                        <h6 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
-                          <span className="text-lg">🌈</span>
-                          Post-its Colorés
-                        </h6>
-                        <p className="text-orange-700 text-sm mb-2">L'arme secrète de tout cerveau créatif !</p>
-                        <div className="text-xs text-orange-600">
-                          <strong>Astuce :</strong> Une couleur = un type d'idée
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-orange-400">
-                    <div className="flex items-center mb-4">
-                      <span className="text-2xl mr-2">🚀</span>
-                      <h5 className="font-bold text-orange-900">Les Super-Pouvoirs Visuels</h5>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                        <div className="flex items-center mb-1">
-                          <span className="text-lg mr-2">👁️</span>
-                          <h6 className="font-semibold text-green-900">Vision Satellite</h6>
-                        </div>
-                        <p className="text-green-700 text-sm">Voir TOUT d'un coup, comme Google Earth pour vos idées</p>
-                      </div>
-                      
-                      <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-                        <div className="flex items-center mb-1">
-                          <span className="text-lg mr-2">🔄</span>
-                          <h6 className="font-semibold text-blue-900">Réorganisation Express</h6>
-                        </div>
-                        <p className="text-blue-700 text-sm">Glisser-déposer vos idées comme des fichiers sur un bureau</p>
-                      </div>
-                      
-                      <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400">
-                        <div className="flex items-center mb-1">
-                          <span className="text-lg mr-2">💡</span>
-                          <h6 className="font-semibold text-purple-900">Boost Créatif</h6>
-                        </div>
-                        <p className="text-purple-700 text-sm">Les couleurs et formes stimulent votre imagination</p>
-                      </div>
-                      
-                      <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
-                        <div className="flex items-center mb-1">
-                          <span className="text-lg mr-2">🧠</span>
-                          <h6 className="font-semibold text-yellow-900">Mémoire Renforcée</h6>
-                        </div>
-                        <p className="text-yellow-700 text-sm">Votre cerveau retient mieux ce qu'il "voit"</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-6 border-2 border-pink-300">
-                  <h4 className="font-bold text-pink-900 mb-4 flex items-center gap-2">
-                    <span className="text-xl">🎭</span>
-                    Exemple Pratique : "Mission Vacances" en Mode Visuel
-                  </h4>
-                  
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div className="bg-white p-4 rounded-lg border-2 border-blue-200">
-                      <h5 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
-                        <span className="w-4 h-4 bg-blue-500 rounded-full"></span>
-                        AVANT le départ
-                      </h5>
-                      <div className="space-y-2">
-                        <div className="bg-blue-50 p-2 rounded text-xs text-blue-800">✈️ Réserver vol</div>
-                        <div className="bg-blue-50 p-2 rounded text-xs text-blue-800">🏨 Réserver hôtel</div>
-                        <div className="bg-blue-50 p-2 rounded text-xs text-blue-800">📄 Vérifier passeport</div>
-                        <div className="bg-blue-50 p-2 rounded text-xs text-blue-800">💳 Prévenir banque</div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-4 rounded-lg border-2 border-green-200">
-                      <h5 className="font-semibold text-green-900 mb-3 flex items-center gap-2">
-                        <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                        PRÉPARATIFS
-                      </h5>
-                      <div className="space-y-2">
-                        <div className="bg-green-50 p-2 rounded text-xs text-green-800">🎒 Faire valises</div>
-                        <div className="bg-green-50 p-2 rounded text-xs text-green-800">☀️ Acheter crème solaire</div>
-                        <div className="bg-green-50 p-2 rounded text-xs text-green-800">📱 Télécharger apps</div>
-                        <div className="bg-green-50 p-2 rounded text-xs text-green-800">🔋 Préparer chargeurs</div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-4 rounded-lg border-2 border-orange-200">
-                      <h5 className="font-semibold text-orange-900 mb-3 flex items-center gap-2">
-                        <span className="w-4 h-4 bg-orange-500 rounded-full"></span>
-                        MAISON
-                      </h5>
-                      <div className="space-y-2">
-                        <div className="bg-orange-50 p-2 rounded text-xs text-orange-800">🐱 RDV vétérinaire</div>
-                        <div className="bg-orange-50 p-2 rounded text-xs text-orange-800">🏠 Prévenir voisins</div>
-                        <div className="bg-orange-50 p-2 rounded text-xs text-orange-800">📰 Arrêter journal</div>
-                        <div className="bg-orange-50 p-2 rounded text-xs text-orange-800">🌱 Système arrosage</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 bg-white p-4 rounded-lg border border-pink-200">
-                    <p className="text-pink-800 text-sm">
-                      <strong>🎯 Résultat :</strong> D'un coup d'œil, vous voyez où vous en êtes ! 
-                      Plus de "j'ai oublié quelque chose" qui vous réveille à 3h du matin ! 😴✨
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Chaîne de Pensée */}
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-6 border border-orange-200">
-                <h3 className="text-xl font-semibold text-orange-900 mb-4 flex items-center gap-2">
-                  <Target className="h-5 w-5" />
-                  4. La "Chaîne de Pensée" : Votre GPS Mental 🧭
+              {/* Brain Dumping */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Brain className="h-5 w-5" /> {textContent.part1.brainDumping.title}
                 </h3>
-                
-                <div className="bg-white rounded-lg p-4 mb-4">
-                  <p className="text-orange-800 mb-3">
-                    <strong>🔗 L'Analogie du Détective :</strong> Imaginez que votre cerveau soit un détective qui suit des indices. 
-                    Chaque question est un indice qui mène au suivant, créant une chaîne logique jusqu'à la résolution du mystère !
-                  </p>
-                  <p className="text-orange-700 text-sm italic">
-                    💡 Parfait pour les cerveaux qui ont tendance à "sauter du coq à l'âne" - cette technique vous garde sur les rails !
-                  </p>
-                </div>
-
-                <OptimizedCollapsibleSection 
-                  id="chainOfThought"
-                  title="🎯 La Méthode du Détective en Action"
-                  icon={Target}
-                  defaultExpanded={false}
-                >
-                  <div className="space-y-4">
-                    <div className="bg-gradient-to-r from-orange-100 to-yellow-100 rounded-lg p-4">
-                      <h5 className="font-semibold text-orange-900 mb-3 flex items-center gap-2">
-                        🕵️ Mission : Organiser un Événement
-                      </h5>
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 bg-white rounded-lg border-l-4 border-orange-400">
-                          <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">🔍</div>
-                          <div>
-                            <p className="text-orange-800 font-medium">Indice de départ :</p>
-                            <p className="text-orange-700">"Je dois organiser un événement."</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-3 p-3 bg-white rounded-lg border-l-4 border-orange-400">
-                          <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">❓</div>
-                          <div>
-                            <p className="text-orange-800 font-medium">Question-indice :</p>
-                            <p className="text-orange-700">"Quel est le BUT de cet événement ?"</p>
-                            <p className="text-orange-600 text-sm">→ Découverte : "Célébrer le lancement du produit X"</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-3 p-3 bg-white rounded-lg border-l-4 border-orange-400">
-                          <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">👥</div>
-                          <div>
-                            <p className="text-orange-800 font-medium">Nouvel indice :</p>
-                            <p className="text-orange-700">"QUI devons-nous inviter ?"</p>
-                            <p className="text-orange-600 text-sm">→ Découverte : "Clients, partenaires, presse"</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-3 p-3 bg-white rounded-lg border-l-4 border-green-400">
-                          <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">🎉</div>
-                          <div>
-                            <p className="text-green-800 font-medium">Mystère résolu !</p>
-                            <p className="text-green-700">"Événement de lancement produit X pour 50 invités VIP"</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-orange-50 rounded-lg p-4">
-                      <h5 className="font-semibold text-orange-900 mb-3">🧰 Votre Trousse de Détective Mental :</h5>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="bg-white rounded-lg p-3">
-                          <h6 className="font-medium text-orange-800 mb-2">🔍 Questions Magiques :</h6>
-                          <ul className="text-sm text-orange-700 space-y-1">
-                            <li>• "Pourquoi ?" (le but)</li>
-                            <li>• "Qui ?" (les acteurs)</li>
-                            <li>• "Quand ?" (le timing)</li>
-                            <li>• "Comment ?" (la méthode)</li>
-                          </ul>
-                        </div>
-                        <div className="bg-white rounded-lg p-3">
-                          <h6 className="font-medium text-orange-800 mb-2">⚡ Super-Pouvoirs :</h6>
-                          <ul className="text-sm text-orange-700 space-y-1">
-                            <li>• Évite les oublis importants</li>
-                            <li>• Structure automatiquement</li>
-                            <li>• Révèle les liens cachés</li>
-                            <li>• Garde le focus</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </OptimizedCollapsibleSection>
-                
-                <OptimizedTooltip id="pro-tip" content="Astuce : Commencez toujours par 'Pourquoi ?' - c'est la question qui débloque tout le reste !">
-                  <div className="mt-4 p-3 bg-orange-100 rounded-lg border border-orange-300 cursor-help">
-                    <p className="text-orange-800 text-sm font-medium flex items-center gap-2">
-                      💡 Conseil de Pro : La question magique qui débloque tout !
-                      <span className="text-xs">(survolez pour découvrir)</span>
-                    </p>
-                  </div>
-                </OptimizedTooltip>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Partie 3 */}
-        <motion.section
-          {...fadeInUp}
-          transition={{ delay: 0.6 }}
-          className="mb-12"
-        >
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-neuro-purple mb-6 flex items-center gap-2">
-              <Brain className="h-6 w-6" />
-              Partie 3 : Consolider les Acquis - Techniques de Mémorisation Active
-            </h2>
-            
-            <p className="text-gray-700 mb-8 text-lg">
-              Même avec des notes, il faut parfois garder des éléments clés en tête.
-            </p>
-
-            <div className="space-y-8">
-              {/* Palais Mental */}
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-200">
-                <h3 className="text-xl font-semibold text-indigo-900 mb-4 flex items-center gap-2">
-                  <Map className="h-5 w-5" />
-                  5. Le Palais Mental : Une Technique Puissante mais Exigeante
-                </h3>
-                <p className="text-indigo-800 mb-4">
-                  Associer des informations à mémoriser à des lieux ou des objets dans un endroit que vous connaissez parfaitement.
+                <p className="text-gray-700 mb-4 dark:text-gray-300">
+                  {textContent.part1.brainDumping.description}
                 </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-lg p-4">
-                    <h5 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      Adapté pour
-                    </h5>
-                    <ul className="text-sm text-green-700 space-y-1">
-                      <li>• Listes d'éléments structurés</li>
-                      <li>• Étapes d'un discours</li>
-                      <li>• Points clés d'une présentation</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white rounded-lg p-4">
-                    <h5 className="font-semibold text-red-900 mb-2 flex items-center gap-2">
-                      <AlertCircle className="h-4 w-4 text-red-600" />
-                      Moins adapté pour
-                    </h5>
-                    <ul className="text-sm text-red-700 space-y-1">
-                      <li>• Phase créative et chaotique</li>
-                      <li>• Outil de stockage, pas de création</li>
-                    </ul>
-                  </div>
-                </div>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Principe :</span> {textContent.part1.brainDumping.principle}
+                  </li>
+                  <li>
+                    <span className="font-semibold">En Vrac Total :</span> {textContent.part1.brainDumping.methodVrac}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Sans Jugement :</span> {textContent.part1.brainDumping.methodNoJudgment}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Le Résultat :</span> {textContent.part1.brainDumping.result}
+                  </li>
+                </ul>
               </div>
 
-              {/* Aides Rapides */}
-              <div className="bg-gradient-to-r from-teal-50 to-green-50 rounded-lg p-6 border border-teal-200">
-                <h3 className="text-xl font-semibold text-teal-900 mb-4 flex items-center gap-2">
-                  <Zap className="h-5 w-5" />
-                  6. Aides à la Mémorisation Rapides
+              {/* Dictée Vocale */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Mic className="h-5 w-5" /> {textContent.part1.voiceDictation.title}
                 </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white rounded-lg p-4">
-                    <h5 className="font-semibold text-teal-900 mb-2">Images Mentales</h5>
-                    <p className="text-sm text-teal-700">
-                      Associez un concept abstrait à une image absurde, drôle ou émotionnellement forte.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4">
-                    <h5 className="font-semibold text-teal-900 mb-2">Analogies</h5>
-                    <p className="text-sm text-teal-700">
-                      Reliez une nouvelle idée à quelque chose que vous connaissez déjà très bien.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4">
-                    <h5 className="font-semibold text-teal-900 mb-2">Acronymes</h5>
-                    <p className="text-sm text-teal-700">
-                      Créez un mot avec la première lettre de chaque élément d'une liste.
-                    </p>
-                  </div>
-                </div>
+                <p className="text-gray-700 mb-4 dark:text-gray-300">
+                  {textContent.part1.voiceDictation.description}
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Principe :</span> {textContent.part1.voiceDictation.principle}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Méthode :</span> {textContent.part1.voiceDictation.method}
+                  </li>
+                  <li>
+                    <span className="font-semibold">L'avantage crucial :</span> {textContent.part1.voiceDictation.advantage}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Exploitation :</span> {textContent.part1.voiceDictation.exploitation}
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
-        </motion.section>
+          </OptimizedCollapsibleSection>
 
-        {/* Partie 4 */}
-        <motion.section
-          {...fadeInUp}
-          transition={{ delay: 0.7 }}
-          className="mb-12"
-        >
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-neuro-purple mb-6 flex items-center gap-2">
-              <Smartphone className="h-6 w-6" />
-              Partie 4 : L'Allié Moderne - Utiliser l'Intelligence Artificielle et la Technologie
-            </h2>
-            
-            <p className="text-gray-700 mb-8 text-lg">
-              L'IA peut agir comme un co-pilote pour votre pensée.
+          {/* Partie 2 */} 
+          <OptimizedCollapsibleSection
+            title={textContent.part2.title}
+            icon={Lightbulb}
+            id="part2"
+          >
+            <p className="text-lg text-gray-700 mb-6 dark:text-gray-300">
+              {textContent.part2.intro}
             </p>
 
             <div className="space-y-8">
-              {/* IA Assistant */}
-              <div className="bg-gradient-to-r from-violet-50 to-purple-50 rounded-lg p-6 border border-violet-200">
-                <h3 className="text-xl font-semibold text-violet-900 mb-4 flex items-center gap-2">
-                  <Brain className="h-5 w-5" />
-                  L'IA : Votre Assistant Personnel Ultra-Intelligent 🤖✨
+              {/* Laboratoire Visuel */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Eye className="h-5 w-5" /> {textContent.part2.visualLab.title}
                 </h3>
-                
-                <div className="bg-white rounded-lg p-4 mb-4">
-                  <p className="text-violet-800 mb-3">
-                    <strong>🎭 L'Analogie du Majordome Magique :</strong> Imaginez avoir un majordome qui ne dort jamais, 
-                    comprend instantanément vos pensées en vrac et les transforme en plans parfaitement organisés !
-                  </p>
-                  <p className="text-violet-700 text-sm italic">
-                    💫 L'IA ne juge pas votre chaos mental - elle l'adore et le transforme en chef-d'œuvre !
-                  </p>
-                </div>
-
-                <OptimizedCollapsibleSection 
-                  id="aiMagicCollapsible"
-                  icon={Zap} // Placeholder icon, consider changing to a more relevant one
-                  title="🎪 Le Spectacle de Transformation Magique"
-                >
-                  <div className="space-y-4">
-                    <div className="bg-gradient-to-r from-violet-100 to-purple-100 rounded-lg p-4">
-                      <h5 className="font-semibold text-violet-900 mb-3 flex items-center gap-2">
-                        🎩 Formules Magiques pour votre Majordome IA :
-                      </h5>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="bg-white rounded-lg p-3 border-l-4 border-violet-400">
-                          <h6 className="font-medium text-violet-800 mb-2">🔮 Sorts de Clarification :</h6>
-                          <ul className="text-sm text-violet-700 space-y-1">
-                            <li>• "Résume ce chaos en 5 points clés"</li>
-                            <li>• "Trouve la logique cachée dans ce texte"</li>
-                            <li>• "Transforme ce brouillon en plan détaillé"</li>
-                          </ul>
-                        </div>
-                        <div className="bg-white rounded-lg p-3 border-l-4 border-purple-400">
-                          <h6 className="font-medium text-purple-800 mb-2">⚡ Sorts d'Organisation :</h6>
-                          <ul className="text-sm text-purple-700 space-y-1">
-                            <li>• "Regroupe ces idées par thèmes"</li>
-                            <li>• "Propose une suite logique"</li>
-                            <li>• "Crée un plan d'action étape par étape"</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-violet-50 rounded-lg p-4">
-                      <h5 className="font-semibold text-violet-900 mb-3">🎯 Exemple de Transformation Magique :</h5>
-                      <div className="space-y-3">
-                        <div className="bg-red-50 rounded-lg p-3 border-l-4 border-red-400">
-                          <h6 className="font-medium text-red-800 mb-2">😵 Avant (Chaos Total) :</h6>
-                          <p className="text-sm text-red-700 italic">
-                            "Faut que je fasse le rapport mais j'ai oublié les chiffres de Marie et puis il y a la réunion demain 
-                            ah et aussi appeler le client pour le truc urgent..."
-                          </p>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-2xl">✨🪄✨</span>
-                        </div>
-                        <div className="bg-green-50 rounded-lg p-3 border-l-4 border-green-400">
-                          <h6 className="font-medium text-green-800 mb-2">🎉 Après (Ordre Parfait) :</h6>
-                          <ul className="text-sm text-green-700 space-y-1">
-                            <li>1. Contacter Marie pour les chiffres</li>
-                            <li>2. Appeler le client urgent</li>
-                            <li>3. Rédiger le rapport avec les données</li>
-                            <li>4. Préparer la présentation pour demain</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </OptimizedCollapsibleSection>
+                <p className="text-gray-700 mb-4 dark:text-gray-300">
+                  {textContent.part2.visualLab.description}
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Principe :</span> {textContent.part2.visualLab.principle}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Regrouper :</span> {textContent.part2.visualLab.methodGroup}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Hiérarchiser :</span> {textContent.part2.visualLab.methodHierarchy}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Faire des Liens :</span> {textContent.part2.visualLab.methodLinks}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Outils :</span> {textContent.part2.visualLab.tools}
+                  </li>
+                </ul>
               </div>
 
-              {/* Outils Technologiques */}
-              <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg p-6 border border-cyan-200">
-                <h3 className="text-xl font-semibold text-cyan-900 mb-4 flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  Votre Équipe de Super-Héros Technologiques 🦸‍♂️📱
+              {/* Chaîne de Pensée */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Target className="h-5 w-5" /> {textContent.part2.chainOfThought.title}
                 </h3>
-                
-                <div className="bg-white rounded-lg p-4 mb-4">
-                  <p className="text-cyan-800 mb-3">
-                    <strong>🦸 L'Analogie des Avengers du Temps :</strong> Chaque app est un super-héros avec un pouvoir unique. 
-                    Ensemble, ils forment votre équipe personnelle pour vaincre le chaos et sauver votre productivité !
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <OptimizedTooltip id="todoist-tip" content="Todoist et Motion sont comme Iron Man - ils analysent tout et créent des plans parfaits!">
-                    <div className="bg-white rounded-lg p-4 border border-cyan-200 hover:border-cyan-400 transition-colors cursor-help">
-                      <h5 className="font-semibold text-cyan-900 mb-2 flex items-center gap-2">
-                        🤖 Iron Man des To-Do Lists
-                      </h5>
-                      <p className="text-sm text-cyan-700">
-                        <strong>Todoist/Motion :</strong> Analysent vos tâches, prédisent le temps nécessaire et 
-                        organisent votre journée comme un génie milliardaire !
-                      </p>
-                    </div>
-                  </OptimizedTooltip>
-                  
-                  <OptimizedTooltip id="tiimo-tip" content="Tiimo est comme Captain America - fiable, visuel et spécialement entraîné pour les cerveaux neuroatypiques!">
-                    <div className="bg-white rounded-lg p-4 border border-cyan-200 hover:border-cyan-400 transition-colors cursor-help">
-                      <h5 className="font-semibold text-cyan-900 mb-2 flex items-center gap-2">
-                        🛡️ Captain America des Rappels
-                      </h5>
-                      <p className="text-sm text-cyan-700">
-                        <strong>Tiimo :</strong> Conçu spécialement pour les cerveaux neuroatypiques, 
-                        avec des rappels visuels et une interface super intuitive !
-                      </p>
-                    </div>
-                  </OptimizedTooltip>
-                </div>
-                
-                <div className="mt-4 bg-cyan-50 rounded-lg p-4">
-                  <h5 className="font-semibold text-cyan-900 mb-3">🎮 Votre Arsenal de Super-Pouvoirs :</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <div className="bg-white rounded-lg p-3 text-center">
-                      <div className="text-2xl mb-2">⚡</div>
-                      <h6 className="font-medium text-cyan-800 mb-1">Vitesse</h6>
-                      <p className="text-xs text-cyan-700">Planification instantanée</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3 text-center">
-                      <div className="text-2xl mb-2">🎯</div>
-                      <h6 className="font-medium text-cyan-800 mb-1">Précision</h6>
-                      <p className="text-xs text-cyan-700">Rappels au bon moment</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-3 text-center">
-                      <div className="text-2xl mb-2">🧠</div>
-                      <h6 className="font-medium text-cyan-800 mb-1">Intelligence</h6>
-                      <p className="text-xs text-cyan-700">Adaptation à votre style</p>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-gray-700 mb-4 dark:text-gray-300">
+                  {textContent.part2.chainOfThought.description}
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Principe :</span> {textContent.part2.chainOfThought.principle}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Méthode :</span> {textContent.part2.chainOfThought.methodExample}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Conclusion :</span> {textContent.part2.chainOfThought.conclusion}
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
-        </motion.section>
+          </OptimizedCollapsibleSection>
 
-        {/* Section Enfants */}
-        <motion.section
-          {...fadeInUp}
-          transition={{ delay: 0.8 }}
-          className="mb-12"
-        >
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-neuro-purple mb-6 flex items-center gap-2">
-              <Gamepad2 className="h-6 w-6" />
-              🎮 L'École des Petits Génies : Transformer l'Apprentissage en Aventure !
-            </h2>
-            
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 mb-8 border border-purple-200">
-              <p className="text-purple-800 mb-3">
-                <strong>🎪 L'Analogie du Parc d'Attractions Mental :</strong> Chaque technique d'apprentissage 
-                est comme un manège différent dans le parc d'attractions de ton cerveau ! 
-                Certains enfants adorent les montagnes russes (chaos créatif), d'autres préfèrent 
-                le carrousel (structure répétitive). L'important, c'est de trouver TON manège préféré !
-              </p>
-              <p className="text-purple-700 text-sm italic">
-                🌟 Rappel magique : Il n'y a pas de "mauvaise" façon d'apprendre, juste des façons différentes !
-              </p>
-            </div>
+          {/* Partie 3 */} 
+          <OptimizedCollapsibleSection
+            title={textContent.part3.title}
+            icon={BookOpen}
+            id="part3"
+          >
+            <p className="text-lg text-gray-700 mb-6 dark:text-gray-300">
+              {textContent.part3.intro}
+            </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <OptimizedTooltip id="treasure-tip" content="Parfait pour les petits collectionneurs et les esprits créatifs qui aiment toucher et manipuler!">
-                <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-lg p-6 border border-pink-200 hover:border-pink-400 transition-colors cursor-help">
-                  <h3 className="text-lg font-semibold text-pink-900 mb-3 flex items-center gap-2">
-                    <BookOpen className="h-5 w-5" />
-                    🎁 La Boîte à Trésors d'Idées
-                  </h3>
-                  <div className="space-y-3">
-                    <p className="text-pink-800 text-sm">
-                      <strong>🏴‍☠️ Mission de Pirate :</strong> Transforme ta chambre en île au trésor ! 
-                      Chaque idée pour ton exposé devient un trésor à cacher dans ta boîte magique.
-                    </p>
-                    <div className="bg-white rounded-lg p-3">
-                      <h5 className="font-medium text-pink-900 mb-2">🗂️ Ton Arsenal de Pirate :</h5>
-                      <ul className="text-xs text-pink-700 space-y-1">
-                        <li>• 🎨 Dessins colorés (cartes au trésor)</li>
-                        <li>• 🧱 LEGOs (idées à construire)</li>
-                        <li>• 📝 Post-it magiques (sorts d'idées)</li>
-                        <li>• 🪙 Objets mystérieux (inspirations secrètes)</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </OptimizedTooltip>
-              
-              <OptimizedTooltip id="star-tip" content="Idéal pour les artistes en herbe et les cerveaux qui pensent en couleurs et en images!">
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-6 border border-yellow-200 hover:border-yellow-400 transition-colors cursor-help">
-                  <h3 className="text-lg font-semibold text-yellow-900 mb-3 flex items-center gap-2">
-                    <Star className="h-5 w-5" />
-                    ⭐ L'Étoile Magique des Idées
-                  </h3>
-                  <div className="space-y-3">
-                    <p className="text-yellow-800 text-sm">
-                      <strong>🌟 Mission d'Astronome :</strong> Ton sujet principal est une étoile brillante 
-                      au centre de l'univers. Chaque idée devient une planète qui gravite autour !
-                    </p>
-                    <div className="bg-white rounded-lg p-3">
-                      <h5 className="font-medium text-yellow-900 mb-2">🎨 Ta Palette d'Astronome :</h5>
-                      <div className="flex gap-2 flex-wrap">
-                        <span className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs">🔴 Idées importantes</span>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">🔵 Exemples</span>
-                        <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">🟢 Questions</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </OptimizedTooltip>
-              
-              <OptimizedTooltip id="chef-tip" content="Parfait pour les petits chefs qui aiment suivre des étapes claires et savourer le résultat!">
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200 hover:border-green-400 transition-colors cursor-help">
-                  <h3 className="text-lg font-semibold text-green-900 mb-3 flex items-center gap-2">
-                    <BookOpen className="h-5 w-5" />
-                    👨‍🍳 La Recette du Petit Chef Génial
-                  </h3>
-                  <div className="space-y-3">
-                    <p className="text-green-800 text-sm">
-                      <strong>🍳 Mission de Grand Chef :</strong> Chaque devoir est un plat délicieux à préparer ! 
-                      Suis ta recette magique étape par étape pour créer un chef-d'œuvre.
-                    </p>
-                    <div className="bg-white rounded-lg p-3">
-                      <h5 className="font-medium text-green-900 mb-2">📋 Exemple de Recette Magique :</h5>
-                      <ol className="text-xs text-green-700 space-y-1">
-                        <li>1. 🥄 Mélange : Lis la consigne 3 fois</li>
-                        <li>2. 🌶️ Épice : Souligne les mots importants</li>
-                        <li>3. 🥘 Mijote : Réfléchis 5 minutes</li>
-                        <li>4. 🍽️ Dresse : Écris ton chef-d'œuvre !</li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-              </OptimizedTooltip>
-              
-              <OptimizedTooltip id="adventure-tip" content="Idéal pour les aventuriers et les explorateurs qui adorent les histoires et les quêtes!">
-                <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-6 border border-purple-200 hover:border-purple-400 transition-colors cursor-help">
-                  <h3 className="text-lg font-semibold text-purple-900 mb-3 flex items-center gap-2">
-                    <Map className="h-5 w-5" />
-                    🗺️ La Chasse au Trésor de la Mémoire
-                  </h3>
-                  <div className="space-y-3">
-                    <p className="text-purple-800 text-sm">
-                      <strong>🏴‍☠️ Mission d'Explorateur :</strong> Ta chambre devient une île mystérieuse ! 
-                      Cache chaque élément de ta leçon dans un endroit spécial et crée ton parcours d'aventurier.
-                    </p>
-                    <div className="bg-white rounded-lg p-3">
-                      <h5 className="font-medium text-purple-900 mb-2">🗺️ Exemple de Carte au Trésor :</h5>
-                      <ul className="text-xs text-purple-700 space-y-1">
-                        <li>• ☀️ Le Soleil → Sur ta lampe de bureau</li>
-                        <li>• 🔴 Mars → Sous ton tapis rouge</li>
-                        <li>• 🌙 La Lune → Sur ton oreiller</li>
-                        <li>• ⭐ Les étoiles → Sur ton plafond</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </OptimizedTooltip>
-            </div>
-            
-            <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-              <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center gap-2">
-                🎯 Le Secret des Super-Héros de l'Apprentissage
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white rounded-lg p-4 text-center">
-                  <div className="text-3xl mb-2">🎮</div>
-                  <h5 className="font-medium text-blue-800 mb-2">Joue avec tes idées</h5>
-                  <p className="text-xs text-blue-700">L'apprentissage, c'est comme un jeu vidéo !</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 text-center">
-                  <div className="text-3xl mb-2">🌈</div>
-                  <h5 className="font-medium text-blue-800 mb-2">Utilise toutes les couleurs</h5>
-                  <p className="text-xs text-blue-700">Ton cerveau adore les arc-en-ciel !</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 text-center">
-                  <div className="text-3xl mb-2">🏆</div>
-                  <h5 className="font-medium text-blue-800 mb-2">Célèbre tes victoires</h5>
-                  <p className="text-xs text-blue-700">Chaque petit progrès est un trésor !</p>
-                </div>
+            <div className="space-y-8">
+              {/* Palais Mental */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Map className="h-5 w-5" /> {textContent.part3.mentalPalace.title}
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Principe :</span> {textContent.part3.mentalPalace.principle}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Est-ce adapté ?</span> {textContent.part3.mentalPalace.adapted}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Méthode Simplifiée :</span> {textContent.part3.mentalPalace.method}
+                  </li>
+                </ul>
+              </div>
+
+              {/* Aides Rapides */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Zap className="h-5 w-5" /> {textContent.part3.quickMemoryAids.title}
+                </h3>
+                <p className="text-gray-700 mb-4 dark:text-gray-300">
+                  {textContent.part3.quickMemoryAids.description}
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Images Mentales Frappantes :</span> {textContent.part3.quickMemoryAids.images}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Analogies Familières :</span> {textContent.part3.quickMemoryAids.analogies}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Acronymes :</span> {textContent.part3.quickMemoryAids.acronyms}
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
-        </motion.section>
+          </OptimizedCollapsibleSection>
 
-        {/* Author Info */}
-        <motion.div
-          {...fadeInUp}
-          transition={{ delay: 0.9 }}
-          className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-6 border border-gray-200"
-        >
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-neuro-purple rounded-full">
-              <Users className="h-6 w-6 text-white" />
+          {/* Partie 4 */} 
+          <OptimizedCollapsibleSection
+            title={textContent.part4.title}
+            icon={Smartphone}
+            id="part4"
+          >
+            <p className="text-lg text-gray-700 mb-6 dark:text-gray-300">
+              {textContent.part4.intro}
+            </p>
+
+            <div className="space-y-8">
+              {/* IA Structuration */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Brain className="h-5 w-5" /> {textContent.part4.aiStructuring.title}
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">Méthode :</span> {textContent.part4.aiStructuring.method}
+                  </li>
+                </ul>
+              </div>
+
+              {/* IA Tâches */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Gamepad2 className="h-5 w-5" /> {textContent.part4.aiTasks.title}
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">To-Do Lists Assistées :</span> {textContent.part4.aiTasks.todo}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Programmation de Tâches :</span> {textContent.part4.aiTasks.planning}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Rappels Intelligents :</span> {textContent.part4.aiTasks.reminders}
+                  </li>
+                </ul>
+              </div>
+
+              {/* Pour les Enfants */} 
+              <div className="bg-white p-6 rounded-xl shadow-md dark:bg-gray-700">
+                <h3 className="text-xl font-bold text-neuro-purple mb-3 dark:text-purple-300 flex items-center gap-2">
+                  <Users className="h-5 w-5" /> {textContent.part4.forChildren.title}
+                </h3>
+                <p className="text-gray-700 mb-4 dark:text-gray-300">
+                  {textContent.part4.forChildren.intro}
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>
+                    <span className="font-semibold">La "Boîte à Idées" :</span> {textContent.part4.forChildren.ideaBox}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Le Dessin en Étoile (Mind Mapping) :</span> {textContent.part4.forChildren.mindMapping}
+                  </li>
+                  <li>
+                    <span className="font-semibold">La Recette de Cuisine :</span> {textContent.part4.forChildren.recipe}
+                  </li>
+                  <li>
+                    <span className="font-semibold">Le Chemin du Trésor dans la Chambre :</span> {textContent.part4.forChildren.treasureHunt}
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800">Geoffroy Streit</h3>
-              <p className="text-gray-600">2021 - revu et corrigé en 2025</p>
-              <p className="text-sm text-gray-500 mt-1">
-                Expert en neurodiversité et stratégies d'apprentissage adaptées
-              </p>
-            </div>
-          </div>
+          </OptimizedCollapsibleSection>
         </motion.div>
+
+              {/* Footer */} 
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm"
+              >
+                <p>&copy; {new Date().getFullYear()} NeuroDiversité Explorer. Tous droits réservés.</p>
+                <p>Développé avec ❤️ par Geoffroy Streit</p>
+              </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="textual"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Textual Presentation */}
+              <div className="bg-white rounded-xl shadow-lg p-8 dark:bg-gray-800 prose prose-lg max-w-none dark:prose-invert">
+                <div className="text-center mb-8">
+                  <h1 className="text-3xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                    Guide Pratique : Naviguer dans le Labyrinthe des Idées
+                  </h1>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 italic">
+                    Pour les esprits foisonnants qui peinent à structurer leurs pensées et à retenir l'essentiel
+                  </p>
+                </div>
+
+                <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <section>
+                    <h2 className="text-2xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                      Préambule : Différence et Liens entre Mémoire et Structuration de la Pensée
+                    </h2>
+                    <p className="mb-4">
+                      Il est essentiel de comprendre pourquoi ces deux difficultés sont si souvent liées, notamment chez les profils neuroatypiques.
+                    </p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">La Différence :</h3>
+                    <ul className="space-y-2 mb-4">
+                      <li>La structuration de la pensée est une fonction exécutive. C'est le travail de l'architecte : planifier, organiser, hiérarchiser les idées, créer des liens logiques et suivre un raisonnement.</li>
+                      <li>La mémoire, et plus spécifiquement la mémoire de travail, est le chantier de l'architecte. C'est l'espace mental limité où l'on conserve et manipule les "briques" (les idées, les faits, les consignes) le temps de construire le "mur" (la réflexion).</li>
+                    </ul>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Le Lien Indissociable :</h3>
+                    <p className="mb-4">
+                      Imaginez que vous essayez de construire un mur, mais que les briques disparaissent de vos mains dès que vous en saisissez une nouvelle. C'est exactement ce qui se passe lorsqu'une mémoire de travail défaillante rencontre un besoin de structuration :
+                    </p>
+                    <ul className="space-y-2 mb-4">
+                      <li><strong>Surcharge Cognitive :</strong> Le cerveau dépense une énergie considérable juste pour retenir les éléments de la pensée (le début d'une phrase, l'idée A, l'argument B). Il ne lui reste alors que peu de ressources pour le travail de structuration (comment A et B sont-ils liés ? Lequel est le plus important ?).</li>
+                      <li><strong>Perte du Fil :</strong> Au milieu d'une réflexion, une nouvelle idée (pensée en arborescence du TDA/H) ou une distraction survient. La mémoire de travail, déjà saturée, "lâche" les informations précédentes pour traiter la nouvelle. Le fil est rompu.</li>
+                      <li><strong>L'Oubli de l'Objectif :</strong> Sans une mémoire de travail solide pour garder l'objectif final en tête, il est facile de se perdre dans les méandres des sous-idées et de ne jamais arriver à une conclusion.</li>
+                    </ul>
+                    <p className="mb-6">
+                      Ce guide propose des stratégies visant précisément à décharger la mémoire de travail pour libérer des ressources mentales au profit de la structuration.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h2 className="text-2xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                      Partie 1 : La Fondation - Externaliser sa Pensée pour Libérer sa Mémoire
+                    </h2>
+                    <p className="mb-4">
+                      L'objectif est de sortir les idées de votre tête le plus vite et le plus fidèlement possible, sans filtre ni jugement.
+                    </p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">1. La "Vidange Cérébrale" (Brain Dumping)</h3>
+                    <p className="mb-3">C'est la technique la plus fondamentale. L'idée est de créer un réceptacle externe pour vos pensées.</p>
+                    <p className="mb-2"><strong>Principe :</strong> Sur une feuille de papier, un tableau blanc ou un document numérique (Notion, OneNote, etc.), écrivez absolument tout ce qui vous passe par la tête concernant votre sujet de réflexion.</p>
+                    <p className="mb-2"><strong>Méthode :</strong></p>
+                    <ul className="space-y-1 mb-3 ml-4">
+                      <li><strong>En Vrac Total :</strong> Ne vous souciez ni de l'ordre, ni de la grammaire, ni de la pertinence. Notez des mots-clés, des bribes de phrases, des questions, des doutes.</li>
+                      <li><strong>Sans Jugement :</strong> L'objectif n'est pas de produire un texte parfait, mais de vider votre charge mentale. Une idée "bête" peut en cacher une brillante.</li>
+                    </ul>
+                    <p className="mb-4"><strong>Le Résultat :</strong> Vous disposez maintenant d'une "photographie" de votre pensée à un instant T. Votre cerveau n'a plus à lutter pour tout retenir, il peut passer à l'étape suivante : l'organisation.</p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">2. La Dictée Vocale : La Pensée Fluide</h3>
+                    <p className="mb-3">Pour beaucoup, la pensée est plus rapide et instinctive que la vitesse de frappe ou d'écriture, souvent source de blocage (sauf en cas de dysphasie sévère).</p>
+                    <p className="mb-2"><strong>Principe :</strong> Utiliser la fonction dictaphone de votre téléphone ou un logiciel de transcription pour parler de votre idée, comme si vous l'expliquiez à quelqu'un.</p>
+                    <p className="mb-2"><strong>Méthode :</strong></p>
+                    <ul className="space-y-1 mb-3 ml-4">
+                      <li>Ouvrez une note ou un enregistreur et parlez. Décrivez votre projet, posez vos questions à voix haute, développez vos arguments de manière décousue.</li>
+                      <li><strong>L'avantage crucial :</strong> Même si au bout de la phrase vous avez oublié le début, l'enregistrement, lui, sera complet.</li>
+                    </ul>
+                    <p className="mb-6"><strong>Exploitation :</strong> Relisez (ou faites lire par une IA) la transcription. Le simple fait de voir vos propres mots vous remettra sur les rails de votre pensée, vous permettant de la poursuivre, de la corriger et de l'enrichir.</p>
+                  </section>
+
+                  <section>
+                    <h2 className="text-2xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                      Partie 2 : L'Atelier d'Organisation - Structurer le Chaos
+                    </h2>
+                    <p className="mb-4">Une fois vos idées externalisées, il faut les organiser. C'est là que la magie opère.</p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">3. Le Laboratoire Visuel et Itératif</h3>
+                    <p className="mb-3">C'est la phase d'organisation manuelle et visuelle, très efficace pour les penseurs visuels.</p>
+                    <p className="mb-2"><strong>Principe :</strong> Utiliser des codes visuels pour regrouper, hiérarchiser et relier les idées issues de votre "vidange cérébrale".</p>
+                    <p className="mb-2"><strong>Méthode :</strong></p>
+                    <ul className="space-y-1 mb-3 ml-4">
+                      <li><strong>Regrouper :</strong> Utilisez des surligneurs de couleurs différentes pour lier les idées qui vont ensemble. Entourez les concepts similaires.</li>
+                      <li><strong>Hiérarchiser :</strong> Utilisez des symboles (étoiles, chiffres) ou des tailles d'écriture différentes pour marquer les idées principales, les sous-idées et les détails.</li>
+                      <li><strong>Faire des Liens :</strong> Dessinez des flèches, des schémas, des tableaux simples pour visualiser les relations de cause à effet, les oppositions, les séquences.</li>
+                    </ul>
+                    <p className="mb-4"><strong>Outils :</strong> Des post-it de couleurs différentes sur un mur, un grand tableau blanc, ou des applications de mind mapping (Xmind, Miro, Coggle).</p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">4. Le Principe de la "Chaîne de Pensée" (Chain of Thought)</h3>
+                    <p className="mb-3">Cette technique aide à construire un raisonnement linéaire à partir d'un point de départ.</p>
+                    <p className="mb-2"><strong>Principe :</strong> Partir d'une idée initiale et se forcer à la lier à la suivante par une question ou une déduction logique, créant une chaîne.</p>
+                    <p className="mb-2"><strong>Méthode :</strong></p>
+                    <ul className="space-y-1 mb-3 ml-4">
+                      <li>Phrase de départ : "Je dois organiser un événement."</li>
+                      <li>Question induite : "Quel est le but de cet événement ?" → Réponse/Maillon suivant : "Le but est de célébrer le lancement du produit X."</li>
+                      <li>Question induite : "Qui devons-nous inviter ?" → Réponse/Maillon suivant : "Les clients, les partenaires, la presse."</li>
+                      <li>... et ainsi de suite.</li>
+                    </ul>
+                    <p className="mb-6">Cela transforme une montagne de réflexion en une série de petites collines à franchir l'une après l'autre.</p>
+                  </section>
+
+                  <section>
+                    <h2 className="text-2xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                      Partie 3 : Consolider les Acquis - Techniques de Mémorisation Active
+                    </h2>
+                    <p className="mb-4">Même avec des notes, il faut parfois garder des éléments clés en tête.</p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">5. Le Palais Mental : Une Technique Puissante mais Exigeante</h3>
+                    <p className="mb-2"><strong>Principe :</strong> Associer des informations à mémoriser à des lieux ou des objets dans un endroit que vous connaissez parfaitement (votre maison, votre trajet pour le travail). Pour se souvenir, on parcourt mentalement ce lieu.</p>
+                    <p className="mb-2"><strong>Est-ce adapté ?</strong></p>
+                    <ul className="space-y-1 mb-3 ml-4">
+                      <li><strong>Oui :</strong> Pour mémoriser une liste d'éléments structurés et ordonnés (les étapes d'un discours, les points clés d'une présentation).</li>
+                      <li><strong>Non :</strong> Moins adapté pour la phase créative et chaotique de la réflexion. C'est un outil de stockage, pas de création.</li>
+                    </ul>
+                    <p className="mb-2"><strong>Méthode Simplifiée :</strong></p>
+                    <ul className="space-y-1 mb-4 ml-4">
+                      <li>Choisissez votre lieu : Votre appartement.</li>
+                      <li>Définissez un parcours logique : Porte d'entrée → Couloir → Cuisine → Salon...</li>
+                      <li>Placez vos idées : Associez votre première idée (ex: "Introduction du projet") à la porte d'entrée de manière imagée et marquante (ex: la porte est recouverte du logo du projet). Associez la deuxième idée à l'objet suivant sur votre parcours, etc.</li>
+                      <li>Répétez la promenade mentale pour la renforcer.</li>
+                    </ul>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">6. Aides à la Mémorisation Rapides</h3>
+                    <p className="mb-2">Pour les concepts importants au sein de vos réflexions, utilisez des techniques plus légères :</p>
+                    <ul className="space-y-1 mb-6 ml-4">
+                      <li><strong>Images Mentales Frappantes :</strong> Associez un concept abstrait à une image absurde, drôle ou émotionnellement forte.</li>
+                      <li><strong>Analogies Familières :</strong> Reliez une nouvelle idée à quelque chose que vous connaissez déjà très bien.</li>
+                      <li><strong>Acronymes :</strong> Créez un mot avec la première lettre de chaque élément d'une liste.</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h2 className="text-2xl font-bold text-neuro-purple mb-4 dark:text-purple-400">
+                      Partie 4 : L'Allié Moderne - Utiliser l'Intelligence Artificielle et la Technologie
+                    </h2>
+                    <p className="mb-4">L'IA peut agir comme un co-pilote pour votre pensée.</p>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">L'IA comme Assistant de Structuration :</h3>
+                    <p className="mb-2">Copiez-collez votre "vidange cérébrale" ou la transcription de votre dictée vocale dans une IA (Gemini, ChatGPT, etc.).</p>
+                    <p className="mb-2">Demandez-lui :</p>
+                    <ul className="space-y-1 mb-4 ml-4">
+                      <li>"Résume ce texte en 5 points clés."</li>
+                      <li>"Regroupe ces idées par thèmes."</li>
+                      <li>"Identifie une structure logique (introduction, développement, conclusion) dans ce texte."</li>
+                      <li>"Propose une suite ou des aspects à développer à partir de ces notes."</li>
+                      <li>"Transforme cette liste de points en un plan détaillé."</li>
+                    </ul>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">L'IA pour Décomposer les Tâches et Gérer le Temps :</h3>
+                    <ul className="space-y-2 mb-4 ml-4">
+                      <li><strong>To-Do Lists Assistées :</strong> Des applications comme Todoist ou Motion peuvent organiser vos tâches et vous aider à planifier votre journée.</li>
+                      <li><strong>Programmation de Tâches :</strong> Donnez un objectif à une IA ("Je dois préparer une présentation sur le sujet X pour vendredi") et demandez-lui de décomposer le projet en une liste de tâches réalisables avec des échéances.</li>
+                      <li><strong>Rappels Intelligents :</strong> Utilisez les assistants vocaux ("Hey Google, rappelle-moi d'envoyer un mail à Paul à 14h") pour décharger votre mémoire prospective. Des applications comme Tiimo sont spécifiquement conçues pour les profils neuroatypiques, avec des rappels visuels et une structuration du temps.</li>
+                    </ul>
+                    
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Pour les Enfants : Adapter les Astuces à l'Apprentissage</h3>
+                    <p className="mb-2">Les mêmes principes s'appliquent, mais de manière plus ludique.</p>
+                    <ul className="space-y-2 mb-6 ml-4">
+                      <li><strong>La "Boîte à Idées" :</strong> Au lieu d'une feuille, utilisez une vraie boîte où l'enfant peut déposer des dessins, des post-it, des objets (LEGOs) qui représentent ses idées pour une rédaction ou un exposé.</li>
+                      <li><strong>Le Dessin en Étoile (Mind Mapping) :</strong> Mettez le sujet principal au centre d'une grande feuille et demandez à l'enfant de dessiner des "branches" pour chaque idée qui s'y rattache. Utilisez beaucoup de couleurs.</li>
+                      <li><strong>La Recette de Cuisine :</strong> Pour un devoir complexe, présentez les étapes comme une recette : "Ingrédient 1 : Lire la consigne. Ingrédient 2 : Souligner les mots importants... Étape 1 : Préparer le brouillon..."</li>
+                      <li><strong>Le Chemin du Trésor dans la Chambre :</strong> Pour mémoriser une leçon (les planètes du système solaire, par exemple), "cachez" chaque planète dans un endroit de la chambre (le Soleil sur la lampe, Mars sous le tapis rouge...). L'enfant mémorise le parcours pour retrouver sa leçon.</li>
+                    </ul>
+                  </section>
+
+                  <div className="text-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+                    <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                      Auteur : Geoffroy Streit - 2021 - revu et amélioré en 2025
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      Titre : Guide Pratique : Naviguer dans le Labyrinthe des Idées
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Footer for textual tab */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="mt-8 text-center text-gray-600 dark:text-gray-400 text-sm"
+              >
+                <p>&copy; {new Date().getFullYear()} NeuroDiversité Explorer. Tous droits réservés.</p>
+                <p>Développé avec ❤️ par Geoffroy Streit</p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

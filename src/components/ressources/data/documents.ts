@@ -8,6 +8,16 @@ const getDownloadPath = (filename: string) => `/assets/downloads/${filename}`;
 // Updated documents with corrected paths
 export const documents: Document[] = [
   {
+    id: 18,
+    title: "Guide Pratique : Naviguer dans le Labyrinthe des Idées",
+    type: "Article",
+    description: "Pour les esprits foisonnants qui peinent à structurer leurs pensées et à retenir l'essentiel. Ce guide propose des stratégies pour décharger la mémoire de travail et libérer des ressources mentales au profit de la structuration.",
+    author: "Geoffroy Streit",
+    date: "2021 - revu 2025",
+    link: ROUTES.RESSOURCES.NAVIGATION_LABYRINTHE_IDEES,
+    size: "Guide complet"
+  },
+  {
     id: 17,
     title: "Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes",
     type: "Article",

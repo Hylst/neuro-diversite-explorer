@@ -58,6 +58,7 @@ export const ROUTES = {
     LETTRE_DYSPRAXIQUE: '/ressources/lettre-dyspraxique',
     VIE_CHAOS_ORGANISE: '/ressources/vie-chaos-organise',
     MEMOIRE_NEURODIVERSITE: '/ressources/memoire-neurodiversite',
+    NAVIGATION_LABYRINTHE_IDEES: '/ressources/navigation-labyrinthe-idees',
   },
   
   // Blog

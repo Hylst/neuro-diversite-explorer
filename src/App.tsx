@@ -39,6 +39,7 @@ const MarreApprendre = lazy(() => import("./pages/ressources/MarreApprendre"));
 const LettreDyspraxique = lazy(() => import("./pages/ressources/LettreDyspraxique"));
 const VieChaosOrganise = lazy(() => import("./pages/ressources/VieChaosOrganise"));
 const MemoireNeurodiversite = lazy(() => import("./pages/ressources/MemoireNeurodiversite"));
+const NavigationLabyrintheIdees = lazy(() => import("./pages/ressources/NavigationLabyrintheIdees"));
 const GuideAdministratif = lazy(() => import("./pages/ressources/GuideAdministratif"));
 const StrategiesApprentissage = lazy(() => import("./pages/ressources/StrategiesApprentissage"));
 const Communication = lazy(() => import("./pages/ressources/Communication"));
@@ -119,6 +120,7 @@ const App = () => (
                 <Route path={ROUTES.RESSOURCES.LETTRE_DYSPRAXIQUE} element={<LettreDyspraxique />} />
                 <Route path={ROUTES.RESSOURCES.VIE_CHAOS_ORGANISE} element={<VieChaosOrganise />} />
                 <Route path={ROUTES.RESSOURCES.MEMOIRE_NEURODIVERSITE} element={<MemoireNeurodiversite />} />
+                <Route path={ROUTES.RESSOURCES.NAVIGATION_LABYRINTHE_IDEES} element={<NavigationLabyrintheIdees />} />
                 
                 {/* Autres pages */}
                 <Route path={ROUTES.APPRENTISSAGE} element={<Apprentissage />} />

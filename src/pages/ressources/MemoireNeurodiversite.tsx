@@ -313,7 +313,7 @@ Titre : Mémoire et Neurodiversité : Un Labyrinthe aux Multiples Facettes`;
                   <BookOpen className="h-4 w-4 text-blue-600" />
                   Scolarité et Apprentissages
                 </h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">dark:text-gray-300 text-sm">
+                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">
                   <li>Difficulté à retenir les leçons, les consignes multiples, les tables de multiplication</li>
                   <li>Lenteur dans l'exécution des tâches</li>
                   <li>Difficulté à prendre des notes et à écouter simultanément</li>
