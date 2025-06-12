@@ -3,6 +3,17 @@ import { Tool } from '../types';
 // Données des outils
 export const tools: Tool[] = [
   {
+    id: 0,
+    title: "Bulle Sensorielle",
+    platform: "Web (PWA)",
+    type: "Application",
+    audience: "TSA, TDAH, Enfants 6-12 ans",
+    description: "Application web progressive développée avec tendresse et expertise pour créer un sanctuaire numérique thérapeutique destiné aux enfants de 6 à 12 ans ayant des sensibilités sensorielles, notamment ceux avec un Trouble du Spectre Autistique (TSA) ou un Trouble Déficitaire de l'Attention avec Hyperactivité (TDAH).",
+    link: "https://apps.hylst.fr/bulle.sensorielle/",
+    price: "Gratuit",
+    thumbnail: "/images/bulle-sensorielle.svg"
+  },
+  {
     id: 1,
     title: "FlashStudy - Version de base",
     platform: "Web",

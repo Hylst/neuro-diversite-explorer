@@ -64,7 +64,7 @@ const ResourcesMain: React.FC = () => {
           <TabsTrigger value="documents">Documents</TabsTrigger>
           <TabsTrigger value="articles">Articles</TabsTrigger>
           <TabsTrigger value="media">Médias</TabsTrigger>
-          <TabsTrigger value="tools">Outils</TabsTrigger>
+          <TabsTrigger value="tools">Apps</TabsTrigger>
           <TabsTrigger value="online">En ligne</TabsTrigger>
         </TabsList>
 

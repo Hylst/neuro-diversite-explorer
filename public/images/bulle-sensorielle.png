@@ -1,0 +1,70 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E1B4B;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGradient)" rx="20"/>
+  
+  <!-- Title -->
+  <text x="200" y="40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Ma Bulle Sensorielle</text>
+  <text x="200" y="60" text-anchor="middle" fill="#C7D2FE" font-family="Arial, sans-serif" font-size="14">Ton sanctuaire numérique apaisant</text>
+  
+  <!-- Navigation icons -->
+  <g transform="translate(50, 80)">
+    <!-- Accueil icon -->
+    <rect x="0" y="0" width="40" height="40" rx="8" fill="#3B82F6"/>
+    <path d="M8 20 L20 12 L32 20 L32 30 L24 30 L24 24 L16 24 L16 30 L8 30 Z" fill="white"/>
+    
+    <!-- Sons icon -->
+    <rect x="50" y="0" width="40" height="40" rx="8" fill="#374151"/>
+    <path d="M15 16 L15 24 M20 12 L20 28 M25 14 L25 26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Visuels icon -->
+    <rect x="100" y="0" width="40" height="40" rx="8" fill="#374151"/>
+    <path d="M20 12 L28 20 L20 28 L12 20 Z" fill="white"/>
+    
+    <!-- Minuteur icon -->
+    <rect x="150" y="0" width="40" height="40" rx="8" fill="#374151"/>
+    <circle cx="170" cy="20" r="8" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M170 16 L170 20 L174 24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Mes Bulles icon -->
+    <rect x="200" y="0" width="40" height="40" rx="8" fill="#374151"/>
+    <rect x="208" y="12" width="16" height="16" rx="2" fill="white"/>
+    
+    <!-- Conseils icon -->
+    <rect x="250" y="0" width="40" height="40" rx="8" fill="#374151"/>
+    <circle cx="270" cy="20" r="8" stroke="white" stroke-width="2" fill="none"/>
+    <text x="270" y="24" text-anchor="middle" fill="white" font-size="10">!</text>
+  </g>
+  
+  <!-- Main content area -->
+  <rect x="30" y="140" width="340" height="120" rx="12" fill="rgba(55, 65, 81, 0.8)"/>
+  <text x="200" y="165" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Bienvenue dans ton espace de calme</text>
+  <text x="200" y="185" text-anchor="middle" fill="#C7D2FE" font-family="Arial, sans-serif" font-size="12">Choisis ce qui t'aide à te sentir bien :</text>
+  
+  <!-- Action buttons -->
+  <g transform="translate(50, 200)">
+    <rect x="0" y="0" width="90" height="40" rx="8" fill="url(#buttonGradient)"/>
+    <text x="45" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Écouter des sons</text>
+    
+    <rect x="105" y="0" width="90" height="40" rx="8" fill="url(#buttonGradient)"/>
+    <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Regarder des visuels</text>
+    
+    <rect x="210" y="0" width="90" height="40" rx="8" fill="url(#buttonGradient)"/>
+    <text x="255" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Prendre une pause</text>
+  </g>
+  
+  <!-- Bottom section -->
+  <text x="30" y="285" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Mes Bulles Sauvegardées</text>
+</svg>
