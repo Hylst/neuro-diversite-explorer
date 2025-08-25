@@ -8,6 +8,16 @@ const getDownloadPath = (filename: string) => `/assets/downloads/${filename}`;
 // Updated documents with corrected paths
 export const documents: Document[] = [
   {
+    id: 19,
+    title: "Apprendre quand ton cerveau préfère danser plutôt que rester assis",
+    type: "Article",
+    description: "Guide pratique pour les esprits dynamiques, curieux… et un peu rétifs aux méthodes scolaires classiques. Découvrez des techniques d'apprentissage actives qui transforment l'étude en mouvement et en plaisir.",
+    author: "Geoffroy Streit",
+    date: "2025",
+    link: ROUTES.RESSOURCES.APPRENDRE_CERVEAU_DANSE,
+    size: "Guide pratique"
+  },
+  {
     id: 18,
     title: "Guide Pratique : Naviguer dans le Labyrinthe des Idées",
     type: "Article",

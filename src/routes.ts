@@ -59,6 +59,7 @@ export const ROUTES = {
     VIE_CHAOS_ORGANISE: '/ressources/vie-chaos-organise',
     MEMOIRE_NEURODIVERSITE: '/ressources/memoire-neurodiversite',
     NAVIGATION_LABYRINTHE_IDEES: '/ressources/navigation-labyrinthe-idees',
+    APPRENDRE_CERVEAU_DANSE: '/ressources/apprendre-cerveau-danse',
   },
   
   // Blog

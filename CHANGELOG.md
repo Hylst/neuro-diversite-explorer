@@ -16,6 +16,13 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### ✨ Ajouté
+- **Nouveau document ressource** : "Apprendre quand ton cerveau préfère danser plutôt que rester assis" - Guide pratique pour les esprits dynamiques avec techniques d'apprentissage actives
+  - Création du composant `ApprendreCerveauDanse.tsx` avec contenu complet
+  - Ajout de la route `/ressources/apprendre-cerveau-danse` dans le système de routage
+  - Intégration dans la section Documents des Ressources avec métadonnées appropriées
+  - Interface utilisateur avec animations et icônes pour une expérience engageante
+
 ### Fixed
 - Replaced `Ladder` icon with `List` in `MarreApprendre.tsx` due to `Ladder` not being an exported member of `lucide-react`.
 
