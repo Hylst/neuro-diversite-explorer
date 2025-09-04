@@ -17,11 +17,45 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [Unreleased]
 
 ### ✨ Ajouté
+- **Support PWA (Progressive Web App)** : Implémentation complète des fonctionnalités PWA pour une meilleure expérience utilisateur
+  - Création d'un service worker (`sw.js`) pour la mise en cache et le fonctionnement hors ligne
+  - Enregistrement automatique du service worker dans l'application principale
+  - Mise à jour du manifest.json avec les tailles d'icônes requises (192x192, 512x512) pour l'installation PWA
+  - Configuration des icônes maskables pour une meilleure intégration sur les appareils mobiles
+  - L'application peut maintenant être installée comme une app native sur les appareils compatibles
+
 - **Nouveau document ressource** : "Apprendre quand ton cerveau préfère danser plutôt que rester assis" - Guide pratique pour les esprits dynamiques avec techniques d'apprentissage actives
   - Création du composant `ApprendreCerveauDanse.tsx` avec contenu complet
   - Ajout de la route `/ressources/apprendre-cerveau-danse` dans le système de routage
   - Intégration dans la section Documents des Ressources avec métadonnées appropriées
   - Interface utilisateur avec animations et icônes pour une expérience engageante
+
+### 🔄 Modifié
+- **Mise à jour de l'icône de l'application** : Remplacement du favicon par l'icône personnalisée `neuro_diversite_ico.png`
+  - Conversion et placement du fichier PNG en tant que favicon.ico dans le dossier public
+  - Ajout des références d'icônes appropriées dans index.html (favicon, apple-touch-icon)
+  - Création d'un fichier manifest.json pour une meilleure intégration PWA
+  - Vérification et confirmation qu'aucune autre icône codée en dur n'interfère avec la nouvelle configuration
+
+### 🐛 Corrigé
+- **Erreur Fast Refresh HMR avec useAuth** : Résolution du problème "Could not Fast Refresh (useAuth export is incompatible)"
+  - Création d'un hook dédié `useAuth.ts` dans le dossier `src/hooks`
+  - Déplacement du contexte d'authentification vers le nouveau fichier hook
+  - Refactorisation d'`AuthProvider.tsx` pour n'exporter que des composants React
+  - Mise à jour des imports dans `MainNavbar.tsx` et `ProfilePage.tsx`
+  - Amélioration de la modularité du code et compatibilité avec Vite Fast Refresh
+
+- **Erreur de création du bucket Supabase Storage** : Résolution de l'erreur "StorageApiError: new row violates row-level security policy"
+  - Suppression de la création automatique du bucket 'avatars' depuis le client
+  - Remplacement par une vérification en lecture seule de la disponibilité du stockage
+  - Ajout d'instructions détaillées pour la création manuelle du bucket dans `SUPABASE_STORAGE_SETUP.md`
+  - Amélioration de la gestion d'erreur avec des messages d'avertissement informatifs
+  - Fallback gracieux vers le stockage base64 si les buckets ne sont pas disponibles
+
+- **Problème d'affichage du favicon** : Correction du problème où l'icône personnalisée n'apparaissait pas dans l'onglet Chrome
+  - Suppression de la référence au fichier favicon.ico défaillant
+  - Configuration directe du PNG comme favicon avec les bonnes balises HTML
+  - Ajout de la balise shortcut icon pour une meilleure compatibilité navigateur
 
 ### Fixed
 - Replaced `Ladder` icon with `List` in `MarreApprendre.tsx` due to `Ladder` not being an exported member of `lucide-react`.

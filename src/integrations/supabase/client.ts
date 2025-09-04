@@ -38,40 +38,31 @@ export const supabase = createClient<Database>(
 // Console log pour débogage
 console.log("Supabase client initialized with site URL:", SITE_URL);
 
-// Fonction pour initialiser les buckets de stockage nécessaires
-export const initializeSupabaseStorage = async () => {
+// Fonction pour vérifier la disponibilité du stockage (sans création automatique)
+export const checkSupabaseStorage = async () => {
   try {
-    // Vérifier si le bucket 'avatars' existe
+    // Vérifier si le bucket 'avatars' existe (lecture seule)
     const { data: buckets, error } = await supabase.storage.listBuckets();
     
     if (error) {
-      console.error("Erreur lors de la vérification des buckets:", error);
-      return;
+      console.warn("Impossible de vérifier les buckets de stockage:", error.message);
+      return false;
     }
     
     const avatarBucketExists = buckets.some(bucket => bucket.name === 'avatars');
     
-    // Créer le bucket 'avatars' s'il n'existe pas
-    if (!avatarBucketExists) {
-      console.log("Création du bucket 'avatars'...");
-      const { error: createError } = await supabase.storage.createBucket('avatars', {
-        public: true,
-        fileSizeLimit: 1024 * 1024 * 2, // 2MB
-        allowedMimeTypes: ['image/jpeg', 'image/png', 'image/gif']
-      });
-      
-      if (createError) {
-        console.error("Erreur lors de la création du bucket 'avatars':", createError);
-      } else {
-        console.log("Bucket 'avatars' créé avec succès");
-      }
+    if (avatarBucketExists) {
+      console.log("Bucket 'avatars' disponible");
+      return true;
     } else {
-      console.log("Le bucket 'avatars' existe déjà");
+      console.warn("Le bucket 'avatars' n'existe pas. Veuillez le créer manuellement dans le dashboard Supabase.");
+      return false;
     }
   } catch (err) {
-    console.error("Erreur lors de l'initialisation du stockage:", err);
+    console.warn("Erreur lors de la vérification du stockage:", err);
+    return false;
   }
 };
 
-// Initialiser le stockage au démarrage de l'application
-initializeSupabaseStorage();
+// Vérifier la disponibilité du stockage au démarrage (sans création automatique)
+checkSupabaseStorage();

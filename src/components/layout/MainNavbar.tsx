@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, HelpCircle } from 'lucide-react';
-import { useAuth } from '@/components/auth/AuthProvider';
+import { useAuth } from '@/hooks/useAuth';
 import AuthButtons from '@/components/auth/AuthButtons';
 import { ThemeToggle } from './ThemeToggle';
 import { AccessibilityMenu } from './AccessibilityMenu';

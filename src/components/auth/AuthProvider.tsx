@@ -1,21 +1,8 @@
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { User, Session } from '@supabase/supabase-js';
-
-interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  isLoading: boolean;
-}
-
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  session: null,
-  isLoading: true
-});
-
-export const useAuth = () => useContext(AuthContext);
+import { AuthContext } from '@/hooks/useAuth';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
